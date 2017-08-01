@@ -3886,11 +3886,11 @@ ion-item.item-md ion-select, ion-item.item-ios ion-select {
   width: 100%;
 }
 
-ion-item.item-md ion-select.mitad, ion-item.item-ios ion-select.mitad {
+ion-item.item-md ion-select.mitad, ion-item.item-md ion-input.mitad, ion-item.item-ios ion-select.mitad, ion-item.item-ios ion-input.mitad {
   width: 49%;
 }
 
-ion-item.item-md ion-select.mitad:first-child, ion-item.item-ios ion-select.mitad:first-child {
+ion-item.item-md ion-select.mitad:first-child, ion-item.item-md ion-input.mitad:first-child, ion-item.item-ios ion-select.mitad:first-child, ion-item.item-ios ion-input.mitad:first-child {
   margin-right: 2%;
 }
 
@@ -25366,6 +25366,10 @@ ion-navbar.toolbar {
   .wp .modal-wrapper > .ion-page > ion-header > ion-content.statusbar-padding:first-child[padding-top] .scroll-content {
     padding-top: calc(16px + 20px);
   }
+}
+
+.center {
+  text-align: center;
 }
 
 page-cleaning .imgCenter ion-icon {

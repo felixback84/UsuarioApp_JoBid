@@ -16,7 +16,8 @@ import { IndexPage } from '../pages/index/index';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
+  userName: string = 'hola logeado';
+  srcUser: string = 'assets/img/user.png';
   rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;

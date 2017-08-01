@@ -5,6 +5,7 @@ import { NavController, NavParams } from 'ionic-angular';
 //import { ProfessionPage } from '../profession/profession';
 
 import { CleaningPage } from '../cleaning/cleaning';
+import {MyApp}  from '../../app/app.component';
 
 /**
  * Generated class for the IndexPage page.
@@ -24,6 +25,9 @@ export class IndexPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IndexPage');
+    console.log(localStorage);
+    // MyApp.userName = 'soy nuevo';
+    console.log(MyApp);
   }
 
  	// profession(){

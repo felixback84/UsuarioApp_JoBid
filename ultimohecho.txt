@@ -1,5 +1,15 @@
 ultimo hecho
 
+admin
+12345
+
+
+subir de api resful 
+define('DB_USERNAME', 'JoBitUser');
+define('DB_PASSWORD', 'JoBitUser.2017');
+define('DB_DATABASE', 'JobitApp');
+http://php-slim-restful-master.lamaletadefelix.com/api/login
+
 npm install usa-states --saves
 npm install cities --save
 npm install zipcode --save

@@ -20,11 +20,11 @@
     <ion-list padding>
 	  <ion-item>
       <ion-icon name="person" item-start></ion-icon>
-      <ion-input type="text" placeholder="User / Email"></ion-input>
+      <ion-input type="text" placeholder="User / Email" [(ngModel)]="userData.username" name="username" ></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name="home" item-start></ion-icon>
-      <ion-input type="password" placeholder="Password"></ion-input>
+      <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password" name="password"></ion-input>
 	  </ion-item>
     <div class="btnBottom">
 	   <button  ion-button block color="danger" (click)="login()" >Enter<ion-icon name="arrow-dropright"></ion-icon></button> 

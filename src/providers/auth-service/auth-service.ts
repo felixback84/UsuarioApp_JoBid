@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http , Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 
-let apiUrl = "http://localhost/PHP-Slim-Restful-master/api/";
+//let apiUrl = "http://localhost/PHP-Slim-Restful-master/api/";
+let apiUrl = "http://php-slim-restful-master.lamaletadefelix.com/api/";
 /*
   Generated class for the AuthServiceProvider provider.
 

@@ -7,6 +7,10 @@
 
   <ion-content>
     <ion-list>
+      <div class="center">
+        <img src="{{srcUser}}" alt="userLogo">
+      </div>
+      <p class="center">{{userName}}</p>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
