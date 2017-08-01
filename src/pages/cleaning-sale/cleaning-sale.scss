@@ -1,0 +1,77 @@
+page-cleaning-sale {
+ .imgFull{ width: 100%; height: 300px;
+ }
+ ion-icon[name=timer]{
+ 	color: white;
+ 	margin-top: 10px;
+ 	font-size: 2em;
+ 	span{color:orange;}
+ }
+ion-footer ion-toolbar {
+	&.toolbar{margin-bottom: 0;padding-bottom: 0;}
+	/*.grid{margin-bottom: 0;padding-bottom: 0;}*/
+	.toolbar-background-md,.toolbar-background-ios{
+		color:white;
+ 		background: $Red;
+
+ }
+ 	button{
+ 		
+ 	}
+	.BarraTime{
+		background: orange;
+		height: 15px;
+	}
+ p{color:white;margin:0;}
+}
+
+ion-content ion-grid{
+	ion-row.row{
+		border-bottom: 1px solid #aaa; 
+	}
+	h5{ text-align: center; }
+	ion-icon[name=trophy]{
+		color: orange;
+		font-size: 2em;
+		padding: 10px;
+		padding-top: 16px;
+	}
+ .button{
+	 	padding: 5px 0;
+		width: 2.5em;
+		background: #444;
+		color: white;
+		box-shadow: none;
+		margin-top: 10px;
+	 	ion-icon[name=search]{
+		 	color:white;
+		}
+	}
+}
+.btnBottom{
+	margin-top: 20px;
+}
+
+}
+
+.alert-md .alert-wrapper,.alert-ios .alert-wrapper{
+	border-radius: 10px;
+	max-width: 90%;
+	h5{color:$Red;}
+	.col-50{
+		width: 48%;
+		display: inline-block;
+	}
+	.col-40{
+		width: 38%;
+		display: inline-block;
+	}
+	.col-60{
+		width: 58%;
+		display: inline-block;
+	}
+	.ItemPService{
+		img{margin-bottom: -5px;}
+		span{margin-bottom: 5px;}
+	}
+}

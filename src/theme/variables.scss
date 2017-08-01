@@ -1,0 +1,223 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/v2/theming/
+
+// Font path is used to include ionicons,
+// roboto, and noto sans fonts
+$font-path: "../assets/fonts";
+
+
+// The app direction is used to include
+// rtl styles in your app. For more info, please see:
+// http://ionicframework.com/docs/theming/rtl-support/
+$app-direction: ltr;
+
+ion-navbar .toolbar-content{
+	margin-left: -200px; 
+	z-index: -1;
+	.toolbar-title{
+		/*margin-left:-25px*/
+	/*margin-left: 35%;*/
+		text-align: center;
+	
+	}
+}
+
+@import "ionic.globals";
+
+
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+
+body{
+	font-family: Helvetica;
+}
+$Red : #b20000;
+$Gray : #666666;
+$GrayText: #444;
+$Green : #2b8300;
+
+p,h1,h2,h3,h4,h5,h6{
+	color: $GrayText;
+	font-family: Helvetica;
+}
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+
+$colors: (
+  primary:    #488aff,
+  secondary:  #32db64,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222
+);
+
+
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+
+
+
+
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+
+
+
+
+// App Windows Variables
+// --------------------------------------------------
+// Windows only Sass variables can go here
+
+
+
+
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+@import "ionic.theme.default";
+
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/v2/ionicons/
+
+@import "ionic.ionicons";
+
+
+// Fonts
+// --------------------------------------------------
+
+@import "roboto";
+@import "noto-sans";
+
+//Custom theme
+//-----------------------------
+
+.list-md .item-input:last-child,.list-ios .item-input:last-child{
+	border-bottom: none !important;
+}
+ion-item.item-md ,ion-item.item-ios {
+	padding:0;
+	padding-bottom: 5px;
+	&>ion-icon[item-start] + .item-inner{
+		padding: 0;
+		margin-left: 15px;
+	}
+	&.item-block .item-inner{
+		padding-right: 0;
+		border-bottom: none;
+	}
+	&.iconJunto>ion-icon[item-start]+ .item-inner{margin-left: 0;}
+	ion-icon[item-start]{
+		min-width: 45px;
+	    background: $Red;
+	    margin-left: 0;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		padding: 10px;
+	    color: white;    
+	    margin: 0px;
+	    height: 48px;
+	}
+	ion-input,ion-select{
+		border:1px solid #ddd;
+		height: 48px;
+		color:$GrayText;
+	}
+	ion-textarea{
+		border:1px solid #ddd;
+		color:$GrayText;
+	}
+	ion-select{
+		max-width: 100%;
+		width: 100%;
+	}
+	ion-select.mitad{
+		width: 49%;
+		&:first-child{
+			margin-right:2%;
+		}
+	}
+	&.item-radio-checked.item-md ion-label,.item-radio-checked.item-ios ion-label{
+		color:$GrayText;
+	}
+	.radio-md,.radio-ios{
+				
+		.radio-icon{
+			border-color:$GrayText;
+			.radio-inner{background: $GrayText;}
+		}
+	}
+}
+/*
+form{
+	ion-grid>ion-row>ion-col{
+		ion-icon{
+			height: 48px;
+			width: 45px;
+			background: $Red;
+			color:white;
+			padding:12px;
+			font-size:2em;
+		}
+		ion-input{
+			height: 48px;
+			border: 1px solid #ddd;
+		}
+	}
+		
+}*/
+.tabMenu{
+	border-top: 1px solid #eee;
+	background-color: #f4f4f4;
+	position: fixed;
+	bottom: 0;
+	.row>p{
+		margin:0;
+		padding:0;
+		width: 100%;
+		text-align: center;
+	}
+	.button-md-light,.button-ios-light{
+		box-shadow: none;
+		background: transparent;
+		height: 4em;
+	}
+	ion-icon{
+		display: block;
+		margin:0 auto;
+		font-size: 2em;
+	}
+}
+.button-md,.button-ios{
+	text-transform: capitalize !important;
+}
+.button-md-danger,.button-ios-danger{
+	background: $Red !important;
+}
+.btnBottom{ position: relative;
+	.button-md,.button-ios{font-size: 2rem;text-transform: capitalize;
+		ion-icon{ position: absolute; right: 10px; }
+	}
+}
+
+.barraRoja{background: $Red;
+		h4{color:white; text-align: center;padding: 10px; margin:0;} 
+	}

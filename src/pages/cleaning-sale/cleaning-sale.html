@@ -1,0 +1,94 @@
+<!--
+  Generated template for the CleanigSalePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+  <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>joBid</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+<img src="assets/img/map.png" class="imgFull">
+<div class="barraRoja">
+  <h4>Offers received</h4>
+</div>
+<ion-grid>
+  <ion-row>
+    <ion-col col-2>
+      <ion-icon name="trophy"></ion-icon>
+    </ion-col>
+    <ion-col col-6>
+     <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/img/professions/cleaning.png">
+      </ion-avatar>
+      <h2>Estefania Lorem</h2>
+     </ion-item>
+    </ion-col>
+    <ion-col col-2>
+      <h5> $81 </h5>
+    </ion-col>
+    <ion-col col-2>
+      <button ion-button icon-only round color="light" (click)="showInfoCleaning(1)">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-2>
+    </ion-col>
+    <ion-col col-6>
+     <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/img/professions/cleaning.png">
+      </ion-avatar>
+      <h2>Estefania Lorem</h2>
+     </ion-item>
+    </ion-col>
+    <ion-col col-2>
+      <h5> $82 </h5>
+    </ion-col>
+    <ion-col col-2>
+      <button ion-button icon-only round color="light" (click)="showInfoCleaning(2)" >
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<div class="btnBottom">
+          <button ion-button color="danger" block icon-left (click)="goCleaningContractor()">Continue<ion-icon name="arrow-dropright"></ion-icon></button>
+        </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+     <ion-row>
+      <ion-col col-2>
+        <p>Time</p>
+      </ion-col>
+      <ion-col col-10>
+        <div class="BarraTime"></div>
+      </ion-col>
+     </ion-row>
+     <ion-row>
+      <ion-col>
+        <ion-icon name="timer"><span> 03:00</span></ion-icon>
+      </ion-col>
+      <ion-col>
+        <button id="btnCancel" ion-button block color="light"(click)="goIndex()">Cancel
+        </button>
+      </ion-col>
+     </ion-row>
+    </ion-grid>  
+  </ion-toolbar>
+</ion-footer>

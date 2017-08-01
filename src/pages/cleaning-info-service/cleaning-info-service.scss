@@ -1,0 +1,19 @@
+page-cleaning-info-service {
+	.imageFull{width: 100%; height: auto;}
+	h3,h5,h6,.textoCentrado{text-align: center;}
+	h6,h3{margin: 0;}
+	.barraGris{ background: $Gray;
+		h4{padding:10px;color:white;margin: 0;text-align: center;}
+	}
+	.item-md ion-avatar>img,.item-ios ion-avatar>img{ margin:0; width: 80px; height: 80px; }
+	h6{color: $Green;}
+	h3{margin-top: 5px;}
+	.textRed{
+		color:$Red;
+	}
+	p{margin: 7px 0;}
+	.space{
+		height: 8px;
+	}
+	.textoCentrado{margin:0;}
+}

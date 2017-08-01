@@ -1,0 +1,36 @@
+<!--
+  Generated template for the PaymentMethodsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>paymentMethods</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<img src="assets/img/LogoJoBid.png">
+    <h5 id="paymentMethods-heading4">Welcome </h5>
+    <h5 id="paymentMethods-heading5">User </h5>
+    <div class="spacer"></div>
+    <h4 id="paymentMethods-heading6">Payment Method</h4>
+    <h5 id="paymentMethods-heading7">Select your paymenth method </h5>
+    <form id="paymentMethods-form5" class="list" padding>
+    <ion-list>
+        <ion-item>
+          <ion-checkbox id="paymentMethods-checkbox2">Credit Card</ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-checkbox id="paymentMethods-checkbox3">Pay</ion-checkbox>
+        </ion-item>
+        <div class="btnBottom">
+          <button ion-button color="danger" block (click)="goPayInfo()">Continue<ion-icon name="arrow-dropright"></ion-icon></button>
+        </div>
+    </ion-list>
+    </form>
+</ion-content>

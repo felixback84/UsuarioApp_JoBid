@@ -1,0 +1,76 @@
+<!--
+  Generated template for the CleaningInfoServicePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+  <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>joBid</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+<img src="assets/img/map.png" class="imageFull">
+<div class="barraGris">
+	<h4>Service information</h4>
+</div>
+<h3>Service code: #987456</h3>
+<p class="textoCentrado">State</p>
+<h6 id="estadoServicio">Waiting for the professional</h6>
+<div padding>
+	<p><span class="textRed">*Amount to be paid: </span>$81</p>
+	<p><span class="textRed">Description:</span></p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+	<div class="space"></div>
+	<p><span class="textRed">Professional data</span></p>
+	<ion-grid>
+	<ion-row>
+	  <ion-col col-3>
+	    <ion-list>
+	    	<ion-item>
+	      	<ion-avatar>
+			      <img src="assets/img/professions/cleaning.png">
+			    </ion-avatar>
+		  	</ion-item>
+			</ion-list>
+	  </ion-col>
+	  <ion-col col-9>
+	  	<ion-row>
+	  		<ion-col>
+	  			<h4>Estefania lorem</h4>
+	  			<img src="assets/img/Estrellas.png" alt="">
+	  		</ion-col>
+	  	</ion-row>	
+	  	<ion-row>	
+			  <ion-col col-6>
+			    <ion-list><ion-item>
+			    	<ion-label>Certificate</ion-label>
+						<ion-radio checked="true" value="Certificate"></ion-radio>
+					</ion-item></ion-list>
+			  </ion-col>
+			  <ion-col col-6>
+			    <ion-list>
+			   		<ion-item>
+			      	<ion-label>Insurance</ion-label>
+							<ion-radio checked="true" value="Insurance"></ion-radio>
+				  	</ion-item>
+					</ion-list>
+			  </ion-col>
+	  	</ion-row>	
+	  </ion-col>
+	</ion-row>
+</ion-grid>
+</div>
+
+<div class="btnBottom">
+	<button id="verifyYourPhone-button6" ion-button block color="danger" (click)="goCleaningVote()">Continue <ion-icon name="arrow-dropright"></ion-icon></button>
+</div>
+
+</ion-content>

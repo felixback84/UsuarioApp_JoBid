@@ -1,0 +1,28 @@
+page-cleaning-contractor {
+	/*@mixin degradeRojo(){
+background: rgba(247,109,84,1);
+background: -moz-linear-gradient(top, rgba(247,109,84,1) 0%, rgba(241,111,92,1) 8%, rgba(246,41,12,1) 51%, rgba(240,47,23,1) 82%, rgba(231,56,39,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(247,109,84,1)), color-stop(8%, rgba(241,111,92,1)), color-stop(51%, rgba(246,41,12,1)), color-stop(82%, rgba(240,47,23,1)), color-stop(100%, rgba(231,56,39,1)));
+background: -webkit-linear-gradient(top, rgba(247,109,84,1) 0%, rgba(241,111,92,1) 8%, rgba(246,41,12,1) 51%, rgba(240,47,23,1) 82%, rgba(231,56,39,1) 100%);
+background: -o-linear-gradient(top, rgba(247,109,84,1) 0%, rgba(241,111,92,1) 8%, rgba(246,41,12,1) 51%, rgba(240,47,23,1) 82%, rgba(231,56,39,1) 100%);
+background: -ms-linear-gradient(top, rgba(247,109,84,1) 0%, rgba(241,111,92,1) 8%, rgba(246,41,12,1) 51%, rgba(240,47,23,1) 82%, rgba(231,56,39,1) 100%);
+background: linear-gradient(to bottom, rgba(247,109,84,1) 0%, rgba(241,111,92,1) 8%, rgba(246,41,12,1) 51%, rgba(240,47,23,1) 82%, rgba(231,56,39,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f76d54', endColorstr='#e73827', GradientType=0 );	
+	}*/
+	.saleBox{margin-top: -10px; 
+		h1{ background: $Red;
+			/*@include degradeRojo; */
+			padding:10px; margin:0 auto; width: 150px; text-align: center; color:white; 
+			border-radius:0 0 10px 10px;}
+	}
+	.item-md ion-avatar>img,.item-ios ion-avatar>img{ margin:0; width: 80px; height: 80px; }
+	.divScroll{width: 100%; height: 300px; overflow-y: scroll;}
+	h5{color:$Red;}
+	ion-toolbar{
+		button.button-md-light,button.button-ios-light{box-shadow: none; color:white; border-radius: 7px;text-transform: capitalize;
+			&#btnContractor{background: $Green;}
+			&#btnCancel{background: $Gray;}
+		}
+	}
+	ion-col ion-col.col-height{height: 48px;}
+}

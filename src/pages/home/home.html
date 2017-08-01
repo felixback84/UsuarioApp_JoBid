@@ -1,0 +1,56 @@
+<!-- <ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-content>
+ <!--  <h3>Ionic Menu Starter</h3>
+
+  <p>
+    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
+  </p>
+
+  <button ion-button secondary menuToggle>Toggle Menu</button> -->
+  <img src="assets/img/LogoJoBid.png" >
+    <h5 id="home-heading1" style="">Sing up or Log in</h5>
+    <div padding>
+      <button ion-button block color="danger" (click)="googleir()">Log in with Google</button>
+      <button ion-button block (click)="facebookir()">Log in with Faceook</button>
+    </div>
+
+    <ion-grid class="tabMenu">
+     <ion-row>
+      <ion-col>
+        <button ion-button block color="light" (click)="singup()">
+          <ion-grid>
+            <ion-row>
+              <ion-icon name="contact"></ion-icon>
+            </ion-row>  
+            <ion-row> 
+             <p>sing up</p>
+            </ion-row>
+          </ion-grid> 
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button block color="light"(click)="login()">
+        <ion-grid>
+            <ion-row>
+              <ion-icon name="lock"></ion-icon>
+            </ion-row>  
+            <ion-row> 
+             <p>login</p>
+            </ion-row>
+          </ion-grid> 
+        </button>
+      </ion-col>
+     </ion-row>
+    </ion-grid>  
+      
+
+      
+</ion-content>
