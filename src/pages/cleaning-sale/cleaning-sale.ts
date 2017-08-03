@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams ,AlertController} from 'ionic-angular';
 
 import { CleaningContractorPage } from '../cleaning-contractor/cleaning-contractor';
-import { IndexPage } from '../index/index';
+import { ShowPage } from '../show/show';
 /**
  * Generated class for the CleanigSalePage page.
  *
@@ -27,7 +27,7 @@ export class CleaningSalePage {
   }
 
   goIndex(){
-    this.navCtrl.setRoot(IndexPage);
+    this.navCtrl.setRoot(ShowPage);
   }
   showInfoCleaning(id = 0){
     var contenido='';

@@ -3886,11 +3886,11 @@ ion-item.item-md ion-select, ion-item.item-ios ion-select {
   width: 100%;
 }
 
-ion-item.item-md ion-select.mitad, ion-item.item-ios ion-select.mitad {
+ion-item.item-md ion-select.mitad, ion-item.item-md ion-input.mitad, ion-item.item-ios ion-select.mitad, ion-item.item-ios ion-input.mitad {
   width: 49%;
 }
 
-ion-item.item-md ion-select.mitad:first-child, ion-item.item-ios ion-select.mitad:first-child {
+ion-item.item-md ion-select.mitad:first-child, ion-item.item-md ion-input.mitad:first-child, ion-item.item-ios ion-select.mitad:first-child, ion-item.item-ios ion-input.mitad:first-child {
   margin-right: 2%;
 }
 
@@ -25368,6 +25368,10 @@ ion-navbar.toolbar {
   }
 }
 
+.center {
+  text-align: center;
+}
+
 page-cleaning .imgCenter ion-icon {
   width: 90px;
   display: block;
@@ -25690,31 +25694,6 @@ page-home #home-heading1 {
   text-align: center;
 }
 
-page-index .gridProfession {
-  border-top: 1px solid #eee;
-  background-color: #f4f4f4;
-}
-
-page-index .gridProfession .row > p {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  text-align: center;
-}
-
-page-index .gridProfession .button-md-light, page-index .gridProfession .button-ios-light {
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  background: transparent;
-  height: 10em;
-}
-
-page-index .gridProfession ion-icon {
-  display: block;
-  margin: 0 auto;
-  font-size: 8em;
-}
-
 page-login img {
   display: block;
   width: 100%;
@@ -25794,6 +25773,31 @@ page-payment-methods #paymentMethods-heading7 {
 page-payment-methods .spacer {
   width: 300px;
   height: 10px;
+}
+
+page-show .gridProfession {
+  border-top: 1px solid #eee;
+  background-color: #f4f4f4;
+}
+
+page-show .gridProfession .row > p {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+}
+
+page-show .gridProfession .button-md-light, page-show .gridProfession .button-ios-light {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background: transparent;
+  height: 10em;
+}
+
+page-show .gridProfession ion-icon {
+  display: block;
+  margin: 0 auto;
+  font-size: 8em;
 }
 
 page-singup img {

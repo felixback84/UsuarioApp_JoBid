@@ -1,8 +1,32 @@
+por hacer
+-envio de correos por cel.
+-mostrar datos usuario donde debes
+-native storage o storage https://www.youtube.com/watch?v=iNe8xEY7ceE
+-¿cuantos usuarios manejar el App y como se guardaran los datos?
+-metodos de pago
+
+
+
+___________
+error
+-en cel no sale de nuevo el login por facebook
+-error alert index.html  * error en tiempo de espera o plataforma ** error en acceder en un servicio web
+*https://forum.ionicframework.com/t/application-error-the-connection-to-the-server-was-unsuccessful/67584/14
+**http://www.phonegapspain.com/topic/error-al-iniciar-la-app-the-connection-to-the-server-was-unsuccessful/
+_____
 ultimo hecho
+
+#Email Composer
+
+login out
+if login
 
 admin
 12345
 
+$ ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="539258269738575" --variable APP_NAME="JoBid Usuario"
+
+$ npm install --save @ionic-native/facebook
 
 subir de api resful 
 define('DB_USERNAME', 'JoBitUser');
@@ -18,13 +42,15 @@ page cleaning vote
 page cleaning info service 
 page cleaning contract
 page cleaning info
-
-
-error
+_____
+desinstalar
 states-countify 
 npm install usa-states
 
+----
+futuro
 
+camara =>https://www.youtube.com/watch?v=N27NBB9TgLI
 --
 
 states-utils

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams , AlertController} from 'ionic-angular';
 
 import { CleaningInfoServicePage } from '../cleaning-info-service/cleaning-info-service';
-import { IndexPage } from '../index/index';
+import { ShowPage } from '../show/show';
 
 /**
  * Generated class for the CleaningContractorPage page.
@@ -27,7 +27,7 @@ export class CleaningContractorPage {
   	this.navCtrl.setRoot(CleaningInfoServicePage);
   }
   // goIndex(){
-  // 	this.navCtrl.setRoot(IndexPage);
+  // 	this.navCtrl.setRoot(ShowPage);
   // }
 
    goIndex() {
@@ -45,7 +45,7 @@ export class CleaningContractorPage {
           text: 'OK',
           handler: () => {
             console.log('Agree clicked');
-            this.navCtrl.setRoot(IndexPage);
+            this.navCtrl.setRoot(ShowPage);
           }
         }
       ]

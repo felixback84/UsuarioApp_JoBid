@@ -13,8 +13,16 @@
   <p>
     If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
   </p>
-
   <button ion-button secondary menuToggle>Toggle Menu</button> -->
+ 
+  <ion-card *ngIf="userData" >
+    <ion-card-header> {{userData.username}} </ion-card-header>
+    <img [src]= "userData.picture">
+    <ion-card-content>
+      <p>Email: {{ userData.email}}</p>
+      <p>Name: {{ userData.name}}</p>
+    </ion-card-content>
+  </ion-card>
   <img src="assets/img/LogoJoBid.png" >
     <h5 id="home-heading1" style="">Sing up or Log in</h5>
     <div padding>

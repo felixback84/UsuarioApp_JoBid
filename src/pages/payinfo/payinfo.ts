@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 
-import { IndexPage } from '../index/index';
+import { ShowPage } from '../show/show';
 /**
  * Generated class for the PayinfoPage page.
  *
@@ -23,6 +23,6 @@ export class PayinfoPage {
     console.log('ionViewDidLoad PayinfoPage');
   }
   goIndex(){
-  	this.navCtrl.setRoot(IndexPage);
+  	this.navCtrl.setRoot(ShowPage);
   }
 }

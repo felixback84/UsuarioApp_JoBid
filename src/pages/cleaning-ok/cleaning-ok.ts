@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { IndexPage } from '../index/index';
+import { ShowPage } from '../show/show';
 /**
  * Generated class for the CleaningOkPage page.
  *
@@ -22,6 +22,6 @@ export class CleaningOkPage {
     console.log('ionViewDidLoad CleaningOkPage');
   }
   goIndex(){
- 		this.navCtrl.setRoot(IndexPage);
+ 		this.navCtrl.setRoot(ShowPage);
  	}
 }

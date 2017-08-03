@@ -10,7 +10,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { SingupPage } from '../pages/singup/singup';
-import { IndexPage } from '../pages/index/index';
+import { ShowPage } from '../pages/show/show';
 import { VerifyYourPhonePage } from '../pages/verify-your-phone/verify-your-phone';
 import { PaymentMethodsPage } from '../pages/payment-methods/payment-methods';
 import { PayinfoPage } from '../pages/payinfo/payinfo';
@@ -25,6 +25,8 @@ import { CleaningOkPage } from '../pages/cleaning-ok/cleaning-ok';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Facebook } from '@ionic-native/facebook';
+//import { EmailComposer } from '@ionic-native/email-composer';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     LoginPage,
     SingupPage,
-    IndexPage,
+    ShowPage,
     VerifyYourPhonePage,
     PaymentMethodsPage,
     PayinfoPage,
@@ -57,7 +59,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     LoginPage,
     SingupPage,
-    IndexPage,
+    ShowPage,
     VerifyYourPhonePage,
     PaymentMethodsPage,
     PayinfoPage,
@@ -74,7 +76,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     SplashScreen, AuthServiceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthServiceProvider
+    AuthServiceProvider,
+    Facebook,
+    // EmailComposer
   ]
 })
 export class AppModule {}
