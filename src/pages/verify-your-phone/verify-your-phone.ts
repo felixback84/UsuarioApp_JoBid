@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams , AlertController } from 'ionic-angular';
 
 import { PaymentMethodsPage } from '../payment-methods/payment-methods';
 
@@ -23,7 +23,7 @@ export class VerifyYourPhonePage {
   verificacion: any;
   codVerificacion: any;
   //constructor(public navCtrl: NavController, public navParams: NavParams, private emailComposer: EmailComposer) {
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authServiceProvider: AuthServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authServiceProvider: AuthServiceProvider,public alertCtrl: AlertController) {
     
   }
 
@@ -32,30 +32,35 @@ export class VerifyYourPhonePage {
     console.log('ionViewDidLoad VerifyYourPhonePage');
     //this.CorreoVerificacion();
     //alert(this.navParams.get('username'));
-    //alert(JSON.stringify(this.navParams.get('datos')));
     this.userData = this.navParams.get('datos');
+    //alert(JSON.stringify(this.navParams.get('datos')));
+    console.log(this.navParams.get('datos'));
     this.verificacion = this.userData['verificacion'];
+    console.log(this.verificacion);
+    this.showAlert();
 
   }
    
   goPayMethod(){
 
-    if(this.userData['verificacion'] == this.codVerificacion){
-    // this.navCtrl.push(VerifyYourPhonePage);
-    // console.log(this.userData);
-    // this.authServiceProvider.postData(this.userData,'signup').then((result) => {
-    //   this.responseData = result;
-    //   console.log(this.responseData);
-    //   alert('userData', JSON.stringify(this.responseData));
-    //   localStorage.setItem('userData', JSON.stringify(this.responseData));
-    //       alert('code:'+this.userData);
-          alert('se registro');
-          this.navCtrl.push(PaymentMethodsPage);
-    // }, (err) => {
-    //   // Error log
-    //   //console.log('error '.err);
-    //   alert('error ');
-    // });
+    if(this.verificacion == this.codVerificacion){
+      console.log(this.userData);
+      this.authServiceProvider.postData(this.userData,'signup').then((result) => {
+        this.responseData = result;
+        console.log(this.responseData);
+        //alert('userData'+ JSON.stringify(this.responseData));
+        //localStorage.setItem('userData', JSON.stringify(this.responseData));
+            console.log('code:'+this.userData);
+            console.log(this.userData);
+            console.log('se registro');
+            //alert('code:'+JSON.stringify(this.userData));
+            //alert('se registro');
+            this.navCtrl.push(PaymentMethodsPage);
+        }, (err) => {
+        // Error log
+        //console.log('error '.err);
+        alert('error registro');
+      });
 
     }else{
       alert('codigo no es el mismo');
@@ -63,7 +68,14 @@ export class VerifyYourPhonePage {
     //this.navCtrl.push(PaymentMethodsPage);
   }
 
-  
+   showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Información',
+      subTitle: 'Se a enviado un correo con un codigo de verificacion',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 
   CorreoVerificacion(){
     // this.emailComposer.isAvailable().then((available: boolean) =>{

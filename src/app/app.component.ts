@@ -51,25 +51,25 @@ export class MyApp {
   }
 
   cerrarSeccion(){
-  this.facebook.getLoginStatus().then( data=>{
-        alert(JSON.stringify(data.status));
-        if(data.status === 'connected'){
-                alert('estoy logeado');
-                this.facebook.logout().then((response) => {
-                  console.log('Login out Facebook!', response);
-                  alert('response:'+JSON.stringify(response));
-                  alert('estoy des-logeado');
-                  this.nav.push(HomePage);
-                })
-                .catch(e => {
-                  console.log('Error logging into Facebook', e);
-                  });
-            }else{
-                alert('no estoy logeado');
-        }
-    }).catch(e => {
-      console.log('Error logging into Facebook', e);
-      alert('error if login');
-      });
+    this.facebook.getLoginStatus().then( data=>{
+          alert(JSON.stringify(data.status));
+          if(data.status === 'connected'){
+                  alert('estoy logeado');
+                  this.facebook.logout().then((response) => {
+                    console.log('Login out Facebook!', response);
+                    alert('response:'+JSON.stringify(response));
+                    alert('estoy des-logeado');
+                    this.nav.push(HomePage);
+                  })
+                  .catch(e => {
+                    console.log('Error logging into Facebook', e);
+                    });
+              }else{
+                  alert('no estoy logeado');
+          }
+      }).catch(e => {
+        console.log('Error logging into Facebook', e);
+        alert('error if login');
+        });
   }
 }

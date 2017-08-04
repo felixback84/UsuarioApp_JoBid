@@ -21,14 +21,16 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
   templateUrl: 'singup.html',
 })
 export class SingupPage {
-  //responseData :any;
-  userData = {"username":"","password":"","email":"","name":"","city":"","state":"", "picture":"", "verificacion":""};
-  ciudad: any =  [];
+  responseData :any;
+  responseDataUser :any;
+  userData = {"username":"","password":"","email":"","name":"","city":"","state":"","picture":"","verificacion":""};
+  ciudades: any =  [];
+  ciudad: string =  undefined;
   stateZipcode: string = undefined;
   estados : any = [];
-  // constructor(public navCtrl: NavController, public navParams: NavParams, public authServiceProvider: AuthServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authServiceProvider: AuthServiceProvider) {
   // }
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  //constructor(public navCtrl: NavController, public navParams: NavParams) {
     var stateName = STATE_UTILS.getStates();
     var stateNameShort = STATE_UTILS.getUSPSCodes();
 
@@ -54,35 +56,50 @@ export class SingupPage {
     //console.log(STATE_UTILS.getStates());
   }
   goPhoneV(){
-
-  	//this.navCtrl.push(VerifyYourPhonePage);
-    // console.log(this.userData);
-    // this.authServiceProvider.postData(this.userData,'signup').then((result) => {
-    //   this.responseData = result;
-    //   console.log(this.responseData);
-    //   alert('userData', JSON.stringify(this.responseData));
-    //   localStorage.setItem('userData', JSON.stringify(this.responseData));
-          this.userData.verificacion = ''+Math.floor((Math.random() * 99999) + 11111);
-          alert('code:'+this.userData.verificacion);
-          let Data = {'datos':this.userData};
-          this.navCtrl.push(VerifyYourPhonePage, Data);
-    // }, (err) => {
-    //   // Error log
-    //   //console.log('error '.err);
-    //   alert('error ');
-    // });
+    this.authServiceProvider.postData(this.userData,'user').then((resultUser) => {
+      //this.responseDataUser = resultUser;
+      console.log(resultUser['ok']);
+      if(resultUser['ok']){
+        console.log('el usuario esta disponible');
+      }else{
+        console.log('el usuario registado');
+      }
+      this.userData.verificacion = ''+Math.floor((Math.random() * 99999) + 11111);
+        //alert('code:'+this.userData.verificacion);
+      let Data = {'datos':this.userData};
+      // this.authServiceProvider.postData(this.userData,'code').then((result) => {
+      //       this.responseData = result;
+            //console.log(this.responseData);
+            //alert('userData'+ JSON.stringify(this.responseData));
+            //localStorage.setItem('userData', JSON.stringify(this.responseData));
+           
+                //this.navCtrl.push(VerifyYourPhonePage, Data);
+                //this.navCtrl.push(VerifyYourPhonePage);
+          //   }, (err) => {
+          //   // Error log
+          //   //console.log('error '.err);
+          //   alert('error correo');
+          // });
+        //this.navCtrl.push(VerifyYourPhonePage);
+        }, (err) => {
+        // Error log
+        //console.log('error '.err);
+        alert('error verificacion usuario existente');
+      });
   }
+          //this.navCtrl.push(VerifyYourPhonePage, Data);
+
   setCity(){
-    console.log(this.userData.state);
+    //console.log(this.userData.state);
     this.userData.city = undefined;
     var someArray = undefined;
-    this.ciudad =  [];
+    this.ciudades =  [];
     someArray = cities.findByState(this.userData.state);
     for (let entry of someArray) {
       //var city= entry['city'];
       if (typeof entry['city'] !== 'undefined' && entry['city'] !== null && entry['city'] !== '') {
-         console.log(entry['city']); // 1, "string", false
-         this.ciudad.push({'name':entry['city'],'zipcode':entry['zipcode']});
+         //console.log(entry['city']); // 1, "string", false
+         this.ciudades.push({'name':entry['city'],'zipcode':entry['zipcode']});
       }
       
     }
@@ -90,6 +107,13 @@ export class SingupPage {
   setZipCode(){
     //alert('select other item');
     //console.log (this.userData.city);
+    //var numero = this.ciudades.indexOf(this.userData.city);
+    //console.log(numero);
+    //var  num = 07946;
+    //console.log(cities.zip_lookup('07946'));
+    //let data = cities.zip_lookup(this.userData.city);
+    //console.log(data);
+    //this.ciudad = data['city'];
     this.stateZipcode = this.userData.state+' '+this.userData.city;
   }
 }

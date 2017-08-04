@@ -20,12 +20,19 @@ export class AuthServiceProvider {
   postData(credentials, type) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
-
       this.http.post(apiUrl + type, JSON.stringify(credentials), {headers: headers})
         .subscribe(res => {
-          resolve(res.json());
+          if(type == 'code'){
+            resolve('correo enviando');
+          }else{
+            //console.log(res);
+            resolve(res.json());
+          }
         }, (err) => {
           reject(err);
+          console.log('error service');
+          console.log(err);
+          //alert('error service'+err);
         });
     });
 

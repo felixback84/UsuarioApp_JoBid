@@ -74,7 +74,7 @@ import { Facebook } from '@ionic-native/facebook';
   ],
   providers: [
     StatusBar,
-    SplashScreen, AuthServiceProvider,
+    SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
     Facebook,

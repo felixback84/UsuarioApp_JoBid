@@ -32,12 +32,16 @@
           </ion-select>
           <ion-select  class="mitad" [(ngModel)]="userData.city" name="city" (ngModelChange)="setZipCode()"> <!--[(ngModel)]="gaming"-->
             <ion-option selected>....</ion-option>
-            <ion-option *ngFor="let city of ciudad" value="{{city.zipcode}}">{{city.name}} - {{city.zipcode}}</ion-option>
+            <ion-option *ngFor="let city of ciudades" value="{{city.zipcode}}">{{city.name}} - {{city.zipcode}}</ion-option>
           </ion-select>
         </ion-item>
         <ion-item>
           <ion-icon name="home" item-start></ion-icon>
-          <ion-input type="text" placeholder="Address" class="mitad"></ion-input>
+          <ion-input type="number" placeholder="1234" class="mitad"></ion-input>
+          <ion-input type="text" placeholder="avenue" value="" class="mitad"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="City" class="mitad spaceIcons" value= "{{ciudad}}" ></ion-input>
           <ion-input type="text" placeholder="NJ 0000" value="{{stateZipcode}}" class="mitad"></ion-input>
         </ion-item>
         <ion-item>
