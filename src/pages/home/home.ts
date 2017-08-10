@@ -2,8 +2,8 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-
-import { ShowPage } from '../show/show';
+//import { ShowPage } from '../show/show';
+import { PreHomePage } from '../pre-home/pre-home';
 import { LoginPage } from '../login/login';
 import { SingupPage } from '../singup/singup';
 
@@ -23,7 +23,7 @@ ionViewDidLoad() {
         //alert(JSON.stringify(data.status));
         if(data.status === 'connected'){
                 //alert('estoy logeado');
-                this.navCtrl.setRoot(ShowPage);
+                this.navCtrl.setRoot(PreHomePage);
             }else{
                 //alert('no estoy logeado');
         }
@@ -34,9 +34,9 @@ ionViewDidLoad() {
   }
 
     googleir(){
-    this.navCtrl.setRoot(ShowPage);
+    this.navCtrl.setRoot(PreHomePage);
     //this.navCtrl.pop();
-    //this.navCtrl.push(ShowPage); 
+    //this.navCtrl.push(PreHomePage); 
   }
 
   facebookir(){
@@ -50,15 +50,15 @@ ionViewDidLoad() {
         this.userData = {email: profile['email'], name : profile['first_name'], picture :profile['picture_large']['data']['url'], username : profile['name'] };
         // ej datos == userData = {"username":"","password":"","email":"","name":"","city":"","state":"","picture":""};
         console.log('Logged into Facebook!', response);
-        this.navCtrl.setRoot(ShowPage);
+        this.navCtrl.setRoot(PreHomePage);
       });
       // this.facebook.getAccessToken(function(token) {
    //       console.log("Token: " + token);
   	// 		});
 			
  		}).catch(e => console.log('Error logging into Facebook', e));
- 		//this.navCtrl.setRoot(ShowPage);
- 		//this.navCtrl.push(ShowPage);
+ 		//this.navCtrl.setRoot(PreHomePage);
+ 		//this.navCtrl.push(PreHomePage);
  	}
  	login(){
  		this.navCtrl.push(LoginPage);

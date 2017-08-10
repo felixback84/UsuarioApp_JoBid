@@ -1,0 +1,60 @@
+page-pre-home {
+	.card-background-page {
+
+	  ion-card {
+	    position: relative;
+	    text-align: center;
+	    color:$Red;
+	    background: rgba(150,150,150,0.9);
+	    margin:0;
+	    width: 100%;
+	  }
+
+	  .card-title {
+	    position: absolute;
+	     text-align: center;
+	    top: 60%;
+	    font-size: 2.0em;
+	    width: 100%;
+	    font-weight: bold;
+	    &>h3{
+	    	display: block;
+	    	width: 80%;
+	    	margin: 0 auto;
+	    	color : $Red;
+	    	/*background: rgba(150,150,150,0.9);*/
+	    }
+	  }
+
+	  .card-subtitle {
+	  	 text-align: center;
+	    font-size: 1.0em;
+	    position: absolute;
+	    top: 70%;
+	    width: 100%;
+	    &>p{
+	    	display: block;
+	    	width: 80%;
+	    	margin: 0 auto;
+			color:$Red;
+	    	/*background: rgba(150,150,150,0.9);*/
+	    }
+	  }
+	
+	}
+	.btnAddress{
+		margin: 20px 0  0 0;
+		ion-list button.item-md, ion-list button.item-ios{
+			color: $Red;
+			border: 1px solid $Gray;
+			border-radius: 5px;
+		}
+	}
+	ion-list button{
+		&.item-md h3, &.item-ios h3{
+			color: black;
+			text-transform: capitalize;
+			font-weight: bold;
+		}
+	}
+}

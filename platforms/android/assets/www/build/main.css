@@ -3906,6 +3906,10 @@ ion-item.item-md .radio-md .radio-icon .radio-inner, ion-item.item-md .radio-ios
   background: #444;
 }
 
+ion-item.item-md .spaceIcons, ion-item.item-ios .spaceIcons {
+  margin-left: 60px;
+}
+
 /*
 form{
 	ion-grid>ion-row>ion-col{

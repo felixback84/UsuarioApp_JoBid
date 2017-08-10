@@ -22,6 +22,8 @@ import { CleaningContractorPage } from '../pages/cleaning-contractor/cleaning-co
 import { CleaningInfoServicePage } from '../pages/cleaning-info-service/cleaning-info-service';
 import { CleaningVotePage } from '../pages/cleaning-vote/cleaning-vote';
 import { CleaningOkPage } from '../pages/cleaning-ok/cleaning-ok';
+import { PreHomePage } from '../pages/pre-home/pre-home';
+import { NewAddressPage } from '../pages/new-address/new-address';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -46,7 +48,9 @@ import { Facebook } from '@ionic-native/facebook';
     CleaningContractorPage,
     CleaningInfoServicePage,
     CleaningVotePage,
-    CleaningOkPage
+    CleaningOkPage,
+    PreHomePage,
+    NewAddressPage
   ],
   imports: [
     BrowserModule, HttpModule,
@@ -70,7 +74,9 @@ import { Facebook } from '@ionic-native/facebook';
     CleaningContractorPage,
     CleaningInfoServicePage,
     CleaningVotePage,
-    CleaningOkPage
+    CleaningOkPage,
+    PreHomePage,
+    NewAddressPage
   ],
   providers: [
     StatusBar,

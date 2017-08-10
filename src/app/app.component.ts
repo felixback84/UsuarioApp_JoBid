@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 //import { CleaningContractorPage } from '../pages/cleaning-contractor/cleaning-contractor';
 //import { CleaningPage } from '../pages/cleaning/cleaning';
 //import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
+import { PreHomePage } from '../pages/pre-home/pre-home';
 
 import { ShowPage } from '../pages/show/show';
 
@@ -19,7 +20,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   userName: string = 'hola logeado';
   srcUser: string = 'assets/img/user.png';
-  rootPage: any = HomePage;
+  rootPage: any = PreHomePage;
   mensage : string = '';
 
   pages: Array<{title: string, component: any}>;

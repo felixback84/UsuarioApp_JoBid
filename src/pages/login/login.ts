@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 //import { NavController, NavParams } from 'ionic-angular';
 import { NavController, AlertController} from 'ionic-angular';
 
-import { ShowPage } from '../show/show';
+//import { ShowPage } from '../show/show';
 //import { HomePage } from '../home/home';
+import { PreHomePage } from '../pre-home/pre-home';
 
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 //import { ListPage } from '../list/list';
@@ -40,7 +41,7 @@ export class LoginPage {
         //console.log(cont);
         localStorage.setItem('userData', JSON.stringify(this.responseData));
         //console.log('userData'+JSON.stringify(this.responseData));
-        this.navCtrl.setRoot(ShowPage);
+        this.navCtrl.setRoot(PreHomePage);
       }else{
         //this.navCtrl.push(HomePage);
         this.showAlert();

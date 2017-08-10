@@ -33,6 +33,7 @@ export class VerifyYourPhonePage {
     //this.CorreoVerificacion();
     //alert(this.navParams.get('username'));
     this.userData = this.navParams.get('datos');
+    console.log(this.userData);
     //alert(JSON.stringify(this.navParams.get('datos')));
     console.log(this.navParams.get('datos'));
     this.verificacion = this.userData['verificacion'];

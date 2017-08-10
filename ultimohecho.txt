@@ -1,11 +1,10 @@
 por hacer
--envio de correos por cel.
+-modificar api para guardar los datos
+-modificar bd
 -mostrar datos usuario donde debes
 -native storage o storage https://www.youtube.com/watch?v=iNe8xEY7ceE
 -¿cuantos usuarios manejar el App y como se guardaran los datos?
 -metodos de pago
-
-
 
 ___________
 error
@@ -16,6 +15,8 @@ error
 _____
 ultimo hecho
 
+creo page pre-home
+envia todos los datos a la vista
 #Email Composer
 
 login out

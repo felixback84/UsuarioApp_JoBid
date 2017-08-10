@@ -109,7 +109,16 @@ $colors: (
 
 //Custom theme
 //-----------------------------
+ion-content .list-ios > .item-block:first-child{
+	border-top: none;
+}
 
+ion-item.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+ion-item.item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-ios.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+     border-bottom-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+	}
 .list-md .item-input:last-child,.list-ios .item-input:last-child{
 	border-bottom: none !important;
 }

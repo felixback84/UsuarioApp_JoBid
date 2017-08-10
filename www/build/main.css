@@ -3835,6 +3835,17 @@ ion-icon::before {
   src: local("Noto Sans Bold"), local("Noto-Sans-Bold"), url("../assets/fonts/noto-sans-bold.woff") format("woff"), url("../assets/fonts/noto-sans-bold.ttf") format("truetype");
 }
 
+ion-content .list-ios > .item-block:first-child {
+  border-top: none;
+}
+
+ion-item.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+ion-item.item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-ios.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+  border-bottom-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 .list-md .item-input:last-child, .list-ios .item-input:last-child {
   border-bottom: none !important;
 }
@@ -25711,6 +25722,19 @@ page-login #login-heading1 {
   text-align: center;
 }
 
+page-new-address img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+page-new-address .tittle {
+  color: #000000;
+  text-align: center;
+}
+
 page-payinfo img {
   display: block;
   width: 100%;
@@ -25777,6 +25801,64 @@ page-payment-methods #paymentMethods-heading7 {
 page-payment-methods .spacer {
   width: 300px;
   height: 10px;
+}
+
+page-pre-home .card-background-page ion-card {
+  position: relative;
+  text-align: center;
+  color: #b20000;
+  background: rgba(150, 150, 150, 0.9);
+  margin: 0;
+  width: 100%;
+}
+
+page-pre-home .card-background-page .card-title {
+  position: absolute;
+  text-align: center;
+  top: 60%;
+  font-size: 2.0em;
+  width: 100%;
+  font-weight: bold;
+}
+
+page-pre-home .card-background-page .card-title > h3 {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  color: #b20000;
+  /*background: rgba(150,150,150,0.9);*/
+}
+
+page-pre-home .card-background-page .card-subtitle {
+  text-align: center;
+  font-size: 1.0em;
+  position: absolute;
+  top: 70%;
+  width: 100%;
+}
+
+page-pre-home .card-background-page .card-subtitle > p {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  color: #b20000;
+  /*background: rgba(150,150,150,0.9);*/
+}
+
+page-pre-home .btnAddress {
+  margin: 20px 0  0 0;
+}
+
+page-pre-home .btnAddress ion-list button.item-md, page-pre-home .btnAddress ion-list button.item-ios {
+  color: #b20000;
+  border: 1px solid #666666;
+  border-radius: 5px;
+}
+
+page-pre-home ion-list button.item-md h3, page-pre-home ion-list button.item-ios h3 {
+  color: black;
+  text-transform: capitalize;
+  font-weight: bold;
 }
 
 page-show .gridProfession {
