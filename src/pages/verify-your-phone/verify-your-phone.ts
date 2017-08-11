@@ -48,14 +48,15 @@ export class VerifyYourPhonePage {
       console.log(this.userData);
       this.authServiceProvider.postData(this.userData,'signup').then((result) => {
         this.responseData = result;
-        console.log(this.responseData);
+        console.log(this.responseData['userData']['user_id']);
         //alert('userData'+ JSON.stringify(this.responseData));
-        //localStorage.setItem('userData', JSON.stringify(this.responseData));
             console.log('code:'+this.userData);
             console.log(this.userData);
             console.log('se registro');
             //alert('code:'+JSON.stringify(this.userData));
             //alert('se registro');
+            this.userData['verificacion'] = this.responseData['userData']['user_id'];
+        //localStorage.setItem('userData', JSON.stringify(this.userData));
             this.navCtrl.push(PaymentMethodsPage);
         }, (err) => {
         // Error log

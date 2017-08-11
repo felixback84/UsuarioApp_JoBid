@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 //import { NavController, NavParams } from 'ionic-angular';
-import { NavController, AlertController} from 'ionic-angular';
+import { NavController, AlertController, NavParams} from 'ionic-angular';
 
 //import { ShowPage } from '../show/show';
 //import { HomePage } from '../home/home';
@@ -20,28 +20,30 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  responseData :any;
-  userData = {"username":"","password":"","email":"","name":"","city":"","state":""};
+  userData = {"username":"","password":""};
+  userDataUpdate: any =[];
   userAndEmail: string = '';
-  	constructor(public navCtrl: NavController, public authServiceProvider: AuthServiceProvider,public alertCtrl: AlertController) {
+  	constructor(public navCtrl: NavController , public navParams: NavParams, public authServiceProvider: AuthServiceProvider,public alertCtrl: AlertController) {
   	}
     
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+
   login(){
-      this.userData.email = this.userData.username;
-      //console.log('email'+this.userData.email );
-      //console.log(this.userData['username']);
+      //console.log(this.userData);
       this.authServiceProvider.postData(this.userData,'login').then((result) => {
-      this.responseData = result;
-      
-      
-      if(!this.responseData['error']){
+      if(!result['error']){
         //console.log(cont);
-        localStorage.setItem('userData', JSON.stringify(this.responseData));
-        //console.log('userData'+JSON.stringify(this.responseData));
-        this.navCtrl.setRoot(PreHomePage);
+        console.log(result);
+        console.log(result['userData']);
+        this.userDataUpdate = {"username":result['userData']['user_username'],"email":result['userData']['user_email'],"name":result['userData']['user_name'],"zipcode":result['userData']['user_zipcode'],"state":result['userData']['user_state'],"picture":result['userData']['user_picture'],"verificacion":result['userData']['user_id'],"pais":result['userData']['user_pais'],"tel":result['userData']['user_tel']};
+  
+        console.log(this.userDataUpdate);
+        let Data = {'datos':this.userDataUpdate};
+        //localStorage.setItem('userData', JSON.stringify(result));
+        //console.log('userData'+JSON.stringify(result));
+        this.navCtrl.setRoot(PreHomePage,Data);
       }else{
         //this.navCtrl.push(HomePage);
         this.showAlert();
@@ -56,7 +58,7 @@ export class LoginPage {
   showAlert() {
     let alert = this.alertCtrl.create({
       title: 'login failed',
-      subTitle: 'Bad request wrong username and password',
+      subTitle: 'Bad request wrong username or email and password',
       buttons: ['OK']
     });
     alert.present();

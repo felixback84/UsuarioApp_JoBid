@@ -81,31 +81,33 @@ export class SingupPage {
  
     this.userData.direccion = this.DirecA+' '+this.DirecB+','+this.DirecC+','+this.DirecD ;
     this.userData.tel = '('+this.telA+')'+this.telB;
+    console.log(JSON.stringify(this.userData));
     this.authServiceProvider.postData(this.userData,'user').then((resultUser) => {
       //this.responseDataUser = resultUser;
       console.log(resultUser['ok']);
       if(resultUser['ok']){
         console.log('el usuario esta disponible');
+        this.userData.verificacion = ''+Math.floor((Math.random() * 99999) + 11111);
+          //alert('code:'+this.userData.verificacion);
+        this.authServiceProvider.postData(this.userData,'code').then((result) => {
+        //this.responseData = result;
+              //console.log(result);
+              //alert('userData'+ JSON.stringify(this.responseData));
+              //localStorage.setItem('userData', JSON.stringify(this.responseData));
+             
+                  let Data = {'datos':this.userData};
+                  this.navCtrl.push(VerifyYourPhonePage, Data);
+                  //this.navCtrl.push(VerifyYourPhonePage);
+               }, (err) => {
+            //   // Error log
+            //console.log('error '.err);
+            //   alert('error correo');
+             });
       }else{
         console.log('el usuario registado');
       }
 
-      this.userData.verificacion = ''+Math.floor((Math.random() * 99999) + 11111);
-        //alert('code:'+this.userData.verificacion);
-      let Data = {'datos':this.userData};
-      this.authServiceProvider.postData(this.userData,'code').then((result) => {
-      this.responseData = result;
-            //console.log(this.responseData);
-            //alert('userData'+ JSON.stringify(this.responseData));
-            //localStorage.setItem('userData', JSON.stringify(this.responseData));
-           
-                this.navCtrl.push(VerifyYourPhonePage, Data);
-                //this.navCtrl.push(VerifyYourPhonePage);
-             }, (err) => {
-          //   // Error log
-          //console.log('error '.err);
-          //   alert('error correo');
-           });
+      
         //this.navCtrl.push(VerifyYourPhonePage);
         }, (err) => {
         //Error log

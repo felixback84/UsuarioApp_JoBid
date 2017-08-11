@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 
 
 import { NewAddressPage } from '../new-address/new-address';
+
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 /**
  * Generated class for the PreHomePage page.
  *
@@ -16,11 +18,27 @@ import { NewAddressPage } from '../new-address/new-address';
 })
 export class PreHomePage {
 	address : any = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  	this.address =[
-  		{"label":"casa","name":"direccion1"},
-		  {"label":"apartamento","name":"direcccion2"},
-  	];
+  //userData = {"username":"Angel","password":"12345","email":"angellg1990@gmail.com","name":"Angel","zipcode":"90003","state":"CA","picture":"","verificacion":"20","pais":"USA","direccion":"1234 ave,bogota,CA 90003","tel":"(408)1234567"};
+  userData: any  = [];
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authServiceProvider: AuthServiceProvider) {
+  	// this.address =[
+  	// 	{"label":"casa","name":"direccion1"},
+		 //  {"label":"apartamento","name":"direcccion2"},
+  	// ];
+    this.userData = this.navParams.get('datos');
+    console.log(this.userData);
+    this.authServiceProvider.postData(this.userData,'userAddres').then((result) => {
+      
+          //console.log(result);
+          //console.log(result['userAddres']['0']);
+          //this.address.push(result['userAddres']['0']);
+          this.address.push({"label":result['userAddres']['0']['dic_name'],"name":result['userAddres']['0']['dic_direccion']});
+          console.log(this.address);
+        }, (err) => {
+        // Error log
+        //console.log('error '.err);
+        alert('error userAddres');
+      });
   }
 
   ionViewDidLoad() {

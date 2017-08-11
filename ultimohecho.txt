@@ -44,11 +44,7 @@ page cleaning info service
 page cleaning contract
 page cleaning info
 _____
-desinstalar
-states-countify 
-npm install usa-states
 
-----
 futuro
 
 camara =>https://www.youtube.com/watch?v=N27NBB9TgLI

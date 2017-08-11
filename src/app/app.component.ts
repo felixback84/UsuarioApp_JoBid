@@ -20,7 +20,8 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   userName: string = 'hola logeado';
   srcUser: string = 'assets/img/user.png';
-  rootPage: any = PreHomePage;
+  //rootPage: any = PreHomePage;
+  rootPage: any = HomePage;
   mensage : string = '';
 
   pages: Array<{title: string, component: any}>;
