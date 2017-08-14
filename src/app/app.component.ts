@@ -9,7 +9,7 @@ import { HomePage } from '../pages/home/home';
 //import { CleaningContractorPage } from '../pages/cleaning-contractor/cleaning-contractor';
 //import { CleaningPage } from '../pages/cleaning/cleaning';
 //import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
-import { PreHomePage } from '../pages/pre-home/pre-home';
+//import { PreHomePage } from '../pages/pre-home/pre-home';
 
 import { ShowPage } from '../pages/show/show';
 

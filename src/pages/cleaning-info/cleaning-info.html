@@ -18,9 +18,9 @@
 
 <ion-content>
 	<div class="imgCenter">
-	 <ion-icon name="contact"></ion-icon> 
+	 <ion-icon name="contact" [ngClass]="dataService.class"></ion-icon> 
   	</div>
-	<div class="TituloRojo"><h4>Cleaning</h4></div>
+	<div class="TituloRojo"><h4>{{dataService.name}}</h4></div>
 	<h4>Service information</h4>
 	<p padding>Describes what the professional requires.</p>
 <form id="formPayinfo" class="list" padding>

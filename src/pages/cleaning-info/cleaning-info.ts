@@ -14,8 +14,9 @@ import { CleaningSalePage } from '../cleaning-sale/cleaning-sale';
   templateUrl: 'cleaning-info.html',
 })
 export class CleaningInfoPage {
-
+  dataService = [];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.dataService = this.navParams.get('datos');
   }
 
   ionViewDidLoad() {

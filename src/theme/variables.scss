@@ -149,14 +149,22 @@ ion-item.item-md ,ion-item.item-ios {
 		border:1px solid #ddd;
 		height: 48px;
 		color:$GrayText;
+		padding:5px;
 	}
 	ion-textarea{
 		border:1px solid #ddd;
 		color:$GrayText;
+		padding:5px;
 	}
 	ion-select{
 		max-width: 100%;
 		width: 100%;
+		div.select-text{
+			padding-top: 10px;
+		}
+		div.select-icon{
+			margin-top: 10px;
+		}
 	}
 	ion-select.mitad,ion-input.mitad{
 		width: 49%;
@@ -233,3 +241,11 @@ form{
 .barraRoja{background: $Red;
 		h4{color:white; text-align: center;padding: 10px; margin:0;} 
 	}
+
+/*color professions*/
+.red{color:red;}
+.orange{color:orange;}
+.yellow{color:yellow;}
+.green{color:green;}
+.purple{color:purple;}
+.blue{color:blue;}

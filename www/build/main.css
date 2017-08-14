@@ -3885,16 +3885,26 @@ ion-item.item-md ion-input, ion-item.item-md ion-select, ion-item.item-ios ion-i
   border: 1px solid #ddd;
   height: 48px;
   color: #444;
+  padding: 5px;
 }
 
 ion-item.item-md ion-textarea, ion-item.item-ios ion-textarea {
   border: 1px solid #ddd;
   color: #444;
+  padding: 5px;
 }
 
 ion-item.item-md ion-select, ion-item.item-ios ion-select {
   max-width: 100%;
   width: 100%;
+}
+
+ion-item.item-md ion-select div.select-text, ion-item.item-ios ion-select div.select-text {
+  padding-top: 10px;
+}
+
+ion-item.item-md ion-select div.select-icon, ion-item.item-ios ion-select div.select-icon {
+  margin-top: 10px;
 }
 
 ion-item.item-md ion-select.mitad, ion-item.item-md ion-input.mitad, ion-item.item-ios ion-select.mitad, ion-item.item-ios ion-input.mitad {
@@ -3997,6 +4007,31 @@ form{
   text-align: center;
   padding: 10px;
   margin: 0;
+}
+
+/*color professions*/
+.red {
+  color: red;
+}
+
+.orange {
+  color: orange;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.green {
+  color: green;
+}
+
+.purple {
+  color: purple;
+}
+
+.blue {
+  color: blue;
 }
 
 ion-action-sheet {
@@ -25883,7 +25918,15 @@ page-show .gridProfession .button-md-light, page-show .gridProfession .button-io
 page-show .gridProfession ion-icon {
   display: block;
   margin: 0 auto;
-  font-size: 8em;
+  font-size: 4em;
+}
+
+page-show h3, page-show p {
+  text-align: center;
+}
+
+page-show h3, page-show strong {
+  font-weight: bold;
 }
 
 page-singup img {

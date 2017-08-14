@@ -16,7 +16,10 @@ page-show {
 		ion-icon{
 			display: block;
 			margin:0 auto;
-			font-size: 8em;
+			font-size: 4em;
 		}
 	}
+	h3,p{ text-align: center; }
+	h3,strong{font-weight: bold;}
+	
 }

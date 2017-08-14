@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 
 
 import { NewAddressPage } from '../new-address/new-address';
+import { ShowPage } from '../show/show';
 
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 /**
@@ -47,6 +48,9 @@ export class PreHomePage {
 
   goShow(item : any){
   	console.log(item);
+    let DataItem = {'datos':item};
+    //console.log(DataItem);  
+    this.navCtrl.setRoot(ShowPage,DataItem);
   }
 
   goNewAddress(){

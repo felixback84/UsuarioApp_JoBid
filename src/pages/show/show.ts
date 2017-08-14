@@ -19,8 +19,19 @@ import {MyApp}  from '../../app/app.component';
   templateUrl: 'show.html',
 })
 export class ShowPage {
-
+  direccion: any = [];
+  professions = [
+                {name:'profesion 1',class:'red'},
+                {name:'profesion 2',class:'yellow'},
+                {name:'profesion 3',class:'orange'},
+                {name:'profesion 4',class:'green'},
+                {name:'profesion 5',class:'purple'},
+                {name:'profesion 6',class:'blue'},
+                ];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.direccion = this.navParams.get('datos');
+    console.log(this.direccion);
+    console.log(this.professions);
   }
 
   ionViewDidLoad() {
@@ -35,7 +46,11 @@ export class ShowPage {
  	// 	this.navCtrl.setRoot(ProfessionPage);
  	// }
 
- 	Cleaning(){
- 		this.navCtrl.setRoot(CleaningPage);
- 	}
+  Cleaning(item : any){
+    console.log(item);
+    let DataService = {'datos':item};
+    this.navCtrl.setRoot(CleaningPage,DataService);
+  }
+  
+
 }

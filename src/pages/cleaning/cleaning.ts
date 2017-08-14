@@ -15,14 +15,16 @@ import { CleaningInfoPage } from '../cleaning-info/cleaning-info';
   templateUrl: 'cleaning.html',
 })
 export class CleaningPage {
-
+  dataService = [];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+     this.dataService = this.navParams.get('datos');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CleaningPage');
   }
   cleaningInfo(){
-  	this.navCtrl.setRoot(CleaningInfoPage);
+    let DataService = {'datos':this.dataService};
+  	this.navCtrl.setRoot(CleaningInfoPage,DataService);
   }
 }

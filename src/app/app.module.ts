@@ -14,7 +14,6 @@ import { ShowPage } from '../pages/show/show';
 import { VerifyYourPhonePage } from '../pages/verify-your-phone/verify-your-phone';
 import { PaymentMethodsPage } from '../pages/payment-methods/payment-methods';
 import { PayinfoPage } from '../pages/payinfo/payinfo';
-import { ProfessionPage } from '../pages/profession/profession';
 import { CleaningPage } from '../pages/cleaning/cleaning';
 import { CleaningInfoPage } from '../pages/cleaning-info/cleaning-info';
 import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
@@ -24,6 +23,12 @@ import { CleaningVotePage } from '../pages/cleaning-vote/cleaning-vote';
 import { CleaningOkPage } from '../pages/cleaning-ok/cleaning-ok';
 import { PreHomePage } from '../pages/pre-home/pre-home';
 import { NewAddressPage } from '../pages/new-address/new-address';
+import { ProfessionPage } from '../pages/profession/profession';
+import { Profesion2Page } from '../pages/profesion2/profesion2';
+import { Profesion3Page } from '../pages/profesion3/profesion3';
+import { Profesion4Page } from '../pages/profesion4/profesion4';
+import { Profesion5Page } from '../pages/profesion5/profesion5';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -50,7 +55,11 @@ import { Facebook } from '@ionic-native/facebook';
     CleaningVotePage,
     CleaningOkPage,
     PreHomePage,
-    NewAddressPage
+    NewAddressPage,
+    Profesion2Page,
+    Profesion3Page,
+    Profesion4Page,
+    Profesion5Page
   ],
   imports: [
     BrowserModule, HttpModule,
@@ -76,7 +85,11 @@ import { Facebook } from '@ionic-native/facebook';
     CleaningVotePage,
     CleaningOkPage,
     PreHomePage,
-    NewAddressPage
+    NewAddressPage,
+    Profesion2Page,
+    Profesion3Page,
+    Profesion4Page,
+    Profesion5Page
   ],
   providers: [
     StatusBar,

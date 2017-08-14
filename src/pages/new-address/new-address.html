@@ -18,6 +18,10 @@
 <h3 class="tittle">New Address</h3>
 <form id="signup-form3" class="list" padding>
 <ion-item>
+  <ion-icon name="document" item-start></ion-icon>
+  <ion-input type="text" placeholder="My Address" class="mitad" [(ngModel)]="label" name="label"></ion-input>
+</ion-item>
+<ion-item>
  <ion-icon name="flag" item-start></ion-icon>
   <ion-select class="mitad" [(ngModel)]="state" name="state" (ngModelChange)="setCity()"> 
     <ion-option selected>State</ion-option>
