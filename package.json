@@ -43,6 +43,8 @@
     "ionic-plugin-keyboard": "^2.2.1",
     "ionicons": "3.0.0",
     "lodash": "^4.17.4",
+    "node-pre-gyp": "^0.6.36",
+    "node-zopfli": "^1.4.0",
     "rxjs": "5.4.0",
     "states-countify": "0.0.2",
     "states-utils": "^1.0.8",
