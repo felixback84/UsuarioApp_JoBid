@@ -12,8 +12,8 @@ ion-footer ion-toolbar {
 	&.toolbar{margin-bottom: 0;padding-bottom: 0;}
 	/*.grid{margin-bottom: 0;padding-bottom: 0;}*/
 	.toolbar-background-md,.toolbar-background-ios{
-		color:white;
- 		background: $Red;
+		color:$Red;
+ 		/*background: $Red;*/
 
  }
  	button{
