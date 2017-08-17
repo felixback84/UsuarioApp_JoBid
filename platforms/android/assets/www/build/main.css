@@ -3835,6 +3835,17 @@ ion-icon::before {
   src: local("Noto Sans Bold"), local("Noto-Sans-Bold"), url("../assets/fonts/noto-sans-bold.woff") format("woff"), url("../assets/fonts/noto-sans-bold.ttf") format("truetype");
 }
 
+ion-content .list-ios > .item-block:first-child {
+  border-top: none;
+}
+
+ion-item.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+ion-item.item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-ios.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+  border-bottom-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 .list-md .item-input:last-child, .list-ios .item-input:last-child {
   border-bottom: none !important;
 }
@@ -3874,16 +3885,26 @@ ion-item.item-md ion-input, ion-item.item-md ion-select, ion-item.item-ios ion-i
   border: 1px solid #ddd;
   height: 48px;
   color: #444;
+  padding: 5px;
 }
 
 ion-item.item-md ion-textarea, ion-item.item-ios ion-textarea {
   border: 1px solid #ddd;
   color: #444;
+  padding: 5px;
 }
 
 ion-item.item-md ion-select, ion-item.item-ios ion-select {
   max-width: 100%;
   width: 100%;
+}
+
+ion-item.item-md ion-select div.select-text, ion-item.item-ios ion-select div.select-text {
+  padding-top: 10px;
+}
+
+ion-item.item-md ion-select div.select-icon, ion-item.item-ios ion-select div.select-icon {
+  margin-top: 10px;
 }
 
 ion-item.item-md ion-select.mitad, ion-item.item-md ion-input.mitad, ion-item.item-ios ion-select.mitad, ion-item.item-ios ion-input.mitad {
@@ -3986,6 +4007,31 @@ form{
   text-align: center;
   padding: 10px;
   margin: 0;
+}
+
+/*color professions*/
+.red {
+  color: red;
+}
+
+.orange {
+  color: orange;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.green {
+  color: green;
+}
+
+.purple {
+  color: purple;
+}
+
+.blue {
+  color: blue;
 }
 
 ion-action-sheet {
@@ -25583,6 +25629,10 @@ page-cleaning-sale ion-icon[name=timer] span {
   color: orange;
 }
 
+page-cleaning-sale h4, page-cleaning-sale h5 {
+  font-weight: bold;
+}
+
 page-cleaning-sale ion-footer ion-toolbar {
   /*.grid{margin-bottom: 0;padding-bottom: 0;}*/
 }
@@ -25711,6 +25761,19 @@ page-login #login-heading1 {
   text-align: center;
 }
 
+page-new-address img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+page-new-address .tittle {
+  color: #000000;
+  text-align: center;
+}
+
 page-payinfo img {
   display: block;
   width: 100%;
@@ -25779,6 +25842,64 @@ page-payment-methods .spacer {
   height: 10px;
 }
 
+page-pre-home .card-background-page ion-card {
+  position: relative;
+  text-align: center;
+  color: #b20000;
+  background: rgba(150, 150, 150, 0.9);
+  margin: 0;
+  width: 100%;
+}
+
+page-pre-home .card-background-page .card-title {
+  position: absolute;
+  text-align: center;
+  top: 60%;
+  font-size: 2.0em;
+  width: 100%;
+  font-weight: bold;
+}
+
+page-pre-home .card-background-page .card-title > h3 {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  color: #b20000;
+  /*background: rgba(150,150,150,0.9);*/
+}
+
+page-pre-home .card-background-page .card-subtitle {
+  text-align: center;
+  font-size: 1.0em;
+  position: absolute;
+  top: 70%;
+  width: 100%;
+}
+
+page-pre-home .card-background-page .card-subtitle > p {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  color: #b20000;
+  /*background: rgba(150,150,150,0.9);*/
+}
+
+page-pre-home .btnAddress {
+  margin: 20px 0  0 0;
+}
+
+page-pre-home .btnAddress ion-list button.item-md, page-pre-home .btnAddress ion-list button.item-ios {
+  color: #b20000;
+  border: 1px solid #666666;
+  border-radius: 5px;
+}
+
+page-pre-home ion-list button.item-md h3, page-pre-home ion-list button.item-ios h3 {
+  color: black;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
 page-show .gridProfession {
   border-top: 1px solid #eee;
   background-color: #f4f4f4;
@@ -25795,13 +25916,23 @@ page-show .gridProfession .button-md-light, page-show .gridProfession .button-io
   -webkit-box-shadow: none;
   box-shadow: none;
   background: transparent;
-  height: 10em;
+  height: 140px;
+  padding: 0;
+  /*background: yellow;*/
 }
 
 page-show .gridProfession ion-icon {
   display: block;
   margin: 0 auto;
-  font-size: 8em;
+  font-size: 100px;
+}
+
+page-show h3, page-show p {
+  text-align: center;
+}
+
+page-show h3, page-show strong {
+  font-weight: bold;
 }
 
 page-singup img {

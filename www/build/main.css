@@ -25629,6 +25629,10 @@ page-cleaning-sale ion-icon[name=timer] span {
   color: orange;
 }
 
+page-cleaning-sale h4, page-cleaning-sale h5 {
+  font-weight: bold;
+}
+
 page-cleaning-sale ion-footer ion-toolbar {
   /*.grid{margin-bottom: 0;padding-bottom: 0;}*/
 }
@@ -25912,13 +25916,15 @@ page-show .gridProfession .button-md-light, page-show .gridProfession .button-io
   -webkit-box-shadow: none;
   box-shadow: none;
   background: transparent;
-  height: 10em;
+  height: 140px;
+  padding: 0;
+  /*background: yellow;*/
 }
 
 page-show .gridProfession ion-icon {
   display: block;
   margin: 0 auto;
-  font-size: 4em;
+  font-size: 100px;
 }
 
 page-show h3, page-show p {

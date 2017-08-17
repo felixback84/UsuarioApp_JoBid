@@ -24,16 +24,26 @@ import { CleaningOkPage } from '../pages/cleaning-ok/cleaning-ok';
 import { PreHomePage } from '../pages/pre-home/pre-home';
 import { NewAddressPage } from '../pages/new-address/new-address';
 import { ProfessionPage } from '../pages/profession/profession';
-import { Profesion2Page } from '../pages/profesion2/profesion2';
-import { Profesion3Page } from '../pages/profesion3/profesion3';
-import { Profesion4Page } from '../pages/profesion4/profesion4';
-import { Profesion5Page } from '../pages/profesion5/profesion5';
-
+import { Braintree } from '../services/braintree.service';
+import { Offer } from '../services/offer.service';
+import { Professionals } from '../services/professionals.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Facebook } from '@ionic-native/facebook';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 //import { EmailComposer } from '@ionic-native/email-composer';
+export const firebaseConfig = {
+    apiKey: "AIzaSyBmrc2CjBbIJD_Pu_kkCcV8qNXJfsEBaxo",
+    authDomain: "usuarioappjobid.firebaseapp.com",
+    databaseURL: "https://usuarioappjobid.firebaseio.com",
+    projectId: "usuarioappjobid",
+    storageBucket: "usuarioappjobid.appspot.com",
+    messagingSenderId: "679089691484"
+};
+
 
 @NgModule({
   declarations: [
@@ -56,14 +66,13 @@ import { Facebook } from '@ionic-native/facebook';
     CleaningOkPage,
     PreHomePage,
     NewAddressPage,
-    Profesion2Page,
-    Profesion3Page,
-    Profesion4Page,
-    Profesion5Page
   ],
   imports: [
     BrowserModule, HttpModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -86,10 +95,6 @@ import { Facebook } from '@ionic-native/facebook';
     CleaningOkPage,
     PreHomePage,
     NewAddressPage,
-    Profesion2Page,
-    Profesion3Page,
-    Profesion4Page,
-    Profesion5Page
   ],
   providers: [
     StatusBar,
@@ -97,6 +102,9 @@ import { Facebook } from '@ionic-native/facebook';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
     Facebook,
+    Braintree,
+    Professionals,
+    Offer,
     // EmailComposer
   ]
 })

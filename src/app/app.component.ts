@@ -11,6 +11,8 @@ import { HomePage } from '../pages/home/home';
 //import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
 //import { PreHomePage } from '../pages/pre-home/pre-home';
 
+//import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
+
 import { ShowPage } from '../pages/show/show';
 
 
@@ -23,6 +25,7 @@ export class MyApp {
   userName: string = 'hola logeado';
   srcUser: string = 'assets/img/user.png';
   //rootPage: any = PreHomePage;
+  //rootPage: any = CleaningSalePage;
   rootPage: any = HomePage;
   mensage : string = '';
 

@@ -15,8 +15,9 @@ import { ShowPage } from '../show/show';
   templateUrl: 'cleaning-sale.html',
 })
 export class CleaningSalePage {
-
+  professionalsOffer = [];
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
+      
   }
 
   ionViewDidLoad() {

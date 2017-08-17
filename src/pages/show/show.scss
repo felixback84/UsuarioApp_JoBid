@@ -11,12 +11,14 @@ page-show {
 		.button-md-light,.button-ios-light{
 			box-shadow: none;
 			background: transparent;
-			height: 10em;
+			height: 140px;
+			padding:0;
+			/*background: yellow;*/
 		}
 		ion-icon{
 			display: block;
 			margin:0 auto;
-			font-size: 4em;
+			font-size: 100px;
 		}
 	}
 	h3,p{ text-align: center; }

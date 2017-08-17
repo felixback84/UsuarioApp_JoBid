@@ -22,7 +22,7 @@
   <h4>Offers received</h4>
 </div>
 <ion-grid>
-  <ion-row>
+  <ion-row *ngFor="let item of professionalsOffer">
     <ion-col col-2>
       <ion-icon name="trophy"></ion-icon>
     </ion-col>
@@ -31,7 +31,7 @@
       <ion-avatar item-start>
         <img src="assets/img/professions/cleaning.png">
       </ion-avatar>
-      <h2>Estefania Lorem</h2>
+      <p>Estefania Lorem</p>
      </ion-item>
     </ion-col>
     <ion-col col-2>
@@ -51,7 +51,7 @@
       <ion-avatar item-start>
         <img src="assets/img/professions/cleaning.png">
       </ion-avatar>
-      <h2>Estefania Lorem</h2>
+      <p>Estefania Lorem</p>
      </ion-item>
     </ion-col>
     <ion-col col-2>
@@ -64,9 +64,9 @@
     </ion-col>
   </ion-row>
 </ion-grid>
-<div class="btnBottom">
+<!-- <div class="btnBottom">
           <button ion-button color="danger" block icon-left (click)="goCleaningContractor()">Continue<ion-icon name="arrow-dropright"></ion-icon></button>
-        </div>
+        </div> -->
 </ion-content>
 
 <ion-footer>
