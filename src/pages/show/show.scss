@@ -1,12 +1,14 @@
 page-show {
 	.gridProfession{
-		border-top: 1px solid #eee;
-		background-color: #f4f4f4;
+		/*border-top: 1px solid #eee;
+		background-color: #f4f4f4;*/
 		.row>p{
 			margin:0;
 			padding:0;
 			width: 100%;
 			text-align: center;
+			white-space: normal;
+			height: 30px;
 		}
 		.button-md-light,.button-ios-light{
 			box-shadow: none;

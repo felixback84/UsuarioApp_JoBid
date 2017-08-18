@@ -27,6 +27,8 @@ import { ProfessionPage } from '../pages/profession/profession';
 import { BraintreeService } from '../services/braintree.service';
 import { OfferService } from '../services/offer.service';
 import { ProfessionalsService } from '../services/professionals.service';
+import { ProfessionsService } from '../services/professions.service';
+import { UserService } from '../services/user.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -105,6 +107,8 @@ export const firebaseConfig = {
     BraintreeService,
     ProfessionalsService,
     OfferService,
+    ProfessionsService,
+    UserService,
     // EmailComposer
   ]
 })

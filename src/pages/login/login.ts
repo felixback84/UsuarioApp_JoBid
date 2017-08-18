@@ -35,11 +35,11 @@ export class LoginPage {
       this.authServiceProvider.postData(this.userData,'login').then((result) => {
       if(!result['error']){
         //console.log(cont);
-        console.log(result);
-        console.log(result['userData']);
+        //console.log(result);
+        //console.log(result['userData']);
         this.userDataUpdate = {"username":result['userData']['user_username'],"email":result['userData']['user_email'],"name":result['userData']['user_name'],"zipcode":result['userData']['user_zipcode'],"state":result['userData']['user_state'],"picture":result['userData']['user_picture'],"verificacion":result['userData']['user_id'],"pais":result['userData']['user_pais'],"tel":result['userData']['user_tel']};
   
-        console.log(this.userDataUpdate);
+        //console.log(this.userDataUpdate);
         let Data = {'datos':this.userDataUpdate};
         //localStorage.setItem('userData', JSON.stringify(result));
         //console.log('userData'+JSON.stringify(result));

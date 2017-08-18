@@ -12,8 +12,8 @@ export class ProfessionalsService{
 		 console.log(this.afDB);
 	}
 	public getProfessionals(){
-		console.log(this.afDB.list('/professionals'));
-		return this.afDB.list('/professionals');
+		console.log(this.afDB.list('/professionals/'));
+		return this.afDB.list('/professionals/');
 	}
 	public getProfessional(id){
 		return this.afDB.object('/professionals/');

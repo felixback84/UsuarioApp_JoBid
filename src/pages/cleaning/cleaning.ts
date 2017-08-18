@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { CleaningInfoPage } from '../cleaning-info/cleaning-info';
 
+import { ProfessionsService } from '../../services/professions.service';
 /**
  * Generated class for the CleaningPage page.
  *
@@ -16,8 +17,16 @@ import { CleaningInfoPage } from '../cleaning-info/cleaning-info';
 })
 export class CleaningPage {
   dataService = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  dataCategoria = [];
+  constructor(public navCtrl: NavController, public navParams: NavParams, private professionsService:ProfessionsService) {
      this.dataService = this.navParams.get('datos');
+     console.log(this.dataService['name']);
+     this.categoryByProfession(this.dataService['name']);
+  }
+ 
+  categoryByProfession(nameService = ""){
+    this.dataCategoria=this.professionsService.getCategoryByProfession(nameService);
+    console.log(this.dataCategoria);
   }
 
   ionViewDidLoad() {
@@ -25,6 +34,6 @@ export class CleaningPage {
   }
   cleaningInfo(){
     let DataService = {'datos':this.dataService};
-  	this.navCtrl.setRoot(CleaningInfoPage,DataService);
+  	this.navCtrl.push(CleaningInfoPage,DataService);
   }
 }

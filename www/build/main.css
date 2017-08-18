@@ -25961,8 +25961,8 @@ page-pre-home ion-list button.item-md h3, page-pre-home ion-list button.item-ios
 }
 
 page-show .gridProfession {
-  border-top: 1px solid #eee;
-  background-color: #f4f4f4;
+  /*border-top: 1px solid #eee;
+		background-color: #f4f4f4;*/
 }
 
 page-show .gridProfession .row > p {
@@ -25970,6 +25970,8 @@ page-show .gridProfession .row > p {
   padding: 0;
   width: 100%;
   text-align: center;
+  white-space: normal;
+  height: 30px;
 }
 
 page-show .gridProfession .button-md-light, page-show .gridProfession .button-ios-light {

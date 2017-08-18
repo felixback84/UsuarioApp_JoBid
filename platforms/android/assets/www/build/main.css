@@ -3900,11 +3900,11 @@ ion-item.item-md ion-select, ion-item.item-ios ion-select {
 }
 
 ion-item.item-md ion-select div.select-text, ion-item.item-ios ion-select div.select-text {
-  padding-top: 10px;
+  padding-top: 7px;
 }
 
 ion-item.item-md ion-select div.select-icon, ion-item.item-ios ion-select div.select-icon {
-  margin-top: 10px;
+  margin-top: 7px;
 }
 
 ion-item.item-md ion-select.mitad, ion-item.item-md ion-input.mitad, ion-item.item-ios ion-select.mitad, ion-item.item-ios ion-input.mitad {
@@ -3929,6 +3929,10 @@ ion-item.item-md .radio-md .radio-icon .radio-inner, ion-item.item-md .radio-ios
 
 ion-item.item-md .spaceIcons, ion-item.item-ios .spaceIcons {
   margin-left: 60px;
+}
+
+ion-item.item-md .text-input-ios, ion-item.item-md .text-input-md, ion-item.item-ios .text-input-ios, ion-item.item-ios .text-input-md {
+  margin: 7px 8px 11px 0;
 }
 
 /*
@@ -3989,7 +3993,7 @@ form{
 }
 
 .btnBottom .button-md, .btnBottom .button-ios {
-  font-size: 2rem;
+  font-size: 20px;
   text-transform: capitalize;
 }
 
@@ -25617,6 +25621,7 @@ page-cleaning-ok .btnBottom {
 page-cleaning-sale .imgFull {
   width: 100%;
   height: 300px;
+  position: relative;
 }
 
 page-cleaning-sale ion-icon[name=timer] {
@@ -25633,6 +25638,28 @@ page-cleaning-sale h4, page-cleaning-sale h5 {
   font-weight: bold;
 }
 
+page-cleaning-sale .contador {
+  position: absolute;
+  top: 27%;
+  width: 100%;
+}
+
+page-cleaning-sale .contador > h3 {
+  color: white;
+  background: #b20000;
+  height: 80px;
+  /* line-height: 30px; */
+  width: 30%;
+  border-radius: 7px;
+  margin: 0 auto;
+  padding: 27px 0 0 0;
+  text-align: center;
+}
+
+page-cleaning-sale ion-item.item-md, page-cleaning-sale ion-item.item-ios {
+  padding-bottom: 0;
+}
+
 page-cleaning-sale ion-footer ion-toolbar {
   /*.grid{margin-bottom: 0;padding-bottom: 0;}*/
 }
@@ -25643,47 +25670,72 @@ page-cleaning-sale ion-footer ion-toolbar.toolbar {
 }
 
 page-cleaning-sale ion-footer ion-toolbar .toolbar-background-md, page-cleaning-sale ion-footer ion-toolbar .toolbar-background-ios {
-  color: white;
+  color: #b20000;
+  /*background: $Red;*/
+}
+
+page-cleaning-sale ion-footer ion-toolbar .price {
   background: #b20000;
-}
-
-page-cleaning-sale ion-footer ion-toolbar .BarraTime {
-  background: orange;
-  height: 15px;
-}
-
-page-cleaning-sale ion-footer ion-toolbar p {
   color: white;
+  height: 100%;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+page-cleaning-sale ion-footer ion-toolbar .price > p {
+  color: white;
+  text-align: center;
   margin: 0;
 }
 
-page-cleaning-sale ion-content ion-grid ion-row.row {
-  border-bottom: 1px solid #aaa;
+page-cleaning-sale ion-footer ion-toolbar #btnCancel {
+  background: #b20000;
+  color: white;
+  margin: 0;
+  height: 45px;
 }
 
-page-cleaning-sale ion-content ion-grid h5 {
+page-cleaning-sale ion-content ion-grid.body ion-row.row {
+  border: 1px solid #aaa;
+  margin: 5px 0;
+  height: 60px;
+}
+
+page-cleaning-sale ion-content ion-grid.body ion-row.row .col, page-cleaning-sale ion-content ion-grid.body ion-row.row [col-6] {
+  padding: 0;
+}
+
+page-cleaning-sale ion-content ion-grid.body h5 {
   text-align: center;
+  background: #b20000;
+  color: white;
+  margin: 8px 0;
+  height: 40px;
+  padding-top: 10px;
+  border-radius: 5px;
 }
 
-page-cleaning-sale ion-content ion-grid ion-icon[name=trophy] {
+page-cleaning-sale ion-content ion-grid.body ion-icon[name=trophy] {
   color: orange;
   font-size: 2em;
   padding: 10px;
   padding-top: 16px;
 }
 
-page-cleaning-sale ion-content ion-grid .button {
-  padding: 5px 0;
-  width: 2.5em;
+page-cleaning-sale ion-content ion-grid.body .button {
+  padding: 0;
+  width: 45px;
+  height: 45px;
   background: #444;
   color: white;
   -webkit-box-shadow: none;
   box-shadow: none;
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
-page-cleaning-sale ion-content ion-grid .button ion-icon[name=search] {
+page-cleaning-sale ion-content ion-grid.body .button ion-icon[name=search] {
   color: white;
+  font-size: 30px;
 }
 
 page-cleaning-sale .btnBottom {
@@ -25720,6 +25772,14 @@ page-cleaning-sale .btnBottom {
 
 .alert-md .alert-wrapper .ItemPService span, .alert-ios .alert-wrapper .ItemPService span {
   margin-bottom: 5px;
+}
+
+.alert-md .alert-wrapper .imagen50, .alert-ios .alert-wrapper .imagen50 {
+  width: 50%;
+}
+
+.alert-md .alert-wrapper p, .alert-ios .alert-wrapper p {
+  text-align: initial;
 }
 
 page-cleaning-vote p {
@@ -25901,8 +25961,8 @@ page-pre-home ion-list button.item-md h3, page-pre-home ion-list button.item-ios
 }
 
 page-show .gridProfession {
-  border-top: 1px solid #eee;
-  background-color: #f4f4f4;
+  /*border-top: 1px solid #eee;
+		background-color: #f4f4f4;*/
 }
 
 page-show .gridProfession .row > p {
@@ -25910,6 +25970,8 @@ page-show .gridProfession .row > p {
   padding: 0;
   width: 100%;
   text-align: center;
+  white-space: normal;
+  height: 30px;
 }
 
 page-show .gridProfession .button-md-light, page-show .gridProfession .button-ios-light {

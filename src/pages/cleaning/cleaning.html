@@ -31,10 +31,7 @@
 					  	<ion-item>
 				      	<ion-select > <!--[(ngModel)]="gaming"-->
                  <ion-option selected>Category</ion-option>
-                 <ion-option >House</ion-option>
-                 <ion-option >vehicles</ion-option>
-                 <ion-option >Offices</ion-option>
-				         <ion-option >Industries</ion-option>
+                 <ion-option *ngFor="let category of dataCategoria" value="{{category}}">{{category}}</ion-option>
 				      	</ion-select>
 				    	</ion-item>
 						</ion-list>

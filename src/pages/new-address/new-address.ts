@@ -4,7 +4,10 @@ import { NavController, NavParams } from 'ionic-angular';
 import cities from 'cities';
 import STATE_UTILS from 'states-utils';
 
+import { UserService } from '../../services/user.service';
+
 //import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+
 
 //import { PreHomePage } from '../pre-home/pre-home';
 /**
@@ -20,14 +23,19 @@ import STATE_UTILS from 'states-utils';
 })
 export class NewAddressPage {
 
-DirecA: any; DirecB: any; DirecC: any; DirecD: any; state: any; zipcode:any;
+DirecA: any; DirecB: any; DirecC: any; DirecD: any; state: any; zipcode:any; label:any;
 estados: any = []; ciudades:any = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+ObjAddress: any = [];
+userData:any;
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private userService: UserService) {
   	var stateName = STATE_UTILS.getStates();
     var stateNameShort = STATE_UTILS.getUSPSCodes();
     for (var i = 0; stateName.length > i; i++) {
       this.estados.push({'name':stateName[i],'nameShort':stateNameShort[i]});
     }
+    this.userData = this.navParams.get('datos');
+    console.log( this.userData);
   }
 
   ionViewDidLoad() {
@@ -37,6 +45,19 @@ estados: any = []; ciudades:any = [];
   goPreHome(){
   	var direccion = this.DirecA+' '+this.DirecB+','+this.DirecC+','+this.DirecD ;
   	console.log(direccion);
+    this.ObjAddress.push({"label":this.label,"name":direccion});
+    console.log(this.ObjAddress);
+    //consultar ultimo registro
+    var ultimoRegistro;
+    this.userService.getAddress(this.userData)
+    .subscribe( datosUsuario =>{
+      //console.log(datosUsuario.length);
+      ultimoRegistro = datosUsuario.length;
+    });
+    console.log(ultimoRegistro);
+    //-----verificiar la key que envia
+    var newKeyAddres = "addr_"+(ultimoRegistro++);
+    //crear registro
   	this.navCtrl.pop();
   }
 
