@@ -24,9 +24,9 @@ import { CleaningOkPage } from '../pages/cleaning-ok/cleaning-ok';
 import { PreHomePage } from '../pages/pre-home/pre-home';
 import { NewAddressPage } from '../pages/new-address/new-address';
 import { ProfessionPage } from '../pages/profession/profession';
-import { Braintree } from '../services/braintree.service';
-import { Offer } from '../services/offer.service';
-import { Professionals } from '../services/professionals.service';
+import { BraintreeService } from '../services/braintree.service';
+import { OfferService } from '../services/offer.service';
+import { ProfessionalsService } from '../services/professionals.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -102,9 +102,9 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
     Facebook,
-    Braintree,
-    Professionals,
-    Offer,
+    BraintreeService,
+    ProfessionalsService,
+    OfferService,
     // EmailComposer
   ]
 })

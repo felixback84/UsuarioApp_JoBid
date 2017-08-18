@@ -3,6 +3,9 @@ import { NavController, NavParams ,AlertController} from 'ionic-angular';
 
 import { CleaningContractorPage } from '../cleaning-contractor/cleaning-contractor';
 import { ShowPage } from '../show/show';
+
+//import { OfferService } from '../../services/offer.service';
+import { ProfessionalsService } from '../../services/professionals.service';
 /**
  * Generated class for the CleanigSalePage page.
  *
@@ -15,9 +18,14 @@ import { ShowPage } from '../show/show';
   templateUrl: 'cleaning-sale.html',
 })
 export class CleaningSalePage {
-  professionalsOffer = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
-      
+  professionals = [];
+  professsional = [];
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, public professionalsService : ProfessionalsService) {
+    this.professionalsService.getProfessionals()
+      .subscribe(professionals =>{
+        this.professionals = professionals;
+      });
+    console.log(this.professionals);
   }
 
   ionViewDidLoad() {
@@ -30,7 +38,13 @@ export class CleaningSalePage {
   goIndex(){
     this.navCtrl.setRoot(ShowPage);
   }
-  showInfoCleaning(id = 0){
+  showInfoCleaning(id: any = "prof_1"){
+    //console.log(this.professionalsService.getProfessional(id));
+    this.professionalsService.getProfessional("prof_1")
+      .subscribe(professional =>{
+        this.professsional = professional;
+      });
+      console.log(this.professionals);
     var contenido='';
     contenido +='<div class="col-40"><img src="assets/img/professions/cleaning.png"></div>';
     contenido +='<div class="col-60"><h4>Estefania lorem</h4><img src="assets/img/Estrellas.png">';

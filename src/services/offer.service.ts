@@ -3,7 +3,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 
 @Injectable()
 
-export class Offer{
+export class OfferService{
 	offer: FirebaseListObservable<any[]>;
 	constructor(private afDB: AngularFireDatabase) {
 	}
