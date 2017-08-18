@@ -14,7 +14,7 @@ error
 **http://www.phonegapspain.com/topic/error-al-iniciar-la-app-the-connection-to-the-server-was-unsuccessful/
 _____
 ultimo hecho
-
+lamaletadefelix2017 clave ionicframework acount
 creo page pre-home
 envia todos los datos a la vista
 #Email Composer

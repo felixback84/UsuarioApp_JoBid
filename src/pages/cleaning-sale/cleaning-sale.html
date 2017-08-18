@@ -17,12 +17,15 @@
 
 
 <ion-content>
-<img src="assets/img/map.png" class="imgFull">
+<img src="assets/img/map.png" class="imgFull" >
+<div class="contador">
+    <h3>02:00</h3>
+</div>
 <div class="barraRoja">
   <h4>Offers received</h4>
 </div>
-<ion-grid>
-  <ion-row *ngFor="let item of professionalsOffer">
+<ion-grid class="body">
+  <ion-row >
     <ion-col col-2>
       <ion-icon name="trophy"></ion-icon>
     </ion-col>
@@ -73,18 +76,13 @@
   <ion-toolbar>
     <ion-grid>
      <ion-row>
-      <ion-col col-2>
-        <p>Time</p>
+      <ion-col col-6>
+        <div class="price">
+          <p>Initial value</p>
+          <p>$99</p>
+        </div>
       </ion-col>
-      <ion-col col-10>
-        <div class="BarraTime"></div>
-      </ion-col>
-     </ion-row>
-     <ion-row>
-      <ion-col>
-        <ion-icon name="timer"><span> 03:00</span></ion-icon>
-      </ion-col>
-      <ion-col>
+      <ion-col col-6>
         <button id="btnCancel" ion-button block color="light"(click)="goIndex()">Cancel
         </button>
       </ion-col>

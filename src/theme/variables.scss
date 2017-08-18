@@ -160,10 +160,10 @@ ion-item.item-md ,ion-item.item-ios {
 		max-width: 100%;
 		width: 100%;
 		div.select-text{
-			padding-top: 10px;
+			padding-top: 7px;
 		}
 		div.select-icon{
-			margin-top: 10px;
+			margin-top: 7px;
 		}
 	}
 	ion-select.mitad,ion-input.mitad{
@@ -184,6 +184,9 @@ ion-item.item-md ,ion-item.item-ios {
 	}
 	.spaceIcons{
 		margin-left: 60px;
+	}
+	.text-input-ios, .text-input-md {
+		margin: 7px 8px 11px 0;
 	}
 }
 /*
@@ -233,7 +236,7 @@ form{
 	background: $Red !important;
 }
 .btnBottom{ position: relative;
-	.button-md,.button-ios{font-size: 2rem;text-transform: capitalize;
+	.button-md,.button-ios{font-size: 20px;text-transform: capitalize;
 		ion-icon{ position: absolute; right: 10px; }
 	}
 }

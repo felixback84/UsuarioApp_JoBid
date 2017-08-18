@@ -1,5 +1,5 @@
 page-cleaning-sale {
- .imgFull{ width: 100%; height: 300px;
+ .imgFull{ width: 100%; height: 300px; position: relative;
  }
  ion-icon[name=timer]{
  	color: white;
@@ -8,6 +8,23 @@ page-cleaning-sale {
  	span{color:orange;}
  }
  h4,h5{ font-weight: bold; }
+ .contador{
+	position: absolute;
+	top:27%;
+	width: 100%;
+	&>h3{ color: white;
+		background:$Red;
+		height: 80px;
+		/* line-height: 30px; */
+		width: 30%;
+		border-radius: 7px;
+		margin: 0 auto;
+		padding: 27px 0 0 0;
+		text-align: center;}
+}
+ion-item.item-md, ion-item.item-ios{
+	padding-bottom: 0;
+}
 ion-footer ion-toolbar {
 	&.toolbar{margin-bottom: 0;padding-bottom: 0;}
 	/*.grid{margin-bottom: 0;padding-bottom: 0;}*/
@@ -15,22 +32,35 @@ ion-footer ion-toolbar {
 		color:$Red;
  		/*background: $Red;*/
 
- }
- 	button{
- 		
- 	}
-	.BarraTime{
-		background: orange;
-		height: 15px;
 	}
- p{color:white;margin:0;}
+	.price{ 
+		background: $Red; color:white; height: 100%; padding: 5px; border-radius: 5px;
+		>p{color:white;text-align: center;margin: 0;}
+	}
+	
+	#btnCancel{
+		background: $Red;
+		color:white;
+		margin:0;
+		height: 45px;
+	}
+ 
 }
 
-ion-content ion-grid{
+ion-content ion-grid.body{
 	ion-row.row{
-		border-bottom: 1px solid #aaa; 
+		border: 1px solid #aaa; 
+		margin: 5px 0;
+		height: 60px;
+		.col,[col-6]{
+			padding:0;
+		}
 	}
-	h5{ text-align: center; }
+	h5{ text-align: center; background:$Red; 	color: white;    
+		margin: 8px 0;
+		height: 40px;
+		padding-top: 10px;
+		 border-radius:5px;}
 	ion-icon[name=trophy]{
 		color: orange;
 		font-size: 2em;
@@ -38,14 +68,16 @@ ion-content ion-grid{
 		padding-top: 16px;
 	}
  .button{
-	 	padding: 5px 0;
-		width: 2.5em;
+	 	padding: 0;
+		width: 45px;
+		height: 45px;
 		background: #444;
 		color: white;
 		box-shadow: none;
-		margin-top: 10px;
+		margin-top: 6px;
 	 	ion-icon[name=search]{
-		 	color:white;
+			 color:white;
+			 font-size:30px;
 		}
 	}
 }
@@ -75,4 +107,8 @@ ion-content ion-grid{
 		img{margin-bottom: -5px;}
 		span{margin-bottom: 5px;}
 	}
+	.imagen50{
+		width: 50%;
+	}
+	p{text-align: initial;}
 }
