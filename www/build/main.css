@@ -3,6 +3,7 @@ ion-navbar .toolbar-content {
   z-index: -1;
 }
 
+
 ion-navbar .toolbar-content .toolbar-title {
   /*margin-left:-25px*/
   /*margin-left: 35%;*/
