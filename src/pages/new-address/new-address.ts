@@ -9,7 +9,7 @@ import { UserService } from '../../services/user.service';
 //import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 
-//import { PreHomePage } from '../pre-home/pre-home';
+import { PreHomePage } from '../pre-home/pre-home';
 /**
  * Generated class for the NewAddressPage page.
  *
@@ -23,10 +23,12 @@ import { UserService } from '../../services/user.service';
 })
 export class NewAddressPage {
 
-DirecA: any; DirecB: any; DirecC: any; DirecD: any; state: any; zipcode:any; label:any;
+DirecA: any; DirecB: any; DirecC: any; DirecD: any; state: any; zipcode:any; 
+label:any;
 estados: any = []; ciudades:any = [];
 ObjAddress: any = [];
 userData:any;
+userActual:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private userService: UserService) {
   	var stateName = STATE_UTILS.getStates();
@@ -35,7 +37,7 @@ userData:any;
       this.estados.push({'name':stateName[i],'nameShort':stateNameShort[i]});
     }
     this.userData = this.navParams.get('datos');
-    console.log( this.userData);
+    this.userActual = this.userData['verificacion'];
   }
 
   ionViewDidLoad() {
@@ -47,18 +49,10 @@ userData:any;
   	console.log(direccion);
     this.ObjAddress.push({"label":this.label,"name":direccion});
     console.log(this.ObjAddress);
-    //consultar ultimo registro
-    var ultimoRegistro;
-    this.userService.getAddress(this.userData)
-    .subscribe( datosUsuario =>{
-      //console.log(datosUsuario.length);
-      ultimoRegistro = datosUsuario.length;
-    });
-    console.log(ultimoRegistro);
-    //-----verificiar la key que envia
-    var newKeyAddres = "addr_"+(ultimoRegistro++);
-    //crear registro
-  	this.navCtrl.pop();
+    this.userService.newAddress(this.userActual,this.ObjAddress);
+
+    let DataItem = {'datos':this.userData};
+    this.navCtrl.setRoot(PreHomePage,DataItem);
   }
 
    setCity(){

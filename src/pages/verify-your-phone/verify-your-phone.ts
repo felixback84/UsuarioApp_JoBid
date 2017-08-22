@@ -6,6 +6,11 @@ import { PaymentMethodsPage } from '../payment-methods/payment-methods';
 //import { EmailComposer } from '@ionic-native/email-composer';
 
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+
+import { EncriptyService } from '../../services/encripty.service';
+//import { StorageService } from '../../services/storage.service';
+import { UserService } from '../../services/user.service';
+
 /**
  * Generated class for the VerifyYourPhonePage page.
  *
@@ -23,14 +28,14 @@ export class VerifyYourPhonePage {
   verificacion: any;
   codVerificacion: any;
   //constructor(public navCtrl: NavController, public navParams: NavParams, private emailComposer: EmailComposer) {
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authServiceProvider: AuthServiceProvider,public alertCtrl: AlertController) {
-    
-  }
-
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad VerifyYourPhonePage');
-    //this.CorreoVerificacion();
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public authServiceProvider: AuthServiceProvider,
+    public alertCtrl: AlertController,
+    private encriptyService : EncriptyService,
+    //private storageService : StorageService,
+    private userService : UserService,
+  ) {
     //alert(this.navParams.get('username'));
     this.userData = this.navParams.get('datos');
     console.log(this.userData);
@@ -39,36 +44,49 @@ export class VerifyYourPhonePage {
     this.verificacion = this.userData['verificacion'];
     console.log(this.verificacion);
     this.showAlert();
+    
+  }
+
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad VerifyYourPhonePage');
+    //this.CorreoVerificacion();
 
   }
    
   goPayMethod(){
-
     if(this.verificacion == this.codVerificacion){
+
       console.log(this.userData);
-      this.authServiceProvider.postData(this.userData,'signup').then((result) => {
-        this.responseData = result;
-        console.log(this.responseData['userData']['user_id']);
-        //alert('userData'+ JSON.stringify(this.responseData));
-            console.log('code:'+this.userData);
-            console.log(this.userData);
-            console.log('se registro');
-            //alert('code:'+JSON.stringify(this.userData));
-            //alert('se registro');
-            this.userData['verificacion'] = this.responseData['userData']['user_id'];
-        //localStorage.setItem('userData', JSON.stringify(this.userData));
-            this.navCtrl.push(PaymentMethodsPage);
-        }, (err) => {
-        // Error log
-        //console.log('error '.err);
-        alert('error registro');
-      });
+      //this.traerPost();
+     
+      this.userService.newUser(this.userData);
+      this.navCtrl.push(PaymentMethodsPage);
 
     }else{
       alert('codigo no es el mismo');
     }
-    //this.navCtrl.push(PaymentMethodsPage);
   }
+
+  // traerPost(){
+  //   this.authServiceProvider.postData(this.userData,'signup').then((result) => {
+  //     this.responseData = result;
+  //     console.log(this.responseData['userData']['user_id']);
+  //     //alert('userData'+ JSON.stringify(this.responseData));
+  //         console.log('code:'+this.userData);
+  //         console.log(this.userData);
+  //         console.log('se registro');
+  //         //alert('code:'+JSON.stringify(this.userData));
+  //         //alert('se registro');
+  //         this.userData['verificacion'] = this.responseData['userData']['user_id'];
+  //     //localStorage.setItem('userData', JSON.stringify(this.userData));
+  //         this.navCtrl.push(PaymentMethodsPage);
+  //     }, (err) => {
+  //     // Error log
+  //     //console.log('error '.err);
+  //     alert('error registro');
+  //   });
+  // }
 
    showAlert() {
     let alert = this.alertCtrl.create({

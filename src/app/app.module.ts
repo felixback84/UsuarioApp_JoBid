@@ -29,6 +29,7 @@ import { OfferService } from '../services/offer.service';
 import { ProfessionalsService } from '../services/professionals.service';
 import { ProfessionsService } from '../services/professions.service';
 import { UserService } from '../services/user.service';
+import { EncriptyService } from '../services/encripty.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -36,6 +37,10 @@ import { Facebook } from '@ionic-native/facebook';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { IonicStorageModule } from '@ionic/storage';
+
+
 //import { EmailComposer } from '@ionic-native/email-composer';
 export const firebaseConfig = {
     apiKey: "AIzaSyBmrc2CjBbIJD_Pu_kkCcV8qNXJfsEBaxo",
@@ -74,7 +79,11 @@ export const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+         driverOrder: ['indexeddb', 'sqlite', 'websql']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -109,6 +118,7 @@ export const firebaseConfig = {
     OfferService,
     ProfessionsService,
     UserService,
+    EncriptyService,
     // EmailComposer
   ]
 })

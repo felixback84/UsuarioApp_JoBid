@@ -7,6 +7,13 @@ import { NavController, AlertController, NavParams} from 'ionic-angular';
 import { PreHomePage } from '../pre-home/pre-home';
 
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+
+
+
+import { EncriptyService } from '../../services/encripty.service';
+//import { StorageService } from '../../services/storage.service';
+import { UserService } from '../../services/user.service';
+
 //import { ListPage } from '../list/list';
 /**
  * Generated class for the LoginPage page.
@@ -23,7 +30,16 @@ export class LoginPage {
   userData = {"username":"","password":""};
   userDataUpdate: any =[];
   userAndEmail: string = '';
-  	constructor(public navCtrl: NavController , public navParams: NavParams, public authServiceProvider: AuthServiceProvider,public alertCtrl: AlertController) {
+  pass:any;
+    constructor(public navCtrl: NavController , 
+      public navParams: NavParams, 
+      public authServiceProvider: AuthServiceProvider,
+      public alertCtrl: AlertController,
+      private encriptyService : EncriptyService,
+      //private storageService : StorageService,
+      private userService : UserService,
+    ) {
+      this.pass ="mi clave";
   	}
     
   ionViewDidLoad() {
@@ -31,8 +47,30 @@ export class LoginPage {
   }
 
   login(){
+      let estoyLogueado:boolean = false;
       //console.log(this.userData);
-      this.authServiceProvider.postData(this.userData,'login').then((result) => {
+      let passWordEncript = this.encriptyService.GenerateEncripty(this.userData['password']);
+      //console.log(passWordEncript);
+      //console.log(this.userData['password']);
+      //this.userService.getUserLogin(this.userData["password"],this.userData["username"]);
+      //let estado=this.userService.getUserLogin(this.userData["password"],this.userData["username"]);
+      this.userService.getUserLogin(this.userData["username"],this.userData["password"])
+      .subscribe( (value) => {
+        //console.dir(value);
+        for (let key in value){
+          //console.log(value);
+          if(value[key] != undefined){
+            //console.log('hola user'+value[key]['user_name']);
+            this.goNextPagePrehome(value[key]);
+            estoyLogueado= true;
+          }
+        }
+        if(!estoyLogueado){
+          this.showAlert();
+        }
+      });
+      
+      /* this.authServiceProvider.postData(this.userData,'login').then((result) => {
       if(!result['error']){
         //console.log(cont);
         //console.log(result);
@@ -52,16 +90,26 @@ export class LoginPage {
     }, (err) => {
       // Error log
       console.log('error login'+err);
-    });
+    }); */
   }
 
-  showAlert() {
+  goNextPagePrehome(datos:any){
+    //console.log(datos);
+    //console.log(datos['$key']);
+    this.userDataUpdate ={ "email":datos['user_email'],"name":datos['user_name'],"pais":datos['user_pais'],"password":datos['user_password'],"picture":datos['user_picture'],"state":datos['user_state'],"tel":datos['user_tel'],"username":datos['user_username'],"verificacion":datos['$key'],"zipcode":datos['user_zipcode']};
+    //console.log(this.userDataUpdate);
+    let Data = {'datos':this.userDataUpdate}
+    this.navCtrl.setRoot(PreHomePage,Data);
+  }
+   showAlert() {
     let alert = this.alertCtrl.create({
       title: 'login failed',
       subTitle: 'Bad request wrong username or email and password',
       buttons: ['OK']
     });
     alert.present();
-  }
+  } 
+
+
 
 }

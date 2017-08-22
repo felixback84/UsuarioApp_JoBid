@@ -20,12 +20,23 @@ import { ProfessionalsService } from '../../services/professionals.service';
 export class CleaningSalePage {
   professionals = [];
   professsional = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, public professionalsService : ProfessionalsService) {
-    this.professionalsService.getProfessionals()
-      .subscribe(professionals =>{
-        this.professionals = professionals;
-      });
-    console.log(this.professionals);
+  segundos:number = 0;
+  minutos:number = 3;
+  contador:string;
+  showContador: boolean = true;
+  objNodeTimer:any;
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public alertCtrl: AlertController, 
+    public professionalsService : ProfessionalsService) {
+      this.contador = '0'+this.minutos+':'+'0'+this.segundos;
+      this.startTimer();
+      this.professionalsService.getProfessionals()
+        .subscribe(professionals =>{
+          this.professionals = professionals;
+        });
+      console.log(this.professionals);
   }
 
   ionViewDidLoad() {
@@ -70,5 +81,32 @@ export class CleaningSalePage {
       buttons: ['OK']
     });
     alert.present();
+  }
+  startTimer(){
+    this.objNodeTimer=setInterval( () => this.timer(),1000);
+  }
+
+  private timer(){
+    if(this.minutos == 0){ 
+      if(this.segundos == 0){   
+      //this.showContador = false;
+        clearInterval(this.objNodeTimer);
+         this.showContador = false;
+      }
+    }else{
+      if(--this.segundos< 0){
+        this.segundos = 59;
+        if(--this.minutos< 0){
+          //this.minutos = 59;
+          //if( (this.segundos = 0) && (this.minutos = 0)){ this.showContador = false;}
+        }
+      }
+      this.contador = this.dobleCifra(this.minutos)+':'+this.dobleCifra(this.segundos);
+    }
+  }
+
+  private dobleCifra(num:number):any{
+    if(num<10){ return '0'+num;
+    }else{ return ''+num;}
   }
 }

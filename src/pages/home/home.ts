@@ -16,6 +16,7 @@ export class HomePage {
 userData = null;
 mensage :string = '';
   constructor(public navCtrl: NavController, private facebook:  Facebook) {
+    
   }
 ionViewDidLoad() {
     console.log('ionViewDidLoad homePage');

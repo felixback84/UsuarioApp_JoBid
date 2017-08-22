@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 //import { NavController, NavParams } from 'ionic-angular';
-import { NavController ,NavParams} from 'ionic-angular';
+import { NavController ,NavParams, AlertController} from 'ionic-angular';
 //import { Http , Response, Headers, RequestOptions} from '@angular/http';
 //import UsaStates from 'usa-states';
 import cities from 'cities';
@@ -10,6 +10,7 @@ import STATE_UTILS from 'states-utils';
 import { VerifyYourPhonePage } from '../verify-your-phone/verify-your-phone';
 
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { UserService } from '../../services/user.service';
 /**
  * Generated class for the SingupPage page.
  *
@@ -27,15 +28,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
   templateUrl: 'singup.html',
 })
 export class SingupPage {
-
-  DirecA: any;
-  DirecB: any;
-  DirecC: any;
-  DirecD: any;
-  telA: any;
-  telB: any;
-
-
+DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
   private pagesUrl :any;
   responseData :any;
   responseDataUser :any;
@@ -48,7 +41,12 @@ export class SingupPage {
   ciudad: string =  undefined;
   stateZipcode: string = undefined;
   estados : any = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authServiceProvider: AuthServiceProvider) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public authServiceProvider: AuthServiceProvider,
+    public alertCtrl: AlertController,
+    private userService : UserService,
+  ) {
   // }
   //constructor(public navCtrl: NavController, public navParams: NavParams) {
     var stateName = STATE_UTILS.getStates();
@@ -77,46 +75,62 @@ export class SingupPage {
     //console.log(this.ciudad);
     //console.log(STATE_UTILS.getStates());
   }
+
+
+
   goPhoneV(){
- 
+    
+    let estoyLogueado:boolean = false;
+    let finEvent;
+    
+    this.userService.getUserLogin(this.userData["username"],this.userData["password"])
+    .subscribe( (value) => {
+      console.dir(value);
+      for (let key in value){
+        //console.log(value);
+        if(value[key] != undefined){
+          //console.log('hola user'+value[key]['user_name']);
+          estoyLogueado= true;
+        }
+      }
+      
+      finEvent= true;
+    });
+    console.log(finEvent);
+    if(finEvent){
+      if(estoyLogueado){
+        this.showAlert();
+      }else{
+        this.enviarCorreo();
+      }
+    }
+  }
+  
+  enviarCorreo(){
+    //alert('code:'+this.userData.verificacion);
     this.userData.direccion = this.DirecA+' '+this.DirecB+','+this.DirecC+','+this.DirecD ;
     this.userData.tel = '('+this.telA+')'+this.telB;
-    console.log(JSON.stringify(this.userData));
-    this.authServiceProvider.postData(this.userData,'user').then((resultUser) => {
-      //this.responseDataUser = resultUser;
-      console.log(resultUser['ok']);
-      if(resultUser['ok']){
-        console.log('el usuario esta disponible');
-        this.userData.verificacion = ''+Math.floor((Math.random() * 99999) + 11111);
-          //alert('code:'+this.userData.verificacion);
-        this.authServiceProvider.postData(this.userData,'code').then((result) => {
-        //this.responseData = result;
-              //console.log(result);
-              //alert('userData'+ JSON.stringify(this.responseData));
-              //localStorage.setItem('userData', JSON.stringify(this.responseData));
-             
-                  let Data = {'datos':this.userData};
-                  this.navCtrl.push(VerifyYourPhonePage, Data);
-                  //this.navCtrl.push(VerifyYourPhonePage);
-               }, (err) => {
-            //   // Error log
-            //console.log('error '.err);
-            //   alert('error correo');
-             });
-      }else{
-        console.log('el usuario registado');
-      }
-
-      
-        //this.navCtrl.push(VerifyYourPhonePage);
-        }, (err) => {
-        //Error log
-        //console.log('error '.err);
-        alert('error verificacion usuario existente');
-      });
+    this.userData.verificacion = ''+Math.floor((Math.random() * 99999) + 11111);
+    console.log('code:'+this.userData.verificacion);
+    this.authServiceProvider.postData(this.userData,'code').then((result) => {
+      //this.responseData = result;
+      //console.log(result);
+      this.goNextPagePhoneV();
+    }, (err) => {
+      //   // Error log
+      console.log('error envio');
+      console.log(err);
+      //   alert('error correo');
+    });
   }
-          //this.navCtrl.push(VerifyYourPhonePage, Data);
-
+  
+  goNextPagePhoneV(){
+    //alert('userData'+ JSON.stringify(this.responseData));
+    //localStorage.setItem('userData', JSON.stringify(this.responseData));
+    console.log(JSON.stringify(this.userData));
+    let Data = {'datos':this.userData};
+    this.navCtrl.push(VerifyYourPhonePage, Data);
+  }
   setCity(){
     //console.log(this.userData.state);
     this.userData.zipcode = undefined;
@@ -171,6 +185,14 @@ export class SingupPage {
       // }
       //console.log(this.codeAreaEstadoSelect);
   }
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Sign up failed',
+      subTitle: 'The user and the mail is already there',
+      buttons: ['OK']
+    });
+    alert.present();
+  } 
 
   codeAreaDefi(){
 

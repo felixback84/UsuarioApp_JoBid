@@ -18,8 +18,8 @@
 
 <ion-content>
 <img src="assets/img/map.png" class="imgFull" >
-<div class="contador">
-    <h3>02:00</h3>
+<div class="contador" *ngIf="showContador" >
+    <h3>{{contador}}</h3>
 </div>
 <div class="barraRoja">
   <h4>Offers received</h4>
