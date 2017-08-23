@@ -40,6 +40,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { IonicStorageModule } from '@ionic/storage';
 
+import firebase from 'firebase';
+
 //import { EmailComposer } from '@ionic-native/email-composer';
 export const firebaseConfig = {
     apiKey: "AIzaSyBmrc2CjBbIJD_Pu_kkCcV8qNXJfsEBaxo",

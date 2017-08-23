@@ -19,28 +19,22 @@ export class UserService{
 	}
 
 	public getUserLogin(name:string , pwd: any ){
-		//console.log('name'+name);
-		// var estado:any=[];
-		// let listUsers:any; 
-		//return this.afDB.list('/user');
-		/* return this.afDB.list('/user', {
-			query: {
-			  orderByChild: 'size',
-			  equalTo: 'large' 
-			}
-		  }); */
 		return this.afDB.list('/user')
 	 	.map((users) => {
 			 //console.log(users);
 			 return users.map(user =>{
-				 if( (user['user_email'] == name) || (user['user_name'] == name) ){ 
-					//  console.log('existeUser');
+			 // 	console.log(user);
+			 // 	console.log(user['user_email']);
+			 // 	console.log(user['user_name']);
+			 // 	console.log('KEY:'+user.$key);
+				// console.log('EMAIL:'+user.user_email);
+				// console.log('NAME:'+user.user_name);
+				// console.log('PWD:'+user.user_password);
+				// console.log('PWD2:'+pwd);
+				 if( (user['user_email'] == name) || (user['user_username'] == name) ){ 
+					console.log('existeUser');
 					 if(user['user_password'] == pwd){
-						// console.log('KEY:'+user.$key);
-						// console.log('EMAIL:'+user.user_email);
-						// console.log('NAME:'+user.user_name);
-						// console.log('PWD:'+user.user_password);
-						// console.log('PWD2:'+pwd);
+						
 						console.log('existeUserPwd');
 						// estado = [{"status":true,"userId":user.$key,'userData':user}];
 						return user;

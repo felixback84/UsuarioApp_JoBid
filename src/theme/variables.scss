@@ -133,6 +133,8 @@ ion-content .list-ios > .item-block:first-child{
 }
 .label.label-md, .label.label-ios, .label.primary{
 	background: transparent;
+    color: $GrayText;
+    font-size: 14px;
 }
 ion-item.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
 ion-item.item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-ios.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {

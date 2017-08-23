@@ -10,10 +10,11 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 
 
-import { EncriptyService } from '../../services/encripty.service';
+//import { EncriptyService } from '../../services/encripty.service';
 //import { StorageService } from '../../services/storage.service';
 import { UserService } from '../../services/user.service';
 
+import { AngularFireAuth } from 'angularfire2/auth';
 //import { ListPage } from '../list/list';
 /**
  * Generated class for the LoginPage page.
@@ -35,9 +36,10 @@ export class LoginPage {
       public navParams: NavParams, 
       public authServiceProvider: AuthServiceProvider,
       public alertCtrl: AlertController,
-      private encriptyService : EncriptyService,
+      //private encriptyService : EncriptyService,
       //private storageService : StorageService,
       private userService : UserService,
+      public afAuth: AngularFireAuth  
     ) {
       this.pass ="mi clave";
   	}
@@ -48,15 +50,15 @@ export class LoginPage {
 
   login(){
       let estoyLogueado:boolean = false;
-      //console.log(this.userData);
-      let passWordEncript = this.encriptyService.GenerateEncripty(this.userData['password']);
+      console.log(this.userData);
+      //let passWordEncript = this.encriptyService.GenerateEncripty(this.userData['password']);
       //console.log(passWordEncript);
       //console.log(this.userData['password']);
       //this.userService.getUserLogin(this.userData["password"],this.userData["username"]);
       //let estado=this.userService.getUserLogin(this.userData["password"],this.userData["username"]);
       this.userService.getUserLogin(this.userData["username"],this.userData["password"])
       .subscribe( (value) => {
-        //console.dir(value);
+        console.dir(value);
         for (let key in value){
           //console.log(value);
           if(value[key] != undefined){
@@ -93,13 +95,21 @@ export class LoginPage {
     }); */
   }
 
-  goNextPagePrehome(datos:any){
+  async goNextPagePrehome(datos:any){
     //console.log(datos);
     //console.log(datos['$key']);
-    this.userDataUpdate ={ "email":datos['user_email'],"name":datos['user_name'],"pais":datos['user_pais'],"password":datos['user_password'],"picture":datos['user_picture'],"state":datos['user_state'],"tel":datos['user_tel'],"username":datos['user_username'],"verificacion":datos['$key'],"zipcode":datos['user_zipcode']};
+
+    this.userDataUpdate = { "email":datos['user_email'],"name":datos['user_name'],"pais":datos['user_pais'],"password":datos['user_password'],"picture":datos['user_picture'],"state":datos['user_state'],"tel":datos['user_tel'],"username":datos['user_username'],"verificacion":datos['$key'],"zipcode":datos['user_zipcode']};
     //console.log(this.userDataUpdate);
-    let Data = {'datos':this.userDataUpdate}
-    this.navCtrl.setRoot(PreHomePage,Data);
+    try{
+      const result = this.afAuth.auth.signInWithEmailAndPassword(datos['user_email'],datos['user_password']);
+      console.log(result);
+      if(result){
+        let Data = {'datos':this.userDataUpdate}
+        this.navCtrl.setRoot(PreHomePage,Data);
+      }
+      
+    }catch(e){ console.error(e);}
   }
    showAlert() {
     let alert = this.alertCtrl.create({

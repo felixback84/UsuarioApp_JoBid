@@ -51,3 +51,39 @@ camara =>https://www.youtube.com/watch?v=N27NBB9TgLI
 --
 
 states-utils
+
+verificar 
+------
+{
+  "name": "Ionic",
+  "short_name": "Ionic",
+  "start_url": "index.html",
+  "gcm_sender_id": "103953800507",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/imgs/logo.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "background_color": "#4e8ef7",
+  "theme_color": "#4e8ef7"
+}
+
+   "cordova-plugin-statusbar": "^2.2.2",
+        "cordova-plugin-whitelist": "^1.3.1",
+        "cordova-sms-plugin": "^0.1.11",
+        "cordova-sqlite-storage": "^2.0.4",
+        "crypto-js": "^3.1.9-1",
+        "firebase": "^4.2.0",
+        "ionic-angular": "3.5.3",
+        "ionic-plugin-keyboard": "^2.2.1",
+@@ -74,7 +76,8 @@
+            },
+            "cordova-plugin-nativestorage": {},
+            "cordova-plugin-email-composer": {},
+            "cordova-sms-plugin": {}
+            "cordova-sms-plugin": {},
+            "cordova-sqlite-storage": {}
+        },
+        "platforms": [
+            "android"

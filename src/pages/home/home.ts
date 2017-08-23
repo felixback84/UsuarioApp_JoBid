@@ -32,25 +32,28 @@ userDataUpdate:any;
   }
 ionViewDidLoad() {
     console.log('ionViewDidLoad homePage');
-  	 this.facebook.getLoginStatus().then( data=>{
-        //alert(JSON.stringify(data.status));
-        if(data.status === 'connected'){
-                //alert('estoy logeado');
-                this.navCtrl.setRoot(PreHomePage);
-            }else{
-                //alert('no estoy logeado');
-        }
-    }).catch(e => {
-      //console.log('Error logging into Facebook', e);
-      //alert('error if login');
-      });
-      // console.log(this.afAuth.auth['currentUser']);
-      // if(this.afAuth.auth){
-      //   console.log('user logeadoCurren')
-      // }
-      // console.dir(this.afAuth.auth);
-      // console.dirxml(this.afAuth.auth);
-      // this.afAuth.auth.signOut;
+  	//  this.facebook.getLoginStatus().then( data=>{
+    //     //alert(JSON.stringify(data.status));
+    //     if(data.status === 'connected'){
+    //             //alert('estoy logeado');
+    //             this.navCtrl.setRoot(PreHomePage);
+    //         }else{
+    //             //alert('no estoy logeado');
+    //     }
+    // }).catch(e => {
+    //   //console.log('Error logging into Facebook', e);
+    //   //alert('error if login');
+    //   });
+      //console.log(this.afAuth.auth['currentUser']);
+      this.afAuth.authState.subscribe ( data => console.log(data));
+      if(this.afAuth.auth){
+         console.log('user logeadoCurren')
+      }
+      console.dir(this.afAuth.auth);
+      console.dirxml(this.afAuth.auth);
+      let statusAuth= this.afAuth.auth;
+      console.dir(statusAuth.currentUser);
+      //this.afAuth.auth.signOut();
   }
 
   googleir(){
@@ -60,6 +63,8 @@ ionViewDidLoad() {
   }
 
   facebookir(){
+    let goPagePrehome:boolean = false;
+    let userDB:any;
     this.afAuth.auth
       .signInWithPopup(new firebase.auth.FacebookAuthProvider())
       .then(res => {
@@ -70,14 +75,19 @@ ionViewDidLoad() {
           //console.log(users);
           users.forEach((user) =>{
             if(user['user_email'] == res.user.email){
-            console.log(user);
-              this.goNextPagePrehome(user);
-            }else{
-              this.singup();
+              //console.log(user);
+              userDB = user;
+              goPagePrehome= true;
             }
           });
+          //console.log(userDB);
+          //console.log(goPagePrehome);
+          if(goPagePrehome){
+            this.goNextPagePrehome(userDB);
+          }else{
+            this.singup();
+          }
         });
-         
       });
    }
    goNextPagePrehome(datos:any){

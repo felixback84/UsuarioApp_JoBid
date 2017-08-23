@@ -7,6 +7,9 @@ import { ShowPage } from '../show/show';
 
 //import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { UserService } from '../../services/user.service';
+
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 /**
  * Generated class for the PreHomePage page.
  *
@@ -27,7 +30,8 @@ export class PreHomePage {
       public navCtrl: NavController, 
       public navParams: NavParams, 
       //public authServiceProvider: AuthServiceProvider,
-      private userService: UserService
+      private userService: UserService,
+      public afAuth: AngularFireAuth  
     ) {
   	// this.address =[
   	// 	{"label":"casa","name":"direccion1"},
@@ -49,6 +53,8 @@ export class PreHomePage {
       console.log(this.userActual);
       //this.getUrlDataAddres(); 
       this.getAddressUser(this.userActual);
+
+      this.afAuth.authState.subscribe ( data => console.log(data));
   }
 
   goShow(item : any){
