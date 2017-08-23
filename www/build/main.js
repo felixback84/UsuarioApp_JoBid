@@ -44,28 +44,29 @@ var HomePage = (function () {
         this.mensage = '';
     }
     HomePage.prototype.ionViewDidLoad = function () {
-        var _this = this;
         console.log('ionViewDidLoad homePage');
-        this.facebook.getLoginStatus().then(function (data) {
-            //alert(JSON.stringify(data.status));
-            if (data.status === 'connected') {
-                //alert('estoy logeado');
-                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pre_home_pre_home__["a" /* PreHomePage */]);
-            }
-            else {
-                //alert('no estoy logeado');
-            }
-        }).catch(function (e) {
-            //console.log('Error logging into Facebook', e);
-            //alert('error if login');
-        });
-        // console.log(this.afAuth.auth['currentUser']);
-        // if(this.afAuth.auth){
-        //   console.log('user logeadoCurren')
-        // }
-        // console.dir(this.afAuth.auth);
-        // console.dirxml(this.afAuth.auth);
-        // this.afAuth.auth.signOut;
+        //  this.facebook.getLoginStatus().then( data=>{
+        //     //alert(JSON.stringify(data.status));
+        //     if(data.status === 'connected'){
+        //             //alert('estoy logeado');
+        //             this.navCtrl.setRoot(PreHomePage);
+        //         }else{
+        //             //alert('no estoy logeado');
+        //     }
+        // }).catch(e => {
+        //   //console.log('Error logging into Facebook', e);
+        //   //alert('error if login');
+        //   });
+        //console.log(this.afAuth.auth['currentUser']);
+        this.afAuth.authState.subscribe(function (data) { return console.log(data); });
+        if (this.afAuth.auth) {
+            console.log('user logeadoCurren');
+        }
+        console.dir(this.afAuth.auth);
+        console.dirxml(this.afAuth.auth);
+        var statusAuth = this.afAuth.auth;
+        console.dir(statusAuth.currentUser);
+        //this.afAuth.auth.signOut();
     };
     HomePage.prototype.googleir = function () {
         this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pre_home_pre_home__["a" /* PreHomePage */]);
@@ -74,6 +75,8 @@ var HomePage = (function () {
     };
     HomePage.prototype.facebookir = function () {
         var _this = this;
+        var goPagePrehome = false;
+        var userDB;
         this.afAuth.auth
             .signInWithPopup(new __WEBPACK_IMPORTED_MODULE_8_firebase_app__["auth"].FacebookAuthProvider())
             .then(function (res) {
@@ -84,13 +87,19 @@ var HomePage = (function () {
                 //console.log(users);
                 users.forEach(function (user) {
                     if (user['user_email'] == res.user.email) {
-                        console.log(user);
-                        _this.goNextPagePrehome(user);
-                    }
-                    else {
-                        _this.singup();
+                        //console.log(user);
+                        userDB = user;
+                        goPagePrehome = true;
                     }
                 });
+                //console.log(userDB);
+                //console.log(goPagePrehome);
+                if (goPagePrehome) {
+                    _this.goNextPagePrehome(userDB);
+                }
+                else {
+                    _this.singup();
+                }
             });
         });
     };
@@ -114,12 +123,10 @@ HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
         selector: 'page-home',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/home/home.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content>\n <!--  <h3>Ionic Menu Starter</h3>\n\n  <p>\n    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.\n  </p>\n  <button ion-button secondary menuToggle>Toggle Menu</button> -->\n \n  <ion-card *ngIf="userData" >\n    <ion-card-header> {{userData.username}} </ion-card-header>\n    <img [src]= "userData.picture">\n    <ion-card-content>\n      <p>Email: {{ userData.email}}</p>\n      <p>Name: {{ userData.name}}</p>\n    </ion-card-content>\n  </ion-card>\n  <img src="assets/img/LogoJoBid.png" >\n    <h5 id="home-heading1" style="">Sing up or Log in</h5>\n    <div padding>\n      <button ion-button block color="danger" (click)="googleir()">Log in with Google</button>\n      <button ion-button block (click)="facebookir()">Log in with Faceook</button>\n    </div>\n\n    <ion-grid class="tabMenu">\n     <ion-row>\n      <ion-col>\n        <button ion-button block color="light" (click)="singup()">\n          <ion-grid>\n            <ion-row>\n              <ion-icon name="contact"></ion-icon>\n            </ion-row>  \n            <ion-row> \n             <p>sing up</p>\n            </ion-row>\n          </ion-grid> \n        </button>\n      </ion-col>\n      <ion-col>\n        <button ion-button block color="light"(click)="login()">\n        <ion-grid>\n            <ion-row>\n              <ion-icon name="lock"></ion-icon>\n            </ion-row>  \n            <ion-row> \n             <p>login</p>\n            </ion-row>\n          </ion-grid> \n        </button>\n      </ion-col>\n     </ion-row>\n    </ion-grid>  \n      \n\n      \n</ion-content>\n'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_0__ionic_native_facebook__["a" /* Facebook */],
-        __WEBPACK_IMPORTED_MODULE_6__services_user_service__["a" /* UserService */],
-        __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__["a" /* AngularFireAuth */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__ionic_native_facebook__["a" /* Facebook */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__ionic_native_facebook__["a" /* Facebook */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_6__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__services_user_service__["a" /* UserService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _d || Object])
 ], HomePage);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=home.js.map
 
 /***/ }),
@@ -860,8 +867,8 @@ ProfessionalsService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pre_home_pre_home__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_encripty_service__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_user_service__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_auth__ = __webpack_require__(148);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -871,6 +878,41 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 
 //import { NavController, NavParams } from 'ionic-angular';
 
@@ -878,8 +920,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 //import { HomePage } from '../home/home';
 
 
-
+//import { EncriptyService } from '../../services/encripty.service';
 //import { StorageService } from '../../services/storage.service';
+
 
 //import { ListPage } from '../list/list';
 /**
@@ -889,15 +932,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * on Ionic pages and navigation.
  */
 var LoginPage = (function () {
-    function LoginPage(navCtrl, navParams, authServiceProvider, alertCtrl, encriptyService, 
+    function LoginPage(navCtrl, navParams, authServiceProvider, alertCtrl, 
+        //private encriptyService : EncriptyService,
         //private storageService : StorageService,
-        userService) {
+        userService, afAuth) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.authServiceProvider = authServiceProvider;
         this.alertCtrl = alertCtrl;
-        this.encriptyService = encriptyService;
         this.userService = userService;
+        this.afAuth = afAuth;
         this.userData = { "username": "", "password": "" };
         this.userDataUpdate = [];
         this.userAndEmail = '';
@@ -909,15 +953,15 @@ var LoginPage = (function () {
     LoginPage.prototype.login = function () {
         var _this = this;
         var estoyLogueado = false;
-        //console.log(this.userData);
-        var passWordEncript = this.encriptyService.GenerateEncripty(this.userData['password']);
+        console.log(this.userData);
+        //let passWordEncript = this.encriptyService.GenerateEncripty(this.userData['password']);
         //console.log(passWordEncript);
         //console.log(this.userData['password']);
         //this.userService.getUserLogin(this.userData["password"],this.userData["username"]);
         //let estado=this.userService.getUserLogin(this.userData["password"],this.userData["username"]);
         this.userService.getUserLogin(this.userData["username"], this.userData["password"])
             .subscribe(function (value) {
-            //console.dir(value);
+            console.dir(value);
             for (var key in value) {
                 //console.log(value);
                 if (value[key] != undefined) {
@@ -953,12 +997,27 @@ var LoginPage = (function () {
       }); */
     };
     LoginPage.prototype.goNextPagePrehome = function (datos) {
-        //console.log(datos);
-        //console.log(datos['$key']);
-        this.userDataUpdate = { "email": datos['user_email'], "name": datos['user_name'], "pais": datos['user_pais'], "password": datos['user_password'], "picture": datos['user_picture'], "state": datos['user_state'], "tel": datos['user_tel'], "username": datos['user_username'], "verificacion": datos['$key'], "zipcode": datos['user_zipcode'] };
-        //console.log(this.userDataUpdate);
-        var Data = { 'datos': this.userDataUpdate };
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__pre_home_pre_home__["a" /* PreHomePage */], Data);
+        return __awaiter(this, void 0, void 0, function () {
+            var result, Data;
+            return __generator(this, function (_a) {
+                //console.log(datos);
+                //console.log(datos['$key']);
+                this.userDataUpdate = { "email": datos['user_email'], "name": datos['user_name'], "pais": datos['user_pais'], "password": datos['user_password'], "picture": datos['user_picture'], "state": datos['user_state'], "tel": datos['user_tel'], "username": datos['user_username'], "verificacion": datos['$key'], "zipcode": datos['user_zipcode'] };
+                //console.log(this.userDataUpdate);
+                try {
+                    result = this.afAuth.auth.signInWithEmailAndPassword(datos['user_email'], datos['user_password']);
+                    console.log(result);
+                    if (result) {
+                        Data = { 'datos': this.userDataUpdate };
+                        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__pre_home_pre_home__["a" /* PreHomePage */], Data);
+                    }
+                }
+                catch (e) {
+                    console.error(e);
+                }
+                return [2 /*return*/];
+            });
+        });
     };
     LoginPage.prototype.showAlert = function () {
         var alert = this.alertCtrl.create({
@@ -974,14 +1033,10 @@ LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-login',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/login/login.html"*/'<!--\n  Generated template for the LoginPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n  <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>login</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content>\n    <img src="assets/img/LogoJoBid.png">\n    <h5 id="login-heading1">Log in</h5>\n    <ion-list padding>\n	  <ion-item>\n      <ion-icon name="person" item-start></ion-icon>\n      <ion-input type="text" placeholder="User / Email" [(ngModel)]="userData.username" name="username" ></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-icon name="home" item-start></ion-icon>\n      <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password" name="password"></ion-input>\n	  </ion-item>\n    <div class="btnBottom">\n	   <button  ion-button block color="danger" (click)="login()" >Enter<ion-icon name="arrow-dropright"></ion-icon></button> \n    </div>\n	</ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/login/login.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthServiceProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_4__services_encripty_service__["a" /* EncriptyService */],
-        __WEBPACK_IMPORTED_MODULE_5__services_user_service__["a" /* UserService */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_user_service__["a" /* UserService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _f || Object])
 ], LoginPage);
 
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=login.js.map
 
 /***/ }),
@@ -1001,6 +1056,8 @@ LoginPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_user_service__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_firebase_app__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_firebase_app__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1009,6 +1066,41 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
 };
 
 //import { NavController, NavParams } from 'ionic-angular';
@@ -1022,6 +1114,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 // import { WindowService } from '../../services/window.service';
 
+
+//import firebase from 'firebase';
 /**
  * Generated class for the SingupPage page.
  *
@@ -1032,6 +1126,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/catch';
 var SingupPage = (function () {
+    //messaging:any;
+    //messaging = firebase.messaging;
+    //messaging = firebase.messaging();
     function SingupPage(navCtrl, navParams, authServiceProvider, alertCtrl, userService, afAuth) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -1063,6 +1160,17 @@ var SingupPage = (function () {
     }
     SingupPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad SingupPage');
+        //const messaging = firebase.messaging();
+        //this.messaging = fireBase.messaging(this._firebaseApp);
+        //this.messaging = this.afAuth.app.messaging();
+        // this.messaging.requestPermission()
+        // .then(function(){
+        //    console.log('have permission');
+        // })
+        // .catch(function(error){
+        //   console.log('error requestPermission');
+        //   console.log(error);
+        // });
         // this.windowRef = this.win.windowRef
         // this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
         // this.windowRef.recaptchaVerifier.render();
@@ -1082,6 +1190,7 @@ var SingupPage = (function () {
     };
     SingupPage.prototype.goPhoneV = function () {
         var estoyLogueado = false;
+        var userDB;
         var finEvent;
         this.userService.getUserLogin(this.userData["username"], this.userData["password"])
             .subscribe(function (value) {
@@ -1104,6 +1213,24 @@ var SingupPage = (function () {
                 this.enviarCorreo();
             }
         }
+        // this.userService.getUserLogin(this.userData["username"],this.userData["password"])
+        // .subscribe((users) => {
+        //   console.log(users);
+        //   users.forEach((user) =>{
+        //     // if(user['user_email'] == user.email){
+        //          console.log(user);
+        //     //   userDB = user;
+        //     //   estoyLogueado= true;
+        //     // }
+        //   });
+        //   //console.log(userDB);
+        //   //console.log(goPagePrehome);
+        //   if(estoyLogueado){
+        //     this.showAlert();
+        //   }else{
+        //     this.enviarCorreo();
+        //   }
+        // });
     };
     SingupPage.prototype.enviarCorreo = function () {
         //alert('code:'+this.userData.verificacion);
@@ -1138,7 +1265,8 @@ var SingupPage = (function () {
         //             this.windowRef.confirmationResult = result;
         //         })
         //         .catch( error => console.log(error) );
-        this.postCode();
+        //this.postCode();
+        this.goNextPagePhoneV();
     };
     SingupPage.prototype.postCode = function () {
         var _this = this;
@@ -1154,11 +1282,36 @@ var SingupPage = (function () {
         });
     };
     SingupPage.prototype.goNextPagePhoneV = function () {
-        //alert('userData'+ JSON.stringify(this.responseData));
-        //localStorage.setItem('userData', JSON.stringify(this.responseData));
-        console.log(JSON.stringify(this.userData));
-        var Data = { 'datos': this.userData };
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__verify_your_phone_verify_your_phone__["a" /* VerifyYourPhonePage */], Data);
+        return __awaiter(this, void 0, void 0, function () {
+            var result, Data;
+            return __generator(this, function (_a) {
+                //alert('userData'+ JSON.stringify(this.responseData));
+                //localStorage.setItem('userData', JSON.stringify(this.responseData));
+                try {
+                    result = this.afAuth.auth.createUserWithEmailAndPassword(this.userData['email'], this.userData['password'])
+                        .then(function (success) {
+                        var user = __WEBPACK_IMPORTED_MODULE_8_firebase_app__["auth"]().currentUser;
+                        user.sendEmailVerification().then(function (success) { console.log("please verify your email"); }).catch(function (err) {
+                            console.error('error envio correo');
+                            console.error(err);
+                        });
+                    }).catch(function (err) {
+                        console.error('error user create');
+                        console.error(err);
+                    });
+                    console.log(result);
+                    if (result) {
+                        console.log(JSON.stringify(this.userData));
+                        Data = { 'datos': this.userData };
+                        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__verify_your_phone_verify_your_phone__["a" /* VerifyYourPhonePage */], Data);
+                    }
+                }
+                catch (e) {
+                    console.error(e);
+                }
+                return [2 /*return*/];
+            });
+        });
     };
     SingupPage.prototype.setCity = function () {
         //console.log(this.userData.state);
@@ -1561,14 +1714,10 @@ SingupPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-singup',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/singup/singup.html"*/'<!--\n  Generated template for the SingupPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar  class="force-back-button">\n    <ion-title>singup</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n    <img src="assets/img/LogoJoBid.png">\n    <h5 id="signup-heading2" style="">Fill out the form </h5>\n    <form id="signup-form3" class="list" padding>\n      <ion-list id="signup-list3">\n        <ion-item>\n          <ion-icon name="person" item-start></ion-icon>\n          <ion-input type="text" placeholder="Name" [(ngModel)]="userData.name"  name="name"></ion-input>\n        </ion-item>\n        <ion-item>\n          <ion-icon name="pin" item-start></ion-icon>\n          <ion-select [(ngModel)]="userData.pais" name="pais">\n            <ion-option value="USA" selected>U.S.A</ion-option>\n          </ion-select>\n         </ion-item>\n        <ion-item>\n            <ion-icon name="flag" item-start></ion-icon>\n          <ion-select class="mitad" [(ngModel)]="userData.state" name="state" (ngModelChange)="setCity()"> \n            <ion-option selected>State</ion-option>\n            <ion-option *ngFor="let state of estados" value="{{state.nameShort}}">{{state.name}}</ion-option>\n          </ion-select>\n          <ion-select  class="mitad" [(ngModel)]="userData.zipcode" name="zipcode" (ngModelChange)="setZipCode()"> <!--[(ngModel)]="gaming"-->\n            <ion-option selected>....</ion-option>\n            <ion-option *ngFor="let city of ciudades" value="{{city.zipcode}}">{{city.name}} - {{city.zipcode}}</ion-option>\n          </ion-select>\n        </ion-item>\n        <ion-item>\n          <ion-icon name="home" item-start></ion-icon>\n          <ion-input type="number" placeholder="1234" class="mitad" [(ngModel)]="DirecA" name="DirecA"></ion-input>\n          <ion-input type="text" placeholder="avenue" value="" class="mitad" [(ngModel)]="DirecB" name="DirecB"></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-icon name="home" item-start style="background:transparent; color:transparent;"></ion-icon>\n          <ion-input type="text" placeholder="City" class="mitad" [(ngModel)]="DirecC" name="DirecC" ></ion-input>\n          <ion-input type="text" placeholder="NJ 0000" value="{{DirecD}}" class="mitad" [(ngModel)]="DirecD" name="DirecD"></ion-input>\n        </ion-item>\n        <ion-item>\n          <ion-icon name="mail" item-start></ion-icon>\n          <ion-input type="email" placeholder="Mail" [(ngModel)]="userData.email" name="email" ></ion-input>\n         </ion-item>\n        <ion-item>\n          <ion-icon name="contact" item-start></ion-icon>\n          <ion-input type="text" placeholder="User" [(ngModel)]="userData.username"  name="username"></ion-input>\n        </ion-item>\n        <ion-item>\n          <ion-icon name="lock" item-start></ion-icon>\n          <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password" name="password"></ion-input>\n        </ion-item>\n        <ion-grid>\n          <ion-row>\n            <ion-col col-4>\n              <ion-item>\n                <ion-icon name="call" item-start></ion-icon>this.codeAreaEstadoSelect\n                 <ion-select [(ngModel)]="telA" name="telA">\n                  <ion-option *ngFor="let stateCod of codeAreaEstadoSelect" value="{{stateCod.code}}">{{stateCod.code}}</ion-option>\n                </ion-select>\n              </ion-item>\n            </ion-col>\n            <ion-col col-8>\n              <ion-item>\n                <ion-input type="tel" placeholder="Phone #" [(ngModel)]="telB" name="telB"></ion-input>\n              </ion-item>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n        \n        <div class="btnBottom">\n          <button ion-button color="danger" block (click)="goPhoneV()" id="sign-in-button">Continue <ion-icon name="arrow-dropright"></ion-icon></button>\n        </div>\n      </ion-list>\n    </form>\n</ion-content>\n'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/singup/singup.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__["a" /* AuthServiceProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_6__services_user_service__["a" /* UserService */],
-        __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__["a" /* AngularFireAuth */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__["a" /* AuthServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__services_user_service__["a" /* UserService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _f || Object])
 ], SingupPage);
 
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=singup.js.map
 
 /***/ }),
@@ -2135,38 +2284,21 @@ var UserService = (function () {
         return this.afDB.list('/user/' + userId);
     };
     UserService.prototype.getUserLogin = function (name, pwd) {
-        //console.log('name'+name);
-        // var estado:any=[];
-        // let listUsers:any; 
-        //return this.afDB.list('/user');
-        /* return this.afDB.list('/user', {
-            query: {
-              orderByChild: 'size',
-              equalTo: 'large'
-            }
-          }); */
-        //console.log('name'+name);
-        // var estado:any=[];
-        // let listUsers:any; 
-        //return this.afDB.list('/user');
-        /* return this.afDB.list('/user', {
-            query: {
-              orderByChild: 'size',
-              equalTo: 'large'
-            }
-          }); */
         return this.afDB.list('/user')
-            .forEach(function (users) {
+            .map(function (users) {
             //console.log(users);
-            return users.forEach(function (user) {
-                if ((user['user_email'] == name) || (user['user_name'] == name)) {
-                    //  console.log('existeUser');
+            return users.map(function (user) {
+                // 	console.log(user);
+                // 	console.log(user['user_email']);
+                // 	console.log(user['user_name']);
+                // 	console.log('KEY:'+user.$key);
+                // console.log('EMAIL:'+user.user_email);
+                // console.log('NAME:'+user.user_name);
+                // console.log('PWD:'+user.user_password);
+                // console.log('PWD2:'+pwd);
+                if ((user['user_email'] == name) || (user['user_username'] == name)) {
+                    console.log('existeUser');
                     if (user['user_password'] == pwd) {
-                        // console.log('KEY:'+user.$key);
-                        // console.log('EMAIL:'+user.user_email);
-                        // console.log('NAME:'+user.user_name);
-                        // console.log('PWD:'+user.user_password);
-                        // console.log('PWD2:'+pwd);
                         console.log('existeUserPwd');
                         // estado = [{"status":true,"userId":user.$key,'userData':user}];
                         return user;
@@ -2579,6 +2711,7 @@ AuthServiceProvider = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__new_address_new_address__ = __webpack_require__(241);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__show_show__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_auth__ = __webpack_require__(148);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2594,6 +2727,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 //import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
+
 /**
  * Generated class for the PreHomePage page.
  *
@@ -2603,7 +2737,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var PreHomePage = (function () {
     function PreHomePage(navCtrl, navParams, 
         //public authServiceProvider: AuthServiceProvider,
-        userService) {
+        userService, afAuth) {
         // this.address =[
         // 	{"label":"casa","name":"direccion1"},
         //  {"label":"apartamento","name":"direcccion2"},
@@ -2611,6 +2745,7 @@ var PreHomePage = (function () {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.userService = userService;
+        this.afAuth = afAuth;
         //userData = {"username":"Angel","password":"12345","email":"angellg1990@gmail.com","name":"Angel","zipcode":"90003","state":"CA","picture":"","verificacion":"20","pais":"USA","direccion":"1234 ave,bogota,CA 90003","tel":"(408)1234567"};
         this.address = [];
         this.userData = [];
@@ -2629,6 +2764,7 @@ var PreHomePage = (function () {
         console.log(this.userActual);
         //this.getUrlDataAddres(); 
         this.getAddressUser(this.userActual);
+        this.afAuth.authState.subscribe(function (data) { return console.log(data); });
     };
     PreHomePage.prototype.goShow = function (item) {
         //console.log(item);
@@ -2680,11 +2816,10 @@ PreHomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-pre-home',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/pre-home/pre-home.html"*/'<!--\n  Generated template for the PreHomePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n  	<button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>joBid</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class="card-background-page">\n\n  <ion-card>\n    <img src="assets/img/LogoJoBid.png"/>\n    <div class="card-title"><h3>Name User</h3></div>\n    <div class="card-subtitle"><p>¿Where you want your service?</p></div>\n  </ion-card>\n  <ion-grid class="btnAddress">\n  	<ion-row>\n  		<ion-col col-6>\n			<ion-list>\n				<button ion-item (click)="goLocation()" >\n					<ion-icon name="pin" item-start></ion-icon>\n					<ion-label>Current location</ion-label>\n				</button>\n			</ion-list>\n  		</ion-col>\n  		<ion-col col-6>\n  			<ion-list>\n	  			<button ion-item (click)="goNewAddress()">\n  					<ion-icon name="add-circle" item-start></ion-icon>\n  					<ion-label>New Address</ion-label>\n	  			</button>\n  			</ion-list>\n  		</ion-col>\n  	</ion-row>\n  </ion-grid>\n	<ion-list>\n	  <button ion-item *ngFor="let item of address" (click)="goShow(item)">\n	    <h3>{{ item.label }}</h3>\n	    <p>{{ item.name }}</p>\n	  </button>  \n	</ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/pre-home/pre-home.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_4__services_user_service__["a" /* UserService */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_user_service__["a" /* UserService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _d || Object])
 ], PreHomePage);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=pre-home.js.map
 
 /***/ }),
