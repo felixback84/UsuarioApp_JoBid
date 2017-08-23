@@ -3839,6 +3839,35 @@ ion-content .list-ios > .item-block:first-child {
   border-top: none;
 }
 
+.text-input-md, .text-input-ios {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  font-size: 14px;
+}
+
+[type=color]:focus, [type=date]:focus, [type=datetime-local]:focus, [type=datetime]:focus, [type=email]:focus, [type=month]:focus, [type=number]:focus, [type=password]:focus, [type=search]:focus, [type=tel]:focus, [type=text]:focus, [type=time]:focus, [type=url]:focus, [type=week]:focus, textarea:focus {
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.grid .row {
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.list-md > .item-block:last-child ion-label, .list-md > .item-block:last-child .item-inner, .list-md > .item-wrapper:last-child ion-label, .list-md > .item-wrapper:last-child .item-inner,
+.list-ios > .item-block:last-child ion-label, .list-ios > .item-block:last-child .item-inner, .list-ios > .item-wrapper:last-child ion-label, .list-ios > .item-wrapper:last-child .item-inner {
+  background: transparent;
+  color: #444;
+  font-size: 14px;
+}
+
+.label.label-md, .label.label-ios, .label.primary {
+  background: transparent;
+}
+
 ion-item.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
 ion-item.item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-ios.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
   border-bottom-color: transparent;
@@ -3852,7 +3881,7 @@ ion-item.item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus)
 
 ion-item.item-md, ion-item.item-ios {
   padding: 0;
-  padding-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 ion-item.item-md > ion-icon[item-start] + .item-inner, ion-item.item-ios > ion-icon[item-start] + .item-inner {
@@ -3886,12 +3915,14 @@ ion-item.item-md ion-input, ion-item.item-md ion-select, ion-item.item-ios ion-i
   height: 48px;
   color: #444;
   padding: 5px;
+  margin: 0;
 }
 
 ion-item.item-md ion-textarea, ion-item.item-ios ion-textarea {
   border: 1px solid #ddd;
   color: #444;
   padding: 5px;
+  min-height: 80px;
 }
 
 ion-item.item-md ion-select, ion-item.item-ios ion-select {
@@ -3917,6 +3948,10 @@ ion-item.item-md ion-select.mitad:first-child, ion-item.item-md ion-input.mitad:
 
 ion-item.item-md.item-radio-checked.item-md ion-label, ion-item.item-md .item-radio-checked.item-ios ion-label, ion-item.item-ios.item-radio-checked.item-md ion-label, ion-item.item-ios .item-radio-checked.item-ios ion-label {
   color: #444;
+}
+
+ion-item.item-md ion-label.label, ion-item.item-ios ion-label.label {
+  background: transparent !important;
 }
 
 ion-item.item-md .radio-md .radio-icon, ion-item.item-md .radio-ios .radio-icon, ion-item.item-ios .radio-md .radio-icon, ion-item.item-ios .radio-ios .radio-icon {
@@ -25692,7 +25727,7 @@ page-cleaning-sale ion-footer ion-toolbar #btnCancel {
   background: #b20000;
   color: white;
   margin: 0;
-  height: 45px;
+  height: 55px;
 }
 
 page-cleaning-sale ion-content ion-grid.body ion-row.row {

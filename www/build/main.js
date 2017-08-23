@@ -1,15 +1,20 @@
 webpackJsonp([0],{
 
-/***/ 133:
+/***/ 137:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PreHomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__new_address_new_address__ = __webpack_require__(238);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__show_show__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(433);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_facebook__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pre_home_pre_home__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__singup_singup__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_user_service__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_firebase_app__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_firebase_app__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -22,91 +27,104 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+//import { ShowPage } from '../show/show';
 
-//import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
-/**
- * Generated class for the PreHomePage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-var PreHomePage = (function () {
-    function PreHomePage(navCtrl, navParams, 
-        //public authServiceProvider: AuthServiceProvider,
-        userService) {
-        var _this = this;
+
+
+
+
+var HomePage = (function () {
+    function HomePage(navCtrl, facebook, userService, afAuth) {
         this.navCtrl = navCtrl;
-        this.navParams = navParams;
+        this.facebook = facebook;
         this.userService = userService;
-        this.address = [];
-        //userData = {"username":"Angel","password":"12345","email":"angellg1990@gmail.com","name":"Angel","zipcode":"90003","state":"CA","picture":"","verificacion":"20","pais":"USA","direccion":"1234 ave,bogota,CA 90003","tel":"(408)1234567"};
-        this.userData = [];
-        this.userTempo = "user_1";
-        // this.address =[
-        // 	{"label":"casa","name":"direccion1"},
-        //  {"label":"apartamento","name":"direcccion2"},
-        // ];
-        this.userData = this.navParams.get('datos');
-        //console.log(this.userData);
-        // this.authServiceProvider.postData(this.userData,'userAddres').then((result) => {
-        //       //console.log(result);
-        //       //console.log(result['userAddres']['0']);
-        //       //this.address.push(result['userAddres']['0']);
-        //       this.address.push({"label":result['userAddres']['0']['dic_name'],"name":result['userAddres']['0']['dic_direccion']});
-        //       //console.log(this.address);
-        //     }, (err) => {
-        //     // Error log
-        //     //console.log('error '.err);
-        //     alert('error userAddres');
-        //   });
-        // this.userService.getUser()
-        // .subscribe( datosUsuario =>{
-        //   for(let usuario of datosUsuario){
-        //     console.log(usuario);
-        //   }
-        // });
-        this.userService.getAddress(this.userTempo)
-            .subscribe(function (datosUsuario) {
-            for (var usuario in datosUsuario) {
-                //console.log(usuario);
-                //console.log(datosUsuario[usuario]);
-                _this.address.push({ "label": datosUsuario[usuario]['addr_label'], "name": datosUsuario[usuario]['addr_info'] });
-            }
-            //console.log(datosUsuario);
-        });
-        //console.log(this.userService.getAddress('angellg1990@gmail.com'));
+        this.afAuth = afAuth;
+        this.userData = null;
+        this.mensage = '';
     }
-    PreHomePage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad PreHomePage');
+    HomePage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        console.log('ionViewDidLoad homePage');
+        this.facebook.getLoginStatus().then(function (data) {
+            //alert(JSON.stringify(data.status));
+            if (data.status === 'connected') {
+                //alert('estoy logeado');
+                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pre_home_pre_home__["a" /* PreHomePage */]);
+            }
+            else {
+                //alert('no estoy logeado');
+            }
+        }).catch(function (e) {
+            //console.log('Error logging into Facebook', e);
+            //alert('error if login');
+        });
+        // console.log(this.afAuth.auth['currentUser']);
+        // if(this.afAuth.auth){
+        //   console.log('user logeadoCurren')
+        // }
+        // console.dir(this.afAuth.auth);
+        // console.dirxml(this.afAuth.auth);
+        // this.afAuth.auth.signOut;
     };
-    PreHomePage.prototype.goShow = function (item) {
-        //console.log(item);
-        var DataItem = { 'datos': item };
-        //console.log(DataItem);  
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__show_show__["a" /* ShowPage */], DataItem);
+    HomePage.prototype.googleir = function () {
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pre_home_pre_home__["a" /* PreHomePage */]);
+        //this.navCtrl.pop();
+        //this.navCtrl.push(PreHomePage); 
     };
-    PreHomePage.prototype.goNewAddress = function () {
-        var DataItem = { 'datos': this.userTempo };
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__new_address_new_address__["a" /* NewAddressPage */], DataItem);
+    HomePage.prototype.facebookir = function () {
+        var _this = this;
+        this.afAuth.auth
+            .signInWithPopup(new __WEBPACK_IMPORTED_MODULE_8_firebase_app__["auth"].FacebookAuthProvider())
+            .then(function (res) {
+            //console.log(res);
+            //console.log(res.user.email);
+            _this.userService.getUsers()
+                .subscribe(function (users) {
+                //console.log(users);
+                users.forEach(function (user) {
+                    if (user['user_email'] == res.user.email) {
+                        console.log(user);
+                        _this.goNextPagePrehome(user);
+                    }
+                    else {
+                        _this.singup();
+                    }
+                });
+            });
+        });
     };
-    PreHomePage.prototype.goLocation = function () {
+    HomePage.prototype.goNextPagePrehome = function (datos) {
+        //console.log(datos);
+        //console.log(datos['$key']);
+        this.userDataUpdate = { "email": datos['user_email'], "name": datos['user_name'], "pais": datos['user_pais'], "password": datos['user_password'], "picture": datos['user_picture'], "state": datos['user_state'], "tel": datos['user_tel'], "username": datos['user_username'], "verificacion": datos['$key'], "zipcode": datos['user_zipcode'] };
+        //console.log(this.userDataUpdate);
+        var Data = { 'datos': this.userDataUpdate };
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pre_home_pre_home__["a" /* PreHomePage */], Data);
     };
-    return PreHomePage;
+    HomePage.prototype.login = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__login_login__["a" /* LoginPage */]);
+    };
+    HomePage.prototype.singup = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__singup_singup__["a" /* SingupPage */]);
+    };
+    return HomePage;
 }());
-PreHomePage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-pre-home',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/pre-home/pre-home.html"*/'<!--\n  Generated template for the PreHomePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n  	<button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>joBid</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class="card-background-page">\n\n  <ion-card>\n    <img src="assets/img/LogoJoBid.png"/>\n    <div class="card-title"><h3>Name User</h3></div>\n    <div class="card-subtitle"><p>¿Where you want your service?</p></div>\n  </ion-card>\n  <ion-grid class="btnAddress">\n  	<ion-row>\n  		<ion-col col-6>\n			<ion-list>\n				<button ion-item (click)="goLocation()" >\n					<ion-icon name="pin" item-start></ion-icon>\n					<ion-label>Current location</ion-label>\n				</button>\n			</ion-list>\n  		</ion-col>\n  		<ion-col col-6>\n  			<ion-list>\n	  			<button ion-item (click)="goNewAddress()">\n  					<ion-icon name="add-circle" item-start></ion-icon>\n  					<ion-label>New Address</ion-label>\n	  			</button>\n  			</ion-list>\n  		</ion-col>\n  	</ion-row>\n  </ion-grid>\n	<ion-list>\n	  <button ion-item *ngFor="let item of address" (click)="goShow(item)">\n	    <h3>{{ item.label }}</h3>\n	    <p>{{ item.name }}</p>\n	  </button>  \n	</ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/pre-home/pre-home.html"*/,
+HomePage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
+        selector: 'page-home',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/home/home.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content>\n <!--  <h3>Ionic Menu Starter</h3>\n\n  <p>\n    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.\n  </p>\n  <button ion-button secondary menuToggle>Toggle Menu</button> -->\n \n  <ion-card *ngIf="userData" >\n    <ion-card-header> {{userData.username}} </ion-card-header>\n    <img [src]= "userData.picture">\n    <ion-card-content>\n      <p>Email: {{ userData.email}}</p>\n      <p>Name: {{ userData.name}}</p>\n    </ion-card-content>\n  </ion-card>\n  <img src="assets/img/LogoJoBid.png" >\n    <h5 id="home-heading1" style="">Sing up or Log in</h5>\n    <div padding>\n      <button ion-button block color="danger" (click)="googleir()">Log in with Google</button>\n      <button ion-button block (click)="facebookir()">Log in with Faceook</button>\n    </div>\n\n    <ion-grid class="tabMenu">\n     <ion-row>\n      <ion-col>\n        <button ion-button block color="light" (click)="singup()">\n          <ion-grid>\n            <ion-row>\n              <ion-icon name="contact"></ion-icon>\n            </ion-row>  \n            <ion-row> \n             <p>sing up</p>\n            </ion-row>\n          </ion-grid> \n        </button>\n      </ion-col>\n      <ion-col>\n        <button ion-button block color="light"(click)="login()">\n        <ion-grid>\n            <ion-row>\n              <ion-icon name="lock"></ion-icon>\n            </ion-row>  \n            <ion-row> \n             <p>login</p>\n            </ion-row>\n          </ion-grid> \n        </button>\n      </ion-col>\n     </ion-row>\n    </ion-grid>  \n      \n\n      \n</ion-content>\n'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_user_service__["a" /* UserService */]) === "function" && _c || Object])
-], PreHomePage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_0__ionic_native_facebook__["a" /* Facebook */],
+        __WEBPACK_IMPORTED_MODULE_6__services_user_service__["a" /* UserService */],
+        __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__["a" /* AngularFireAuth */]])
+], HomePage);
 
-var _a, _b, _c;
-//# sourceMappingURL=pre-home.js.map
+//# sourceMappingURL=home.js.map
 
 /***/ }),
 
-/***/ 144:
+/***/ 147:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -180,7 +198,7 @@ ProfessionsService = __decorate([
 
 /***/ }),
 
-/***/ 152:
+/***/ 156:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -189,11 +207,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 152;
+webpackEmptyAsyncContext.id = 156;
 
 /***/ }),
 
-/***/ 194:
+/***/ 198:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -202,116 +220,23 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 194;
+webpackEmptyAsyncContext.id = 198;
 
 /***/ }),
 
-/***/ 237:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_facebook__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pre_home_pre_home__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(285);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__singup_singup__ = __webpack_require__(286);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-//import { ShowPage } from '../show/show';
-
-
-
-var HomePage = (function () {
-    function HomePage(navCtrl, facebook) {
-        this.navCtrl = navCtrl;
-        this.facebook = facebook;
-        this.userData = null;
-        this.mensage = '';
-    }
-    HomePage.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        console.log('ionViewDidLoad homePage');
-        this.facebook.getLoginStatus().then(function (data) {
-            //alert(JSON.stringify(data.status));
-            if (data.status === 'connected') {
-                //alert('estoy logeado');
-                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pre_home_pre_home__["a" /* PreHomePage */]);
-            }
-            else {
-                //alert('no estoy logeado');
-            }
-        }).catch(function (e) {
-            //console.log('Error logging into Facebook', e);
-            //alert('error if login');
-        });
-    };
-    HomePage.prototype.googleir = function () {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pre_home_pre_home__["a" /* PreHomePage */]);
-        //this.navCtrl.pop();
-        //this.navCtrl.push(PreHomePage); 
-    };
-    HomePage.prototype.facebookir = function () {
-        // this.facebook.getLoginStatus().then(
-        var _this = this;
-        // )
-        this.facebook.login(['email', 'public_profile'])
-            .then(function (response) {
-            _this.facebook.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)', []).then(function (profile) {
-                _this.userData = { email: profile['email'], name: profile['first_name'], picture: profile['picture_large']['data']['url'], username: profile['name'] };
-                // ej datos == userData = {"username":"","password":"","email":"","name":"","city":"","state":"","picture":""};
-                console.log('Logged into Facebook!', response);
-                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pre_home_pre_home__["a" /* PreHomePage */]);
-            });
-            // this.facebook.getAccessToken(function(token) {
-            //       console.log("Token: " + token);
-            // 		});
-        }).catch(function (e) { return console.log('Error logging into Facebook', e); });
-        //this.navCtrl.setRoot(PreHomePage);
-        //this.navCtrl.push(PreHomePage);
-    };
-    HomePage.prototype.login = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__login_login__["a" /* LoginPage */]);
-    };
-    HomePage.prototype.singup = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__singup_singup__["a" /* SingupPage */]);
-    };
-    return HomePage;
-}());
-HomePage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/home/home.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content>\n <!--  <h3>Ionic Menu Starter</h3>\n\n  <p>\n    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.\n  </p>\n  <button ion-button secondary menuToggle>Toggle Menu</button> -->\n \n  <ion-card *ngIf="userData" >\n    <ion-card-header> {{userData.username}} </ion-card-header>\n    <img [src]= "userData.picture">\n    <ion-card-content>\n      <p>Email: {{ userData.email}}</p>\n      <p>Name: {{ userData.name}}</p>\n    </ion-card-content>\n  </ion-card>\n  <img src="assets/img/LogoJoBid.png" >\n    <h5 id="home-heading1" style="">Sing up or Log in</h5>\n    <div padding>\n      <button ion-button block color="danger" (click)="googleir()">Log in with Google</button>\n      <button ion-button block (click)="facebookir()">Log in with Faceook</button>\n    </div>\n\n    <ion-grid class="tabMenu">\n     <ion-row>\n      <ion-col>\n        <button ion-button block color="light" (click)="singup()">\n          <ion-grid>\n            <ion-row>\n              <ion-icon name="contact"></ion-icon>\n            </ion-row>  \n            <ion-row> \n             <p>sing up</p>\n            </ion-row>\n          </ion-grid> \n        </button>\n      </ion-col>\n      <ion-col>\n        <button ion-button block color="light"(click)="login()">\n        <ion-grid>\n            <ion-row>\n              <ion-icon name="lock"></ion-icon>\n            </ion-row>  \n            <ion-row> \n             <p>login</p>\n            </ion-row>\n          </ion-grid> \n        </button>\n      </ion-col>\n     </ion-row>\n    </ion-grid>  \n      \n\n      \n</ion-content>\n'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/home/home.html"*/
-    }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_0__ionic_native_facebook__["a" /* Facebook */]])
-], HomePage);
-
-//# sourceMappingURL=home.js.map
-
-/***/ }),
-
-/***/ 238:
+/***/ 241:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewAddressPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cities__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cities__ = __webpack_require__(242);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cities___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_cities__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_states_utils__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_states_utils__ = __webpack_require__(243);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_states_utils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_states_utils__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(433);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pre_home_pre_home__ = __webpack_require__(75);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -327,7 +252,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 //import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-//import { PreHomePage } from '../pre-home/pre-home';
+
 /**
  * Generated class for the NewAddressPage page.
  *
@@ -348,7 +273,7 @@ var NewAddressPage = (function () {
             this.estados.push({ 'name': stateName[i], 'nameShort': stateNameShort[i] });
         }
         this.userData = this.navParams.get('datos');
-        console.log(this.userData);
+        this.userActual = this.userData['verificacion'];
     }
     NewAddressPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad NewAddressPage');
@@ -358,17 +283,9 @@ var NewAddressPage = (function () {
         console.log(direccion);
         this.ObjAddress.push({ "label": this.label, "name": direccion });
         console.log(this.ObjAddress);
-        //consultar ultimo registro
-        var ultimoRegistro;
-        this.userService.getAddress(this.userData)
-            .subscribe(function (datosUsuario) {
-            //console.log(datosUsuario.length);
-            ultimoRegistro = datosUsuario.length;
-        });
-        console.log(ultimoRegistro);
-        var newKeyAddres = "addr_" + (ultimoRegistro++);
-        //crear registro
-        this.navCtrl.pop();
+        this.userService.newAddress(this.userActual, this.ObjAddress);
+        var DataItem = { 'datos': this.userData };
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__pre_home_pre_home__["a" /* PreHomePage */], DataItem);
     };
     NewAddressPage.prototype.setCity = function () {
         this.zipcode = undefined;
@@ -393,23 +310,23 @@ NewAddressPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-new-address',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/new-address/new-address.html"*/'<!--\n  Generated template for the NewAddressPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>joBit</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n<img src="assets/img/LogoJoBid.png">\n<h3 class="tittle">New Address</h3>\n<form id="signup-form3" class="list" padding>\n<ion-item>\n  <ion-icon name="document" item-start></ion-icon>\n  <ion-input type="text" placeholder="My Address" class="mitad" [(ngModel)]="label" name="label"></ion-input>\n</ion-item>\n<ion-item>\n <ion-icon name="flag" item-start></ion-icon>\n  <ion-select class="mitad" [(ngModel)]="state" name="state" (ngModelChange)="setCity()"> \n    <ion-option selected>State</ion-option>\n    <ion-option *ngFor="let states of estados" value="{{states.nameShort}}">{{states.name}}</ion-option>\n  </ion-select>\n  <ion-select  class="mitad" [(ngModel)]="zipcode" name="zipcode" (ngModelChange)="setZipCode()"> <!--[(ngModel)]="gaming"-->\n    <ion-option selected>....</ion-option>\n    <ion-option *ngFor="let city of ciudades" value="{{city.zipcode}}">{{city.name}} - {{city.zipcode}}</ion-option>\n  </ion-select>\n</ion-item>\n<ion-item>\n  <ion-icon name="home" item-start></ion-icon>\n  <ion-input type="number" placeholder="1234" class="mitad" [(ngModel)]="DirecA" name="DirecA"></ion-input>\n  <ion-input type="text" placeholder="avenue" value="" class="mitad" [(ngModel)]="DirecB" name="DirecB"></ion-input>\n</ion-item>\n<ion-item>\n  <ion-input type="text" placeholder="City" class="mitad spaceIcons" [(ngModel)]="DirecC" name="DirecC" ></ion-input>\n  <ion-input type="text" placeholder="NJ 0000" value="{{DirecD}}" class="mitad" [(ngModel)]="DirecD" name="DirecD"></ion-input>\n</ion-item>\n	<div class="btnBottom">\n	   <button  ion-button block color="danger" (click)="goPreHome()" >Enter<ion-icon name="arrow-dropright"></ion-icon></button> \n    </div>\n</form>\n</ion-content>\n'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/new-address/new-address.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_user_service__["a" /* UserService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_4__services_user_service__["a" /* UserService */]])
 ], NewAddressPage);
 
-var _a, _b, _c;
 //# sourceMappingURL=new-address.js.map
 
 /***/ }),
 
-/***/ 241:
+/***/ 280:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CleaningPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_info_cleaning_info__ = __webpack_require__(242);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_professions_service__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_info_cleaning_info__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_professions_service__ = __webpack_require__(147);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -465,14 +382,14 @@ CleaningPage = __decorate([
 
 /***/ }),
 
-/***/ 242:
+/***/ 281:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CleaningInfoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_sale_cleaning_sale__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_sale_cleaning_sale__ = __webpack_require__(282);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -517,16 +434,16 @@ CleaningInfoPage = __decorate([
 
 /***/ }),
 
-/***/ 243:
+/***/ 282:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CleaningSalePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_contractor_cleaning_contractor__ = __webpack_require__(244);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__show_show__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_professionals_service__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_contractor_cleaning_contractor__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_professionals_service__ = __webpack_require__(287);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -557,6 +474,11 @@ var CleaningSalePage = (function () {
         this.professionalsService = professionalsService;
         this.professionals = [];
         this.professsional = [];
+        this.segundos = 0;
+        this.minutos = 3;
+        this.showContador = true;
+        this.contador = '0' + this.minutos + ':' + '0' + this.segundos;
+        this.startTimer();
         this.professionalsService.getProfessionals()
             .subscribe(function (professionals) {
             _this.professionals = professionals;
@@ -568,9 +490,6 @@ var CleaningSalePage = (function () {
     };
     CleaningSalePage.prototype.goCleaningContractor = function () {
         this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__cleaning_contractor_cleaning_contractor__["a" /* CleaningContractorPage */]);
-    };
-    CleaningSalePage.prototype.goIndex = function () {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__show_show__["a" /* ShowPage */]);
     };
     CleaningSalePage.prototype.showInfoCleaning = function (id) {
         var _this = this;
@@ -606,28 +525,66 @@ var CleaningSalePage = (function () {
         });
         alert.present();
     };
+    CleaningSalePage.prototype.goIndex = function () {
+        clearInterval(this.objNodeTimer);
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
+    };
+    CleaningSalePage.prototype.startTimer = function () {
+        var _this = this;
+        this.objNodeTimer = setInterval(function () { return _this.timer(); }, 1000);
+    };
+    CleaningSalePage.prototype.timer = function () {
+        if (this.minutos == 0) {
+            if (this.segundos == 0) {
+                //this.showContador = false;
+                clearInterval(this.objNodeTimer);
+                this.showContador = false;
+            }
+        }
+        else {
+            if (--this.segundos < 0) {
+                this.segundos = 59;
+                if (--this.minutos < 0) {
+                    //this.minutos = 59;
+                    //if( (this.segundos = 0) && (this.minutos = 0)){ this.showContador = false;}
+                }
+            }
+            this.contador = this.dobleCifra(this.minutos) + ':' + this.dobleCifra(this.segundos);
+        }
+    };
+    CleaningSalePage.prototype.dobleCifra = function (num) {
+        if (num < 10) {
+            return '0' + num;
+        }
+        else {
+            return '' + num;
+        }
+    };
     return CleaningSalePage;
 }());
 CleaningSalePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-cleaning-sale',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/cleaning-sale/cleaning-sale.html"*/'<!--\n  Generated template for the CleanigSalePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n  <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>joBid</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n<img src="assets/img/map.png" class="imgFull" >\n<div class="contador">\n    <h3>02:00</h3>\n</div>\n<div class="barraRoja">\n  <h4>Offers received</h4>\n</div>\n<ion-grid class="body">\n  <ion-row >\n    <ion-col col-2>\n      <ion-icon name="trophy"></ion-icon>\n    </ion-col>\n    <ion-col col-6>\n     <ion-item>\n      <ion-avatar item-start>\n        <img src="assets/img/professions/cleaning.png">\n      </ion-avatar>\n      <p>Estefania Lorem</p>\n     </ion-item>\n    </ion-col>\n    <ion-col col-2>\n      <h5> $81 </h5>\n    </ion-col>\n    <ion-col col-2>\n      <button ion-button icon-only round color="light" (click)="showInfoCleaning(1)">\n        <ion-icon name="search"></ion-icon>\n      </button>\n    </ion-col>\n  </ion-row>\n  <ion-row>\n    <ion-col col-2>\n    </ion-col>\n    <ion-col col-6>\n     <ion-item>\n      <ion-avatar item-start>\n        <img src="assets/img/professions/cleaning.png">\n      </ion-avatar>\n      <p>Estefania Lorem</p>\n     </ion-item>\n    </ion-col>\n    <ion-col col-2>\n      <h5> $82 </h5>\n    </ion-col>\n    <ion-col col-2>\n      <button ion-button icon-only round color="light" (click)="showInfoCleaning(2)" >\n        <ion-icon name="search"></ion-icon>\n      </button>\n    </ion-col>\n  </ion-row>\n</ion-grid>\n<!-- <div class="btnBottom">\n          <button ion-button color="danger" block icon-left (click)="goCleaningContractor()">Continue<ion-icon name="arrow-dropright"></ion-icon></button>\n        </div> -->\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n    <ion-grid>\n     <ion-row>\n      <ion-col col-6>\n        <div class="price">\n          <p>Initial value</p>\n          <p>$99</p>\n        </div>\n      </ion-col>\n      <ion-col col-6>\n        <button id="btnCancel" ion-button block color="light"(click)="goIndex()">Cancel\n        </button>\n      </ion-col>\n     </ion-row>\n    </ion-grid>  \n  </ion-toolbar>\n</ion-footer>'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/cleaning-sale/cleaning-sale.html"*/,
+        selector: 'page-cleaning-sale',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/cleaning-sale/cleaning-sale.html"*/'<!--\n  Generated template for the CleanigSalePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n  <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>joBid</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n<img src="assets/img/map.png" class="imgFull" >\n<div class="contador" *ngIf="showContador" >\n    <h3>{{contador}}</h3>\n</div>\n<div class="barraRoja">\n  <h4>Offers received</h4>\n</div>\n<ion-grid class="body">\n  <ion-row >\n    <ion-col col-2>\n      <ion-icon name="trophy"></ion-icon>\n    </ion-col>\n    <ion-col col-6>\n     <ion-item>\n      <ion-avatar item-start>\n        <img src="assets/img/professions/cleaning.png">\n      </ion-avatar>\n      <p>Estefania Lorem</p>\n     </ion-item>\n    </ion-col>\n    <ion-col col-2>\n      <h5> $81 </h5>\n    </ion-col>\n    <ion-col col-2>\n      <button ion-button icon-only round color="light" (click)="showInfoCleaning(1)">\n        <ion-icon name="search"></ion-icon>\n      </button>\n    </ion-col>\n  </ion-row>\n  <ion-row>\n    <ion-col col-2>\n    </ion-col>\n    <ion-col col-6>\n     <ion-item>\n      <ion-avatar item-start>\n        <img src="assets/img/professions/cleaning.png">\n      </ion-avatar>\n      <p>Estefania Lorem</p>\n     </ion-item>\n    </ion-col>\n    <ion-col col-2>\n      <h5> $82 </h5>\n    </ion-col>\n    <ion-col col-2>\n      <button ion-button icon-only round color="light" (click)="showInfoCleaning(2)" >\n        <ion-icon name="search"></ion-icon>\n      </button>\n    </ion-col>\n  </ion-row>\n</ion-grid>\n<!-- <div class="btnBottom">\n          <button ion-button color="danger" block icon-left (click)="goCleaningContractor()">Continue<ion-icon name="arrow-dropright"></ion-icon></button>\n        </div> -->\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n    <ion-grid>\n     <ion-row>\n      <ion-col col-6>\n        <div class="price">\n          <p>Initial value</p>\n          <p>$99</p>\n        </div>\n      </ion-col>\n      <ion-col col-6>\n        <button id="btnCancel" ion-button block color="light"(click)="goIndex()">Cancel\n        </button>\n      </ion-col>\n     </ion-row>\n    </ion-grid>  \n  </ion-toolbar>\n</ion-footer>'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/cleaning-sale/cleaning-sale.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_4__services_professionals_service__["a" /* ProfessionalsService */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_4__services_professionals_service__["a" /* ProfessionalsService */]])
 ], CleaningSalePage);
 
 //# sourceMappingURL=cleaning-sale.js.map
 
 /***/ }),
 
-/***/ 244:
+/***/ 283:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CleaningContractorPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_info_service_cleaning_info_service__ = __webpack_require__(245);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__show_show__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_info_service_cleaning_info_service__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__show_show__ = __webpack_require__(51);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -698,14 +655,14 @@ CleaningContractorPage = __decorate([
 
 /***/ }),
 
-/***/ 245:
+/***/ 284:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CleaningInfoServicePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_vote_cleaning_vote__ = __webpack_require__(246);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_vote_cleaning_vote__ = __webpack_require__(285);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -748,14 +705,14 @@ CleaningInfoServicePage = __decorate([
 
 /***/ }),
 
-/***/ 246:
+/***/ 285:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CleaningVotePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_ok_cleaning_ok__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_ok_cleaning_ok__ = __webpack_require__(286);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -798,14 +755,14 @@ CleaningVotePage = __decorate([
 
 /***/ }),
 
-/***/ 247:
+/***/ 286:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CleaningOkPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__show_show__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__show_show__ = __webpack_require__(51);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -848,13 +805,13 @@ CleaningOkPage = __decorate([
 
 /***/ }),
 
-/***/ 248:
+/***/ 287:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfessionalsService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(76);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -887,23 +844,24 @@ var ProfessionalsService = (function () {
 }());
 ProfessionalsService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]])
 ], ProfessionalsService);
 
-var _a;
 //# sourceMappingURL=professionals.service.js.map
 
 /***/ }),
 
-/***/ 285:
+/***/ 288:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pre_home_pre_home__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pre_home_pre_home__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_encripty_service__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_user_service__ = __webpack_require__(40);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -920,6 +878,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 //import { HomePage } from '../home/home';
 
 
+
+//import { StorageService } from '../../services/storage.service';
+
 //import { ListPage } from '../list/list';
 /**
  * Generated class for the LoginPage page.
@@ -928,41 +889,76 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * on Ionic pages and navigation.
  */
 var LoginPage = (function () {
-    function LoginPage(navCtrl, navParams, authServiceProvider, alertCtrl) {
+    function LoginPage(navCtrl, navParams, authServiceProvider, alertCtrl, encriptyService, 
+        //private storageService : StorageService,
+        userService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.authServiceProvider = authServiceProvider;
         this.alertCtrl = alertCtrl;
+        this.encriptyService = encriptyService;
+        this.userService = userService;
         this.userData = { "username": "", "password": "" };
         this.userDataUpdate = [];
         this.userAndEmail = '';
+        this.pass = "mi clave";
     }
     LoginPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad LoginPage');
     };
     LoginPage.prototype.login = function () {
         var _this = this;
+        var estoyLogueado = false;
         //console.log(this.userData);
-        this.authServiceProvider.postData(this.userData, 'login').then(function (result) {
-            if (!result['error']) {
-                //console.log(cont);
-                //console.log(result);
-                //console.log(result['userData']);
-                _this.userDataUpdate = { "username": result['userData']['user_username'], "email": result['userData']['user_email'], "name": result['userData']['user_name'], "zipcode": result['userData']['user_zipcode'], "state": result['userData']['user_state'], "picture": result['userData']['user_picture'], "verificacion": result['userData']['user_id'], "pais": result['userData']['user_pais'], "tel": result['userData']['user_tel'] };
-                //console.log(this.userDataUpdate);
-                var Data = { 'datos': _this.userDataUpdate };
-                //localStorage.setItem('userData', JSON.stringify(result));
-                //console.log('userData'+JSON.stringify(result));
-                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__pre_home_pre_home__["a" /* PreHomePage */], Data);
+        var passWordEncript = this.encriptyService.GenerateEncripty(this.userData['password']);
+        //console.log(passWordEncript);
+        //console.log(this.userData['password']);
+        //this.userService.getUserLogin(this.userData["password"],this.userData["username"]);
+        //let estado=this.userService.getUserLogin(this.userData["password"],this.userData["username"]);
+        this.userService.getUserLogin(this.userData["username"], this.userData["password"])
+            .subscribe(function (value) {
+            //console.dir(value);
+            for (var key in value) {
+                //console.log(value);
+                if (value[key] != undefined) {
+                    //console.log('hola user'+value[key]['user_name']);
+                    _this.goNextPagePrehome(value[key]);
+                    estoyLogueado = true;
+                }
             }
-            else {
-                //this.navCtrl.push(HomePage);
+            if (!estoyLogueado) {
                 _this.showAlert();
             }
-        }, function (err) {
-            // Error log
-            console.log('error login' + err);
         });
+        /* this.authServiceProvider.postData(this.userData,'login').then((result) => {
+        if(!result['error']){
+          //console.log(cont);
+          //console.log(result);
+          //console.log(result['userData']);
+          this.userDataUpdate = {"username":result['userData']['user_username'],"email":result['userData']['user_email'],"name":result['userData']['user_name'],"zipcode":result['userData']['user_zipcode'],"state":result['userData']['user_state'],"picture":result['userData']['user_picture'],"verificacion":result['userData']['user_id'],"pais":result['userData']['user_pais'],"tel":result['userData']['user_tel']};
+    
+          //console.log(this.userDataUpdate);
+          let Data = {'datos':this.userDataUpdate};
+          //localStorage.setItem('userData', JSON.stringify(result));
+          //console.log('userData'+JSON.stringify(result));
+          this.navCtrl.setRoot(PreHomePage,Data);
+        }else{
+          //this.navCtrl.push(HomePage);
+          this.showAlert();
+        }
+        
+      }, (err) => {
+        // Error log
+        console.log('error login'+err);
+      }); */
+    };
+    LoginPage.prototype.goNextPagePrehome = function (datos) {
+        //console.log(datos);
+        //console.log(datos['$key']);
+        this.userDataUpdate = { "email": datos['user_email'], "name": datos['user_name'], "pais": datos['user_pais'], "password": datos['user_password'], "picture": datos['user_picture'], "state": datos['user_state'], "tel": datos['user_tel'], "username": datos['user_username'], "verificacion": datos['$key'], "zipcode": datos['user_zipcode'] };
+        //console.log(this.userDataUpdate);
+        var Data = { 'datos': this.userDataUpdate };
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__pre_home_pre_home__["a" /* PreHomePage */], Data);
     };
     LoginPage.prototype.showAlert = function () {
         var alert = this.alertCtrl.create({
@@ -978,27 +974,33 @@ LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-login',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/login/login.html"*/'<!--\n  Generated template for the LoginPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n  <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>login</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content>\n    <img src="assets/img/LogoJoBid.png">\n    <h5 id="login-heading1">Log in</h5>\n    <ion-list padding>\n	  <ion-item>\n      <ion-icon name="person" item-start></ion-icon>\n      <ion-input type="text" placeholder="User / Email" [(ngModel)]="userData.username" name="username" ></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-icon name="home" item-start></ion-icon>\n      <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password" name="password"></ion-input>\n	  </ion-item>\n    <div class="btnBottom">\n	   <button  ion-button block color="danger" (click)="login()" >Enter<ion-icon name="arrow-dropright"></ion-icon></button> \n    </div>\n	</ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/login/login.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthServiceProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_4__services_encripty_service__["a" /* EncriptyService */],
+        __WEBPACK_IMPORTED_MODULE_5__services_user_service__["a" /* UserService */]])
 ], LoginPage);
 
-var _a, _b, _c, _d;
 //# sourceMappingURL=login.js.map
 
 /***/ }),
 
-/***/ 286:
+/***/ 289:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SingupPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cities__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cities__ = __webpack_require__(242);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cities___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_cities__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_states_utils__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_states_utils__ = __webpack_require__(243);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_states_utils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_states_utils__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__verify_your_phone_verify_your_phone__ = __webpack_require__(287);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__verify_your_phone_verify_your_phone__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_user_service__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__ = __webpack_require__(148);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1017,6 +1019,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+// import { WindowService } from '../../services/window.service';
+
 /**
  * Generated class for the SingupPage page.
  *
@@ -1027,10 +1032,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/catch';
 var SingupPage = (function () {
-    function SingupPage(navCtrl, navParams, authServiceProvider) {
+    function SingupPage(navCtrl, navParams, authServiceProvider, alertCtrl, userService, afAuth) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.authServiceProvider = authServiceProvider;
+        this.alertCtrl = alertCtrl;
+        this.userService = userService;
+        this.afAuth = afAuth;
         this.codeAreaEstadoSelect = [];
         this.userData = { "username": "", "password": "", "email": "", "name": "", "zipcode": "", "state": "", "picture": "", "verificacion": "", "pais": "", "direccion": "", "tel": "" };
         this.ciudades = [];
@@ -1055,6 +1063,16 @@ var SingupPage = (function () {
     }
     SingupPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad SingupPage');
+        // this.windowRef = this.win.windowRef
+        // this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+        // this.windowRef.recaptchaVerifier.render();
+        // this.windowRef = new firebase.auth.RecaptchaVerifier('sign-in-button', {
+        //   'size': 'invisible',
+        //   'callback': function(response) {
+        //     // reCAPTCHA solved, allow signInWithPhoneNumber.
+        //     console.log(response);
+        //   }
+        // });
         //console.dir(lodash);
         //console.dir(lodash.capitalize('myStringToCapitalize'));
         // var usStates = new UsaStates();
@@ -1063,42 +1081,85 @@ var SingupPage = (function () {
         //console.log(STATE_UTILS.getStates());
     };
     SingupPage.prototype.goPhoneV = function () {
-        var _this = this;
-        this.userData.direccion = this.DirecA + ' ' + this.DirecB + ',' + this.DirecC + ',' + this.DirecD;
-        this.userData.tel = '(' + this.telA + ')' + this.telB;
-        console.log(JSON.stringify(this.userData));
-        this.authServiceProvider.postData(this.userData, 'user').then(function (resultUser) {
-            //this.responseDataUser = resultUser;
-            console.log(resultUser['ok']);
-            if (resultUser['ok']) {
-                console.log('el usuario esta disponible');
-                _this.userData.verificacion = '' + Math.floor((Math.random() * 99999) + 11111);
-                //alert('code:'+this.userData.verificacion);
-                _this.authServiceProvider.postData(_this.userData, 'code').then(function (result) {
-                    //this.responseData = result;
-                    //console.log(result);
-                    //alert('userData'+ JSON.stringify(this.responseData));
-                    //localStorage.setItem('userData', JSON.stringify(this.responseData));
-                    var Data = { 'datos': _this.userData };
-                    _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__verify_your_phone_verify_your_phone__["a" /* VerifyYourPhonePage */], Data);
-                    //this.navCtrl.push(VerifyYourPhonePage);
-                }, function (err) {
-                    //   // Error log
-                    //console.log('error '.err);
-                    //   alert('error correo');
-                });
+        var estoyLogueado = false;
+        var finEvent;
+        this.userService.getUserLogin(this.userData["username"], this.userData["password"])
+            .subscribe(function (value) {
+            console.dir(value);
+            for (var key in value) {
+                //console.log(value);
+                if (value[key] != undefined) {
+                    //console.log('hola user'+value[key]['user_name']);
+                    estoyLogueado = true;
+                }
+            }
+            finEvent = true;
+        });
+        console.log(finEvent);
+        if (finEvent) {
+            if (estoyLogueado) {
+                this.showAlert();
             }
             else {
-                console.log('el usuario registado');
+                this.enviarCorreo();
             }
-            //this.navCtrl.push(VerifyYourPhonePage);
+        }
+    };
+    SingupPage.prototype.enviarCorreo = function () {
+        //alert('code:'+this.userData.verificacion);
+        this.userData.direccion = this.DirecA + ' ' + this.DirecB + ',' + this.DirecC + ',' + this.DirecD;
+        this.userData.tel = '(' + this.telA + ')' + this.telB;
+        this.userData.verificacion = '' + Math.floor((Math.random() * 99999) + 11111);
+        console.log('code:' + this.userData.verificacion);
+        //   let recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
+        //     'size': 'invisible',
+        //     'callback': function(response) {
+        //       console.log(response);
+        //       console.log('goNextPagePhoneV');
+        //       // reCAPTCHA solved, allow signInWithPhoneNumber.
+        //     //this.goNextPagePhoneV();
+        //     }
+        //   });
+        //   console.log(recaptchaVerifier);
+        //   this.afAuth.auth.signInWithPhoneNumber('+573209776214', recaptchaVerifier)
+        //   .then( confirmationResult => {
+        //     // SMS sent. Prompt user to type the code from the message, then sign the
+        //     // user in with confirmationResult.confirm(code).
+        //     console.log('code verificacion creado');
+        //     console.log(confirmationResult);
+        // })
+        // .catch(function (error) {
+        //   console.error("SMS not sent", error);
+        // });
+        // const appVerifier = this.windowRef.recaptchaVerifier;
+        // const num = '+5713209776214' ;
+        // firebase.auth().signInWithPhoneNumber(num, appVerifier)
+        //         .then(result => {
+        //             this.windowRef.confirmationResult = result;
+        //         })
+        //         .catch( error => console.log(error) );
+        this.postCode();
+    };
+    SingupPage.prototype.postCode = function () {
+        var _this = this;
+        this.authServiceProvider.postData(this.userData, 'code').then(function (result) {
+            //this.responseData = result;
+            //console.log(result);
+            _this.goNextPagePhoneV();
         }, function (err) {
-            //Error log
-            //console.log('error '.err);
-            alert('error verificacion usuario existente');
+            //   // Error log
+            console.log('error envio');
+            console.log(err);
+            //   alert('error correo');
         });
     };
-    //this.navCtrl.push(VerifyYourPhonePage, Data);
+    SingupPage.prototype.goNextPagePhoneV = function () {
+        //alert('userData'+ JSON.stringify(this.responseData));
+        //localStorage.setItem('userData', JSON.stringify(this.responseData));
+        console.log(JSON.stringify(this.userData));
+        var Data = { 'datos': this.userData };
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__verify_your_phone_verify_your_phone__["a" /* VerifyYourPhonePage */], Data);
+    };
     SingupPage.prototype.setCity = function () {
         //console.log(this.userData.state);
         this.userData.zipcode = undefined;
@@ -1114,6 +1175,19 @@ var SingupPage = (function () {
             }
         }
         this.findCodeEstado(__WEBPACK_IMPORTED_MODULE_3_states_utils___default.a.getStateName(this.userData.state));
+    };
+    // getE164(country,area,prefix,line) {
+    //   const num = this.country + this.area + this.prefix + this.line;
+    //   return `+${num}`
+    // }
+    SingupPage.prototype.verifyLoginCode = function () {
+        var _this = this;
+        this.windowRef.confirmationResult
+            .confirm(this.userData['verificacion'])
+            .then(function (result) {
+            _this.user = result.user;
+        })
+            .catch(function (error) { return console.log(error, "Incorrect code entered?"); });
     };
     SingupPage.prototype.setZipCode = function () {
         //alert('select other item');
@@ -1149,6 +1223,14 @@ var SingupPage = (function () {
         //     }
         // }
         //console.log(this.codeAreaEstadoSelect);
+    };
+    SingupPage.prototype.showAlert = function () {
+        var alert = this.alertCtrl.create({
+            title: 'Sign up failed',
+            subTitle: 'The user and the mail is already there',
+            buttons: ['OK']
+        });
+        alert.present();
     };
     SingupPage.prototype.codeAreaDefi = function () {
         this.codeAreaList = [
@@ -1477,24 +1559,31 @@ var SingupPage = (function () {
 }());
 SingupPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-singup',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/singup/singup.html"*/'<!--\n  Generated template for the SingupPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar  class="force-back-button">\n    <ion-title>singup</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n    <img src="assets/img/LogoJoBid.png">\n    <h5 id="signup-heading2" style="">Fill out the form </h5>\n    <form id="signup-form3" class="list" padding>\n      <ion-list id="signup-list3">\n        <ion-item>\n          <ion-icon name="person" item-start></ion-icon>\n          <ion-input type="text" placeholder="Name" [(ngModel)]="userData.name"  name="name"></ion-input>\n        </ion-item>\n        <ion-item>\n          <ion-icon name="pin" item-start></ion-icon>\n          <ion-select [(ngModel)]="userData.pais" name="pais">\n            <ion-option value="USA" selected>U.S.A</ion-option>\n          </ion-select>\n         </ion-item>\n        <ion-item>\n            <ion-icon name="flag" item-start></ion-icon>\n          <ion-select class="mitad" [(ngModel)]="userData.state" name="state" (ngModelChange)="setCity()"> \n            <ion-option selected>State</ion-option>\n            <ion-option *ngFor="let state of estados" value="{{state.nameShort}}">{{state.name}}</ion-option>\n          </ion-select>\n          <ion-select  class="mitad" [(ngModel)]="userData.zipcode" name="zipcode" (ngModelChange)="setZipCode()"> <!--[(ngModel)]="gaming"-->\n            <ion-option selected>....</ion-option>\n            <ion-option *ngFor="let city of ciudades" value="{{city.zipcode}}">{{city.name}} - {{city.zipcode}}</ion-option>\n          </ion-select>\n        </ion-item>\n        <ion-item>\n          <ion-icon name="home" item-start></ion-icon>\n          <ion-input type="number" placeholder="1234" class="mitad" [(ngModel)]="DirecA" name="DirecA"></ion-input>\n          <ion-input type="text" placeholder="avenue" value="" class="mitad" [(ngModel)]="DirecB" name="DirecB"></ion-input>\n        </ion-item>\n        <ion-item>\n          <ion-input type="text" placeholder="City" class="mitad spaceIcons" [(ngModel)]="DirecC" name="DirecC" ></ion-input>\n          <ion-input type="text" placeholder="NJ 0000" value="{{DirecD}}" class="mitad" [(ngModel)]="DirecD" name="DirecD"></ion-input>\n        </ion-item>\n        <ion-item>\n          <ion-icon name="mail" item-start></ion-icon>\n          <ion-input type="email" placeholder="Mail" [(ngModel)]="userData.email" name="email" ></ion-input>\n         </ion-item>\n        <ion-item>\n          <ion-icon name="contact" item-start></ion-icon>\n          <ion-input type="text" placeholder="User" [(ngModel)]="userData.username"  name="username"></ion-input>\n        </ion-item>\n        <ion-item>\n          <ion-icon name="lock" item-start></ion-icon>\n          <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password" name="password"></ion-input>\n        </ion-item>\n        <ion-grid>\n          <ion-row>\n            <ion-col col-4>\n              <ion-item>\n                <ion-icon name="call" item-start></ion-icon>this.codeAreaEstadoSelect\n                 <ion-select [(ngModel)]="telA" name="telA">\n                  <ion-option *ngFor="let stateCod of codeAreaEstadoSelect" value="{{stateCod.code}}">{{stateCod.code}}</ion-option>\n                </ion-select>\n              </ion-item>\n            </ion-col>\n            <ion-col col-8>\n              <ion-item>\n                <ion-input type="tel" placeholder="Phone #" [(ngModel)]="telB" name="telB"></ion-input>\n              </ion-item>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n        <div class="btnBottom">\n          <button ion-button color="danger" block (click)="goPhoneV()">Continue <ion-icon name="arrow-dropright"></ion-icon></button>\n        </div>\n      </ion-list>\n    </form>\n</ion-content>\n'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/singup/singup.html"*/,
+        selector: 'page-singup',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/singup/singup.html"*/'<!--\n  Generated template for the SingupPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar  class="force-back-button">\n    <ion-title>singup</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n    <img src="assets/img/LogoJoBid.png">\n    <h5 id="signup-heading2" style="">Fill out the form </h5>\n    <form id="signup-form3" class="list" padding>\n      <ion-list id="signup-list3">\n        <ion-item>\n          <ion-icon name="person" item-start></ion-icon>\n          <ion-input type="text" placeholder="Name" [(ngModel)]="userData.name"  name="name"></ion-input>\n        </ion-item>\n        <ion-item>\n          <ion-icon name="pin" item-start></ion-icon>\n          <ion-select [(ngModel)]="userData.pais" name="pais">\n            <ion-option value="USA" selected>U.S.A</ion-option>\n          </ion-select>\n         </ion-item>\n        <ion-item>\n            <ion-icon name="flag" item-start></ion-icon>\n          <ion-select class="mitad" [(ngModel)]="userData.state" name="state" (ngModelChange)="setCity()"> \n            <ion-option selected>State</ion-option>\n            <ion-option *ngFor="let state of estados" value="{{state.nameShort}}">{{state.name}}</ion-option>\n          </ion-select>\n          <ion-select  class="mitad" [(ngModel)]="userData.zipcode" name="zipcode" (ngModelChange)="setZipCode()"> <!--[(ngModel)]="gaming"-->\n            <ion-option selected>....</ion-option>\n            <ion-option *ngFor="let city of ciudades" value="{{city.zipcode}}">{{city.name}} - {{city.zipcode}}</ion-option>\n          </ion-select>\n        </ion-item>\n        <ion-item>\n          <ion-icon name="home" item-start></ion-icon>\n          <ion-input type="number" placeholder="1234" class="mitad" [(ngModel)]="DirecA" name="DirecA"></ion-input>\n          <ion-input type="text" placeholder="avenue" value="" class="mitad" [(ngModel)]="DirecB" name="DirecB"></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-icon name="home" item-start style="background:transparent; color:transparent;"></ion-icon>\n          <ion-input type="text" placeholder="City" class="mitad" [(ngModel)]="DirecC" name="DirecC" ></ion-input>\n          <ion-input type="text" placeholder="NJ 0000" value="{{DirecD}}" class="mitad" [(ngModel)]="DirecD" name="DirecD"></ion-input>\n        </ion-item>\n        <ion-item>\n          <ion-icon name="mail" item-start></ion-icon>\n          <ion-input type="email" placeholder="Mail" [(ngModel)]="userData.email" name="email" ></ion-input>\n         </ion-item>\n        <ion-item>\n          <ion-icon name="contact" item-start></ion-icon>\n          <ion-input type="text" placeholder="User" [(ngModel)]="userData.username"  name="username"></ion-input>\n        </ion-item>\n        <ion-item>\n          <ion-icon name="lock" item-start></ion-icon>\n          <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password" name="password"></ion-input>\n        </ion-item>\n        <ion-grid>\n          <ion-row>\n            <ion-col col-4>\n              <ion-item>\n                <ion-icon name="call" item-start></ion-icon>this.codeAreaEstadoSelect\n                 <ion-select [(ngModel)]="telA" name="telA">\n                  <ion-option *ngFor="let stateCod of codeAreaEstadoSelect" value="{{stateCod.code}}">{{stateCod.code}}</ion-option>\n                </ion-select>\n              </ion-item>\n            </ion-col>\n            <ion-col col-8>\n              <ion-item>\n                <ion-input type="tel" placeholder="Phone #" [(ngModel)]="telB" name="telB"></ion-input>\n              </ion-item>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n        \n        <div class="btnBottom">\n          <button ion-button color="danger" block (click)="goPhoneV()" id="sign-in-button">Continue <ion-icon name="arrow-dropright"></ion-icon></button>\n        </div>\n      </ion-list>\n    </form>\n</ion-content>\n'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/singup/singup.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__["a" /* AuthServiceProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_6__services_user_service__["a" /* UserService */],
+        __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__["a" /* AngularFireAuth */]])
 ], SingupPage);
 
 //# sourceMappingURL=singup.js.map
 
 /***/ }),
 
-/***/ 287:
+/***/ 290:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerifyYourPhonePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__payment_methods_payment_methods__ = __webpack_require__(288);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__payment_methods_payment_methods__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_encripty_service__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_user_service__ = __webpack_require__(40);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1509,6 +1598,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 //import { EmailComposer } from '@ionic-native/email-composer';
 
+
+//import { StorageService } from '../../services/storage.service';
+
 /**
  * Generated class for the VerifyYourPhonePage page.
  *
@@ -1517,16 +1609,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var VerifyYourPhonePage = (function () {
     //constructor(public navCtrl: NavController, public navParams: NavParams, private emailComposer: EmailComposer) {
-    function VerifyYourPhonePage(navCtrl, navParams, authServiceProvider, alertCtrl) {
+    function VerifyYourPhonePage(navCtrl, navParams, authServiceProvider, alertCtrl, encriptyService, 
+        //private storageService : StorageService,
+        userService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.authServiceProvider = authServiceProvider;
         this.alertCtrl = alertCtrl;
+        this.encriptyService = encriptyService;
+        this.userService = userService;
         this.userData = [];
-    }
-    VerifyYourPhonePage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad VerifyYourPhonePage');
-        //this.CorreoVerificacion();
         //alert(this.navParams.get('username'));
         this.userData = this.navParams.get('datos');
         console.log(this.userData);
@@ -1535,34 +1627,41 @@ var VerifyYourPhonePage = (function () {
         this.verificacion = this.userData['verificacion'];
         console.log(this.verificacion);
         this.showAlert();
+    }
+    VerifyYourPhonePage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad VerifyYourPhonePage');
+        //this.CorreoVerificacion();
     };
     VerifyYourPhonePage.prototype.goPayMethod = function () {
-        var _this = this;
         if (this.verificacion == this.codVerificacion) {
             console.log(this.userData);
-            this.authServiceProvider.postData(this.userData, 'signup').then(function (result) {
-                _this.responseData = result;
-                console.log(_this.responseData['userData']['user_id']);
-                //alert('userData'+ JSON.stringify(this.responseData));
-                console.log('code:' + _this.userData);
-                console.log(_this.userData);
-                console.log('se registro');
-                //alert('code:'+JSON.stringify(this.userData));
-                //alert('se registro');
-                _this.userData['verificacion'] = _this.responseData['userData']['user_id'];
-                //localStorage.setItem('userData', JSON.stringify(this.userData));
-                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__payment_methods_payment_methods__["a" /* PaymentMethodsPage */]);
-            }, function (err) {
-                // Error log
-                //console.log('error '.err);
-                alert('error registro');
-            });
+            //this.traerPost();
+            this.userService.newUser(this.userData);
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__payment_methods_payment_methods__["a" /* PaymentMethodsPage */]);
         }
         else {
             alert('codigo no es el mismo');
         }
-        //this.navCtrl.push(PaymentMethodsPage);
     };
+    // traerPost(){
+    //   this.authServiceProvider.postData(this.userData,'signup').then((result) => {
+    //     this.responseData = result;
+    //     console.log(this.responseData['userData']['user_id']);
+    //     //alert('userData'+ JSON.stringify(this.responseData));
+    //         console.log('code:'+this.userData);
+    //         console.log(this.userData);
+    //         console.log('se registro');
+    //         //alert('code:'+JSON.stringify(this.userData));
+    //         //alert('se registro');
+    //         this.userData['verificacion'] = this.responseData['userData']['user_id'];
+    //     //localStorage.setItem('userData', JSON.stringify(this.userData));
+    //         this.navCtrl.push(PaymentMethodsPage);
+    //     }, (err) => {
+    //     // Error log
+    //     //console.log('error '.err);
+    //     alert('error registro');
+    //   });
+    // }
     VerifyYourPhonePage.prototype.showAlert = function () {
         var alert = this.alertCtrl.create({
             title: 'Información',
@@ -1593,21 +1692,26 @@ VerifyYourPhonePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-verify-your-phone',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/verify-your-phone/verify-your-phone.html"*/'<!--\n  Generated template for the VerifyYourPhonePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>verifyYourPhone</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n    <img src="assets/img/LogoJoBid.png">\n    <h5 id="verifyYourPhone-heading3">Verify your phone </h5>\n    <div id="verifyYourPhone-markdown3" class="show-list-numbers-and-dots">\n      <p style="color:#000000;">Enter the confirmation number </p>\n    </div>\n    <form id="verifyYourPhone-form4" class="list" padding>\n     <ion-list>\n        <ion-item class="iconJunto">\n          <ion-icon name="lock" item-start></ion-icon>\n          <ion-input type="text" placeholder="Confirmation number" [(ngModel)]="codVerificacion" name="codVerificacion"></ion-input>\n        </ion-item>\n     </ion-list>\n    </form>\n    <div class="spacer"></div>\n    <div class="btnBottom" padding>\n      <button id="verifyYourPhone-button6" ion-button block color="danger" (click)="goPayMethod()">Continue <ion-icon name="arrow-dropright"></ion-icon></button>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/verify-your-phone/verify-your-phone.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthServiceProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthServiceProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_4__services_encripty_service__["a" /* EncriptyService */],
+        __WEBPACK_IMPORTED_MODULE_5__services_user_service__["a" /* UserService */]])
 ], VerifyYourPhonePage);
 
 //# sourceMappingURL=verify-your-phone.js.map
 
 /***/ }),
 
-/***/ 288:
+/***/ 291:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaymentMethodsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__payinfo_payinfo__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__payinfo_payinfo__ = __webpack_require__(292);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1650,14 +1754,14 @@ PaymentMethodsPage = __decorate([
 
 /***/ }),
 
-/***/ 289:
+/***/ 292:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PayinfoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__show_show__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__show_show__ = __webpack_require__(51);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1700,13 +1804,13 @@ PayinfoPage = __decorate([
 
 /***/ }),
 
-/***/ 292:
+/***/ 295:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(293);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(312);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1714,53 +1818,57 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 309:
+/***/ 312:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export firebaseConfig */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth_service_auth_service__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(237);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_list_list__ = __webpack_require__(426);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_login_login__ = __webpack_require__(285);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_singup_singup__ = __webpack_require__(286);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_show_show__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_verify_your_phone_verify_your_phone__ = __webpack_require__(287);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_payment_methods_payment_methods__ = __webpack_require__(288);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_payinfo_payinfo__ = __webpack_require__(289);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_cleaning_cleaning__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_cleaning_info_cleaning_info__ = __webpack_require__(242);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_cleaning_sale_cleaning_sale__ = __webpack_require__(243);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_cleaning_contractor_cleaning_contractor__ = __webpack_require__(244);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_cleaning_info_service_cleaning_info_service__ = __webpack_require__(245);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_cleaning_vote_cleaning_vote__ = __webpack_require__(246);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_cleaning_ok_cleaning_ok__ = __webpack_require__(247);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_pre_home_pre_home__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_new_address_new_address__ = __webpack_require__(238);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_profession_profession__ = __webpack_require__(427);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_braintree_service__ = __webpack_require__(428);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__services_offer_service__ = __webpack_require__(429);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__services_professionals_service__ = __webpack_require__(248);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__services_professions_service__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_user_service__ = __webpack_require__(433);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__ionic_native_status_bar__ = __webpack_require__(234);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__ionic_native_splash_screen__ = __webpack_require__(236);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__ionic_native_facebook__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32_angularfire2__ = __webpack_require__(430);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33_angularfire2_database__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34_angularfire2_auth__ = __webpack_require__(431);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth_service_auth_service__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_list_list__ = __webpack_require__(432);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_login_login__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_singup_singup__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_show_show__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_verify_your_phone_verify_your_phone__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_payment_methods_payment_methods__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_payinfo_payinfo__ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_cleaning_cleaning__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_cleaning_info_cleaning_info__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_cleaning_sale_cleaning_sale__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_cleaning_contractor_cleaning_contractor__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_cleaning_info_service_cleaning_info_service__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_cleaning_vote_cleaning_vote__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_cleaning_ok_cleaning_ok__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_pre_home_pre_home__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_new_address_new_address__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_profession_profession__ = __webpack_require__(433);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_braintree_service__ = __webpack_require__(434);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__services_offer_service__ = __webpack_require__(435);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__services_professionals_service__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__services_professions_service__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_user_service__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__services_encripty_service__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__ionic_native_status_bar__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__ionic_native_splash_screen__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__ionic_native_facebook__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33_angularfire2__ = __webpack_require__(436);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34_angularfire2_database__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35_angularfire2_auth__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__ionic_storage__ = __webpack_require__(437);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -1836,9 +1944,13 @@ AppModule = __decorate([
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */]),
-            __WEBPACK_IMPORTED_MODULE_32_angularfire2__["a" /* AngularFireModule */].initializeApp(firebaseConfig),
-            __WEBPACK_IMPORTED_MODULE_33_angularfire2_database__["b" /* AngularFireDatabaseModule */],
-            __WEBPACK_IMPORTED_MODULE_34_angularfire2_auth__["a" /* AngularFireAuthModule */]
+            __WEBPACK_IMPORTED_MODULE_33_angularfire2__["a" /* AngularFireModule */].initializeApp(firebaseConfig),
+            __WEBPACK_IMPORTED_MODULE_34_angularfire2_database__["b" /* AngularFireDatabaseModule */],
+            __WEBPACK_IMPORTED_MODULE_35_angularfire2_auth__["b" /* AngularFireAuthModule */],
+            __WEBPACK_IMPORTED_MODULE_36__ionic_storage__["a" /* IonicStorageModule */].forRoot({
+                name: '__mydb',
+                driverOrder: ['indexeddb', 'sqlite', 'websql']
+            })
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* IonicApp */]],
         entryComponents: [
@@ -1863,16 +1975,17 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_22__pages_new_address_new_address__["a" /* NewAddressPage */],
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_29__ionic_native_status_bar__["a" /* StatusBar */],
-            __WEBPACK_IMPORTED_MODULE_30__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_30__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_31__ionic_native_splash_screen__["a" /* SplashScreen */],
             { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* IonicErrorHandler */] },
             __WEBPACK_IMPORTED_MODULE_4__providers_auth_service_auth_service__["a" /* AuthServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_31__ionic_native_facebook__["a" /* Facebook */],
+            __WEBPACK_IMPORTED_MODULE_32__ionic_native_facebook__["a" /* Facebook */],
             __WEBPACK_IMPORTED_MODULE_24__services_braintree_service__["a" /* BraintreeService */],
             __WEBPACK_IMPORTED_MODULE_26__services_professionals_service__["a" /* ProfessionalsService */],
             __WEBPACK_IMPORTED_MODULE_25__services_offer_service__["a" /* OfferService */],
             __WEBPACK_IMPORTED_MODULE_27__services_professions_service__["a" /* ProfessionsService */],
             __WEBPACK_IMPORTED_MODULE_28__services_user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_29__services_encripty_service__["a" /* EncriptyService */],
         ]
     })
 ], AppModule);
@@ -1881,18 +1994,18 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 350:
+/***/ 353:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(234);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(236);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_facebook__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(237);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_show_show__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_facebook__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_show_show__ = __webpack_require__(51);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1987,15 +2100,348 @@ MyApp = __decorate([
 
 /***/ }),
 
-/***/ 39:
+/***/ 40:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__encripty_service__ = __webpack_require__(85);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var UserService = (function () {
+    function UserService(afDB, encriptyService) {
+        this.afDB = afDB;
+        this.encriptyService = encriptyService;
+        this.Users = [];
+        //console.log(this.afDB.list('/user'));
+    }
+    UserService.prototype.getUsers = function () {
+        return this.afDB.list('/user');
+    };
+    UserService.prototype.getUser = function (userId) {
+        console.log(this.afDB.list('/user/' + userId));
+        return this.afDB.list('/user/' + userId);
+    };
+    UserService.prototype.getUserLogin = function (name, pwd) {
+        //console.log('name'+name);
+        // var estado:any=[];
+        // let listUsers:any; 
+        //return this.afDB.list('/user');
+        /* return this.afDB.list('/user', {
+            query: {
+              orderByChild: 'size',
+              equalTo: 'large'
+            }
+          }); */
+        //console.log('name'+name);
+        // var estado:any=[];
+        // let listUsers:any; 
+        //return this.afDB.list('/user');
+        /* return this.afDB.list('/user', {
+            query: {
+              orderByChild: 'size',
+              equalTo: 'large'
+            }
+          }); */
+        return this.afDB.list('/user')
+            .forEach(function (users) {
+            //console.log(users);
+            return users.forEach(function (user) {
+                if ((user['user_email'] == name) || (user['user_name'] == name)) {
+                    //  console.log('existeUser');
+                    if (user['user_password'] == pwd) {
+                        // console.log('KEY:'+user.$key);
+                        // console.log('EMAIL:'+user.user_email);
+                        // console.log('NAME:'+user.user_name);
+                        // console.log('PWD:'+user.user_password);
+                        // console.log('PWD2:'+pwd);
+                        console.log('existeUserPwd');
+                        // estado = [{"status":true,"userId":user.$key,'userData':user}];
+                        return user;
+                    }
+                }
+            });
+            //return users;
+        });
+        /* .subscribe( (users) => {
+            for (var key in users) {
+                if(users[key]['user_email'] || users[key]['user_name'] ){
+                    if( (users[key]['user_email'] == name) && (users[key]['user_name'] == name) ){
+                        if(users[key]['user_password'] == pwd){
+                            estado = [{"status":true,"userId":key,'userData':users[key]}];
+                            return estado;
+                        }
+                    }
+                }
+            }
+        }); */
+    };
+    UserService.prototype.getUserEmail = function (email) {
+        //let listUser:any;
+        return this.afDB.list('/user')
+            .subscribe(function (users) {
+            //console.log(users);
+            users.forEach(function (user) {
+                if (user['user_email'] == email) {
+                    //console.log(user);
+                    return user;
+                }
+            });
+        });
+    };
+    UserService.prototype.newUser = function (userData) {
+        if (userData === void 0) { userData = []; }
+        var d = new Date();
+        var key = d.getTime();
+        //console.log(key);
+        var keyUser = "user_" + (key);
+        //console.log(newKeyAddres);
+        var ObjAddress = [];
+        var username = userData["username"];
+        var password = userData["password"];
+        //let password = this.encriptyService.GenerateEncripty(userData["password"]);
+        var email = userData["email"];
+        var name = userData["name"];
+        var zipcode = userData["zipcode"];
+        var state = userData["state"];
+        var picture = userData["picture"];
+        var verificacion = userData["verificacion"];
+        var pais = userData["pais"];
+        var direccion = userData["direccion"];
+        var tel = userData["tel"];
+        //console.log(userData);
+        if ((userData['username']) && (userData['password']) && (userData['email'])) {
+            if ((userData['username'] != undefined) && (userData['username'] != null) && (userData['password'] != undefined) && (userData['password'] != null) && (userData['email'] != undefined) && (userData['email'] != null)) {
+                this.afDB.object('/user/' + keyUser).set({ "user_username": username, "user_password": password, "user_email": email, "user_name": name, "user_zipcode": zipcode, "user_state": state, "user_picture": picture, "user_verificacion": verificacion, "user_pais": pais, "user_tel": tel });
+                ObjAddress.push({ "label": 'My Address', "name": direccion });
+                this.newAddress(keyUser, ObjAddress);
+            }
+        }
+    };
+    /*  ----------------address ----------------------*/
+    UserService.prototype.getAddress = function (userId) {
+        if (userId === void 0) { userId = ""; }
+        //return this.afDB.list('/user/'+userId);
+        //return this.afDB.object('/user/'+userId);
+        return this.afDB.list('/user/' + userId + '/user_address/');
+    };
+    UserService.prototype.newAddress = function (userId, ObjAddress) {
+        if (userId === void 0) { userId = ""; }
+        if (ObjAddress === void 0) { ObjAddress = []; }
+        var d = new Date();
+        var key = d.getTime();
+        console.log(key);
+        var keyAddress = "addr_" + key;
+        var name = ObjAddress['0']['name'];
+        var label = ObjAddress['0']['label'];
+        console.log(ObjAddress['0']);
+        console.log(ObjAddress['0']['label']);
+        console.log(name);
+        console.log(label);
+        if ((ObjAddress['0']['label']) && (ObjAddress['0']['name'])) {
+            if ((label != undefined) && (label != null) && (name != undefined) && (name != null)) {
+                return this.afDB.object('/user/' + userId + '/user_address/' + keyAddress).set({ "addr_label": label, "addr_info": name });
+            }
+        }
+    };
+    return UserService;
+}());
+UserService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__encripty_service__["a" /* EncriptyService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__encripty_service__["a" /* EncriptyService */]) === "function" && _b || Object])
+], UserService);
+
+var _a, _b;
+//# sourceMappingURL=user.service.js.map
+
+/***/ }),
+
+/***/ 432:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ListPage = ListPage_1 = (function () {
+    function ListPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        // If we navigated to this page, we will have an item available as a nav param
+        this.selectedItem = navParams.get('item');
+        // Let's populate this page with some filler content for funzies
+        this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
+            'american-football', 'boat', 'bluetooth', 'build'];
+        this.items = [];
+        for (var i = 1; i < 11; i++) {
+            this.items.push({
+                title: 'Item ' + i,
+                note: 'This is item #' + i,
+                icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+            });
+        }
+    }
+    ListPage.prototype.itemTapped = function (event, item) {
+        // That's right, we're pushing to ourselves!
+        this.navCtrl.push(ListPage_1, {
+            item: item
+        });
+    };
+    return ListPage;
+}());
+ListPage = ListPage_1 = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-list',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/list/list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>List</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon [name]="item.icon" item-left></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-right>\n        {{item.note}}\n      </div>\n    </button>\n  </ion-list>\n  <div *ngIf="selectedItem" padding>\n    You navigated here from <b>{{selectedItem.title}}</b>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/list/list.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+], ListPage);
+
+var ListPage_1;
+//# sourceMappingURL=list.js.map
+
+/***/ }),
+
+/***/ 433:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfessionPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the ProfessionPage page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
+var ProfessionPage = (function () {
+    function ProfessionPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    ProfessionPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ProfessionPage');
+    };
+    return ProfessionPage;
+}());
+ProfessionPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-profession',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/profession/profession.html"*/'<!--\n  Generated template for the ProfessionPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n  <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>joBid</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n	<p style="text-align: center; color:black;">page profession 2</p>\n</ion-content>\n'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/profession/profession.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+], ProfessionPage);
+
+//# sourceMappingURL=profession.js.map
+
+/***/ }),
+
+/***/ 434:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BraintreeService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+//import { client} from "braintree-web/client";
+//import { hostedFields} from "braintree-web/hosted-fields";
+var BraintreeService = (function () {
+    function BraintreeService() {
+    }
+    return BraintreeService;
+}());
+BraintreeService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])()
+], BraintreeService);
+
+//# sourceMappingURL=braintree.service.js.map
+
+/***/ }),
+
+/***/ 435:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OfferService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(76);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var OfferService = (function () {
+    function OfferService(afDB) {
+        this.afDB = afDB;
+    }
+    OfferService.prototype.getOffer = function () {
+        this.offer = this.afDB.list('/offer');
+    };
+    return OfferService;
+}());
+OfferService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]])
+], OfferService);
+
+//# sourceMappingURL=offer.service.js.map
+
+/***/ }),
+
+/***/ 51:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShowPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_cleaning__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_professions_service__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_cleaning__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_professions_service__ = __webpack_require__(147);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2057,225 +2503,14 @@ ShowPage = __decorate([
 
 /***/ }),
 
-/***/ 426:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var ListPage = ListPage_1 = (function () {
-    function ListPage(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        // If we navigated to this page, we will have an item available as a nav param
-        this.selectedItem = navParams.get('item');
-        // Let's populate this page with some filler content for funzies
-        this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-            'american-football', 'boat', 'bluetooth', 'build'];
-        this.items = [];
-        for (var i = 1; i < 11; i++) {
-            this.items.push({
-                title: 'Item ' + i,
-                note: 'This is item #' + i,
-                icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-            });
-        }
-    }
-    ListPage.prototype.itemTapped = function (event, item) {
-        // That's right, we're pushing to ourselves!
-        this.navCtrl.push(ListPage_1, {
-            item: item
-        });
-    };
-    return ListPage;
-}());
-ListPage = ListPage_1 = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-list',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/list/list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>List</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon [name]="item.icon" item-left></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-right>\n        {{item.note}}\n      </div>\n    </button>\n  </ion-list>\n  <div *ngIf="selectedItem" padding>\n    You navigated here from <b>{{selectedItem.title}}</b>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/list/list.html"*/
-    }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
-], ListPage);
-
-var ListPage_1;
-//# sourceMappingURL=list.js.map
-
-/***/ }),
-
-/***/ 427:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfessionPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/**
- * Generated class for the ProfessionPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-var ProfessionPage = (function () {
-    function ProfessionPage(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-    }
-    ProfessionPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ProfessionPage');
-    };
-    return ProfessionPage;
-}());
-ProfessionPage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-profession',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/profession/profession.html"*/'<!--\n  Generated template for the ProfessionPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n  <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>joBid</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n	<p style="text-align: center; color:black;">page profession 2</p>\n</ion-content>\n'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/profession/profession.html"*/,
-    }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
-], ProfessionPage);
-
-//# sourceMappingURL=profession.js.map
-
-/***/ }),
-
-/***/ 428:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BraintreeService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-//import { client} from "braintree-web/client";
-//import { hostedFields} from "braintree-web/hosted-fields";
-var BraintreeService = (function () {
-    function BraintreeService() {
-    }
-    return BraintreeService;
-}());
-BraintreeService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])()
-], BraintreeService);
-
-//# sourceMappingURL=braintree.service.js.map
-
-/***/ }),
-
-/***/ 429:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OfferService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(134);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var OfferService = (function () {
-    function OfferService(afDB) {
-        this.afDB = afDB;
-    }
-    OfferService.prototype.getOffer = function () {
-        this.offer = this.afDB.list('/offer');
-    };
-    return OfferService;
-}());
-OfferService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]])
-], OfferService);
-
-//# sourceMappingURL=offer.service.js.map
-
-/***/ }),
-
-/***/ 433:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(134);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var UserService = (function () {
-    function UserService(afDB) {
-        this.afDB = afDB;
-        this.Users = [];
-        //console.log(this.afDB.list('/user'));
-        this.Users = this.afDB.list('/user');
-    }
-    UserService.prototype.getUser = function () {
-        return this.afDB.list('/user');
-    };
-    UserService.prototype.getAddress = function (userId) {
-        if (userId === void 0) { userId = ""; }
-        //return this.afDB.list('/user/'+userId);
-        //return this.afDB.object('/user/'+userId);
-        return this.afDB.list('/user/' + userId + '/user_address/');
-    };
-    return UserService;
-}());
-UserService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _a || Object])
-], UserService);
-
-var _a;
-//# sourceMappingURL=user.service.js.map
-
-/***/ }),
-
-/***/ 60:
+/***/ 74:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthServiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(352);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2332,7 +2567,164 @@ AuthServiceProvider = __decorate([
 
 //# sourceMappingURL=auth-service.js.map
 
+/***/ }),
+
+/***/ 75:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PreHomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__new_address_new_address__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__show_show__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(40);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+//import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+
+/**
+ * Generated class for the PreHomePage page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
+var PreHomePage = (function () {
+    function PreHomePage(navCtrl, navParams, 
+        //public authServiceProvider: AuthServiceProvider,
+        userService) {
+        // this.address =[
+        // 	{"label":"casa","name":"direccion1"},
+        //  {"label":"apartamento","name":"direcccion2"},
+        // ];
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.userService = userService;
+        //userData = {"username":"Angel","password":"12345","email":"angellg1990@gmail.com","name":"Angel","zipcode":"90003","state":"CA","picture":"","verificacion":"20","pais":"USA","direccion":"1234 ave,bogota,CA 90003","tel":"(408)1234567"};
+        this.address = [];
+        this.userData = [];
+        this.userActual = "user_1";
+        // this.userService.getUser(this.userActual)
+        // .subscribe( datosUsuario =>{
+        //   console.log(datosUsuario);
+        // });
+        //console.log(this.userService.getAddress('angellg1990@gmail.com'));
+    }
+    PreHomePage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad PreHomePage');
+        this.userData = this.navParams.get('datos');
+        this.userActual = this.userData['verificacion'];
+        console.log(this.userData);
+        console.log(this.userActual);
+        //this.getUrlDataAddres(); 
+        this.getAddressUser(this.userActual);
+    };
+    PreHomePage.prototype.goShow = function (item) {
+        //console.log(item);
+        var DataItem = { 'datos': item };
+        //console.log(DataItem);  
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__show_show__["a" /* ShowPage */], DataItem);
+    };
+    PreHomePage.prototype.goNewAddress = function () {
+        var DataItem = { 'datos': this.userData };
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__new_address_new_address__["a" /* NewAddressPage */], DataItem);
+    };
+    PreHomePage.prototype.goLocation = function () {
+    };
+    PreHomePage.prototype.getAddressUser = function (userId) {
+        var _this = this;
+        this.userService.getAddress(userId)
+            .subscribe(function (datosUsuario) {
+            //console.log(datosUsuario);
+            for (var usuario in datosUsuario) {
+                //console.log(usuario);
+                //console.log(datosUsuario[usuario]);
+                _this.address.push({ "label": datosUsuario[usuario]['addr_label'], "name": datosUsuario[usuario]['addr_info'] });
+                //console.log(this.address);
+            }
+            //console.log(datosUsuario);
+        });
+    };
+    PreHomePage.prototype.getUrlDataAddres = function () {
+        // this.authServiceProvider.postData(this.userData,'userAddres').then((result) => {
+        //  //console.log(result);
+        //  //console.log(result['userAddres']['0']);
+        //  //this.address.push(result['userAddres']['0']);
+        //  this.address.push({"label":result['userAddres']['0']['dic_name'],"name":result['userAddres']['0']['dic_direccion']});
+        //  }, (err) => {
+        //     // Error log
+        //     //console.log('error '.err);
+        //     alert('error userAddres');
+        //   });
+        // this.userService.getUser()
+        // .subscribe( datosUsuario =>{
+        //   for(let usuario of datosUsuario){
+        //     console.log(usuario);
+        //   }
+        // });
+    };
+    return PreHomePage;
+}());
+PreHomePage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-pre-home',template:/*ion-inline-start:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/pre-home/pre-home.html"*/'<!--\n  Generated template for the PreHomePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n  	<button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>joBid</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class="card-background-page">\n\n  <ion-card>\n    <img src="assets/img/LogoJoBid.png"/>\n    <div class="card-title"><h3>Name User</h3></div>\n    <div class="card-subtitle"><p>¿Where you want your service?</p></div>\n  </ion-card>\n  <ion-grid class="btnAddress">\n  	<ion-row>\n  		<ion-col col-6>\n			<ion-list>\n				<button ion-item (click)="goLocation()" >\n					<ion-icon name="pin" item-start></ion-icon>\n					<ion-label>Current location</ion-label>\n				</button>\n			</ion-list>\n  		</ion-col>\n  		<ion-col col-6>\n  			<ion-list>\n	  			<button ion-item (click)="goNewAddress()">\n  					<ion-icon name="add-circle" item-start></ion-icon>\n  					<ion-label>New Address</ion-label>\n	  			</button>\n  			</ion-list>\n  		</ion-col>\n  	</ion-row>\n  </ion-grid>\n	<ion-list>\n	  <button ion-item *ngFor="let item of address" (click)="goShow(item)">\n	    <h3>{{ item.label }}</h3>\n	    <p>{{ item.name }}</p>\n	  </button>  \n	</ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/carlos/ionicPruebas/UsuarioApp_JoBid/src/pages/pre-home/pre-home.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_4__services_user_service__["a" /* UserService */]])
+], PreHomePage);
+
+//# sourceMappingURL=pre-home.js.map
+
+/***/ }),
+
+/***/ 85:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EncriptyService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_crypto_js_sha256__ = __webpack_require__(429);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_crypto_js_sha256___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_crypto_js_sha256__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var EncriptyService = (function () {
+    function EncriptyService() {
+    }
+    EncriptyService.prototype.GenerateEncripty = function (text) {
+        //console.dir(text);
+        var encriptPass = __WEBPACK_IMPORTED_MODULE_1_crypto_js_sha256___default()(text);
+        // console.log(encriptPass.toString());
+        encriptPass = encriptPass.toString();
+        // console.log(encriptPass);
+        return encriptPass;
+    };
+    return EncriptyService;
+}());
+EncriptyService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])()
+], EncriptyService);
+
+//# sourceMappingURL=encripty.service.js.map
+
 /***/ })
 
-},[292]);
+},[295]);
 //# sourceMappingURL=main.js.map
