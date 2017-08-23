@@ -11,6 +11,10 @@ import { VerifyYourPhonePage } from '../verify-your-phone/verify-your-phone';
 
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { UserService } from '../../services/user.service';
+// import { WindowService } from '../../services/window.service';
+
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 /**
  * Generated class for the SingupPage page.
  *
@@ -36,16 +40,22 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
 
   codeAreaList : any;
   codeAreaEstadoSelect: any = [];
+  country:any;area:any;prefix:any;line:any;
   userData = {"username":"","password":"","email":"","name":"","zipcode":"","state":"","picture":"","verificacion":"","pais":"","direccion":"","tel":""};
   ciudades: any =  [];
   ciudad: string =  undefined;
   stateZipcode: string = undefined;
   estados : any = [];
+
+  windowRef: any;
+  user:any;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public authServiceProvider: AuthServiceProvider,
     public alertCtrl: AlertController,
     private userService : UserService,
+    public afAuth: AngularFireAuth,
+    // public win:WindowService 
   ) {
   // }
   //constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -67,6 +77,17 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SingupPage');
+    // this.windowRef = this.win.windowRef
+    // this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+    // this.windowRef.recaptchaVerifier.render();
+
+    // this.windowRef = new firebase.auth.RecaptchaVerifier('sign-in-button', {
+    //   'size': 'invisible',
+    //   'callback': function(response) {
+    //     // reCAPTCHA solved, allow signInWithPhoneNumber.
+    //     console.log(response);
+    //   }
+    // });
     //console.dir(lodash);
     //console.dir(lodash.capitalize('myStringToCapitalize'));
     // var usStates = new UsaStates();
@@ -112,7 +133,38 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
     this.userData.tel = '('+this.telA+')'+this.telB;
     this.userData.verificacion = ''+Math.floor((Math.random() * 99999) + 11111);
     console.log('code:'+this.userData.verificacion);
-    this.authServiceProvider.postData(this.userData,'code').then((result) => {
+  //   let recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
+  //     'size': 'invisible',
+  //     'callback': function(response) {
+  //       console.log(response);
+  //       console.log('goNextPagePhoneV');
+  //       // reCAPTCHA solved, allow signInWithPhoneNumber.
+  //     //this.goNextPagePhoneV();
+  //     }
+  //   });
+  //   console.log(recaptchaVerifier);
+  //   this.afAuth.auth.signInWithPhoneNumber('+573209776214', recaptchaVerifier)
+  //   .then( confirmationResult => {
+  //     // SMS sent. Prompt user to type the code from the message, then sign the
+  //     // user in with confirmationResult.confirm(code).
+  //     console.log('code verificacion creado');
+  //     console.log(confirmationResult);
+  // })
+  // .catch(function (error) {
+  //   console.error("SMS not sent", error);
+  // });
+
+  // const appVerifier = this.windowRef.recaptchaVerifier;
+  // const num = '+5713209776214' ;
+  // firebase.auth().signInWithPhoneNumber(num, appVerifier)
+  //         .then(result => {
+  //             this.windowRef.confirmationResult = result;
+  //         })
+  //         .catch( error => console.log(error) );
+      this.postCode();
+  }
+postCode(){
+   this.authServiceProvider.postData(this.userData,'code').then((result) => {
       //this.responseData = result;
       //console.log(result);
       this.goNextPagePhoneV();
@@ -122,8 +174,7 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
       console.log(err);
       //   alert('error correo');
     });
-  }
-  
+}
   goNextPagePhoneV(){
     //alert('userData'+ JSON.stringify(this.responseData));
     //localStorage.setItem('userData', JSON.stringify(this.responseData));
@@ -148,6 +199,18 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
     this.findCodeEstado(STATE_UTILS.getStateName(this.userData.state));
   }
   
+  // getE164(country,area,prefix,line) {
+  //   const num = this.country + this.area + this.prefix + this.line;
+  //   return `+${num}`
+  // }
+  verifyLoginCode() {
+    this.windowRef.confirmationResult
+                  .confirm(this.userData['verificacion'])
+                  .then( result => {
+                    this.user = result.user;
+    })
+    .catch( error => console.log(error, "Incorrect code entered?"));
+  }
   setZipCode(){
     //alert('select other item');
     //console.log (this.userData.city);

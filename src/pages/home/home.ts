@@ -7,6 +7,10 @@ import { PreHomePage } from '../pre-home/pre-home';
 import { LoginPage } from '../login/login';
 import { SingupPage } from '../singup/singup';
 
+import { UserService } from '../../services/user.service';
+
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'page-home',
@@ -15,7 +19,15 @@ import { SingupPage } from '../singup/singup';
 export class HomePage {
 userData = null;
 mensage :string = '';
-  constructor(public navCtrl: NavController, private facebook:  Facebook) {
+displayName;  
+providerFaceBook:any;
+userDataUpdate:any;
+  constructor(
+    public navCtrl: NavController, 
+    private facebook:  Facebook,
+    private userService : UserService,
+    public afAuth: AngularFireAuth  
+  ) {
     
   }
 ionViewDidLoad() {
@@ -32,35 +44,52 @@ ionViewDidLoad() {
       //console.log('Error logging into Facebook', e);
       //alert('error if login');
       });
+      // console.log(this.afAuth.auth['currentUser']);
+      // if(this.afAuth.auth){
+      //   console.log('user logeadoCurren')
+      // }
+      // console.dir(this.afAuth.auth);
+      // console.dirxml(this.afAuth.auth);
+      // this.afAuth.auth.signOut;
   }
 
-    googleir(){
+  googleir(){
     this.navCtrl.setRoot(PreHomePage);
     //this.navCtrl.pop();
     //this.navCtrl.push(PreHomePage); 
   }
 
   facebookir(){
-    // this.facebook.getLoginStatus().then(
-      
-    // )
-  
-    this.facebook.login(['email','public_profile'])
-    .then((response: FacebookLoginResponse) => {
-      this.facebook.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)',[]).then(profile => {
-        this.userData = {email: profile['email'], name : profile['first_name'], picture :profile['picture_large']['data']['url'], username : profile['name'] };
-        // ej datos == userData = {"username":"","password":"","email":"","name":"","city":"","state":"","picture":""};
-        console.log('Logged into Facebook!', response);
-        this.navCtrl.setRoot(PreHomePage);
+    this.afAuth.auth
+      .signInWithPopup(new firebase.auth.FacebookAuthProvider())
+      .then(res => {
+        //console.log(res);
+        //console.log(res.user.email);
+        this.userService.getUsers()
+        .subscribe((users) => {
+          //console.log(users);
+          users.forEach((user) =>{
+            if(user['user_email'] == res.user.email){
+            console.log(user);
+              this.goNextPagePrehome(user);
+            }else{
+              this.singup();
+            }
+          });
+        });
+         
       });
-      // this.facebook.getAccessToken(function(token) {
-   //       console.log("Token: " + token);
-  	// 		});
-			
- 		}).catch(e => console.log('Error logging into Facebook', e));
- 		//this.navCtrl.setRoot(PreHomePage);
- 		//this.navCtrl.push(PreHomePage);
- 	}
+   }
+   goNextPagePrehome(datos:any){
+    //console.log(datos);
+    //console.log(datos['$key']);
+    this.userDataUpdate ={ "email":datos['user_email'],"name":datos['user_name'],"pais":datos['user_pais'],"password":datos['user_password'],"picture":datos['user_picture'],"state":datos['user_state'],"tel":datos['user_tel'],"username":datos['user_username'],"verificacion":datos['$key'],"zipcode":datos['user_zipcode']};
+    //console.log(this.userDataUpdate);
+    let Data = {'datos':this.userDataUpdate}
+    this.navCtrl.setRoot(PreHomePage,Data);
+  }
+
+ 
  	login(){
  		this.navCtrl.push(LoginPage);
  	}

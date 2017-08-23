@@ -3,6 +3,7 @@ import { NavController, NavParams ,AlertController} from 'ionic-angular';
 
 import { CleaningContractorPage } from '../cleaning-contractor/cleaning-contractor';
 import { ShowPage } from '../show/show';
+import { HomePage } from '../home/home';
 
 //import { OfferService } from '../../services/offer.service';
 import { ProfessionalsService } from '../../services/professionals.service';
@@ -45,17 +46,13 @@ export class CleaningSalePage {
   goCleaningContractor(){
   	this.navCtrl.setRoot(CleaningContractorPage);
   }
-
-  goIndex(){
-    this.navCtrl.setRoot(ShowPage);
-  }
   showInfoCleaning(id: any = "prof_1"){
     //console.log(this.professionalsService.getProfessional(id));
     this.professionalsService.getProfessional("prof_1")
-      .subscribe(professional =>{
-        this.professsional = professional;
-      });
-      console.log(this.professionals);
+    .subscribe(professional =>{
+      this.professsional = professional;
+    });
+    console.log(this.professionals);
     var contenido='';
     contenido +='<div class="col-40"><img src="assets/img/professions/cleaning.png"></div>';
     contenido +='<div class="col-60"><h4>Estefania lorem</h4><img src="assets/img/Estrellas.png">';
@@ -74,7 +71,7 @@ export class CleaningSalePage {
     contenido +='<h6>Melisa Lorem <img src="assets/img/Estrellas.png" alt=""></h6>';
     contenido +='<p>Odit, cupiditate. Quibusdam ducimus minus incidunt voluptas consequatur odit, adipisci eveniet laborum obcaecati labore! Sapiente repellat ipsum in autem fuga sint enim recusandae incidunt tenetur corporis neque totam, quam sequi placeat cupiditate, inventore! Alias repudiandae ducimus laudantium nemo quisquam, quod sint et quam, id ipsum magnam veniam amet sit a voluptatibus, similique ipsa voluptatem voluptates velit quo. Quidem odio a nemo sit illum. </p>';
     contenido +='</div>';
-
+    
     let alert = this.alertCtrl.create({
       // title: 'Estefania Lorem',
       message: contenido,
@@ -82,6 +79,11 @@ export class CleaningSalePage {
     });
     alert.present();
   }
+  
+    goIndex(){
+      clearInterval(this.objNodeTimer);
+      this.navCtrl.setRoot(HomePage);
+    }
   startTimer(){
     this.objNodeTimer=setInterval( () => this.timer(),1000);
   }

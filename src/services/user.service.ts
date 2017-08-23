@@ -64,6 +64,21 @@ export class UserService{
 		}); */
 	}
 
+	public getUserEmail(email:string  ){
+		//let listUser:any;
+
+		return this.afDB.list('/user')
+	 	.subscribe((users) => {
+			 //console.log(users);
+			 users.forEach((user) =>{
+				 if(user['user_email'] == email){
+					//console.log(user);
+					return user;
+				}
+			 });
+		 });
+	}
+
 
 	public newUser(userData : any = []){
 		var d = new Date();

@@ -41,7 +41,8 @@
           <ion-input type="text" placeholder="avenue" value="" class="mitad" [(ngModel)]="DirecB" name="DirecB"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input type="text" placeholder="City" class="mitad spaceIcons" [(ngModel)]="DirecC" name="DirecC" ></ion-input>
+            <ion-icon name="home" item-start style="background:transparent; color:transparent;"></ion-icon>
+          <ion-input type="text" placeholder="City" class="mitad" [(ngModel)]="DirecC" name="DirecC" ></ion-input>
           <ion-input type="text" placeholder="NJ 0000" value="{{DirecD}}" class="mitad" [(ngModel)]="DirecD" name="DirecD"></ion-input>
         </ion-item>
         <ion-item>
@@ -73,8 +74,9 @@
             </ion-col>
           </ion-row>
         </ion-grid>
+        
         <div class="btnBottom">
-          <button ion-button color="danger" block (click)="goPhoneV()">Continue <ion-icon name="arrow-dropright"></ion-icon></button>
+          <button ion-button color="danger" block (click)="goPhoneV()" id="sign-in-button">Continue <ion-icon name="arrow-dropright"></ion-icon></button>
         </div>
       </ion-list>
     </form>

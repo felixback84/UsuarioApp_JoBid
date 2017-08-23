@@ -112,7 +112,28 @@ $colors: (
 ion-content .list-ios > .item-block:first-child{
 	border-top: none;
 }
-
+.text-input-md, .text-input-ios{
+	box-shadow: none;
+	font-size: 14px;
+}
+[type=color]:focus, [type=date]:focus, [type=datetime-local]:focus, [type=datetime]:focus, [type=email]:focus, [type=month]:focus, [type=number]:focus, [type=password]:focus, [type=search]:focus, [type=tel]:focus, [type=text]:focus, [type=time]:focus, [type=url]:focus, [type=week]:focus, textarea:focus{
+	border: none;
+	box-shadow: none;
+}
+.grid .row{
+	max-width: 100%;
+	margin-left: 0;
+	margin-right: 0;
+}
+.list-md > .item-block:last-child ion-label, .list-md > .item-block:last-child .item-inner, .list-md > .item-wrapper:last-child ion-label, .list-md > .item-wrapper:last-child .item-inner,
+.list-ios > .item-block:last-child ion-label, .list-ios > .item-block:last-child .item-inner, .list-ios > .item-wrapper:last-child ion-label, .list-ios > .item-wrapper:last-child .item-inner{
+	background: transparent;
+	color:$GrayText;
+	font-size: 14px;
+}
+.label.label-md, .label.label-ios, .label.primary{
+	background: transparent;
+}
 ion-item.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
 ion-item.item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-ios.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
      border-bottom-color: transparent;
@@ -124,7 +145,7 @@ ion-item.item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus)
 }
 ion-item.item-md ,ion-item.item-ios {
 	padding:0;
-	padding-bottom: 5px;
+	margin-bottom: 5px;
 	&>ion-icon[item-start] + .item-inner{
 		padding: 0;
 		margin-left: 15px;
@@ -150,11 +171,13 @@ ion-item.item-md ,ion-item.item-ios {
 		height: 48px;
 		color:$GrayText;
 		padding:5px;
+		margin: 0;
 	}
 	ion-textarea{
 		border:1px solid #ddd;
 		color:$GrayText;
 		padding:5px;
+		min-height: 80px;
 	}
 	ion-select{
 		max-width: 100%;
@@ -175,6 +198,7 @@ ion-item.item-md ,ion-item.item-ios {
 	&.item-radio-checked.item-md ion-label,.item-radio-checked.item-ios ion-label{
 		color:$GrayText;
 	}
+	ion-label.label{background: transparent !important;}
 	.radio-md,.radio-ios{
 				
 		.radio-icon{
