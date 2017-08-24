@@ -113,13 +113,13 @@ export const firebaseConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
-    Facebook,
     BraintreeService,
     ProfessionalsService,
     OfferService,
     ProfessionsService,
     UserService,
     EncriptyService,
+    Facebook,
     // EmailComposer
   ]
 })

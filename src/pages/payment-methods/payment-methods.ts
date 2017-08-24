@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams , AlertController} from 'ionic-angular';
 import { PayinfoPage } from '../payinfo/payinfo';
 /**
  * Generated class for the PaymentMethodsPage page.
@@ -13,14 +13,31 @@ import { PayinfoPage } from '../payinfo/payinfo';
   templateUrl: 'payment-methods.html',
 })
 export class PaymentMethodsPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  userData:any;
+  constructor(
+    public alertCtrl: AlertController,
+    public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PaymentMethodsPage');
+    this.userData = this.navParams.get('datos');
+    console.log(this.userData);
+    console.log(this.navParams.get('datos'));
+    this.showAlert();
   }
   goPayInfo(){
-  	this.navCtrl.push(PayinfoPage);
+    console.log(this.userData);
+    let Data = {'datos':this.userData};
+  	this.navCtrl.push(PayinfoPage,Data);
+  }
+
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Information',
+      subTitle: 'An email has been sent to verify your acount',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }

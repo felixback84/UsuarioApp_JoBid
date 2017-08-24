@@ -7,11 +7,15 @@ import cities from 'cities';
 import STATE_UTILS from 'states-utils';
 
 
-import { VerifyYourPhonePage } from '../verify-your-phone/verify-your-phone';
+//import { VerifyYourPhonePage } from '../verify-your-phone/verify-your-phone';
 
-import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+//import { EncriptyService } from '../../services/encripty.service';
+//import { StorageService } from '../../services/storage.service';
 import { UserService } from '../../services/user.service';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 // import { WindowService } from '../../services/window.service';
+
+import { PaymentMethodsPage } from '../payment-methods/payment-methods';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -78,8 +82,6 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
       //var UsaStates = require('usa-states').UsaStates;
       //alert(cities.findByState('NJ'));
       this.codeAreaDefi();
-     
-
   }
 
 
@@ -118,138 +120,103 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
 
 
 
-  goPhoneV(){
-    
+goPhoneV(){
     let estoyLogueado:boolean = false;
     let userDB:any;
-    let finEvent:boolean;
-    this.userService.getUserLogin(this.userData["username"],this.userData["password"])
-    .subscribe( (value) => {
-
-      console.dir(value);
-      for (let key in value){
-        //console.log(value);
-        if(value[key] != undefined){
-          //console.log('hola user'+value[key]['user_name']);
-          estoyLogueado= true;
-        }
-      }
-      
-      finEvent= true;
-    });
-    console.log(finEvent);
-    if(finEvent){
+    //let finEvent:boolean;
+      let Userexists= this.userService.getUserexists(this.userData["username"],this.userData["email"]);
+      Userexists.forEach((users) => {
+        console.log('user1');
+        console.log(users);
+        users.forEach((user) =>{
+          if(user != undefined && user != null){
+            //console.log(user);
+            // if(user['user_email'] == user.email){
+              //console.log(user);
+              console.log('usuario userService ->Userexists');
+              userDB = user;
+              estoyLogueado= true;
+            // }
+          }
+        });
+        //console.log(Userexists);
+        //console.log(userDB);
+        //console.log(estoyLogueado);
+        
+      });
       if(estoyLogueado){
-        this.showAlert();
+        this.showAlertSignUp();
       }else{
         this.enviarCorreo();
       }
-    }
-
-    // this.userService.getUserLogin(this.userData["username"],this.userData["password"])
-    // .subscribe((users) => {
-    //   console.log(users);
-    //   users.forEach((user) =>{
-    //     // if(user['user_email'] == user.email){
-    //          console.log(user);
-    //     //   userDB = user;
-    //     //   estoyLogueado= true;
-    //     // }
-    //   });
-    //   //console.log(userDB);
-    //   //console.log(goPagePrehome);
-    //   if(estoyLogueado){
-    //     this.showAlert();
-    //   }else{
-    //     this.enviarCorreo();
-    //   }
-    // });
   }
   
   enviarCorreo(){
     //alert('code:'+this.userData.verificacion);
     this.userData.direccion = this.DirecA+' '+this.DirecB+','+this.DirecC+','+this.DirecD ;
     this.userData.tel = '('+this.telA+')'+this.telB;
-    this.userData.verificacion = ''+Math.floor((Math.random() * 99999) + 11111);
+    //this.userData.verificacion = ''+Math.floor((Math.random() * 99999) + 11111);
     console.log('code:'+this.userData.verificacion);
-  //   let recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
-  //     'size': 'invisible',
-  //     'callback': function(response) {
-  //       console.log(response);
-  //       console.log('goNextPagePhoneV');
-  //       // reCAPTCHA solved, allow signInWithPhoneNumber.
-  //     //this.goNextPagePhoneV();
-  //     }
-  //   });
-  //   console.log(recaptchaVerifier);
-  //   this.afAuth.auth.signInWithPhoneNumber('+573209776214', recaptchaVerifier)
-  //   .then( confirmationResult => {
-  //     // SMS sent. Prompt user to type the code from the message, then sign the
-  //     // user in with confirmationResult.confirm(code).
-  //     console.log('code verificacion creado');
-  //     console.log(confirmationResult);
-  // })
-  // .catch(function (error) {
-  //   console.error("SMS not sent", error);
-  // });
-
-  // const appVerifier = this.windowRef.recaptchaVerifier;
-  // const num = '+5713209776214' ;
-  // firebase.auth().signInWithPhoneNumber(num, appVerifier)
-  //         .then(result => {
-  //             this.windowRef.confirmationResult = result;
-  //         })
-  //         .catch( error => console.log(error) );
-      //this.postCode();
-      this.goNextPagePhoneV();
+    this.goNextPagePhoneV();
   }
-postCode(){
-   this.authServiceProvider.postData(this.userData,'code').then((result) => {
-      //this.responseData = result;
-      //console.log(result);
-      this.goNextPagePhoneV();
-    }, (err) => {
-      //   // Error log
-      console.log('error envio');
-      console.log(err);
-      //   alert('error correo');
-    });
-}
-  async goNextPagePhoneV(){
-    //alert('userData'+ JSON.stringify(this.responseData));
-    //localStorage.setItem('userData', JSON.stringify(this.responseData));
-    try{
+  // postCode(){
+  //   this.authServiceProvider.postData(this.userData,'code').then((result) => {
+  //       //this.responseData = result;
+  //       //console.log(result);
+  //       this.goNextPagePhoneV();
+  //     }, (err) => {
+  //       //   // Error log
+  //       console.log('error envio');
+  //       console.log(err);
+  //       //   alert('error correo');
+  //     });
+  // }
+  goNextPagePhoneV(){
+      //alert('userData'+ JSON.stringify(this.responseData));
+      //localStorage.setItem('userData', JSON.stringify(this.responseData));
+      try{
 
-      //let result =this.afAuth.auth.createUserWithEmailAndPassword(this.userData['email'],this.userData['password']);
-      let result =this.afAuth.auth.createUserWithEmailAndPassword(this.userData['email'],this.userData['password'])
-      .then(
-        (success) => {
-           let user:any = firebase.auth().currentUser;
-           user.sendEmailVerification().then(
-             (success) => {console.log("please verify your email")} 
-           ).catch(
-             (err) => {
-              console.error('error envio correo');
+        //let result =this.afAuth.auth.createUserWithEmailAndPassword(this.userData['email'],this.userData['password']);
+        let result =this.afAuth.auth.createUserWithEmailAndPassword(this.userData['email'],this.userData['password'])
+        .then(
+          (success) => {
+            console.log(success);
+            let user:any = firebase.auth().currentUser;
+            user.sendEmailVerification().then(
+              (success) => {
+                console.log("please verify your email");
+                console.log(result);
+                
+                  // console.log(JSON.stringify(this.userData));
+                  // let Data = {'datos':this.userData};
+                  // this.navCtrl.push(VerifyYourPhonePage, Data);
+        
+                  console.log(this.userData);
+                  //this.traerPost();
+                  var d = new Date();
+                  var key = d.getTime();
+                  var keyUser = "user_"+(key);
+                  console.log(keyUser);
+                  this.userData['verificacion'] = keyUser;
+                  this.userService.newUser(this.userData,keyUser);
+                  let Data = {'datos':this.userData};
+                  this.navCtrl.push(PaymentMethodsPage,Data);
+              }).catch(
+              (err) => {
+                console.error('error envio correo');
                 console.error(err);
-             }
-           )
+              }
+            )
 
-        }).catch(
-          (err) => {
-            console.error('error user create');
-            console.error(err);
-          });
-      console.log(result);
-      if(result){
-        console.log(JSON.stringify(this.userData));
-        let Data = {'datos':this.userData};
-        this.navCtrl.push(VerifyYourPhonePage, Data);
-      }
-      
-    }catch(e){ console.error(e);}
-
-    
-  }
+          }).catch(
+            (err) => {
+              console.error('error user create');
+              console.error(err);
+            });
+        
+        
+      }catch(e){ console.error(e);} 
+    }
   setCity(){
     //console.log(this.userData.state);
     this.userData.zipcode = undefined;
@@ -316,7 +283,7 @@ postCode(){
       // }
       //console.log(this.codeAreaEstadoSelect);
   }
-  showAlert() {
+  showAlertSignUp() {
     let alert = this.alertCtrl.create({
       title: 'Sign up failed',
       subTitle: 'The user and the mail is already there',

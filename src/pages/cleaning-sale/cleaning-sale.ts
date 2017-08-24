@@ -34,7 +34,7 @@ export class CleaningSalePage {
       this.contador = '0'+this.minutos+':'+'0'+this.segundos;
       this.startTimer();
       this.professionalsService.getProfessionals()
-        .subscribe(professionals =>{
+        .forEach(professionals =>{
           this.professionals = professionals;
         });
       console.log(this.professionals);
@@ -49,7 +49,7 @@ export class CleaningSalePage {
   showInfoCleaning(id: any = "prof_1"){
     //console.log(this.professionalsService.getProfessional(id));
     this.professionalsService.getProfessional("prof_1")
-    .subscribe(professional =>{
+    .forEach(professional =>{
       this.professsional = professional;
     });
     console.log(this.professionals);

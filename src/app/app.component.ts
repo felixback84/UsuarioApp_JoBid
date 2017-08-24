@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Facebook } from '@ionic-native/facebook';
+//import { Facebook } from '@ionic-native/facebook';
 
 import { HomePage } from '../pages/home/home';
 
@@ -12,7 +12,7 @@ import { HomePage } from '../pages/home/home';
 //import { PreHomePage } from '../pages/pre-home/pre-home';
 
 //import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
-
+import { AngularFireAuth } from 'angularfire2/auth';
 import { ShowPage } from '../pages/show/show';
 
 
@@ -31,7 +31,9 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor( public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private facebook:  Facebook ) {
+  constructor(  public platform: Platform,  public statusBar: StatusBar, 
+                public splashScreen: SplashScreen, private afAuth :  AngularFireAuth
+              ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -58,25 +60,28 @@ export class MyApp {
   }
 
   cerrarSeccion(){
-    this.facebook.getLoginStatus().then( data=>{
-          alert(JSON.stringify(data.status));
-          if(data.status === 'connected'){
-                  alert('estoy logeado');
-                  this.facebook.logout().then((response) => {
-                    console.log('Login out Facebook!', response);
-                    alert('response:'+JSON.stringify(response));
-                    alert('estoy des-logeado');
-                    this.nav.push(HomePage);
-                  })
-                  .catch(e => {
-                    console.log('Error logging into Facebook', e);
-                    });
-              }else{
-                  alert('no estoy logeado');
-          }
-      }).catch(e => {
-        console.log('Error logging into Facebook', e);
-        alert('error if login');
-        });
+    this.afAuth.auth.signOut();
+    //antiguo facebook native
+    // this.facebook.getLoginStatus().then( data=>{
+    //       alert(JSON.stringify(data.status));
+    //       if(data.status === 'connected'){
+    //               alert('estoy logeado');
+    //               this.facebook.logout().then((response) => {
+    //                 console.log('Login out Facebook!', response);
+    //                 alert('response:'+JSON.stringify(response));
+    //                 alert('estoy des-logeado');
+    //                 this.nav.push(HomePage);
+    //               })
+    //               .catch(e => {
+    //                 console.log('Error logging into Facebook', e);
+    //                 });
+    //           }else{
+    //               alert('no estoy logeado');
+    //       }
+    //   }).catch(e => {
+    //     console.log('Error logging into Facebook', e);
+    //     alert('error if login');
+    //     });
+    
   }
 }

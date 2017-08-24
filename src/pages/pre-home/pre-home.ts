@@ -39,7 +39,7 @@ export class PreHomePage {
   	// ];
     
     // this.userService.getUser(this.userActual)
-    // .subscribe( datosUsuario =>{
+    // .forEach( datosUsuario =>{
       //   console.log(datosUsuario);
       // });
       //console.log(this.userService.getAddress('angellg1990@gmail.com'));
@@ -53,8 +53,7 @@ export class PreHomePage {
       console.log(this.userActual);
       //this.getUrlDataAddres(); 
       this.getAddressUser(this.userActual);
-
-      this.afAuth.authState.subscribe ( data => console.log(data));
+      this.afAuth.authState.forEach( data => console.log(data));
   }
 
   goShow(item : any){
@@ -75,8 +74,9 @@ export class PreHomePage {
 
   getAddressUser(userId: string ){
     this.userService.getAddress(userId)
+    //.forEach( datosUsuario =>{
     .subscribe( datosUsuario =>{
-      //console.log(datosUsuario);
+    //console.log(datosUsuario);
       for(let usuario in datosUsuario){
         //console.log(usuario);
         //console.log(datosUsuario[usuario]);

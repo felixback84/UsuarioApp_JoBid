@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 
-import { ShowPage } from '../show/show';
+import { PreHomePage } from '../pre-home/pre-home';
 /**
  * Generated class for the PayinfoPage page.
  *
@@ -15,14 +15,18 @@ import { ShowPage } from '../show/show';
   templateUrl: 'payinfo.html',
 })
 export class PayinfoPage {
-
+  userData:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PayinfoPage');
+    this.userData = this.navParams.get('datos');
+    console.log(this.userData);
+    console.log(this.navParams.get('datos'));
   }
   goIndex(){
-  	this.navCtrl.setRoot(ShowPage);
+    let Data = {'datos':this.userData};
+  	this.navCtrl.setRoot(PreHomePage,Data);
   }
 }

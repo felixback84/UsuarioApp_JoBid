@@ -1,4 +1,10 @@
-por hacer
+ultimo hecho
+
+Crear userio
+
+Login facebook
+-llenar sign Up
+
 -modificar api para guardar los datos
 -modificar bd
 -mostrar datos usuario donde debes
@@ -12,6 +18,8 @@ error
 -error alert index.html  * error en tiempo de espera o plataforma ** error en acceder en un servicio web
 *https://forum.ionicframework.com/t/application-error-the-connection-to-the-server-was-unsuccessful/67584/14
 **http://www.phonegapspain.com/topic/error-al-iniciar-la-app-the-connection-to-the-server-was-unsuccessful/
+//cuando click signup
+polyfills.js:3 POST https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo?key=AIzaSyBmrc2CjBbIJD_Pu_kkCcV8qNXJfsEBaxo 400 ()
 _____
 ultimo hecho
 lamaletadefelix2017 clave ionicframework acount
@@ -54,20 +62,6 @@ states-utils
 
 verificar 
 ------
-{
-  "name": "Ionic",
-  "short_name": "Ionic",
-  "start_url": "index.html",
-  "gcm_sender_id": "103953800507",
-  "display": "standalone",
-  "icons": [{
-    "src": "assets/imgs/logo.png",
-    "sizes": "512x512",
-    "type": "image/png"
-  }],
-  "background_color": "#4e8ef7",
-  "theme_color": "#4e8ef7"
-}
 
    "cordova-plugin-statusbar": "^2.2.2",
         "cordova-plugin-whitelist": "^1.3.1",

@@ -51,13 +51,8 @@ export class LoginPage {
   login(){
       let estoyLogueado:boolean = false;
       console.log(this.userData);
-      //let passWordEncript = this.encriptyService.GenerateEncripty(this.userData['password']);
-      //console.log(passWordEncript);
-      //console.log(this.userData['password']);
-      //this.userService.getUserLogin(this.userData["password"],this.userData["username"]);
-      //let estado=this.userService.getUserLogin(this.userData["password"],this.userData["username"]);
       this.userService.getUserLogin(this.userData["username"],this.userData["password"])
-      .subscribe( (value) => {
+      .forEach( (value) => {
         console.dir(value);
         for (let key in value){
           //console.log(value);
@@ -68,31 +63,32 @@ export class LoginPage {
           }
         }
         if(!estoyLogueado){
-          this.showAlert();
+          this.showAlertLogin();
         }
       });
-      
-      /* this.authServiceProvider.postData(this.userData,'login').then((result) => {
-      if(!result['error']){
-        //console.log(cont);
-        //console.log(result);
-        //console.log(result['userData']);
-        this.userDataUpdate = {"username":result['userData']['user_username'],"email":result['userData']['user_email'],"name":result['userData']['user_name'],"zipcode":result['userData']['user_zipcode'],"state":result['userData']['user_state'],"picture":result['userData']['user_picture'],"verificacion":result['userData']['user_id'],"pais":result['userData']['user_pais'],"tel":result['userData']['user_tel']};
-  
-        //console.log(this.userDataUpdate);
-        let Data = {'datos':this.userDataUpdate};
-        //localStorage.setItem('userData', JSON.stringify(result));
-        //console.log('userData'+JSON.stringify(result));
-        this.navCtrl.setRoot(PreHomePage,Data);
-      }else{
-        //this.navCtrl.push(HomePage);
-        this.showAlert();
-      }
-      
-    }, (err) => {
-      // Error log
-      console.log('error login'+err);
-    }); */
+
+    //   value.forEach((user) =>{
+    //     if(user != undefined && user != null){
+    //       //console.log(user);
+    //       //if(user['user_email'] == user.email){
+    //         //console.log(user);
+    //         userDB = user;
+    //         estoyLogueado= true;
+    //       // }
+    //     }
+    //   // for (let key in value){
+    //   //   //console.log(value);
+    //   //   if(value[key] != undefined){
+    //   //     //console.log('hola user'+value[key]['user_name']);
+    //   //     this.goNextPagePrehome(value[key]);
+    //   //     estoyLogueado= true;
+    //   //   }
+    //   // }
+    //   })
+    //   if(!estoyLogueado){
+    //     this.showAlertLogin();
+    //   }
+    // }).unsubscribe();
   }
 
   async goNextPagePrehome(datos:any){
@@ -103,6 +99,9 @@ export class LoginPage {
     //console.log(this.userDataUpdate);
     try{
       const result = this.afAuth.auth.signInWithEmailAndPassword(datos['user_email'],datos['user_password']);
+      result.catch( (error) =>{
+        this.showAlertLogin();
+      });
       console.log(result);
       if(result){
         let Data = {'datos':this.userDataUpdate}
@@ -111,7 +110,7 @@ export class LoginPage {
       
     }catch(e){ console.error(e);}
   }
-   showAlert() {
+  showAlertLogin() {
     let alert = this.alertCtrl.create({
       title: 'login failed',
       subTitle: 'Bad request wrong username or email and password',
