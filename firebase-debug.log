@@ -1,0 +1,120 @@
+[debug] [2017-08-25T18:50:32.378Z] ----------------------------------------------------------------------
+[debug] [2017-08-25T18:50:32.391Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2017-08-25T18:50:32.392Z] CLI Version:   3.9.2
+[debug] [2017-08-25T18:50:32.393Z] Platform:      darwin
+[debug] [2017-08-25T18:50:32.393Z] Node Version:  v6.11.1
+[debug] [2017-08-25T18:50:32.395Z] Time:          Fri Aug 25 2017 13:50:32 GMT-0500 (COT)
+[debug] [2017-08-25T18:50:32.396Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-08-25T18:50:32.443Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-08-25T18:50:32.444Z] > authorizing via signed-in user
+[debug] [2017-08-25T18:50:32.451Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-08-25T18:50:32.453Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/Ve6PHgpFh5b-EgPh6UYm3RaF5kk1Rmvg4tbS0zh07Hg',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Fri Aug 25 2017 13:50:32 GMT-0500 (COT)
+[debug] [2017-08-25T18:50:32.864Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-25T18:50:32.961Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/usuarioappjobid  
+ Fri Aug 25 2017 13:50:32 GMT-0500 (COT)
+[debug] [2017-08-25T18:50:33.929Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-25T18:50:33.935Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/usuarioappjobid/tokens  
+ Fri Aug 25 2017 13:50:33 GMT-0500 (COT)
+[debug] [2017-08-25T18:51:34.348Z] <<< HTTP RESPONSE 200
+[info] 
+[warn] ⚠  Your CLI authentication needs to be updated to take advantage of new features.
+[warn] ⚠  Please run firebase login --reauth
+[info] 
+[debug] [2017-08-25T18:51:34.399Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2017-08-25T18:51:34.400Z] > authorizing via signed-in user
+[debug] [2017-08-25T18:51:34.401Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-08-25T18:51:34.402Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/Ve6PHgpFh5b-EgPh6UYm3RaF5kk1Rmvg4tbS0zh07Hg',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Fri Aug 25 2017 13:51:34 GMT-0500 (COT)
+[debug] [2017-08-25T18:51:34.600Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-25T18:51:34.707Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/usuarioappjobid  
+ Fri Aug 25 2017 13:51:34 GMT-0500 (COT)
+[debug] [2017-08-25T18:51:35.174Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-25T18:51:35.176Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/usuarioappjobid/tokens  
+ Fri Aug 25 2017 13:51:35 GMT-0500 (COT)
+[debug] [2017-08-25T18:52:36.535Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-25T18:52:36.544Z] Error: Firebase.authWithCustomToken failed: First argument must be a valid credential (a string).
+    at Error (native)
+    at ng (/usr/local/lib/node_modules/firebase-tools/node_modules/firebase/lib/firebase-node.js:129:313)
+    at X.gg (/usr/local/lib/node_modules/firebase-tools/node_modules/firebase/lib/firebase-node.js:266:131)
+    at /usr/local/lib/node_modules/firebase-tools/lib/acquireRefs.js:19:19
+    at initializePromise (/usr/local/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:567:5)
+    at new Promise (/usr/local/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:1039:33)
+    at /usr/local/lib/node_modules/firebase-tools/lib/acquireRefs.js:12:12
+    at tryCatch (/usr/local/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:525:12)
+    at invokeCallback (/usr/local/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:538:13)
+    at publish (/usr/local/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:508:7)
+    at flush (/usr/local/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:2415:5)
+    at _combinedTickCallback (internal/process/next_tick.js:73:7)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2017-08-25T18:54:21.015Z] ----------------------------------------------------------------------
+[debug] [2017-08-25T18:54:21.025Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2017-08-25T18:54:21.026Z] CLI Version:   3.9.2
+[debug] [2017-08-25T18:54:21.026Z] Platform:      darwin
+[debug] [2017-08-25T18:54:21.027Z] Node Version:  v6.11.1
+[debug] [2017-08-25T18:54:21.028Z] Time:          Fri Aug 25 2017 13:54:21 GMT-0500 (COT)
+[debug] [2017-08-25T18:54:21.028Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-08-25T18:54:21.067Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-08-25T18:54:21.068Z] > authorizing via signed-in user
+[debug] [2017-08-25T18:54:21.074Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-08-25T18:54:21.075Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/Ve6PHgpFh5b-EgPh6UYm3RaF5kk1Rmvg4tbS0zh07Hg',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Fri Aug 25 2017 13:54:21 GMT-0500 (COT)
+[debug] [2017-08-25T18:54:21.464Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-25T18:54:21.600Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/usuarioappjobid  
+ Fri Aug 25 2017 13:54:21 GMT-0500 (COT)
+[debug] [2017-08-25T18:54:22.452Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-25T18:54:22.455Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/usuarioappjobid/tokens  
+ Fri Aug 25 2017 13:54:22 GMT-0500 (COT)
+[debug] [2017-08-25T18:55:22.865Z] <<< HTTP RESPONSE 200
+[info] 
+[warn] ⚠  Your CLI authentication needs to be updated to take advantage of new features.
+[warn] ⚠  Please run firebase login --reauth
+[info] 
+[debug] [2017-08-25T18:55:22.900Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2017-08-25T18:55:22.902Z] > authorizing via signed-in user
+[debug] [2017-08-25T18:55:22.902Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-08-25T18:55:22.903Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/Ve6PHgpFh5b-EgPh6UYm3RaF5kk1Rmvg4tbS0zh07Hg',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Fri Aug 25 2017 13:55:22 GMT-0500 (COT)
+[debug] [2017-08-25T18:55:23.097Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-25T18:55:23.228Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/usuarioappjobid  
+ Fri Aug 25 2017 13:55:23 GMT-0500 (COT)
+[debug] [2017-08-25T18:55:23.800Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-25T18:55:23.801Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/usuarioappjobid/tokens  
+ Fri Aug 25 2017 13:55:23 GMT-0500 (COT)
+[debug] [2017-08-25T18:56:24.140Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-25T18:56:24.158Z] Error: Firebase.authWithCustomToken failed: First argument must be a valid credential (a string).
+    at Error (native)
+    at ng (/usr/local/lib/node_modules/firebase-tools/node_modules/firebase/lib/firebase-node.js:129:313)
+    at X.gg (/usr/local/lib/node_modules/firebase-tools/node_modules/firebase/lib/firebase-node.js:266:131)
+    at /usr/local/lib/node_modules/firebase-tools/lib/acquireRefs.js:19:19
+    at initializePromise (/usr/local/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:567:5)
+    at new Promise (/usr/local/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:1039:33)
+    at /usr/local/lib/node_modules/firebase-tools/lib/acquireRefs.js:12:12
+    at tryCatch (/usr/local/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:525:12)
+    at invokeCallback (/usr/local/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:538:13)
+    at publish (/usr/local/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:508:7)
+    at flush (/usr/local/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:2415:5)
+    at _combinedTickCallback (internal/process/next_tick.js:73:7)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+[error] 
+[error] Error: An unexpected error has occurred.

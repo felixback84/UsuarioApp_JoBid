@@ -81,3 +81,30 @@ verificar
         },
         "platforms": [
             "android"
+
+
+            ----
+
+
+if(user['user_email'] == res.user.email){
+                console.log('res.user.email');
+                console.log(res.user);
+                console.log(user);
+                userDB = user;
+                if(user['user_picture'] != "" || user['user_picture'] == undefined){
+                  userDB['user_picture']= res.user.photoURL;
+                }
+                goPagePrehome= true;
+            }
+            if(user['user_email'] == res.additionalUserInfo.profile.email){
+              console.log('res.additionalUserInfo.profile.email');
+              console.log(user);
+              console.log(user.user_picture);
+              userDB = user;
+              if(user['user_picture'] != "" || user['user_picture'] == undefined){
+                userDB['user_picture']= res.additionalUserInfo.profile.picture.data.url;
+              }
+              console.log(user.user_picture);
+              console.log(res.additionalUserInfo.profile);
+              goPagePrehome= true;
+            }

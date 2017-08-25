@@ -33,11 +33,15 @@ userDataUpdate:any;
 ionViewDidLoad() {
     console.log('ionViewDidLoad homePage');
       this.afAuth.authState.forEach ( data => {
+        console.info('find User facebook');
         console.log(data); 
         // if(data != null && data != undefined){
         //   this.navCtrl.setRoot('PreHomePage');
         // }
       });
+      // let currentUserAuth = this.afAuth.auth.currentUser;
+      // console.log(currentUserAuth);
+      
       // if(this.afAuth.auth){
       //    console.log('user logeadoCurren')
       // }
@@ -57,23 +61,32 @@ ionViewDidLoad() {
   facebookir(){
     let goPagePrehome:boolean = false;
     let userDB:any;
-    this.afAuth.auth
-      .signInWithPopup(new firebase.auth.FacebookAuthProvider())
+    firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
       .then(res => {
-        //console.log(res);
         //console.log(res.user.email);
+        console.info(JSON.stringify(res));
+        //console.log(res);
         this.userService.getUsers()
-        .subscribe((users) => {
+        .forEach((users) => {
           //console.log(users);
           users.forEach((user) =>{
-            if(user['user_email'] == res.user.email){
-              console.log(user);
+            //console.log(user);
+            // if(user['user_email'] == res.user.email){
+            //     // console.log('res.user.email');
+            //     // console.log(user);
+            //     userDB = user;
+            //     goPagePrehome= true;
+            // }
+            //dentro de res.user -> hay otros datos de usuario -> email?
+            if(user['user_email'] == res.additionalUserInfo.profile.email){
+              // console.log('res.additionalUserInfo.profile.email');
+              // console.log(user);
               userDB = user;
               goPagePrehome= true;
             }
           });
           //console.log(userDB);
-          console.log(goPagePrehome);
+          //console.log(goPagePrehome);
           if(goPagePrehome){
             this.goNextPagePrehome(userDB);
           }else{
@@ -81,8 +94,8 @@ ionViewDidLoad() {
           }
         });
       });
-   }
-   goNextPagePrehome(datos:any){
+  }
+  goNextPagePrehome(datos:any){
     //console.log(datos);
     //console.log(datos['$key']);
     this.userDataUpdate ={ "email":datos['user_email'],"name":datos['user_name'],"pais":datos['user_pais'],"password":datos['user_password'],"picture":datos['user_picture'],"state":datos['user_state'],"tel":datos['user_tel'],"username":datos['user_username'],"verificacion":datos['$key'],"zipcode":datos['user_zipcode']};
@@ -95,7 +108,8 @@ ionViewDidLoad() {
  	login(){
  		this.navCtrl.push(LoginPage);
  	}
- 	singup(){
+ 	singup(UserDB?:any){
  		this.navCtrl.push(SingupPage);
- 	}
+   }
+   
 }

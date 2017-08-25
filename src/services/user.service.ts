@@ -11,7 +11,7 @@ export class UserService{
 	) {
 		//console.log(this.afDB.list('/user'));
 	}	
-
+	/*  ----------------user  ----------------------*/
 	public getUsers(){
 		return this.afDB.list('/user');
 	}
@@ -91,6 +91,11 @@ export class UserService{
 			}
 		}); */
 	}
+
+	public updateUserPicture(userId:string, picture:string ){
+		console.log(this.afDB.list('/user/'+userId));
+		return this.afDB.object('/user/'+userId).set({'user_picture':picture});
+	}
 	public getUserEmail(email:string  ){
 		//let listUser:any;
 
@@ -146,7 +151,7 @@ export class UserService{
 	}
 
 
-	/*  ----------------address ----------------------*/
+	/*  ----------------user - address ----------------------*/
 	public getAddress(userId: string =""){
 		//return this.afDB.list('/user/'+userId);
 		//return this.afDB.object('/user/'+userId);

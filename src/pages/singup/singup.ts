@@ -67,8 +67,7 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
     public afAuth: AngularFireAuth,
     // public win:WindowService 
   ) {
-  // }
-  //constructor(public navCtrl: NavController, public navParams: NavParams) {
+    
     var stateName = STATE_UTILS.getStates();
     var stateNameShort = STATE_UTILS.getUSPSCodes();
     this.pagesUrl = '../assets/lib/codeAreaUsa.json';
@@ -87,40 +86,70 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
 
   ionViewDidLoad() {
       console.log('ionViewDidLoad SingupPage');
-      //const messaging = firebase.messaging();
-      //this.messaging = fireBase.messaging(this._firebaseApp);
-      //this.messaging = this.afAuth.app.messaging();
-      // this.messaging.requestPermission()
-      // .then(function(){
-      //    console.log('have permission');
-      // })
-      // .catch(function(error){
-      //   console.log('error requestPermission');
-      //   console.log(error);
+      //-------- verificar error al ir a Registros ----
+      // this.afAuth.authState.forEach ( data => {
+      //   console.log(data); 
+      //   if(data != null && data != undefined){
+      //     console.info('find User facebook');
+      //     this.userData['name']=this.userData['username']= data.providerData["0"].displayName;
+      //     this.userData['email']=  data.providerData["0"].email;
+      //     this.userData['picture']=  data.providerData["0"].photoURL;
+      //   }
       // });
-    // this.windowRef = this.win.windowRef
-    // this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-    // this.windowRef.recaptchaVerifier.render();
-
-    // this.windowRef = new firebase.auth.RecaptchaVerifier('sign-in-button', {
-    //   'size': 'invisible',
-    //   'callback': function(response) {
-    //     // reCAPTCHA solved, allow signInWithPhoneNumber.
-    //     console.log(response);
-    //   }
-    // });
-    //console.dir(lodash);
-    //console.dir(lodash.capitalize('myStringToCapitalize'));
-    // var usStates = new UsaStates();
-    // console.log(usStates.states);
-    
-    //console.log(this.ciudad);
-    //console.log(STATE_UTILS.getStates());
+      // firebase.auth().onAuthStateChanged(function(user) {
+      //   console.log('find user facebook 3');
+      //   console.log(user);
+      //   user.sendEmailVerification().then( 
+      //     (success) => {
+      //       console.info("please verify your email - account correo");
+      //       if (success){
+      //         console.info('find user facebook 3 - si');
+      //         this.userData['name']=this.userData['username']= user.providerData["0"].displayName;
+      //         this.userData['email']=  user.providerData["0"].email;
+      //         this.userData['picture']=  user.providerData["0"].photoURL;
+      //         console.log(this.userData);
+      //         //this.envioCorreoFacebook();
+      //       } else {
+      //         console.info('find user facebook 3 - no');
+      //       }
+      //       //firebase.auth().signOut();
+      //     }).catch( (err) => {
+      //       console.error('error envio correo - account facebook');
+      //       console.error(err);
+      //     }
+      //   )  
+      // });
+      this.afAuth.authState.subscribe( user => {
+        console.log('find user facebook 2');
+        console.log(user);
+        if (user){
+          console.info('find user facebook 2 - si');
+          this.userData['name']=this.userData['username']= user.providerData["0"].displayName;
+          this.userData['email']=  user.providerData["0"].email;
+          this.userData['picture']=  user.providerData["0"].photoURL;
+          console.log(this.userData);
+          //this.envioCorreoFacebook();
+        } else {
+          console.info('find user facebook 2 - no');
+        }
+      });
+  }
+  envioCorreoFacebook(){
+    let userFacebook:any = firebase.auth().currentUser;
+    userFacebook.sendEmailVerification().then(
+      (success) => {
+        console.info("please verify your email - account facebook");
+          this.navCtrl.push(SingupPage);
+      }).catch(
+      (err) => {
+        console.error('error envio correo');
+        console.error(err);
+      }
+    )
   }
 
 
-
-goPhoneV(){
+  goPhoneV(){
     let estoyLogueado:boolean = false;
     let userDB:any;
     //let finEvent:boolean;
@@ -184,7 +213,7 @@ goPhoneV(){
             let user:any = firebase.auth().currentUser;
             user.sendEmailVerification().then(
               (success) => {
-                console.log("please verify your email");
+                console.info("please verify your email - account correo");
                 console.log(result);
                 
                   // console.log(JSON.stringify(this.userData));
@@ -203,7 +232,7 @@ goPhoneV(){
                   this.navCtrl.push(PaymentMethodsPage,Data);
               }).catch(
               (err) => {
-                console.error('error envio correo');
+                console.error('error envio correo - account correo');
                 console.error(err);
               }
             )
