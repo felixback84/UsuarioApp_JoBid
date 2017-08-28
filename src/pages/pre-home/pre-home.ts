@@ -26,6 +26,7 @@ export class PreHomePage {
 	address : any = [];
   userData: any  = [];
   userActual = "user_1";
+  userName = '';
   constructor(  
       public navCtrl: NavController, 
       public navParams: NavParams, 
@@ -49,11 +50,20 @@ export class PreHomePage {
       console.log('ionViewDidLoad PreHomePage');
       this.userData = this.navParams.get('datos');
       this.userActual = this.userData['verificacion'];
+      this.userName = this.userData['username'];
+      console.log(this.userName);
       console.log(this.userData);
       console.log(this.userActual);
       //this.getUrlDataAddres(); 
       this.getAddressUser(this.userActual);
       this.afAuth.authState.forEach( data => console.log(data));
+      // let user:any = firebase.auth().currentUser;
+      // console.log(user);
+      // if (user.isEmailVerified()) {
+      //   console.log('user verificado');
+      // }else{
+      //   console.log('user no verificado');
+      // }
   }
 
   goShow(item : any){

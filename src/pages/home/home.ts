@@ -64,6 +64,7 @@ ionViewDidLoad() {
     firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
       .then(res => {
         //console.log(res.user.email);
+        console.log(res);
         console.info(JSON.stringify(res));
         //console.log(res);
         this.userService.getUsers()
@@ -78,12 +79,14 @@ ionViewDidLoad() {
             //     goPagePrehome= true;
             // }
             //dentro de res.user -> hay otros datos de usuario -> email?
-            if(user['user_email'] == res.additionalUserInfo.profile.email){
-              // console.log('res.additionalUserInfo.profile.email');
-              // console.log(user);
-              userDB = user;
-              goPagePrehome= true;
-            }
+            //if(user.providerData["0"].providerId == "facebook.com"){
+                if(user['user_email'] == res.additionalUserInfo.profile.email){
+                  // console.log('res.additionalUserInfo.profile.email');
+                  // console.log(user);
+                  userDB = user;
+                  goPagePrehome= true;
+                }
+            //}
           });
           //console.log(userDB);
           //console.log(goPagePrehome);

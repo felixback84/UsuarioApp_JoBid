@@ -49,23 +49,35 @@ export class LoginPage {
   }
 
   login(){
-      let estoyLogueado:boolean = false;
       console.log(this.userData);
-      this.userService.getUserLogin(this.userData["username"],this.userData["password"])
-      .forEach( (value) => {
-        console.dir(value);
-        for (let key in value){
-          //console.log(value);
-          if(value[key] != undefined){
-            //console.log('hola user'+value[key]['user_name']);
-            this.goNextPagePrehome(value[key]);
-            estoyLogueado= true;
+      let estoyLogueado:boolean = false;
+      let userDB:any;
+      let key:any;
+      //let finEvent:boolean;
+        this.userService.getUserLogin(this.userData["username"],this.userData["password"])
+        .forEach((users) => {
+          console.log('user1');
+          console.log(users);
+          users.forEach((user) =>{
+            if(user != undefined && user != null){
+              //console.log(user);
+              // if(user['user_email'] == user.email){
+                //console.log(user);
+                console.log('usuario userService ->Userexists');
+                userDB = user;
+                estoyLogueado= true;
+              // }
+            }
+          });
+          if(!estoyLogueado){
+            this.showAlertLogin();
+          }else{
+            this.goNextPagePrehome(userDB);
           }
-        }
-        if(!estoyLogueado){
-          this.showAlertLogin();
-        }
-      });
+        }).catch((error) => {console.log(error);this.showAlertLogin();});
+
+
+        
 
     //   value.forEach((user) =>{
     //     if(user != undefined && user != null){

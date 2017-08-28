@@ -16,6 +16,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { ShowPage } from '../pages/show/show';
 
 
+import { UserService } from '../services/user.service';
+
+
 
 @Component({
   templateUrl: 'app.html'
@@ -24,21 +27,28 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   userName: string = 'hola logeado';
   srcUser: string = 'assets/img/user.png';
+  star:any = '3';
   //rootPage: any = PreHomePage;
   //rootPage: any = CleaningSalePage;
   rootPage: any = HomePage;
   mensage : string = '';
-
+  userMenu:any;
   pages: Array<{title: string, component: any}>;
+  menu_is_enabled:boolean=true;
 
   constructor(  public platform: Platform,  public statusBar: StatusBar, 
-                public splashScreen: SplashScreen, private afAuth :  AngularFireAuth
+                public splashScreen: SplashScreen, private afAuth :  AngularFireAuth,
+                private userService : UserService,
               ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: ShowPage },
+      { title: 'Edit', component: ShowPage },
+      { title: 'Menu', component: ShowPage },
+      { title: 'My services', component: ShowPage },
+      { title: 'Address', component: ShowPage },
+      { title: 'Payments', component: ShowPage },
       //{ title: 'Login out', component: HomePage },
     ];
 
@@ -51,16 +61,58 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    this.afAuth.authState.subscribe( user => {
+      console.log('find user menu');
+      console.log(user);
+      if (user){
+        //if(user.providerData["0"].providerId == "facebook.com"){
+            console.info('find user menu');
+            let email=  user.providerData["0"].email;
+            console.log(email);
+            let Userexists= this.userService.getUserEmailPerfil(email);
+            Userexists.forEach((users) => {
+              console.log('user1');
+              console.log(users);
+              users.forEach((user) =>{
+                if(user != undefined && user != null){
+                    console.log('usuario load data');
+                    console.log(user);
+                    this.userMenu = { "email":user['user_email'],"name":user['user_name'],"pais":user['user_pais'],"password":user['user_password'],"picture":user['user_picture'],"state":user['user_state'],"tel":user['user_tel'],"username":user['user_username'],"verificacion":user['$key'],"zipcode":user['user_zipcode']};
+                    this.userName= user['user_username'];
+                    if(user['user_picture'] && user['user_picture'] != '' && user['user_picture'] != null && user['user_picture'] != undefined){
+                      this.srcUser= user['user_picture'];
+                    }
+                    if(user['user_star'] && user['user_star'] != '' && user['user_star'] != null && user['user_star'] != undefined){
+                      this.star= user['user_star'];
+                    }
+                }
+              });
+            });
+      } else {
+        console.info('find user menu - no');
+      }
+    });
   }
 
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if(this.userMenu && this.userMenu != undefined){
+      let Data = {'datos':this.userMenu};
+      this.nav.setRoot(page.component,Data);
+    }else{
+      this.nav.setRoot(page.component);
+    }
+    
   }
 
   cerrarSeccion(){
-    this.afAuth.auth.signOut();
+    this.afAuth.auth.signOut().then((value)=>{
+      console.log(value);
+      this.nav.setRoot(HomePage);
+    }).catch((error) => console.info(error));
+    this.statusBar.styleDefault();
+    this.splashScreen.hide();
     //antiguo facebook native
     // this.facebook.getLoginStatus().then( data=>{
     //       alert(JSON.stringify(data.status));
@@ -84,4 +136,6 @@ export class MyApp {
     //     });
     
   }
+  goJobWithUs(){}
+  goPolicies(){}
 }

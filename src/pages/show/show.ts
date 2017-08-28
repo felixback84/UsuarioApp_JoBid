@@ -33,6 +33,7 @@ export class ShowPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ShowPage');
     console.log(localStorage);
+    
     // MyApp.userName = 'soy nuevo';
     //console.log(MyApp);
   }

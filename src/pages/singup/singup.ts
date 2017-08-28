@@ -47,6 +47,7 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
   codeAreaEstadoSelect: any = [];
   country:any;area:any;prefix:any;line:any;
   userData = {"username":"","password":"","email":"","name":"","zipcode":"","state":"","picture":"","verificacion":"","pais":"","direccion":"","tel":""};
+  
   ciudades: any =  [];
   ciudad: string =  undefined;
   stateZipcode: string = undefined;
@@ -54,6 +55,7 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
 
   windowRef: any;
   user:any;
+  userB:any;
   //messaging:any;
   //messaging = firebase.messaging;
   //messaging = firebase.messaging();
@@ -86,6 +88,19 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
 
   ionViewDidLoad() {
       console.log('ionViewDidLoad SingupPage');
+      
+      let userA:any = firebase.auth().currentUser;
+      console.log(userA);
+      this.userB=this.afAuth.auth.currentUser;
+      console.log(this.userB);
+      // let user:any = firebase.auth().currentUser;
+      // console.log(user);
+      // if (user.isEmailVerified()) {
+      //   console.log('user verificado');
+      // }else{
+      //   console.log('user no verificado');
+      // }
+      
       //-------- verificar error al ir a Registros ----
       // this.afAuth.authState.forEach ( data => {
       //   console.log(data); 
@@ -123,11 +138,16 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
         console.log('find user facebook 2');
         console.log(user);
         if (user){
-          console.info('find user facebook 2 - si');
-          this.userData['name']=this.userData['username']= user.providerData["0"].displayName;
-          this.userData['email']=  user.providerData["0"].email;
-          this.userData['picture']=  user.providerData["0"].photoURL;
-          console.log(this.userData);
+          if(user.providerData["0"].providerId == "facebook.com"){
+            if(this.userData['picture'] == '' || this.userData['picture'] ==  undefined || this.userData['picture']== null){ 
+              console.info('find user facebook 2 - si');
+              this.userData['name']=this.userData['username']= user.providerData["0"].displayName;
+              this.userData['email']=  user.providerData["0"].email;
+              this.userData['picture']=  user.providerData["0"].photoURL;
+              console.log(this.userData);
+            }
+          }
+          
           //this.envioCorreoFacebook();
         } else {
           console.info('find user facebook 2 - no');
@@ -203,6 +223,20 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
   goNextPagePhoneV(){
       //alert('userData'+ JSON.stringify(this.responseData));
       //localStorage.setItem('userData', JSON.stringify(this.responseData));
+      // this.userB.sendEmailVerification().then(
+      //   (success) => {
+      //     console.info("please verify your email - account face");
+          
+      //       // console.log(JSON.stringify(this.userData));
+      //       // let Data = {'datos':this.userData};
+      //       // this.navCtrl.push(VerifyYourPhonePage, Data);
+  
+      //   }).catch(
+      //   (err) => {
+      //     console.error('error envio correo - account face');
+      //     console.error(err);
+      //   }
+      // )
       try{
 
         //let result =this.afAuth.auth.createUserWithEmailAndPassword(this.userData['email'],this.userData['password']);
@@ -227,6 +261,7 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
                   var keyUser = "user_"+(key);
                   console.log(keyUser);
                   this.userData['verificacion'] = keyUser;
+                  console.log(this.userData);
                   this.userService.newUser(this.userData,keyUser);
                   let Data = {'datos':this.userData};
                   this.navCtrl.push(PaymentMethodsPage,Data);

@@ -1,28 +1,44 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title class="tittleMenu">JOBID</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
     <ion-list>
-      <div class="center">
-        <img src="{{srcUser}}" alt="userLogo">
-      </div>
-      <p class="center">{{userName}}</p>
+        <ion-item class="imgUser">
+          <ion-thumbnail item-start>
+            <img src="{{srcUser}}" alt="userLogo">
+          </ion-thumbnail>
+          <p>{{userName}}</p>
+          <p><ion-icon name="star" class="nota" item-start></ion-icon> {{star}}</p>
+        </ion-item>
     </ion-list>
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
-      <button ion-item (click)="cerrarSeccion()">
-        Login outs
+      <button ion-item class="loginOut" (click)="cerrarSeccion()">
+        Login out
       </button> 
     </ion-list>
   </ion-content>
+  <ion-footer>
+      <ion-toolbar>
+          <ion-list>
+              <button ion-item (click)="goJobWithUs()">
+                Job with us
+              </button>
+              <button ion-item (click)="goPolicies()">
+                Policies <p class="version">V.1</p>
+              </button> 
+               
+            </ion-list>
+      </ion-toolbar>
+    </ion-footer>
 
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false" [enabled]=“menu_is_enabled”></ion-nav>

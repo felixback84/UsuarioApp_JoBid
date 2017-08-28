@@ -112,8 +112,25 @@ export class UserService{
 	}
 
 
+	public getUserEmailPerfil(email:string  ) {
+		return this.afDB.list('/user')
+	 	.map((users) => {
+			 //console.log(users);
+			 return users.map(user =>{
+				if(user['user_email'] == email){
+					//console.log(user);
+					return user;
+				}
+			});
+		 });
+	}
+	
+
+
 	public newUser(userData : any = [],keyNew?:any ){
 		let key = undefined;
+		//default star
+		let star = '3';
 		console.log('key:'+key);
 		console.log('keyNew:'+keyNew);
 		if(keyNew && keyNew != null  && keyNew != undefined){
@@ -142,7 +159,7 @@ export class UserService{
 		//console.log(userData);
 		if( (userData['username']) && (userData['password']) && (userData['email']) ){
 			if( (userData['username'] != undefined) && (userData['username'] != null) && (userData['password'] != undefined) && (userData['password'] != null) && (userData['email'] != undefined) && (userData['email'] != null) ){
-				this.afDB.object('/user/'+keyUser).set({"user_username":username,"user_password":password,"user_email":email,"user_name":name,"user_zipcode":zipcode,"user_state":state,"user_picture":picture,"user_pais":pais,"user_tel":tel});
+				this.afDB.object('/user/'+keyUser).set({"user_username":username,"user_password":password,"user_email":email,"user_name":name,"user_zipcode":zipcode,"user_state":state,"user_picture":picture,"user_pais":pais,"user_tel":tel,"user_star":star});
 				ObjAddress.push({"label":'My Address',"name":direccion});
 				this.newAddress(keyUser,ObjAddress);
 				console.info('user create');
