@@ -13,8 +13,14 @@ import { HomePage } from '../pages/home/home';
 
 //import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { ShowPage } from '../pages/show/show';
 
+import { ShowPage } from '../pages/show/show';
+import { JobWithUsPage } from '../pages/job-with-us/job-with-us';
+import { PoliciesPage } from '../pages/policies/policies';
+import { PreHomePage } from '../pages/pre-home/pre-home';
+import { PaymentsPage } from '../pages/payments/payments';
+import { EditUserPage } from '../pages/edit-user/edit-user';
+import { MyServicesPage } from '../pages/my-services/my-services';
 
 import { UserService } from '../services/user.service';
 
@@ -44,12 +50,11 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Edit', component: ShowPage },
+      { title: 'Edit', component: EditUserPage },
       { title: 'Menu', component: ShowPage },
-      { title: 'My services', component: ShowPage },
-      { title: 'Address', component: ShowPage },
-      { title: 'Payments', component: ShowPage },
-      //{ title: 'Login out', component: HomePage },
+      { title: 'My services', component: MyServicesPage },
+      { title: 'Address', component: PreHomePage },
+      { title: 'Payments', component: PaymentsPage },
     ];
 
   }
@@ -61,6 +66,7 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
     this.afAuth.authState.subscribe( user => {
       console.log('find user menu');
       console.log(user);
@@ -111,8 +117,8 @@ export class MyApp {
       console.log(value);
       this.nav.setRoot(HomePage);
     }).catch((error) => console.info(error));
-    this.statusBar.styleDefault();
-    this.splashScreen.hide();
+    // this.statusBar.styleDefault();
+    // this.splashScreen.hide();
     //antiguo facebook native
     // this.facebook.getLoginStatus().then( data=>{
     //       alert(JSON.stringify(data.status));
@@ -136,6 +142,10 @@ export class MyApp {
     //     });
     
   }
-  goJobWithUs(){}
-  goPolicies(){}
+  goJobWithUs(){
+    this.nav.push(JobWithUsPage);
+  }
+  goPolicies(){
+    this.nav.push(PoliciesPage);
+  }
 }

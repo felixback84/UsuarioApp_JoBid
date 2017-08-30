@@ -7,7 +7,7 @@ import { PaymentMethodsPage } from '../payment-methods/payment-methods';
 
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
-import { EncriptyService } from '../../services/encripty.service';
+//import { EncriptyService } from '../../services/encripty.service';
 //import { StorageService } from '../../services/storage.service';
 import { UserService } from '../../services/user.service';
 
@@ -32,7 +32,7 @@ export class VerifyYourPhonePage {
     public navParams: NavParams, 
     public authServiceProvider: AuthServiceProvider,
     public alertCtrl: AlertController,
-    private encriptyService : EncriptyService,
+    //private encriptyService : EncriptyService,
     //private storageService : StorageService,
     private userService : UserService,
   ) {

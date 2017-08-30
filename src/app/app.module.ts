@@ -24,6 +24,13 @@ import { CleaningOkPage } from '../pages/cleaning-ok/cleaning-ok';
 import { PreHomePage } from '../pages/pre-home/pre-home';
 import { NewAddressPage } from '../pages/new-address/new-address';
 import { ProfessionPage } from '../pages/profession/profession';
+import { JobWithUsPage } from '../pages/job-with-us/job-with-us';
+import { PoliciesPage } from '../pages/policies/policies';
+import { PaymentsPage } from '../pages/payments/payments';
+import { EditUserPage } from '../pages/edit-user/edit-user';
+import { MyServicesPage } from '../pages/my-services/my-services';
+//import { ProfessionPage } from '../pages/profession/profession';
+
 import { BraintreeService } from '../services/braintree.service';
 import { OfferService } from '../services/offer.service';
 import { ProfessionalsService } from '../services/professionals.service';
@@ -40,7 +47,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { IonicStorageModule } from '@ionic/storage';
 
-import firebase from 'firebase';
+import { AgmCoreModule } from '@agm/core';
+//import firebase from 'firebase';
 
 //import { EmailComposer } from '@ionic-native/email-composer';
 export const firebaseConfig = {
@@ -51,7 +59,7 @@ export const firebaseConfig = {
     storageBucket: "usuarioappjobid.appspot.com",
     messagingSenderId: "679089691484"
 };
-
+export const googleMapsKey = 'AIzaSyBmrc2CjBbIJD_Pu_kkCcV8qNXJfsEBaxo';
 
 @NgModule({
   declarations: [
@@ -74,6 +82,11 @@ export const firebaseConfig = {
     CleaningOkPage,
     PreHomePage,
     NewAddressPage,
+    JobWithUsPage,
+    PoliciesPage,
+    PaymentsPage,
+    EditUserPage,
+    MyServicesPage,
   ],
   imports: [
     BrowserModule, HttpModule,
@@ -84,6 +97,9 @@ export const firebaseConfig = {
     IonicStorageModule.forRoot({
       name: '__mydb',
          driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }),
+    AgmCoreModule.forRoot({
+      apiKey: googleMapsKey
     })
   ],
   bootstrap: [IonicApp],
@@ -107,6 +123,11 @@ export const firebaseConfig = {
     CleaningOkPage,
     PreHomePage,
     NewAddressPage,
+    JobWithUsPage,
+    PoliciesPage,
+    PaymentsPage,
+    EditUserPage,
+    MyServicesPage,
   ],
   providers: [
     StatusBar,

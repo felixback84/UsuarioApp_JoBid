@@ -5,7 +5,7 @@ import { NavController, NavParams } from 'ionic-angular';
 //import { ProfessionPage } from '../profession/profession';
 
 import { CleaningPage } from '../cleaning/cleaning';
-import {MyApp}  from '../../app/app.component';
+//import {MyApp}  from '../../app/app.component';
 
 import { ProfessionsService } from '../../services/professions.service';
 
@@ -24,7 +24,7 @@ export class ShowPage {
   direccion: any = [];
   professions: any = [] ;
   constructor(public navCtrl: NavController, public navParams: NavParams, public professionsService : ProfessionsService) {
-    this.direccion = this.navParams.get('datos');
+    //this.direccion = this.navParams.get('datos');
     //console.log(this.direccion);
     this.professions = this.professionsService.getProfessions();
     console.log(this.professions);
@@ -32,8 +32,9 @@ export class ShowPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ShowPage');
-    console.log(localStorage);
-    
+    //console.log(localStorage);
+    this.direccion = JSON.parse(localStorage.getItem('address'));
+    //console.log(this.direccion);
     // MyApp.userName = 'soy nuevo';
     //console.log(MyApp);
   }

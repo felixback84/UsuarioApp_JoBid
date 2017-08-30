@@ -17,7 +17,35 @@
 
 
 <ion-content>
-<img src="assets/img/map.png" class="imgFull" >
+<img src="assets/img/map.png" class="imgFull" ><h3>My Google Maps Demo</h3>
+<!-- <div id="map"></div>
+<script>
+  function initMap() {
+    var uluru = {lat: -25.363, lng: 131.044};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: uluru
+    });
+    var marker = new google.maps.Marker({
+      position: uluru,
+      map: map
+    });
+  }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmrc2CjBbIJD_Pu_kkCcV8qNXJfsEBaxo&callback=initMap">
+</script> -->
+<agm-map></agm-map>
+<!-- <div *ngIf="lat && lng"> -->
+    <!-- <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-marker [latitude]="lat" [longitude]="lng">
+        <agm-info-window>
+          <h3><strong>Howdy!</strong></h3>
+          <p>You are here!</p>
+        </agm-info-window>
+      </agm-marker>
+    </agm-map> -->
+  <!-- <div> -->
 <div class="contador" *ngIf="showContador" >
     <h3>{{contador}}</h3>
 </div>

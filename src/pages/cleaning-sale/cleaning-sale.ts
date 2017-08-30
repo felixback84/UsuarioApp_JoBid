@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams ,AlertController} from 'ionic-angular';
 
 import { CleaningContractorPage } from '../cleaning-contractor/cleaning-contractor';
-import { ShowPage } from '../show/show';
+//import { ShowPage } from '../show/show';
 import { HomePage } from '../home/home';
 
 //import { OfferService } from '../../services/offer.service';
@@ -26,6 +26,9 @@ export class CleaningSalePage {
   contador:string;
   showContador: boolean = true;
   objNodeTimer:any;
+
+  lat: number;
+  lng: number;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -38,6 +41,7 @@ export class CleaningSalePage {
           this.professionals = professionals;
         });
       console.log(this.professionals);
+      this.getUserLocation();
   }
 
   ionViewDidLoad() {
@@ -110,5 +114,15 @@ export class CleaningSalePage {
   private dobleCifra(num:number):any{
     if(num<10){ return '0'+num;
     }else{ return ''+num;}
+  }
+
+  private getUserLocation() {
+    /// locate the user
+    if (navigator.geolocation) {
+       navigator.geolocation.getCurrentPosition(position => {
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
+      });
+    }
   }
 }

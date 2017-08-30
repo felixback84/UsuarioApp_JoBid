@@ -167,6 +167,42 @@ export class UserService{
 		}
 	}
 
+	public setUserDB(userData : any = [],keyUser?:any ){
+		//default star
+		//console.log(newKeyAddres);
+		let ObjAddress: any = [];
+		let username = userData["username"];
+		let password = userData["password"];
+		//let password = this.encriptyService.GenerateEncripty(userData["password"]);
+		let email = userData["email"];
+		let name = userData["name"];
+		let zipcode = userData["zipcode"];
+		let state = userData["state"];
+		let picture = userData["picture"];
+		//let verificacion = userData["verificacion"];
+		let pais = userData["pais"];
+		let direccion = userData["direccion"];
+		let tel = userData["tel"];
+		
+
+		//console.log(userData);
+		if( (userData['username']) && (userData['password']) && (userData['email']) ){
+			if( (userData['username'] != undefined) && (userData['username'] != null) && (userData['password'] != undefined) && (userData['password'] != null) && (userData['email'] != undefined) && (userData['email'] != null) ){
+				this.afDB.object('/user/'+keyUser+'/user_username').set(username);
+				this.afDB.object('/user/'+keyUser+'/user_password').set(password);
+				this.afDB.object('/user/'+keyUser+'/user_email').set(email);
+				this.afDB.object('/user/'+keyUser+'/user_name').set(name);
+				this.afDB.object('/user/'+keyUser+'/user_zipcode').set(zipcode);
+				this.afDB.object('/user/'+keyUser+'/user_state').set(state);
+				this.afDB.object('/user/'+keyUser+'/user_picture').set(picture);
+				this.afDB.object('/user/'+keyUser+'/user_pais').set(pais);
+				this.afDB.object('/user/'+keyUser+'/user_tel').set(tel);
+				console.log(userData);
+				console.info('user update');
+			}
+		}
+	}
+
 
 	/*  ----------------user - address ----------------------*/
 	public getAddress(userId: string =""){

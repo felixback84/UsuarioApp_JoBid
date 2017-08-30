@@ -51,7 +51,9 @@ export class PreHomePage {
       this.userData = this.navParams.get('datos');
       this.userActual = this.userData['verificacion'];
       this.userName = this.userData['username'];
-      console.log(this.userName);
+      localStorage.setItem('userData', JSON.stringify(this.userData));
+      localStorage.setItem('verificacion', this.userData['verificacion']);
+      //console.log(this.userName);
       console.log(this.userData);
       console.log(this.userActual);
       //this.getUrlDataAddres(); 
@@ -64,11 +66,13 @@ export class PreHomePage {
       // }else{
       //   console.log('user no verificado');
       // }
+
   }
 
   goShow(item : any){
   	//console.log(item);
     let DataItem = {'datos':item};
+    localStorage.setItem('address', JSON.stringify(item));
     //console.log(DataItem);  
     this.navCtrl.setRoot(ShowPage,DataItem);
   }
@@ -87,14 +91,21 @@ export class PreHomePage {
     //.forEach( datosUsuario =>{
     .subscribe( datosUsuario =>{
     //console.log(datosUsuario);
+    let cont:number= 1;
       for(let usuario in datosUsuario){
         //console.log(usuario);
         //console.log(datosUsuario[usuario]);
+        
         this.address.push({"label":datosUsuario[usuario]['addr_label'],"name":datosUsuario[usuario]['addr_info']});
+        if(cont == 1){
+          localStorage.setItem('address', JSON.stringify({"label":datosUsuario[usuario]['addr_label'],"name":datosUsuario[usuario]['addr_info']}));
+          cont += 1;
+        }
         //console.log(this.address);
       }
       //console.log(datosUsuario);
     });
+    console.info(localStorage);
   }
 
   getUrlDataAddres(){
