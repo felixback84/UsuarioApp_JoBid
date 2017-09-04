@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
-
+//---pages
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
@@ -28,15 +28,27 @@ import { JobWithUsPage } from '../pages/job-with-us/job-with-us';
 import { PoliciesPage } from '../pages/policies/policies';
 import { PaymentsPage } from '../pages/payments/payments';
 import { EditUserPage } from '../pages/edit-user/edit-user';
+import { ServicesCarePage } from '../pages/services-care/services-care';
+import { ServicesCleaningPage } from '../pages/services-cleaning/services-cleaning';
+import { ServicesJanotorialPage } from '../pages/services-janotorial/services-janotorial';
+import { ServicesTransportationPage } from '../pages/services-transportation/services-transportation';
+import { ServicesFoodPage } from '../pages/services-food/services-food';
+import { ServicesLegalPage } from '../pages/services-legal/services-legal';
+import { ServicesBeautyPage } from '../pages/services-beauty/services-beauty';
+
 import { MyServicesPage } from '../pages/my-services/my-services';
 //import { ProfessionPage } from '../pages/profession/profession';
 
+//---services
 import { BraintreeService } from '../services/braintree.service';
 import { OfferService } from '../services/offer.service';
 import { ProfessionalsService } from '../services/professionals.service';
 import { ProfessionsService } from '../services/professions.service';
 import { UserService } from '../services/user.service';
 import { EncriptyService } from '../services/encripty.service';
+import { CareProfessionsService } from '../services/careProfessions.service';
+import { CleaningProfessionsService } from '../services/cleaningProfessions.service';
+import { SaleService } from '../services/sale.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -48,6 +60,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { AgmCoreModule } from '@agm/core';
+import { Geolocation } from '@ionic-native/geolocation';
 //import firebase from 'firebase';
 
 //import { EmailComposer } from '@ionic-native/email-composer';
@@ -59,7 +72,7 @@ export const firebaseConfig = {
     storageBucket: "usuarioappjobid.appspot.com",
     messagingSenderId: "679089691484"
 };
-export const googleMapsKey = 'AIzaSyBmrc2CjBbIJD_Pu_kkCcV8qNXJfsEBaxo';
+export const googleMapsKey = 'AIzaSyB8zF6lhZegDjsV_mrqxd9Fb3YFTw2__AA';
 
 @NgModule({
   declarations: [
@@ -87,6 +100,13 @@ export const googleMapsKey = 'AIzaSyBmrc2CjBbIJD_Pu_kkCcV8qNXJfsEBaxo';
     PaymentsPage,
     EditUserPage,
     MyServicesPage,
+    ServicesCarePage,
+    ServicesCleaningPage,
+    ServicesJanotorialPage,
+    ServicesTransportationPage,
+    ServicesFoodPage,
+    ServicesLegalPage,
+    ServicesBeautyPage,
   ],
   imports: [
     BrowserModule, HttpModule,
@@ -128,6 +148,13 @@ export const googleMapsKey = 'AIzaSyBmrc2CjBbIJD_Pu_kkCcV8qNXJfsEBaxo';
     PaymentsPage,
     EditUserPage,
     MyServicesPage,
+    ServicesCarePage,
+    ServicesCleaningPage,
+    ServicesJanotorialPage,
+    ServicesTransportationPage,
+    ServicesFoodPage,
+    ServicesLegalPage,
+    ServicesBeautyPage,
   ],
   providers: [
     StatusBar,
@@ -138,9 +165,13 @@ export const googleMapsKey = 'AIzaSyBmrc2CjBbIJD_Pu_kkCcV8qNXJfsEBaxo';
     ProfessionalsService,
     OfferService,
     ProfessionsService,
+    CareProfessionsService,
+    CleaningProfessionsService,
+    SaleService,
     UserService,
     EncriptyService,
     Facebook,
+    Geolocation,
     // EmailComposer
   ]
 })

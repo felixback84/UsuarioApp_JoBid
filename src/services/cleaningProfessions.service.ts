@@ -2,14 +2,17 @@ import { Injectable } from "@angular/core";
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 @Injectable()
-
-export class OfferService{
+export class CleaningProfessionsService{
+	
 	dataCategoria: any = [];
 	dataService:any = [];
-	constructor(private afDB: AngularFireDatabase) {
-	}
-	
-	//---new offer 
+	constructor( private afDB: AngularFireDatabase 
+	){
+		
+	}	
+   
+
+	//---new offer care
 	public newOffer(serviceData : any = [],keyNew?:any){
 	// public newOffer(serviceData : any = [],subCategory:string,keyNew?:any){
 		let key = undefined;

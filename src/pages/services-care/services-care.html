@@ -1,0 +1,149 @@
+<!--
+  Generated template for the ServicesCarePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  
+    <ion-navbar>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>joBid</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content>
+    <div class="imgCenter">
+     <ion-icon name="contact" [ngClass]="dataService.class"></ion-icon> 
+      </div>
+    <div class="TituloRojo"><h4>{{dataService.name}}</h4></div>
+    <h4>Service information</h4>
+    <p padding>Describes what the professional requires</p>
+  <form id="formPayinfo" class="list">
+    <ion-grid>
+      <ion-row *ngIf="!booleamDogWalker">
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-icon name="cash" item-start></ion-icon>
+              <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer" name="maxOffer"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="booleamDogWalker">
+        <!-- <ion-row > -->
+          <ion-col col-10>
+            <ion-list>
+              <ion-item>
+              <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer2" name="maxOffer2"></ion-input>
+              <ion-icon name="camera" item-start></ion-icon>
+              <input type="hidden" placeholder="Photography" [(ngModel)]="fotoDog" name="fotoDog" />
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col col-2 id="btn-camera">
+            <button ion-button color="danger" outline><ion-icon name="camera"></ion-icon></button>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="booleamChildCare">
+        <ion-col col-6>
+          <ion-list>
+            <ion-item>
+              <ion-icon name="man" item-start></ion-icon>
+              <ion-input type="number" placeholder="# Children" [(ngModel)]="numChildren" name="numChildren"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col col-6>
+          <ion-list>
+            <ion-item>
+              <ion-input type="number" placeholder="Age" [(ngModel)]="ageChildren" name="ageChildren"></ion-input>
+              <ion-input type="number" placeholder="Time" [(ngModel)]="timeChildren" name="timeChildren"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="booleamSeniorCare">
+      <!-- <ion-row> -->
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-icon name="man" item-start></ion-icon>
+              <ion-input type="number" placeholder="Age" [(ngModel)]="ageSenior" name="ageSenior"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="booleamFamilyAsistance">
+      <!-- <ion-row> -->
+        <ion-col>
+          <ion-list>
+            <ion-item>
+                <ion-icon name="albums" item-start></ion-icon>
+                <ion-select [(ngModel)]="asistenceFamilia" name="asistenceFamilia" placeholder="Issues">
+                    <ion-option *ngFor="let asistence of FamiliaAsistence" value="{{asistence.value}}">{{asistence.label}}</ion-option>
+                </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="booleamDogWalker">
+      <!-- <ion-row> -->
+        <ion-col>
+          <ion-list>
+            <ion-item>
+                <ion-icon name="clipboard" item-start></ion-icon>
+                <ion-input type="text" placeholder="Race" class="mitad" [(ngModel)]="raceDog" name="raceDog"></ion-input>
+                <ion-input type="number" placeholder="# Dogs" class="mitad" [(ngModel)]="numDog" name="numDog"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-row *ngIf="booleamDogWalker">
+        <ion-col col-10>
+          <ion-list>
+            <ion-item>
+              <ion-icon name="camera" item-start></ion-icon>
+              <ion-input type="text" placeholder="Photography" [(ngModel)]="fotoDog" name="fotoDog"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col col-2 id="btn-camera">
+            <button ion-button color="danger" outline><ion-icon name="camera"></ion-icon></button>
+        </ion-col>
+      </ion-row> -->
+      <ion-row *ngIf="booleamPersonalShopper">
+      <!-- <ion-row> -->
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-icon name="basket" item-start></ion-icon>
+              <ion-input type="text" placeholder="Type of purchase." class="mitad" [(ngModel)]="purchaseShopper" name="purchaseShopper"></ion-input>
+              <ion-input type="text" placeholder="Type of place"  class="mitad" [(ngModel)]="placeShopper" name="placeShopper"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+      <ion-row> 
+        <ion-col>
+          <ion-list><ion-item>
+            <ion-icon name="paper" item-start></ion-icon>
+            <ion-textarea type="text" placeholder="{{labelComments}}" [(ngModel)]="moreInformation" name="moreInformation"></ion-textarea>
+          </ion-item></ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col> 
+          <div class="btnBottom">
+            <button ion-button color="danger" block icon-left (click)="goCleaningSale()">Continue<ion-icon name="arrow-dropright"></ion-icon></button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+  </ion-content>

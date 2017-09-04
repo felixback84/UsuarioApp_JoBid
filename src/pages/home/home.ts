@@ -61,7 +61,9 @@ ionViewDidLoad() {
   facebookir(){
     let goPagePrehome:boolean = false;
     let userDB:any;
-    firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
+    var provider = new firebase.auth.FacebookAuthProvider();
+    provider.addScope('email');
+    firebase.auth().signInWithPopup(provider)
       .then(res => {
         //console.log(res.user.email);
         console.log(res);
@@ -90,9 +92,9 @@ ionViewDidLoad() {
           });
           //console.log(userDB);
           //console.log(goPagePrehome);
-          if(goPagePrehome){
-            this.goNextPagePrehome(userDB);
-          }else{
+          if(!goPagePrehome){
+          //   this.goNextPagePrehome(userDB);
+          // }else{
             this.singup();
           }
         });

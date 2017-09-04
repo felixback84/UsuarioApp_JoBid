@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams ,AlertController} from 'ionic-angular';
+import { NavController, NavParams ,AlertController,Platform} from 'ionic-angular';
 
 import { CleaningContractorPage } from '../cleaning-contractor/cleaning-contractor';
 //import { ShowPage } from '../show/show';
@@ -7,6 +7,8 @@ import { HomePage } from '../home/home';
 
 //import { OfferService } from '../../services/offer.service';
 import { ProfessionalsService } from '../../services/professionals.service';
+import { Geolocation } from '@ionic-native/geolocation';
+import * as GeoFire from 'geofire';
 /**
  * Generated class for the CleanigSalePage page.
  *
@@ -22,18 +24,20 @@ export class CleaningSalePage {
   professionals = [];
   professsional = [];
   segundos:number = 0;
-  minutos:number = 3;
+  minutos:number = 2;
   contador:string;
   showContador: boolean = true;
   objNodeTimer:any;
 
-  lat: number;
-  lng: number;
+  lat: number= 37.09024;
+  lng: number= -95.71289100000001;
+  zom: number = 16;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public alertCtrl: AlertController, 
-    public professionalsService : ProfessionalsService) {
+    public professionalsService : ProfessionalsService,
+    private geo: Geolocation, private platform: Platform) {
       this.contador = '0'+this.minutos+':'+'0'+this.segundos;
       this.startTimer();
       this.professionalsService.getProfessionals()
@@ -41,11 +45,25 @@ export class CleaningSalePage {
           this.professionals = professionals;
         });
       console.log(this.professionals);
-      this.getUserLocation();
-  }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CleaningSalePage');
+    }
+    
+    ionViewDidLoad() {
+      console.log('ionViewDidLoad CleaningSalePage');
+      this.getUserLocation();
+      this.platform.ready().then(() => {
+        var options = {
+          timeout: 5000
+        };
+        this.geo.getCurrentPosition(options).then(resp => {
+          console.log(resp.coords.latitude);
+          console.log(resp.coords.longitude);
+          this.lat = resp.coords.latitude;
+          this.lng = resp.coords.longitude;
+        }).catch(() => {
+          console.log("Error to get location");
+        });
+      });
   }
   goCleaningContractor(){
   	this.navCtrl.setRoot(CleaningContractorPage);
@@ -93,12 +111,10 @@ export class CleaningSalePage {
   }
 
   private timer(){
-    if(this.minutos == 0){ 
-      if(this.segundos == 0){   
+    if(this.minutos == 0 && this.segundos == 1){ 
       //this.showContador = false;
         clearInterval(this.objNodeTimer);
          this.showContador = false;
-      }
     }else{
       if(--this.segundos< 0){
         this.segundos = 59;
@@ -118,11 +134,36 @@ export class CleaningSalePage {
 
   private getUserLocation() {
     /// locate the user
+    console.info('get User location2');
+    console.info(navigator);
+    console.info(navigator.geolocation);
+    console.info(JSON.stringify(navigator));
+    console.info(JSON.stringify(navigator.geolocation));
+
+    if (navigator) {
+      console.log('soportado2');
+      console.log(navigator);
+    } else {
+      console.log('no soportado');
+      /* geolocation IS NOT available */
+    }
+    // if ("geolocation" in navigator) {
+    //   console.log('soportado');
+    //   console.log(navigator);
+    // } else {
+    //   console.log('no soportado');
+    //   /* geolocation IS NOT available */
+    // }
+    var geolocationz = navigator.geolocation;
+    console.log(geolocationz);
     if (navigator.geolocation) {
-       navigator.geolocation.getCurrentPosition(position => {
+       navigator.geolocation.getCurrentPosition((position) => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
+        console.log(position.coords.latitude);
+        console.log(position.coords.longitude);
       });
     }
   }
+  
 }

@@ -1,0 +1,26 @@
+page-services-transportation {
+    ion-col#btn-camera{padding-top: 0px;
+		button{height: 48px; width: 100%;}
+	}
+	.imgCenter{
+	 	ion-icon{
+	 		width: 90px;
+	 		display: block;
+			margin:0 auto;
+			font-size: 8em;
+	 	}
+	}
+    h4,p{text-align: center;}
+    .TituloRojo{
+        h4{background: $Red; border-radius: 8px; width: 200px; margin:0 auto;color:white;}
+    }
+    .grid .row{
+        height: 60px;
+    }
+    // .btnBottom{
+    //     margin-top: 30px;
+    // }
+    .grid .rowArea.row{
+        height: 90px;
+    }
+}

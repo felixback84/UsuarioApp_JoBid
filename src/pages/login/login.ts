@@ -9,12 +9,12 @@ import { PreHomePage } from '../pre-home/pre-home';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 
-
 //import { EncriptyService } from '../../services/encripty.service';
 //import { StorageService } from '../../services/storage.service';
 import { UserService } from '../../services/user.service';
 
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 //import { ListPage } from '../list/list';
 /**
  * Generated class for the LoginPage page.
@@ -131,6 +131,51 @@ export class LoginPage {
     alert.present();
   } 
 
-
+  facebookir(){
+    let goPagePrehome:boolean = false;
+    let userDB:any;
+    firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
+      .then(res => {
+        //console.log(res.user.email);
+        console.log(res);
+        console.info(JSON.stringify(res));
+        //console.log(res);
+        this.userService.getUsers()
+        .forEach((users) => {
+          //console.log(users);
+          users.forEach((user) =>{
+            //console.log(user);
+            // if(user['user_email'] == res.user.email){
+            //     // console.log('res.user.email');
+            //     // console.log(user);
+            //     userDB = user;
+            //     goPagePrehome= true;
+            // }
+            //dentro de res.user -> hay otros datos de usuario -> email?
+            //if(user.providerData["0"].providerId == "facebook.com"){
+                if(user['user_email'] == res.additionalUserInfo.profile.email){
+                  // console.log('res.additionalUserInfo.profile.email');
+                  // console.log(user);
+                  userDB = user;
+                  goPagePrehome= true;
+                }
+            //}
+          });
+          //console.log(userDB);
+          console.log(goPagePrehome);
+          if(goPagePrehome){
+            this.goNextPagePrehomeFace(userDB);
+          }
+        });
+      });
+  }
+  goNextPagePrehomeFace(datos:any){
+    //console.log(datos);
+    //console.log(datos['$key']);
+    this.userDataUpdate ={ "email":datos['user_email'],"name":datos['user_name'],"pais":datos['user_pais'],"password":datos['user_password'],"picture":datos['user_picture'],"state":datos['user_state'],"tel":datos['user_tel'],"username":datos['user_username'],"verificacion":datos['$key'],"zipcode":datos['user_zipcode']};
+    //console.log(this.userDataUpdate);
+    let Data = {'datos':this.userDataUpdate}
+    this.navCtrl.setRoot(PreHomePage,Data);
+  }
 
 }

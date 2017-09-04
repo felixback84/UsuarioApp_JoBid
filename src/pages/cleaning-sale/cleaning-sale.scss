@@ -1,89 +1,108 @@
 page-cleaning-sale {
- .imgFull{ width: 100%; height: 300px; position: relative;
- }
- ion-icon[name=timer]{
- 	color: white;
- 	margin-top: 10px;
- 	font-size: 2em;
- 	span{color:orange;}
- }
- h4,h5{ font-weight: bold; }
- .contador{
-	position: absolute;
-	top:27%;
-	width: 100%;
-	&>h3{ color: white;
-		background:$Red;
-		height: 80px;
-		/* line-height: 30px; */
-		width: 30%;
-		border-radius: 7px;
-		margin: 0 auto;
-		padding: 27px 0 0 0;
-		text-align: center;}
-}
-ion-item.item-md, ion-item.item-ios{
-	padding-bottom: 0;
-}
-ion-footer ion-toolbar {
-	&.toolbar{margin-bottom: 0;padding-bottom: 0;}
-	/*.grid{margin-bottom: 0;padding-bottom: 0;}*/
-	.toolbar-background-md,.toolbar-background-ios{
-		color:$Red;
- 		/*background: $Red;*/
-
+	.imgFull{ width: 100%; height: 300px; position: relative;
 	}
-	.price{ 
-		background: $Red; color:white; height: 100%; padding: 5px; border-radius: 5px;
-		>p{color:white;text-align: center;margin: 0;}
-	}
-	
-	#btnCancel{
-		background: $Red;
-		color:white;
-		margin:0;
-		height: 55px;
-	}
- 
-}
-
-ion-content ion-grid.body{
-	ion-row.row{
-		border: 1px solid #aaa; 
-		margin: 5px 0;
-		height: 60px;
-		.col,[col-6]{
-			padding:0;
-		}
-	}
-	h5{ text-align: center; background:$Red; 	color: white;    
-		margin: 8px 0;
-		height: 40px;
-		padding-top: 10px;
-		 border-radius:5px;}
-	ion-icon[name=trophy]{
-		color: orange;
-		font-size: 2em;
-		padding: 10px;
-		padding-top: 16px;
-	}
- .button{
-	 	padding: 0;
-		width: 45px;
-		height: 45px;
-		background: #444;
+	ion-icon[name=timer]{
 		color: white;
-		box-shadow: none;
-		margin-top: 6px;
-	 	ion-icon[name=search]{
-			 color:white;
-			 font-size:30px;
+		margin-top: 10px;
+		font-size: 2em;
+		span{color:orange;}
+	}
+	h4,h5{ font-weight: bold; }
+	.contador{
+		position: absolute;
+		top:27%;
+		width: 100%;
+		&>h3{ color: white;
+			background:$Red;
+			height: 80px;
+			/* line-height: 30px; */
+			width: 30%;
+			border-radius: 7px;
+			margin: 0 auto;
+			padding: 27px 0 0 0;
+			text-align: center;}
+	}
+	ion-item.item-md, ion-item.item-ios{
+		padding-bottom: 0;
+	}
+	ion-footer ion-toolbar {
+		&.toolbar{margin-bottom: 0;padding-bottom: 0;}
+		/*.grid{margin-bottom: 0;padding-bottom: 0;}*/
+		.toolbar-background-md,.toolbar-background-ios{
+			color:$Red;
+			/*background: $Red;*/
+
+		}
+		.price{ 
+			background: $Red; color:white; height: 100%; padding: 5px; border-radius: 5px;
+			>p{color:white;text-align: center;margin: 0;}
+		}
+	
+		#btnCancel{
+			background: $Red;
+			color:white;
+			margin:0;
+			height: 55px;
+		}
+	
+	}
+
+	ion-content ion-grid.body{
+		ion-row.row{
+			border: 1px solid #aaa; 
+			margin: 5px 0;
+			height: 60px;
+			.col,[col-6]{
+				padding:0;
+			}
+		}
+		h5{ text-align: center; background:$Red; 	color: white;    
+			margin: 8px 0;
+			height: 40px;
+			padding-top: 10px;
+			border-radius:5px;}
+		ion-icon[name=trophy]{
+			color: orange;
+			font-size: 2em;
+			padding: 10px;
+			padding-top: 16px;
+		}
+	.button{
+			padding: 0;
+			width: 45px;
+			height: 45px;
+			background: #444;
+			color: white;
+			box-shadow: none;
+			margin-top: 6px;
+			ion-icon[name=search]{
+				color:white;
+				font-size:30px;
+			}
 		}
 	}
-}
-.btnBottom{
-	margin-top: 20px;
-}
+	.btnBottom{
+		margin-top: 20px;
+	}
+	// agm-map.sebm-google-map-container{
+	// 	width: 100%;
+	// 	height: 400px;
+	// 	background: violet;
+	// }
+	.mapa{
+		// height: 400px;
+		// background: blue;
+		agm-map{
+			width: 100%;
+			height: 300px;
+			background: orange;
+		}
+	}
+	// div#map{
+    //     height: 400px;
+	// 	width: 100%;
+	// 	background: red;
+    // }	
 
 }
 
@@ -111,8 +130,5 @@ ion-content ion-grid.body{
 		width: 50%;
 	}
 	p{text-align: initial;}
-	agm-map{
-		width: 100vw;
-		height: 100vh;
-	}	
+
 }

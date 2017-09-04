@@ -4,6 +4,15 @@ import { NavController, NavParams } from 'ionic-angular';
 import { CleaningInfoPage } from '../cleaning-info/cleaning-info';
 
 import { ProfessionsService } from '../../services/professions.service';
+
+import { ServicesCarePage } from '../services-care/services-care';
+import { ServicesCleaningPage } from '../services-cleaning/services-cleaning';
+import { ServicesJanotorialPage } from '../services-janotorial/services-janotorial';
+import { ServicesTransportationPage } from '../services-transportation/services-transportation';
+import { ServicesFoodPage } from '../services-food/services-food';
+import { ServicesLegalPage } from '../services-legal/services-legal';
+import { ServicesBeautyPage } from '../services-beauty/services-beauty';
+
 /**
  * Generated class for the CleaningPage page.
  *
@@ -18,13 +27,24 @@ import { ProfessionsService } from '../../services/professions.service';
 export class CleaningPage {
   dataService = [];
   dataCategoria = [];
+  nameService:any;
+  case:any;
+  //fil form
+  // categoria:any;
+  certificacion:any="";
+  seguro:any="";
+  // distancia:any;
+  // esperiencia:any;
+  dataClasificaion = {"categoria":"","certificacion":"","seguro":"","distancia":"","esperiencia":""};
   constructor(public navCtrl: NavController, public navParams: NavParams, private professionsService:ProfessionsService) {
      this.dataService = this.navParams.get('datos');
      console.log(this.dataService['name']);
      this.categoryByProfession(this.dataService['name']);
+
   }
  
   categoryByProfession(nameService = ""){
+    this.nameService=nameService;
     this.dataCategoria=this.professionsService.getCategoryByProfession(nameService);
     console.log(this.dataCategoria);
   }
@@ -33,7 +53,68 @@ export class CleaningPage {
     console.log('ionViewDidLoad CleaningPage');
   }
   cleaningInfo(){
+    // this.dataService['subCategoria']=this.categoria;
+    if(this.certificacion != ""){
+      this.dataClasificaion['certificacion']="true";
+    }else{
+      this.dataClasificaion['certificacion']="false";
+    }
+    if(this.seguro != ""){
+      this.dataClasificaion['seguro']="true";
+    }else{
+      this.dataClasificaion['seguro']="false";
+    }
+    // this.dataService['distancia']=this.distancia;
+    // this.dataService['esperiencia']=this.esperiencia;
+    this.dataService['Clasificacion']=this.dataClasificaion;
+    console.log(this.dataService);
     let DataService = {'datos':this.dataService};
-  	this.navCtrl.push(CleaningInfoPage,DataService);
+    //this.navCtrl.push(CleaningInfoPage,DataService);
+    switch(this.nameService){
+      case "Care" :{
+       //this.dataCategoria = ["Child care","Senior care","Family asistance","Dog walker","Personal shopper"];
+       this.navCtrl.push(ServicesCarePage,DataService);
+       break;
+      }
+      case "Cleaning" :{
+        this.navCtrl.push(ServicesCleaningPage,DataService);
+       //this.dataCategoria = ["Maids","Car washers","Pressure cleaning","Carpet & upholstery cleaning"];
+
+       break;
+      }
+      case "Janotorial" :{
+        this.navCtrl.push(ServicesJanotorialPage,DataService);
+       //this.dataCategoria = ["Handyman","Pluming","Electrician","Pool cleaning ","Luck smith" ];
+
+       break;
+      }
+      case "Transportation" :{
+        this.navCtrl.push(ServicesTransportationPage,DataService);
+       //this.dataCategoria = ["Day VIP chofer","Taxi","Car pool","Moving services","Delivery" ];
+
+       break;
+      }
+      case "Food & Beverage" :{
+        this.navCtrl.push(ServicesFoodPage,DataService);
+       //this.dataCategoria = ["Bartenders","Waitress","Chef","Runners","Valet parking","Hostess"];
+
+       break;
+      }
+      case "Legal services" :{
+        this.navCtrl.push(ServicesLegalPage,DataService);
+       //this.dataCategoria = ["Notary"];
+
+       break;
+      }
+      case "Beauty" :{
+        this.navCtrl.push(ServicesBeautyPage,DataService);
+        //this.dataCategoria = ["Persona trainer","Hair cut and DIY","Menicure and pedicure","Mekeup","Massage"];
+       break;
+      }
+      default: { 
+         console.log("Invalid choice"); 
+         break;              
+      }
+    }
   }
 }

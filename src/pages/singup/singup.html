@@ -20,17 +20,16 @@
         </ion-item>
         <ion-item>
           <ion-icon name="pin" item-start></ion-icon>
-          <ion-select [(ngModel)]="userData.pais" name="pais">
+          <ion-select [(ngModel)]="userData.pais" name="pais" placeholder="Country">
             <ion-option value="USA" selected>U.S.A</ion-option>
           </ion-select>
          </ion-item>
         <ion-item>
             <ion-icon name="flag" item-start></ion-icon>
-          <ion-select class="mitad" [(ngModel)]="userData.state" name="state" (ngModelChange)="setCity()"> 
-            <ion-option selected>State</ion-option>
+          <ion-select class="mitad" [(ngModel)]="userData.state" name="state" (ngModelChange)="setCity()" placeholder="State">
             <ion-option *ngFor="let state of estados" value="{{state.nameShort}}">{{state.name}}</ion-option>
           </ion-select>
-          <ion-select  class="mitad" [(ngModel)]="userData.zipcode" name="zipcode" (ngModelChange)="setZipCode()"> <!--[(ngModel)]="gaming"-->
+          <ion-select  class="mitad" [(ngModel)]="userData.zipcode" name="zipcode" (ngModelChange)="setZipCode()" placeholder="City"> <!--[(ngModel)]="gaming"-->
             <ion-option selected>....</ion-option>
             <ion-option *ngFor="let city of ciudades" value="{{city.zipcode}}">{{city.name}} - {{city.zipcode}}</ion-option>
           </ion-select>
@@ -62,7 +61,7 @@
             <ion-col col-4>
               <ion-item>
                 <ion-icon name="call" item-start></ion-icon>this.codeAreaEstadoSelect
-                 <ion-select [(ngModel)]="telA" name="telA">
+                 <ion-select [(ngModel)]="telA" name="telA" placeholder="Area code">
                   <ion-option *ngFor="let stateCod of codeAreaEstadoSelect" value="{{stateCod.code}}">{{stateCod.code}}</ion-option>
                 </ion-select>
               </ion-item>

@@ -9,7 +9,8 @@ export class ProfessionsService{
     	{name:'Janotorial',class:'orange'},
     	{name:'Transportation',class:'green'},
     	{name:'Food & Beverage',class:'purple'},
-    	{name:'Legal services',class:'blue'}
+    	{name:'Legal services',class:'blue'},
+    	{name:'Beauty',class:'pink'}
     	];
 	dataCategoria: any = [];
 
@@ -29,7 +30,7 @@ export class ProfessionsService{
 	        break;
 	       }
 	       case "Janotorial" :{
-	        this.dataCategoria = ["Handyman","Pluming","Electrician","Pool cleaning ","Luck smith" ];
+	        this.dataCategoria = ["Handyman","Pluming","Electrician","Pool cleaning","Luck smith" ];
 	        break;
 	       }
 	       case "Transportation" :{
@@ -42,6 +43,10 @@ export class ProfessionsService{
 	       }
 	       case "Legal services" :{
 	        this.dataCategoria = ["Notary"];
+	        break;
+	       }
+	       case "Beauty" :{
+			this.dataCategoria = ["Persona trainer","Hair cut and DIY","Menicure and pedicure","Mekeup","Massage"];
 	        break;
 	       }
 	       default: { 

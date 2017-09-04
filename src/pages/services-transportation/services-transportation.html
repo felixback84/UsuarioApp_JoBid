@@ -1,0 +1,130 @@
+<!--
+  Generated template for the ServicesTransportationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    
+      <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>joBid</ion-title>
+      </ion-navbar>
+    
+    </ion-header>
+    
+    
+    <ion-content>
+      <div class="imgCenter">
+       <ion-icon name="contact" [ngClass]="dataService.class"></ion-icon> 
+        </div>
+      <div class="TituloRojo"><h4>{{dataService.name}}</h4></div>
+      <h4>Service information</h4>
+      <p padding>Describes what the professional requires</p>
+    <form id="formPayinfo" class="list">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-icon name="cash" item-start></ion-icon>
+                <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer" name="maxOffer"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="booleanDayVIPChofer">
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-icon name="car" item-start></ion-icon>
+                <ion-input type="text" placeholder="Car type" class="mitad"[(ngModel)]="carVip" name="carVip"></ion-input>
+                <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="timeVip" name="timeVip"></ion-input>
+            </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="booleanTaxi">
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-icon name="car" item-start></ion-icon>
+                <ion-input type="text" placeholder="Distance" class="mitad"[(ngModel)]="distanceTaxi" name="distanceTaxi"></ion-input>
+                <ion-input type="text" placeholder="Address" class="mitad" [(ngModel)]="addressTaxi" name="addressTaxi"></ion-input>
+            </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="booleanCarPool">
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-icon name="car" item-start></ion-icon>
+                <ion-input type="text" placeholder="Car type" [(ngModel)]="carPool" name="carPool"></ion-input>
+            </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="booleanCarPool">
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-icon name="car" item-start></ion-icon>
+                <ion-input type="text" placeholder="# Passengers" class="mitad"[(ngModel)]="passePool" name="passePool"></ion-input>
+                <ion-input type="text" placeholder="Distance" class="mitad" [(ngModel)]="distancePool" name="distancePool"></ion-input>
+            </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="booleanMovingServices">
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-icon name="pin" item-start></ion-icon>
+                <ion-input type="text" placeholder="Distance" [(ngModel)]="distanceMovil" name="distanceMovil"></ion-input>
+            </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="booleanMovingServices">
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-icon name="cube" item-start></ion-icon>
+                <ion-input type="number" placeholder="# boxes" class="mitad"[(ngModel)]="boxMovil" name="boxMovil"></ion-input>
+                <ion-input type="number" placeholder="# furniture" class="mitad" [(ngModel)]="furniMovil" name="furniMovil"></ion-input>
+            </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="booleanDelivery">
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-icon name="build" item-start></ion-icon>
+                <ion-input type="text" placeholder="Object that is sent" class="mitad"[(ngModel)]="objDelivery" name="objDelivery"></ion-input>
+                <ion-input type="text" placeholder="Shipping Address" class="mitad" [(ngModel)]="addressDelivery" name="addressDelivery"></ion-input>
+            </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row class="rowArea"> 
+          <ion-col>
+            <ion-list><ion-item>
+              <ion-icon name="paper" item-start></ion-icon>
+              <ion-textarea type="text" placeholder="More information" [(ngModel)]="moreInformation" name="moreInformation"></ion-textarea>
+            </ion-item></ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col> 
+            <div class="btnBottom">
+              <button ion-button color="danger" block icon-left (click)="goCleaningSale()">Continue<ion-icon name="arrow-dropright"></ion-icon></button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+    </ion-content>
