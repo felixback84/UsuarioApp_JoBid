@@ -9,7 +9,7 @@ import { ShowPage } from '../show/show';
 import { UserService } from '../../services/user.service';
 
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+// import * as firebase from 'firebase/app';
 /**
  * Generated class for the PreHomePage page.
  *

@@ -42,43 +42,24 @@
   <h4>Offers received</h4>
 </div>
 <ion-grid class="body">
-  <ion-row >
+  <ion-row *ngFor="let item of Workers">
     <ion-col col-2>
-      <ion-icon name="trophy"></ion-icon>
+      <ion-icon name="trophy" *ngIf="item.offer == MenosPrecio"></ion-icon>
+      <!-- <ion-icon name="trophy" *ngIf="{{item.icon}}"></ion-icon> -->
     </ion-col>
     <ion-col col-6>
      <ion-item>
       <ion-avatar item-start>
-        <img src="assets/img/professions/cleaning.png">
+        <img src="{{item.img}}">
       </ion-avatar>
-      <p>Estefania Lorem</p>
+      <p>{{item.name}}</p>
      </ion-item>
     </ion-col>
     <ion-col col-2>
-      <h5> $81 </h5>
+      <h5>{{item.offer}}</h5>
     </ion-col>
     <ion-col col-2>
-      <button ion-button icon-only round color="light" (click)="showInfoCleaning(1)">
-        <ion-icon name="search"></ion-icon>
-      </button>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col col-2>
-    </ion-col>
-    <ion-col col-6>
-     <ion-item>
-      <ion-avatar item-start>
-        <img src="assets/img/professions/cleaning.png">
-      </ion-avatar>
-      <p>Estefania Lorem</p>
-     </ion-item>
-    </ion-col>
-    <ion-col col-2>
-      <h5> $82 </h5>
-    </ion-col>
-    <ion-col col-2>
-      <button ion-button icon-only round color="light" (click)="showInfoCleaning(2)" >
+      <button ion-button icon-only round color="light" (click)="showInfoCleaning(item.id)">
         <ion-icon name="search"></ion-icon>
       </button>
     </ion-col>

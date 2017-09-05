@@ -4,6 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { OfferService } from '../../services/offer.service';
 
 import { CleaningSalePage } from '../cleaning-sale/cleaning-sale';
+import { SaleService } from '../../services/sale.service';
 /**
  * Generated class for the ServicesLegalPage page.
  *
@@ -34,7 +35,8 @@ export class ServicesLegalPage {
     moreInformation:any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
-      private offerService:OfferService  
+      private offerService:OfferService,
+      private saleService:SaleService    
 ) {
     this.dataService = this.navParams.get('datos');
     console.log(this.dataService);
@@ -64,18 +66,26 @@ export class ServicesLegalPage {
     console.log(datos);
     console.log(this.dataService);
     this.dataService['Clasificacion']['informacion']=datos['0'];
-    let subCategory=this.dataService['Clasificacion']['categoria'];
     var d = new Date();
     let key = d.getTime();
     var keyOffer = "offer_"+(key);
     console.log(this.dataService);
-
+    
+    // let subCategory=this.dataService['Clasificacion']['categoria'];
     //this.careProfessionS.newOffer(this.dataService,subCategory,keyOffer);
     //this.saleService.newSale();
     
     this.offerService.newOffer(this.dataService,keyOffer);
-    let DataService = {'datos':this.dataService};
-    this.navCtrl.setRoot(CleaningSalePage);
+     // console.log(localStorage);
+     let maxOffer=datos['0']['maxOffer'];
+     let userLocal = localStorage.getItem('verificacion');
+     this.saleService.newSale(userLocal,keyOffer,maxOffer);
+     // console.log(userLocal);
+     // console.log(keyOffer);
+     // console.log(maxOffer);
+     let DataService = {'datos':{"dataService":this.dataService,"offer":keyOffer}};
+     console.log(DataService);
+     this.navCtrl.setRoot(CleaningSalePage,DataService);
   }
 
 getForm(){

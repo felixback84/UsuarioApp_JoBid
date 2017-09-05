@@ -1,4 +1,4 @@
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+//import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
@@ -24,21 +24,40 @@ providerFaceBook:any;
 userDataUpdate:any;
   constructor(
     public navCtrl: NavController, 
-    private facebook:  Facebook,
+    //private facebook:  Facebook,
     private userService : UserService,
     public afAuth: AngularFireAuth  
   ) {
     
   }
 ionViewDidLoad() {
+  // let userDBLoad:any;
+  // let goPagePrehomeLoad = false;
     console.log('ionViewDidLoad homePage');
-      this.afAuth.authState.forEach ( data => {
-        console.info('find User facebook');
-        console.log(data); 
-        // if(data != null && data != undefined){
-        //   this.navCtrl.setRoot('PreHomePage');
-        // }
-      });
+      // this.afAuth.authState.forEach ( data => {
+      //   console.info('find User facebook');
+      //   this.userService.getUsers()
+      //   .forEach((users) => {
+      //     users.forEach((user) =>{
+      //       if(data.providerData["0"].providerId == "facebook.com"){
+      //           if(user['user_email'] == data.providerData["0"].email){
+      //           console.log(data.providerData["0"].email);
+      //             console.log(user);
+      //             console.log('user existen');
+      //             userDBLoad = user;
+      //             goPagePrehomeLoad= true;
+      //           }
+      //       }
+      //     });
+      //     //console.log(userDB);
+      //     // console.log(goPagePrehome);
+      //     if(goPagePrehomeLoad){
+      //       this.goNextPagePrehomeFace(userDBLoad);
+      //     }
+      //   });
+      //   //---
+
+      // });
       // let currentUserAuth = this.afAuth.auth.currentUser;
       // console.log(currentUserAuth);
       
@@ -109,7 +128,6 @@ ionViewDidLoad() {
     this.navCtrl.setRoot(PreHomePage,Data);
   }
 
- 
  	login(){
  		this.navCtrl.push(LoginPage);
  	}

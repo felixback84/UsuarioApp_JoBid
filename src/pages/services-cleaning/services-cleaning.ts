@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { CleaningSalePage } from '../cleaning-sale/cleaning-sale';
-import { CleaningProfessionsService } from '../../services/cleaningProfessions.service';
 
-//import { SaleService } from '../../services/sale.service';
+import { CleaningProfessionsService } from '../../services/cleaningProfessions.service';
+import { SaleService } from '../../services/sale.service';
 /**
  * Generated class for the ServicesCleaningPage page.
  *
@@ -48,7 +48,7 @@ export class ServicesCleaningPage {
   
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private cleanProfessionS: CleaningProfessionsService,
-    //private saleService:SaleService    
+    private saleService:SaleService    
   ) {
     this.dataService = this.navParams.get('datos');
     this.subCategory = this.dataService['Clasificacion']['categoria'];
@@ -84,18 +84,25 @@ export class ServicesCleaningPage {
   guardarServicio(datos){
     // console.log(datos);
     this.dataService['Clasificacion']['informacion']=datos['0'];
-    let subCategory=this.dataService['Clasificacion']['categoria'];
     var d = new Date();
     let key = d.getTime();
     var keyOffer = "offer_"+(key);
-    console.log(this.dataService);
-
+    // console.log(this.dataService);
+    // let subCategory=this.dataService['Clasificacion']['categoria'];
     //this.careProfessionS.newOffer(this.dataService,subCategory,keyOffer);
-    //this.saleService.newSale();
-    
     this.cleanProfessionS.newOffer(this.dataService,keyOffer);
-    let DataService = {'datos':this.dataService};
-    this.navCtrl.setRoot(CleaningSalePage);
+    
+    // console.log(localStorage);
+    let maxOffer=datos['0']['maxOffer'];
+    let userLocal = localStorage.getItem('verificacion');
+    this.saleService.newSale(userLocal,keyOffer,maxOffer);
+    // console.log(userLocal);
+    // console.log(keyOffer);
+    // console.log(maxOffer);
+    
+    let DataService = {'datos':{"dataService":this.dataService,"offer":keyOffer}};
+    console.log(DataService);
+    this.navCtrl.setRoot(CleaningSalePage,DataService);
   }
   
   getForm(){

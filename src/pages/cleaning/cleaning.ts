@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { CleaningInfoPage } from '../cleaning-info/cleaning-info';
+// import { CleaningInfoPage } from '../cleaning-info/cleaning-info';
 
 import { ProfessionsService } from '../../services/professions.service';
 

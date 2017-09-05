@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
+// import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 @Injectable()
 
@@ -16,7 +17,7 @@ export class ProfessionalsService{
 		return this.afDB.list('/professionals/');
 	}
 	public getProfessional(id){
-		return this.afDB.object('/professionals/');
+		return this.afDB.object('/professionals/'+id);
 		//this.afDB.ref('/professionals/prof_1');
 	}
 }

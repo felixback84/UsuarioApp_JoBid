@@ -170,7 +170,7 @@ export class UserService{
 	public setUserDB(userData : any = [],keyUser?:any ){
 		//default star
 		//console.log(newKeyAddres);
-		let ObjAddress: any = [];
+		//let ObjAddress: any = [];
 		let username = userData["username"];
 		let password = userData["password"];
 		//let password = this.encriptyService.GenerateEncripty(userData["password"]);
@@ -181,7 +181,7 @@ export class UserService{
 		let picture = userData["picture"];
 		//let verificacion = userData["verificacion"];
 		let pais = userData["pais"];
-		let direccion = userData["direccion"];
+		//let direccion = userData["direccion"];
 		let tel = userData["tel"];
 		
 

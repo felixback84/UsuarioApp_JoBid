@@ -4,6 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { OfferService } from '../../services/offer.service';
 
 import { CleaningSalePage } from '../cleaning-sale/cleaning-sale';
+import { SaleService } from '../../services/sale.service';
 
 /**
  * Generated class for the ServicesFoodPage page.
@@ -56,7 +57,8 @@ export class ServicesFoodPage {
     moreInformation:any
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
-      private offerService:OfferService  
+      private offerService:OfferService,
+      private saleService:SaleService  
 ) {
 this.dataService = this.navParams.get('datos');
 
@@ -108,18 +110,39 @@ this.getForm();
     console.log(datos);
     console.log(this.dataService);
     this.dataService['Clasificacion']['informacion']=datos['0'];
-    let subCategory=this.dataService['Clasificacion']['categoria'];
+    // let subCategory=this.dataService['Clasificacion']['categoria'];
     var d = new Date();
     let key = d.getTime();
     var keyOffer = "offer_"+(key);
     console.log(this.dataService);
-
+    
     //this.careProfessionS.newOffer(this.dataService,subCategory,keyOffer);
     //this.saleService.newSale();
     
+    console.log(JSON.stringify(this.dataService));
+    console.log('IniNewOffer');
     this.offerService.newOffer(this.dataService,keyOffer);
-    let DataService = {'datos':this.dataService};
-    this.navCtrl.setRoot(CleaningSalePage);
+    console.log('finNewOffer');
+    console.log(localStorage);
+    console.log(JSON.stringify(localStorage));
+    console.log(keyOffer);
+    let maxOffer=datos['0']['maxOffer'];
+    console.log(maxOffer);
+    let userLocal = localStorage.getItem('verificacion');
+    console.log(JSON.stringify(userLocal));
+    console.log(userLocal);
+    console.log('IniNewSale');
+    this.saleService.newSale(userLocal,keyOffer,maxOffer);
+    console.log('FinNewSale');
+    console.log(userLocal);
+    console.log(keyOffer);
+    console.log(maxOffer);
+    console.log(JSON.stringify(userLocal));
+    console.log(JSON.stringify(this.dataService));
+    console.log('preGData');
+     let DataService = {'datos':{"dataService":this.dataService,"offer":keyOffer}};
+     console.log(DataService);
+     this.navCtrl.setRoot(CleaningSalePage,DataService);
   }
   getForm(){
 

@@ -46,7 +46,7 @@ export class ProfessionsService{
 	        break;
 	       }
 	       case "Beauty" :{
-			this.dataCategoria = ["Persona trainer","Hair cut and DIY","Menicure and pedicure","Mekeup","Massage"];
+			this.dataCategoria = ["Personal trainer","Hair cut and DIY","Manicure and pedicure","Makeup","Massage"];
 	        break;
 	       }
 	       default: { 

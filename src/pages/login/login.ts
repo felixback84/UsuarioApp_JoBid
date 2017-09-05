@@ -52,7 +52,7 @@ export class LoginPage {
       console.log(this.userData);
       let estoyLogueado:boolean = false;
       let userDB:any;
-      let key:any;
+      // let key:any;
       //let finEvent:boolean;
         this.userService.getUserLogin(this.userData["username"],this.userData["password"])
         .forEach((users) => {

@@ -4,13 +4,13 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import cities from 'cities';
 import STATE_UTILS from 'states-utils';
 
-import { PreHomePage } from '../pre-home/pre-home';
+// import { PreHomePage } from '../pre-home/pre-home';
 
 import { UserService } from '../../services/user.service';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+// import * as firebase from 'firebase/app';
 /**
  * Generated class for the EditUserPage page.
  *
@@ -74,7 +74,7 @@ export class EditUserPage {
 
   goPrehome(){
     this.updateUserApp();
-    let Data = {'datos':this.userData};
+    // let Data = {'datos':this.userData};
     //this.navCtrl.push(PreHomePage,Data);
   }
 

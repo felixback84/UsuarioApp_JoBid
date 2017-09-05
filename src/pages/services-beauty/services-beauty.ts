@@ -4,6 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { OfferService } from '../../services/offer.service';
 
 import { CleaningSalePage } from '../cleaning-sale/cleaning-sale';
+import { SaleService } from '../../services/sale.service';
 
 /**
  * Generated class for the ServicesBeautyPage page.
@@ -53,7 +54,8 @@ export class ServicesBeautyPage {
     moreInformation:any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
-      private offerService:OfferService  
+      private offerService:OfferService,
+      private saleService:SaleService    
 ) {
     this.dataService = this.navParams.get('datos');
     console.log(this.dataService);
@@ -70,7 +72,7 @@ export class ServicesBeautyPage {
     console.log(this.subCategory);
     switch(this.subCategory){
       
-      case "Persona trainer":{
+      case "Personal trainer":{
         this.dataInformacion=[{"maxOffer":this.maxOffer,"exerciseTrainer":this.exerciseTrainer,"timeTrainer":this.timeTrainer,"moreInformation":this.moreInformation}];
         break;
       }
@@ -78,11 +80,11 @@ export class ServicesBeautyPage {
         this.dataInformacion=[{"maxOffer":this.maxOffer,"peinadosCut":this.peinadosCut,"typeCut":this.typeCut,"barbaCut":this.barbaCut,"moreInformation":this.moreInformation}];
         break;
       }
-      case "Menicure and pedicure":{
+      case "Manicure and pedicure":{
         this.dataInformacion=[{"maxOffer":this.maxOffer,"tipoMenicure":this.tipoMenicure,"unaMenicure":this.unaMenicure,"estiloMenicure":this.estiloMenicure,"moreInformation":this.moreInformation}];
         break;
       }
-      case "Mekeup":{
+      case "Makeup":{
         this.dataInformacion=[{"maxOffer":this.maxOffer,"estiloMeke":this.estiloMeke,"moreInformation":this.moreInformation}];
         break;
       }
@@ -100,18 +102,26 @@ export class ServicesBeautyPage {
     console.log(datos);
     console.log(this.dataService);
     this.dataService['Clasificacion']['informacion']=datos['0'];
-    let subCategory=this.dataService['Clasificacion']['categoria'];
     var d = new Date();
     let key = d.getTime();
     var keyOffer = "offer_"+(key);
     console.log(this.dataService);
-
+    
+    // let subCategory=this.dataService['Clasificacion']['categoria'];
     //this.careProfessionS.newOffer(this.dataService,subCategory,keyOffer);
     //this.saleService.newSale();
     
     this.offerService.newOffer(this.dataService,keyOffer);
-    let DataService = {'datos':this.dataService};
-    this.navCtrl.setRoot(CleaningSalePage);
+    // console.log(localStorage);
+    let maxOffer=datos['0']['maxOffer'];
+    let userLocal = localStorage.getItem('verificacion');
+    this.saleService.newSale(userLocal,keyOffer,maxOffer);
+    // console.log(userLocal);
+    // console.log(keyOffer);
+    // console.log(maxOffer);
+    let DataService = {'datos':{"dataService":this.dataService,"offer":keyOffer}};
+    console.log(DataService);
+    this.navCtrl.setRoot(CleaningSalePage,DataService);
   }
 
   getForm(){

@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+// import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
+
 
 @Injectable()
 export class SaleService{
@@ -12,7 +14,7 @@ export class SaleService{
 	}	
 	
 	//---new sale
-	public newSale(keyUser,keySale){
+	public newSale(keyUser,keySale,maxOffer){
 		// let key = undefined;
 		// //default star
 		// let star = '3';
@@ -26,8 +28,16 @@ export class SaleService{
 		// 	var keySale = "sale_"+(key);
 		// }
 		
-		// console.log(serviceData);
-		this.afDB.object('/sale/'+keySale+keySale).set({"status":"new"});
-		console.info('offer create');
+		console.log('metodoNewSale');
+		console.log(keyUser);
+		console.log(keySale);
+		console.log(maxOffer);
+		this.afDB.object('/sale/'+keyUser+'/'+keySale).set({"status":"new","sale":maxOffer,"providers":{"prof_1":{"offer":"87"},"prof_2":{"offer":"65"}}}).catch(error => {console.log('errorNewSale'); console.log(error);console.log(JSON.stringify(error));});
+		//this.afDB.object('/sale/'+keyUser+'/'+keySale).set({"status":"new","sale":maxOffer});
+		console.info('sale create');
+	}
+
+	getSale(keyUser,keySale){
+		return this.afDB.object('/sale/'+keyUser+'/'+keySale);
 	}
 }

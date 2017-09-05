@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+// import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Injectable()
 
@@ -12,9 +13,10 @@ export class OfferService{
 	//---new offer 
 	public newOffer(serviceData : any = [],keyNew?:any){
 	// public newOffer(serviceData : any = [],subCategory:string,keyNew?:any){
+		console.log('metodoNewOffer');
 		let key = undefined;
 		//default star
-		let star = '3';
+		console.log(JSON.stringify(serviceData));
 		console.log('key:'+key);
 		console.log('keyNew:'+keyNew);
 		if(keyNew && keyNew != null  && keyNew != undefined){
@@ -28,7 +30,7 @@ export class OfferService{
 		console.log(serviceData);
 		// console.log(JSON.stringify(serviceData));
 		// console.log(subCategory);
-		this.afDB.object('/offer/'+keyOffer).set(serviceData);
+		this.afDB.object('/offer/'+keyOffer).set(serviceData).catch(error => {console.log('error setNOff'); console.log(error);console.log(JSON.stringify(error));});
 		console.info('offer create');
 	}
 }

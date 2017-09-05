@@ -18,7 +18,7 @@ export class StorageService{
    
     public getStorage(name:any){
         this.storage.ready().then(() => {
-            let dataStorage:any ;
+            // let dataStorage:any ;
             this.storage.get('name').then((value) => {
               console.log(value);
               return value;
