@@ -21,13 +21,13 @@
 <div class="barraGris">
 	<h4>Service information</h4>
 </div>
-<h3>Service code: #987456</h3>
+<h3>Service code: #{{serviceCode}}</h3>
 <p class="textoCentrado">State</p>
-<h6 id="estadoServicio">Waiting for the professional</h6>
+<h6 id="estadoServicio">{{status}}</h6>
 <div padding>
-	<p><span class="textRed">*Amount to be paid: </span>$81</p>
+	<p><span class="textRed">*Amount to be paid: </span>${{sale}}</p>
 	<p><span class="textRed">Description:</span></p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+	<p>{{information}}</p>
 	<div class="space"></div>
 	<p><span class="textRed">Professional data</span></p>
 	<ion-grid>
@@ -36,7 +36,7 @@
 	    <ion-list>
 	    	<ion-item>
 	      	<ion-avatar>
-			      <img src="assets/img/professions/cleaning.png">
+			      <img src="{{ImgJobr}}">
 			    </ion-avatar>
 		  	</ion-item>
 			</ion-list>
@@ -44,33 +44,33 @@
 	  <ion-col col-9>
 	  	<ion-row>
 	  		<ion-col>
-	  			<h4>Estefania lorem</h4>
+	  			<h4>{{nameJobr}}</h4>
 	  			<img src="assets/img/Estrellas.png" alt="">
 	  		</ion-col>
 	  	</ion-row>	
-	  	<ion-row>	
-			  <ion-col col-6>
-			    <ion-list><ion-item>
-			    	<ion-label>Certificate</ion-label>
-						<ion-radio checked="true" value="Certificate"></ion-radio>
-					</ion-item></ion-list>
-			  </ion-col>
-			  <ion-col col-6>
-			    <ion-list>
-			   		<ion-item>
-			      	<ion-label>Insurance</ion-label>
-							<ion-radio checked="true" value="Insurance"></ion-radio>
-				  	</ion-item>
-					</ion-list>
-			  </ion-col>
-	  	</ion-row>	
-	  </ion-col>
-	</ion-row>
+			<ion-row>	
+					<ion-col col-6 *ngIf="certificateJobr">
+						<ion-list><ion-item>
+							<ion-label>Certificate</ion-label>
+							<ion-radio checked="true" value="Certificate"></ion-radio>
+						</ion-item></ion-list>
+					</ion-col>
+					<ion-col col-6 *ngIf="insuranceJobr">
+						<ion-list>
+							 <ion-item>
+								<ion-label>Insurance</ion-label>
+								<ion-radio checked="true" value="Insurance"></ion-radio>
+							</ion-item>
+						</ion-list>
+					</ion-col>
+				</ion-row>	
+			</ion-col>
+		</ion-row>
 </ion-grid>
 </div>
 
-<div class="btnBottom">
+<!-- <div class="btnBottom">
 	<button id="verifyYourPhone-button6" ion-button block color="danger" (click)="goCleaningVote()">Continue <ion-icon name="arrow-dropright"></ion-icon></button>
-</div>
+</div> -->
 
 </ion-content>

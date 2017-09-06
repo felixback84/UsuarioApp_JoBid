@@ -21,37 +21,37 @@
 	<h4>Bid winner</h4>
 </div>
 <div class="saleBox">
-	<h1>$80</h1>
+	<h1>${{sale}}</h1>
 </div>
 <ion-grid>
 	<ion-row>
-	  <ion-col col-3>
-	    <ion-list>
-	    	<ion-item>
-	      	<ion-avatar>
-			      <img src="assets/img/professions/cleaning.png">
+		<ion-col col-3>
+			<ion-list>
+				<ion-item>
+					<ion-avatar>
+						<img src="{{ImgJobr}}">
 			    </ion-avatar>
 		  	</ion-item>
 			</ion-list>
 	  </ion-col>
 	  <ion-col col-9>
-	  	<ion-row>
-	  		<ion-col>
-	  			<h4>Estefania lorem</h4>
+			<ion-row>
+				<ion-col>
+					<h4>{{nameJobr}}</h4>
 	  			<img src="assets/img/Estrellas.png" alt="">
 	  		</ion-col>
 	  	</ion-row>	
-	  	<ion-row>	
-			  <ion-col col-6 class="col-height" >
-			    <ion-list><ion-item>
-			    	<ion-label>Certificate</ion-label>
+	  	<ion-row *ngIf="">	
+				<ion-col col-6 class="col-height"  *ngIf="certificateJobr" >
+					<ion-list><ion-item>
+						<ion-label>Certificate</ion-label>
 						<ion-radio checked="true" value="Certificate"></ion-radio>
 					</ion-item></ion-list>
 			  </ion-col>
-			  <ion-col col-6 class="col-height" >
-			    <ion-list>
-			   		<ion-item>
-			      	<ion-label>Insurance</ion-label>
+			  <ion-col col-6 class="col-height"  *ngIf="insuranceJobr">
+					<ion-list>
+						<ion-item>
+							<ion-label>Insurance</ion-label>
 							<ion-radio checked="true" value="Insurance"></ion-radio>
 				  	</ion-item>
 					</ion-list>
@@ -61,28 +61,37 @@
 	</ion-row>
 </ion-grid>
 <div  class="divScroll" padding>
-<h5>Presentation</h5>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui necessitatibus consectetur atque at accusantium sequi, ipsum ut! Excepturi, alias porro, laboriosam fugit doloribus quisquam quia autem est quos voluptatibus. Consequatur vel porro animi quae quam recusandae dignissimos quos quaerat illo eaque sed saepe libero incidunt autem ab veritatis id magni perferendis, amet ex deleniti? Quo autem, sit, non, saepe aperiam magnam nisi, impedit modi ab nihil eum tempore maxime aspernatur optio ratione iste! Alias porro molestiae quod, incidunt, exercitationem facilis id perferendis distinctio natus delectus, voluptas sunt ullam tempore ad necessitatibus nobis ipsam omnis consequuntur vitae labore ipsa voluptatem autem aperiam officiis? Totam doloremque, minus fuga distinctio aperiam non perspiciatis dolorum. Culpa facere sint modi? Dolore doloribus labore velit quidem corrupti, corporis, culpa quam ipsam necessitatibus numquam. Pariatur at qui ducimus, similique, delectus repellendus commodi incidunt nulla ex illo, sed a accusamus, quam quaerat ab libero earum praesentium enim numquam exercitationem dolorum nihil. Natus qui illo ipsa quaerat totam iste fugit id, fugiat, commodi iure porro amet non sint quod earum quo. Ex beatae ea suscipit sapiente dolorem earum, dicta soluta qui cumque debitis aliquam laborum molestias et error eos eaque at aperiam, hic nemo saepe nisi modi officiis. Quod eius aperiam tenetur rerum corrupti, repellat asperiores nihil laborum facere sequi porro molestias repellendus. Eligendi cumque repudiandae adipisci, eveniet delectus tempora iure, amet culpa beatae maiores veritatis odio quisquam eum illum recusandae soluta. Voluptate suscipit accusantium, iure non cum autem, laborum illum eveniet pariatur. Illum dolorum eos reprehenderit, voluptatum atque repellat asperiores dignissimos modi quia nobis cumque ducimus maiores deserunt quibusdam! Iusto rem voluptates sit delectus vitae animi, harum sed, unde atque in odio cumque eaque dolorum placeat sequi porro, itaque incidunt. Ducimus quibusdam natus placeat repellat sit eaque, nisi rerum soluta delectus nemo facilis dolor sequi suscipit dolorum, qui.
-<h5>Gallery</h5>
-<ion-grid>
-	<ion-row>
-		<ion-col col-6>
-			<img src="assets/img/gallery.png" alt="">
-		</ion-col>
-		<ion-col col-6>
-			<img src="assets/img/gallery.png" alt="">
-		</ion-col>
-	</ion-row>
-	<ion-row>
-		<ion-col col-6>
-			<img src="assets/img/gallery.png" alt="">
-		</ion-col>
-		<ion-col col-6>
-			<img src="assets/img/gallery.png" alt="">
-		</ion-col>
-	</ion-row>
-</ion-grid>
-<h5>Comments</h5>
+	<h5>Presentation</h5>
+	<p>{{presentationJobr}}</p>
+	<h5>Gallery</h5>
+	<ion-grid>
+		<ion-row>
+			<ion-col col-6>
+				<img src="{{galleryAJobr}}" alt="">
+			</ion-col>
+			<ion-col col-6>
+				<img src="{{galleryBJobr}}" alt="">
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-6>
+				<img src="{{galleryCJobr}}" alt="">
+			</ion-col>
+			<ion-col col-6>
+				<img src="{{galleryDJobr}}" alt="">
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	<h5>Comments</h5>
+<!-- <div class="comments" *ngFor="let Key of keyComments" > -->
+	<!-- {{Key}} -->
+	<!-- {{commentsJobr[key]['user_username']}}  -->
+	<!-- {{key.user}}  -->
+
+	<!-- {{commentsJobr[KeyComment]['user_username']}}
+	{{commentsJobr[KeyComment]['comm_qualification']}}
+	{{commentsJobr[KeyComment]['comm_description']}} -->
+<!-- </div> -->
 <div class="comments">
 	<h6>Luis Lorem <img src="assets/img/Estrellas.png" alt=""></h6>
 	 <p>Odit, cupiditate. Quibusdam ducimus minus incidunt voluptas consequatur odit, adipisci eveniet laborum obcaecati labore! Sapiente repellat ipsum in autem fuga sint enim recusandae incidunt tenetur corporis neque totam, quam sequi placeat cupiditate, inventore! Alias repudiandae ducimus laudantium nemo quisquam, quod sint et quam, id ipsum magnam veniam amet sit a voluptatibus, similique ipsa voluptatem voluptates velit quo. Quidem odio a nemo sit illum. </p>

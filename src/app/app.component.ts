@@ -8,7 +8,7 @@ import { HomePage } from '../pages/home/home';
 
 //import { CleaningContractorPage } from '../pages/cleaning-contractor/cleaning-contractor';
 //import { CleaningPage } from '../pages/cleaning/cleaning';
-// import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
+import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
 //import { PreHomePage } from '../pages/pre-home/pre-home';
 
 //import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
@@ -37,7 +37,7 @@ export class MyApp {
   //rootPage: any = PreHomePage;
   // rootPage: any = CleaningSalePage;
   rootPage: any = HomePage;
-  mensage : string = '';
+  // mensage : string = '';
   userMenu:any;
   pages: Array<{title: string, component: any}>;
   menu_is_enabled:boolean=true;
@@ -93,6 +93,7 @@ export class MyApp {
                     if(user['user_star'] && user['user_star'] != '' && user['user_star'] != null && user['user_star'] != undefined){
                       this.star= user['user_star'];
                     }
+
                     goPagePrehomeLoad= true;
                     console.log(goPagePrehomeLoad);
                     if(goPagePrehomeLoad){

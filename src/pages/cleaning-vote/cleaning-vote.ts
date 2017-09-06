@@ -15,12 +15,26 @@ import { CleaningOkPage } from '../cleaning-ok/cleaning-ok';
   templateUrl: 'cleaning-vote.html',
 })
 export class CleaningVotePage {
-
+  datasService:any;
+  dataService:any;
+  keyOffer:any;
+  worker:any;
+  userActual:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CleaningVotePage');
+    this.datasService = this.navParams.get('datos');
+    this.dataService = this.datasService['dataService'];
+    this.keyOffer = this.datasService['offer']; 
+    this.worker = this.datasService['win']; 
+    this.userActual = localStorage.getItem('verificacion');
+    console.log(this.datasService);
+    console.log(this.dataService);
+    console.log(this.keyOffer);
+    console.log(this.worker);
+    console.log(this.userActual);
   }
 
   goCleaningOk(){

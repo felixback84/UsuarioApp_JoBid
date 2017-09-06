@@ -40,4 +40,12 @@ export class SaleService{
 	getSale(keyUser,keySale){
 		return this.afDB.object('/sale/'+keyUser+'/'+keySale);
 	}
+
+	public setStatus(keyOffer,status){
+		return this.afDB.object('/offer/'+keyOffer+'/status/').set(status).catch(error => {console.log('error setSale status'); console.log(error);console.log(JSON.stringify(error));});
+	}
+
+	public getStatus(keyOffer){
+		return this.afDB.object('/offer/'+keyOffer+'/status/');
+	}
 }

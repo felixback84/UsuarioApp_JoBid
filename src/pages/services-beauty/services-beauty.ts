@@ -126,7 +126,7 @@ export class ServicesBeautyPage {
 
   getForm(){
     switch(this.subCategory){
-      case "Persona trainer":{
+      case "Personal trainer":{
         this.booleanPersonaTrainer=true;
         break;
       }
@@ -144,7 +144,7 @@ export class ServicesBeautyPage {
         ]; 
         break;
       }
-      case "Menicure and pedicure":{
+      case "Manicure and pedicure":{
         this.booleanMenicure=true;
         this.typeMenicure=[
           {"value":"Manicure","label":"Manicure"},
@@ -161,7 +161,7 @@ export class ServicesBeautyPage {
         ]; 
         break;
       }
-      case "Mekeup":{
+      case "Makeup":{
         this.styleMekeup=[
           {"value":"Basic","label":"Basic"},
           {"value":"Masks","label":"Masks"}
