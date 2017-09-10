@@ -3,6 +3,7 @@ import { NavController, NavParams ,AlertController,Platform} from 'ionic-angular
 
 import { CleaningContractorPage } from '../cleaning-contractor/cleaning-contractor';
 import { SaleService } from '../../services/sale.service';
+import { OfferService } from '../../services/offer.service';
 
 import { ShowPage } from '../show/show';
 // import { HomePage } from '../home/home';
@@ -55,7 +56,8 @@ export class CleaningSalePage {
     public alertCtrl: AlertController, 
     public professionalsService : ProfessionalsService,
     private geo: Geolocation, private platform: Platform,
-    private saleService: SaleService  
+    private saleService: SaleService,  
+    private offerService: OfferService,  
   ) {
       this.contador = '0'+this.minutos+':'+'0'+this.segundos;
       this.startTimer();
@@ -75,9 +77,9 @@ export class CleaningSalePage {
     //--Fin-comentado para evitar mas creaciones
     
     //--Ini-comentado para tener flujo normal
-    // this.userActual = "user_1504538580518";
-    // this.keyOffer = "offer_1504561188712"; 
-    // this.dataService = { "Clasificacion" : {  "categoria" : "Car washers", "certificacion" : "true",  "distancia" : "4M","esperiencia" : "3Y","informacion" : {"brandCar" : "323","foto" : "","maxOffer" : "453","moreInformation" : "dsads","typeCar" : "fas"},"seguro" : "true"},"class" : "yellow","name" : "Cleaning"}; 
+    // this.userActual = "user_1504541320655";
+    // this.keyOffer = "offer_1504879203665"; 
+    // this.dataService = { "Clasificacion" : {  "categoria" : "Car washers", "certificacion" : "true",  "distancia" : "4M","experiencia" : "3Y","informacion" : {"brandCar" : "323","foto" : "","maxOffer" : "453","moreInformation" : "dsads","typeCar" : "fas"},"seguro" : "true"},"class" : "yellow","name" : "Cleaning"}; 
     //--Fin-comentado para tener flujo normal
     this.getUserLocation();
     this.getUserLocationGeolocation();
@@ -93,6 +95,11 @@ export class CleaningSalePage {
   }
 
   goIndex(){
+    
+  //--set status offer y sale
+  console.info('Offer -Cancelled');
+  this.saleService.setStatus(this.userActual,this.keyOffer,'Cancelled');
+  this.offerService.setStatus(this.keyOffer,'Cancelled');
     clearInterval(this.objNodeTimer);
     this.navCtrl.setRoot(ShowPage);
   }
@@ -262,13 +269,28 @@ export class CleaningSalePage {
 
   ganador(){
     console.info('ganador');
-    for(let index in this.Workers){
-      //console.log(index);
-      //console.log(this.Workers[index]);
-      if(this.MenosPrecio == this.Workers[index]['offer']){
-        this.goCleaningContractor(this.Workers[index]);
+    // console.log(this.Workers.length);
+    // console.log('this.Workers.length');
+    if(this.Workers.length != 0){
+      for(let index in this.Workers){
+        console.log(index);
+        //console.log(this.Workers[index]);
+        if(this.MenosPrecio == this.Workers[index]['offer']){
+          this.goCleaningContractor(this.Workers[index]);
+        }
       }
+    }else{
+          this.goServiceSinOff();
     }
+  }
+
+  goServiceSinOff(){
+     //--set status offer y sale
+     console.info('Sin Offer');
+    this.saleService.setStatus(this.userActual,this.keyOffer,'Saved');
+    this.offerService.setStatus(this.keyOffer,'Saved');
+    clearInterval(this.objNodeTimer);
+    this.navCtrl.setRoot(ShowPage);
   }
   private dobleCifra(num:number):any{
     if(num<10){ return '0'+num;

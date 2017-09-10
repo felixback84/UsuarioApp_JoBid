@@ -1,0 +1,69 @@
+<!--
+  Generated template for the MyserviceinfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>myserviceinfo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="barraRoja">
+    <h4>Service information</h4>
+  </div>
+  <h3>Service code: #{{serviceCode}}</h3>
+  <p class="textoCentrado">State</p>
+  <h6 id="estadoServicio">{{status}}</h6>
+  <div padding>
+    <p><span class="textRed">*Amount to be paid: </span>${{sale}}</p>
+    <p><span class="textRed">Description:</span></p>
+    <p>{{information}}</p>
+    <div class="space"></div>
+    <div *ngIf="booleanJob">
+      <p><span class="textRed">Professional data</span></p>
+    </div>
+    <ion-grid>
+      <ion-row *ngIf="booleanJob">
+      <ion-col col-3>
+        <ion-list>
+          <ion-item>
+            <ion-avatar>
+              <img src="{{ImgJobr}}">
+            </ion-avatar>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col col-9>
+        <ion-row>
+          <ion-col>
+            <h4>{{nameJobr}}</h4>
+            <img src="assets/img/Estrellas.png" alt="">
+          </ion-col>
+        </ion-row>	
+        <ion-row>	
+            <ion-col col-6 *ngIf="certificateJobr">
+              <ion-list><ion-item>
+                <ion-label>Certificate</ion-label>
+                <ion-radio checked="true" value="Certificate"></ion-radio>
+              </ion-item></ion-list>
+            </ion-col>
+            <ion-col col-6 *ngIf="insuranceJobr">
+              <ion-list>
+                 <ion-item>
+                  <ion-label>Insurance</ion-label>
+                  <ion-radio checked="true" value="Insurance"></ion-radio>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>	
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+  </div>
+</ion-content>

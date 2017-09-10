@@ -5,6 +5,7 @@ import { CleaningVotePage } from '../cleaning-vote/cleaning-vote';
 
 import { ProfessionalsService } from '../../services/professionals.service';
 import { SaleService } from '../../services/sale.service';
+import { OfferService } from '../../services/offer.service';
 /**
  * Generated class for the CleaningInfoServicePage page.
  *
@@ -48,7 +49,7 @@ export class CleaningInfoServicePage {
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
     public professionalsService : ProfessionalsService,
-    private saleService: SaleService 
+    private saleService: SaleService , private offerService : OfferService,
   ) {
   }
 
@@ -68,10 +69,16 @@ export class CleaningInfoServicePage {
     console.log(this.worker);
     console.log(this.userActual);
     this.getProfessionals(this.worker['id']);
-    this.saleService.getStatus(this.keyOffer).subscribe((resul)=>{
+    this.saleService.getStatus(this.userActual,this.keyOffer).subscribe((resul)=>{
       console.log(resul);
       console.log(resul['$value']);
       this.status = resul['$value'];
+      if(resul['$value'] == 'In progress'){
+        this.status = 'Service in progress';
+      }
+      if(resul['$value'] == 'Finalized'){
+        this.status = 'Service completed';
+      }
     });
     //-provicional
     this.startTimer()
@@ -105,10 +112,12 @@ export class CleaningInfoServicePage {
   //-temporal
   modificarStatus(){
     if(this.cont == 2){
-      this.saleService.setStatus(this.keyOffer,'Service completed');
+      this.saleService.setStatus(this.userActual,this.keyOffer,'Finalized');
+      this.offerService.setStatus(this.keyOffer,'Finalized');
     }
     if(this.cont == 1){
-      this.saleService.setStatus(this.keyOffer,'Service in progress');
+      this.saleService.setStatus(this.userActual,this.keyOffer,'In progress');
+      this.offerService.setStatus(this.keyOffer,'In progress');
       this.cont = 2;
     }
 

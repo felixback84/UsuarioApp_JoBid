@@ -86,7 +86,7 @@ export class CareProfessionsService{
 		// 	}
 	//   }
 
-	 // {"categoria":"Senior care","certificacion":"true","seguro":"true","distancia":"3M","esperiencia":"3Y","informacion":{"maxOffer":"765","ageSenior":"56","moreInformation":"fasdfsdf"}}
+	 // {"categoria":"Senior care","certificacion":"true","seguro":"true","distancia":"3M","experiencia":"3Y","informacion":{"maxOffer":"765","ageSenior":"56","moreInformation":"fasdfsdf"}}
 
 	}
 }

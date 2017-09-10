@@ -6,6 +6,7 @@ import { ShowPage } from '../show/show';
 
 import { ProfessionalsService } from '../../services/professionals.service';
 import { SaleService } from '../../services/sale.service';
+import { OfferService } from '../../services/offer.service';
 
 /**
  * Generated class for the CleaningContractorPage page.
@@ -49,7 +50,7 @@ sale:any;
   constructor(
     public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
     public professionalsService : ProfessionalsService,
-    private saleService: SaleService  
+    private saleService: SaleService , private offerService: OfferService,
   ) {
   }
 
@@ -70,9 +71,19 @@ sale:any;
   }
   goCleaningInfoService(){
     console.info('goCleaningContractor');
+    //--set status offer y sale
+    this.saleService.setStatus(this.userActual,this.keyOffer,'Waiting for the professional');
+    this.offerService.setStatus(this.keyOffer,'Waiting for the professional');
+    //--set datos
+    this.saleService.setSale(this.userActual,this.keyOffer,this.sale);
+    this.offerService.setSale(this.keyOffer,this.sale);
+    //- saved user in offer
+    this.offerService.setUser(this.keyOffer,this.userActual);
+    //- saved provider contract
+    this.offerService.setProvider(this.keyOffer,this.worker.id);
+    this.saleService.setProvider(this.userActual,this.keyOffer,this.worker.id);
     let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer,"win":this.worker}};
     console.log(DataService);
-    this.saleService.setStatus(this.keyOffer,'Waiting for the professional');
   	this.navCtrl.setRoot(CleaningInfoServicePage,DataService);
   }
   // goIndex(){
@@ -94,6 +105,9 @@ sale:any;
           text: 'OK',
           handler: () => {
             console.log('Agree clicked');
+            //--set status offer y sale
+            this.saleService.setStatus(this.userActual,this.keyOffer,'Cancelled');
+            this.offerService.setStatus(this.keyOffer,'Cancelled');
             this.navCtrl.setRoot(ShowPage);
           }
         }

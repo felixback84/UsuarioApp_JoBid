@@ -154,19 +154,19 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
         }
       });
   }
-  envioCorreoFacebook(){
-    let userFacebook:any = firebase.auth().currentUser;
-    userFacebook.sendEmailVerification().then(
-      (success) => {
-        console.info("please verify your email - account facebook");
-          this.navCtrl.push(SingupPage);
-      }).catch(
-      (err) => {
-        console.error('error envio correo');
-        console.error(err);
-      }
-    )
-  }
+  // envioCorreoFacebook(){
+  //   let userFacebook:any = firebase.auth().currentUser;
+  //   userFacebook.sendEmailVerification().then(
+  //     (success) => {
+  //       console.info("please verify your email - account facebook");
+  //         this.navCtrl.push(SingupPage);
+  //     }).catch(
+  //     (err) => {
+  //       console.error('error envio correo');
+  //       console.error(err);
+  //     }
+  //   )
+  // }
 
 
   goPhoneV(){
@@ -276,6 +276,7 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
             (err) => {
               console.error('error user create');
               console.error(err);
+              this.showAlertSignUp();
             });
         
         

@@ -8,10 +8,12 @@ import { HomePage } from '../pages/home/home';
 
 //import { CleaningContractorPage } from '../pages/cleaning-contractor/cleaning-contractor';
 //import { CleaningPage } from '../pages/cleaning/cleaning';
-import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
 //import { PreHomePage } from '../pages/pre-home/pre-home';
 
-//import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
+import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
+import { PaymentMethodsPage } from '../pages/payment-methods/payment-methods';
+// import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
+
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { ShowPage } from '../pages/show/show';
@@ -37,6 +39,7 @@ export class MyApp {
   //rootPage: any = PreHomePage;
   // rootPage: any = CleaningSalePage;
   rootPage: any = HomePage;
+  // rootPage: any = PaymentMethodsPage;
   // mensage : string = '';
   userMenu:any;
   pages: Array<{title: string, component: any}>;
@@ -65,7 +68,12 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.usuarioLogeado();
     });
+   
+  }
+
+  usuarioLogeado(){
     let userDBLoad:any;
     let goPagePrehomeLoad = false;
     this.afAuth.authState.subscribe( userAuth => {
@@ -84,7 +92,7 @@ export class MyApp {
                 if(user != undefined && user != null){
                     //console.log('usuario load data');
                     //console.log(user);
-                    userDBLoad = user;
+                    // userDBLoad = user;
                     this.userMenu = { "email":user['user_email'],"name":user['user_name'],"pais":user['user_pais'],"password":user['user_password'],"picture":user['user_picture'],"state":user['user_state'],"tel":user['user_tel'],"username":user['user_username'],"verificacion":user['$key'],"zipcode":user['user_zipcode']};
                     this.userName= user['user_username'];
                     if(user['user_picture'] && user['user_picture'] != '' && user['user_picture'] != null && user['user_picture'] != undefined){
@@ -94,11 +102,11 @@ export class MyApp {
                       this.star= user['user_star'];
                     }
 
-                    goPagePrehomeLoad= true;
-                    console.log(goPagePrehomeLoad);
-                    if(goPagePrehomeLoad){
-                      this.goNextPagePrehomeFace(userDBLoad);
-                    }
+                    // goPagePrehomeLoad= true;
+                    // console.log(goPagePrehomeLoad);
+                    // if(goPagePrehomeLoad){
+                    //   ---this.goNextPagePrehomeFace(userDBLoad);
+                    // }
                 }
               });
             });
@@ -158,12 +166,5 @@ export class MyApp {
   }
 
   
-  goNextPagePrehomeFace(datos:any){
-    //console.log(datos);
-    //console.log(datos['$key']);
-    this.userDataUpdate ={ "email":datos['user_email'],"name":datos['user_name'],"pais":datos['user_pais'],"password":datos['user_password'],"picture":datos['user_picture'],"state":datos['user_state'],"tel":datos['user_tel'],"username":datos['user_username'],"verificacion":datos['$key'],"zipcode":datos['user_zipcode']};
-    //console.log(this.userDataUpdate);
-    let Data = {'datos':this.userDataUpdate}
-    this.nav.setRoot(PreHomePage,Data);
-  }
+  
 }

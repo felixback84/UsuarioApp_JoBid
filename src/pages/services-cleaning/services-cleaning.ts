@@ -3,7 +3,9 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { CleaningSalePage } from '../cleaning-sale/cleaning-sale';
 
-import { CleaningProfessionsService } from '../../services/cleaningProfessions.service';
+// import { CleaningProfessionsService } from '../../services/cleaningProfessions.service';
+
+import { OfferService } from '../../services/offer.service';
 import { SaleService } from '../../services/sale.service';
 /**
  * Generated class for the ServicesCleaningPage page.
@@ -47,7 +49,8 @@ export class ServicesCleaningPage {
     moreInformation:any;
   
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private cleanProfessionS: CleaningProfessionsService,
+    // private cleanProfessionS: CleaningProfessionsService,
+    private offerService: OfferService,
     private saleService:SaleService    
   ) {
     this.dataService = this.navParams.get('datos');
@@ -90,8 +93,8 @@ export class ServicesCleaningPage {
     // console.log(this.dataService);
     // let subCategory=this.dataService['Clasificacion']['categoria'];
     //this.careProfessionS.newOffer(this.dataService,subCategory,keyOffer);
-    this.cleanProfessionS.newOffer(this.dataService,keyOffer);
-    
+    // this.cleanProfessionS.newOffer(this.dataService,keyOffer);
+    this.offerService.newOffer(this.dataService,keyOffer);
     // console.log(localStorage);
     let maxOffer=datos['0']['maxOffer'];
     let userLocal = localStorage.getItem('verificacion');

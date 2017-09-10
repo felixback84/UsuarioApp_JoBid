@@ -1,8 +1,7 @@
-page-payments {
-    h3{text-align: center; font-weight: bold;}
-    h4{font-weight: bold;}
-}
-ion-footer ion-toolbar {
+page-add-payment-method {
+    .barraRoja{
+		background:$Red;
+    }
     .btnBottom{
         width: 80%;
         margin: auto;
@@ -15,5 +14,8 @@ ion-footer ion-toolbar {
             border-radius: 5px;
         }
     }
-
+    .braintree-placeholder{
+        text-align: center;
+        margin-top: 20px;
+    }
 }

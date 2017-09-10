@@ -35,8 +35,10 @@ import { ServicesTransportationPage } from '../pages/services-transportation/ser
 import { ServicesFoodPage } from '../pages/services-food/services-food';
 import { ServicesLegalPage } from '../pages/services-legal/services-legal';
 import { ServicesBeautyPage } from '../pages/services-beauty/services-beauty';
-
 import { MyServicesPage } from '../pages/my-services/my-services';
+import { MyserviceinfoPage } from '../pages/myserviceinfo/myserviceinfo';
+import { AddPaymentMethodPage } from '../pages/add-payment-method/add-payment-method';
+
 //import { ProfessionPage } from '../pages/profession/profession';
 
 //---services
@@ -61,6 +63,7 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { AgmCoreModule } from '@agm/core';
 import { Geolocation } from '@ionic-native/geolocation';
+
 //import firebase from 'firebase';
 
 //import { EmailComposer } from '@ionic-native/email-composer';
@@ -72,6 +75,7 @@ export const firebaseConfig = {
     storageBucket: "usuarioappjobid.appspot.com",
     messagingSenderId: "679089691484"
 };
+
 export const googleMapsKey = 'AIzaSyB8zF6lhZegDjsV_mrqxd9Fb3YFTw2__AA';
 
 @NgModule({
@@ -107,6 +111,8 @@ export const googleMapsKey = 'AIzaSyB8zF6lhZegDjsV_mrqxd9Fb3YFTw2__AA';
     ServicesFoodPage,
     ServicesLegalPage,
     ServicesBeautyPage,
+    MyserviceinfoPage,
+    AddPaymentMethodPage,
   ],
   imports: [
     BrowserModule, HttpModule,
@@ -155,6 +161,8 @@ export const googleMapsKey = 'AIzaSyB8zF6lhZegDjsV_mrqxd9Fb3YFTw2__AA';
     ServicesFoodPage,
     ServicesLegalPage,
     ServicesBeautyPage,
+    MyserviceinfoPage,
+    AddPaymentMethodPage,
   ],
   providers: [
     StatusBar,

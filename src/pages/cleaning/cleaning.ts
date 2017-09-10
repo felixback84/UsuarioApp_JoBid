@@ -34,8 +34,8 @@ export class CleaningPage {
   certificacion:any="";
   seguro:any="";
   // distancia:any;
-  // esperiencia:any;
-  dataClasificaion = {"categoria":"","certificacion":"","seguro":"","distancia":"","esperiencia":""};
+  // experiencia:any;
+  dataClasificaion = {"categoria":"","certificacion":"","seguro":"","distancia":"","experiencia":""};
   constructor(public navCtrl: NavController, public navParams: NavParams, private professionsService:ProfessionsService) {
      this.dataService = this.navParams.get('datos');
      console.log(this.dataService['name']);
@@ -65,7 +65,7 @@ export class CleaningPage {
       this.dataClasificaion['seguro']="false";
     }
     // this.dataService['distancia']=this.distancia;
-    // this.dataService['esperiencia']=this.esperiencia;
+    // this.dataService['experiencia']=this.experiencia;
     this.dataService['Clasificacion']=this.dataClasificaion;
     console.log(this.dataService);
     let DataService = {'datos':this.dataService};

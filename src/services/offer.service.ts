@@ -30,7 +30,26 @@ export class OfferService{
 		console.log(serviceData);
 		// console.log(JSON.stringify(serviceData));
 		// console.log(subCategory);
-		this.afDB.object('/offer/'+keyOffer).set(serviceData).catch(error => {console.log('error setNOff'); console.log(error);console.log(JSON.stringify(error));});
+		this.afDB.object('/offer/'+keyOffer).set(serviceData).catch(error => {console.log('error offer setNOff'); console.log(error);console.log(JSON.stringify(error));});
 		console.info('offer create');
+	}
+
+	public setStatus(keyOffer,status){
+		return this.afDB.object('/offer/'+keyOffer+'/status/').set(status).catch(error => {console.log('error offer setstatus'); console.log(error);console.log(JSON.stringify(error));});
+	}
+	public setSale(keyOffer,sale){
+		return this.afDB.object('/offer/'+keyOffer+'/sale/').set(sale).catch(error => {console.log('error offer setSale'); console.log(error);console.log(JSON.stringify(error));});
+	}
+	public setUser(keyOffer,User){
+		return this.afDB.object('/offer/'+keyOffer+'/User/').set(User).catch(error => {console.log('error offer setUser'); console.log(error);console.log(JSON.stringify(error));});
+	}
+	public setProvider(keyOffer,Provider){
+		return this.afDB.object('/offer/'+keyOffer+'/Profession/').set(Provider).catch(error => {console.log('error offer setUser'); console.log(error);console.log(JSON.stringify(error));});
+	}
+	public getStatus(keyOffer){
+		return this.afDB.object('/offer/'+keyOffer+'/status/');
+	}
+	public getOffer(keyOffer){
+		return this.afDB.object('/offer/'+keyOffer);
 	}
 }

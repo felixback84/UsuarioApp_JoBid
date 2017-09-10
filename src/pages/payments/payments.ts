@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+
+import { AddPaymentMethodPage } from '../add-payment-method/add-payment-method';
 /**
  * Generated class for the PaymentsPage page.
  *
@@ -19,6 +21,9 @@ export class PaymentsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PaymentsPage');
+  }
+  goAddPaymentMethod(){
+    this.navCtrl.push(AddPaymentMethodPage);
   }
 
 }

@@ -30,6 +30,7 @@
     "@ionic/storage": "2.0.1",
     "angularfire2": "^4.0.0-rc.1",
     "braintree-web": "^3.22.1",
+    "braintree-web-drop-in": "^1.7.0",
     "cities": "^1.1.2",
     "cordova-android": "^6.2.3",
     "cordova-plugin-compat": "^1.0.0",
