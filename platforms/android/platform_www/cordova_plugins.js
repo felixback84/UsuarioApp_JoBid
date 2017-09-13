@@ -75,6 +75,28 @@ module.exports = [
         "clobbers": [
             "window.sms"
         ]
+    },
+    {
+        "id": "cordova-plugin-geolocation.geolocation",
+        "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
+        "pluginId": "cordova-plugin-geolocation",
+        "clobbers": [
+            "navigator.geolocation"
+        ]
+    },
+    {
+        "id": "cordova-plugin-geolocation.PositionError",
+        "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
+        "pluginId": "cordova-plugin-geolocation",
+        "runs": true
+    },
+    {
+        "id": "cordova-plugin-nativegeocoder.NativeGeocoder",
+        "file": "plugins/cordova-plugin-nativegeocoder/www/NativeGeocoder.js",
+        "pluginId": "cordova-plugin-nativegeocoder",
+        "clobbers": [
+            "nativegeocoder"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -89,7 +111,10 @@ module.exports.metadata =
     "ionic-plugin-keyboard": "2.2.1",
     "cordova-plugin-nativestorage": "2.2.2",
     "cordova-plugin-email-composer": "0.8.7",
-    "cordova-sms-plugin": "0.1.11"
+    "cordova-sms-plugin": "0.1.11",
+    "cordova-plugin-compat": "1.0.0",
+    "cordova-plugin-geolocation": "2.4.3",
+    "cordova-plugin-nativegeocoder": "2.0.2"
 };
 // BOTTOM OF METADATA
 });

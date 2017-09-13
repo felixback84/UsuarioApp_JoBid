@@ -17,7 +17,7 @@ export class OfferService{
 		let key = undefined;
 		//default star
 		console.log(JSON.stringify(serviceData));
-		console.log('key:'+key);
+		// console.log('key:'+key);
 		console.log('keyNew:'+keyNew);
 		if(keyNew && keyNew != null  && keyNew != undefined){
 			keyOffer = keyNew;

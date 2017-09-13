@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { GeocodeServiceProvider } from '../providers/geocode-service';
 
 //---pages
 import { MyApp } from './app.component';
@@ -53,6 +54,7 @@ import { CleaningProfessionsService } from '../services/cleaningProfessions.serv
 import { SaleService } from '../services/sale.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
+import {  NativeGeocoder} from '@ionic-native/native-geocoder';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Facebook } from '@ionic-native/facebook';
 import { AngularFireModule } from 'angularfire2';
@@ -77,6 +79,9 @@ export const firebaseConfig = {
 };
 
 export const googleMapsKey = 'AIzaSyB8zF6lhZegDjsV_mrqxd9Fb3YFTw2__AA';
+
+// AIzaSyAQX3yZ5oIh8mXpohNBapYrfvT7qr19IK4
+
 
 @NgModule({
   declarations: [
@@ -169,6 +174,7 @@ export const googleMapsKey = 'AIzaSyB8zF6lhZegDjsV_mrqxd9Fb3YFTw2__AA';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
+    GeocodeServiceProvider,
     BraintreeService,
     ProfessionalsService,
     OfferService,
@@ -180,6 +186,7 @@ export const googleMapsKey = 'AIzaSyB8zF6lhZegDjsV_mrqxd9Fb3YFTw2__AA';
     EncriptyService,
     Facebook,
     Geolocation,
+    NativeGeocoder,
     // EmailComposer
   ]
 })

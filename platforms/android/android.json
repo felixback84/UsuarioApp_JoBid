@@ -67,6 +67,14 @@
                         {
                             "xml": "<feature name=\"Sms\"><param name=\"android-package\" value=\"com.cordova.plugins.sms.Sms\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Geolocation\"><param name=\"android-package\" value=\"org.apache.cordova.geolocation.Geolocation\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"NativeGeocoder\"><param name=\"android-package\" value=\"cordova.plugin.nativegeocoder.NativeGeocoder\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -118,6 +126,24 @@
                             "xml": "<uses-feature android:name=\"android.hardware.telephony\" android:required=\"false\" />",
                             "count": 1
                         }
+                    ],
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-feature android:name=\"android.hardware.location.gps\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+                            "count": 1
+                        }
                     ]
                 }
             }
@@ -154,6 +180,15 @@
             "PACKAGE_NAME": "com.JoBit.com"
         },
         "cordova-sms-plugin": {
+            "PACKAGE_NAME": "com.JoBit.com"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.JoBit.com"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.JoBit.com"
+        },
+        "cordova-plugin-nativegeocoder": {
             "PACKAGE_NAME": "com.JoBit.com"
         }
     },
@@ -234,6 +269,28 @@
             "clobbers": [
                 "window.sms"
             ]
+        },
+        {
+            "id": "cordova-plugin-geolocation.geolocation",
+            "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
+            "pluginId": "cordova-plugin-geolocation",
+            "clobbers": [
+                "navigator.geolocation"
+            ]
+        },
+        {
+            "id": "cordova-plugin-geolocation.PositionError",
+            "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
+            "pluginId": "cordova-plugin-geolocation",
+            "runs": true
+        },
+        {
+            "id": "cordova-plugin-nativegeocoder.NativeGeocoder",
+            "file": "plugins/cordova-plugin-nativegeocoder/www/NativeGeocoder.js",
+            "pluginId": "cordova-plugin-nativegeocoder",
+            "clobbers": [
+                "nativegeocoder"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -246,6 +303,9 @@
         "ionic-plugin-keyboard": "2.2.1",
         "cordova-plugin-nativestorage": "2.2.2",
         "cordova-plugin-email-composer": "0.8.7",
-        "cordova-sms-plugin": "0.1.11"
+        "cordova-sms-plugin": "0.1.11",
+        "cordova-plugin-compat": "1.0.0",
+        "cordova-plugin-geolocation": "2.4.3",
+        "cordova-plugin-nativegeocoder": "2.0.2"
     }
 }

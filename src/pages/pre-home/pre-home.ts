@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 
 
 import { NewAddressPage } from '../new-address/new-address';
@@ -7,6 +7,14 @@ import { ShowPage } from '../show/show';
 
 //import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { UserService } from '../../services/user.service';
+import { Geolocation } from '@ionic-native/geolocation';
+
+import * as geonames from 'search-geonames';
+
+import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
+
+//provider create googleMaps
+import { GeocodeServiceProvider } from '../../providers/geocode-service';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 // import * as firebase from 'firebase/app';
@@ -27,12 +35,22 @@ export class PreHomePage {
   userData: any  = [];
   userActual = "user_1";
   userName = '';
+  //-- geoLocation
+  lat: number= 37.09024;
+  lng: number= -95.71289100000001;
+  zom: number = 17;
+  //-data
+  ObjAddress:any =[];
   constructor(  
       public navCtrl: NavController, 
       public navParams: NavParams, 
       //public authServiceProvider: AuthServiceProvider,
       private userService: UserService,
-      public afAuth: AngularFireAuth  
+      private geo: Geolocation, private platform: Platform,
+      public afAuth: AngularFireAuth,
+      private nativeGeocoder: NativeGeocoder,
+      private geocodeServiceProvider: GeocodeServiceProvider
+    
     ) {
   	// this.address =[
   	// 	{"label":"casa","name":"direccion1"},
@@ -66,6 +84,8 @@ export class PreHomePage {
       // }else{
       //   console.log('user no verificado');
       // }
+      // geonames.findNearBy(this.lat, this.lng, callback, options);
+      
 
   }
 
@@ -83,8 +103,47 @@ export class PreHomePage {
   }
 
   goLocation(){
-
+    // this.getUserLocation();
+    this.getUserLocationGeolocation();
+    // this.getNames();
+    // this.getNamesDireccion();
+    // this.getNameAddress();
   }
+  // getNames(){
+  //   // you can use Geonames options to manage result format
+  //   var options = {
+  //     language: ''
+  //   };
+  //   geonames.findNearBy(4.5510497999999995, -74.0984553, (err, result)=>{
+  //     // geonames.findNearBy(this.lat, this.lng, (err, result)=>{
+  //       if (err) {
+  //         console.log("There was an error resolving coordinates.");
+  //         console.log(err);
+  //         return;
+  //       }
+        
+  //       console.log("Result: " + JSON.stringify(result));
+  //       console.log('result findNearBy');
+  //       console.log(result);
+  //     },'en');
+  //   }
+    
+  //   getNamesDireccion(){
+  //     //no disponible para browser
+  //     this.nativeGeocoder.reverseGeocode(52.5072095, 13.1452818)
+  //     .then((result: NativeGeocoderReverseResult) => console.log(JSON.stringify(result)))
+  //     .catch((error: any) => console.log(error));
+  //   }
+    
+    getNameAddress(){
+      this.geocodeServiceProvider.GeoCodificationInversa(this.lat,this.lng)
+      // this.geocodeServiceProvider.GeoCodificationInversa('4.5510497999999995','-74.0984553')
+      .then( (result) => {
+        console.log(result);
+        this.guardarDireccionGeo(result);
+      })
+      .catch( (error) => { console.log(error); console.log('error geoCdoficiacion');});
+    }
 
   getAddressUser(userId: string ){
     this.userService.getAddress(userId)
@@ -127,5 +186,52 @@ export class PreHomePage {
     //   }
     // });
   }
+  
+  // private getUserLocation() {
+  //   /// locate the user
+  //   // console.info('get User location2');
+  //   // console.info(navigator);
+  //   //console.info(navigator.geolocation);
+  //   //console.info(JSON.stringify(navigator));
+  //   //console.info(JSON.stringify(navigator.geolocation));
+  //   var geolocationz = navigator.geolocation;
+  //   console.log(geolocationz);
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition((position) => {
+  //       console.log('Location');
+  //       this.lat = position.coords.latitude;
+  //       this.lng = position.coords.longitude;
+  //       console.info(position.coords.latitude);
+  //       console.info(position.coords.longitude);
+  //     });
+  //   }
+  // }
 
+  private getUserLocationGeolocation(){
+    this.platform.ready().then(() => {
+      var options = {
+        timeout: 5000
+      };
+      this.geo.getCurrentPosition(options).then(resp => {
+        console.log('geoLocation');
+        // console.log(resp);
+        // console.log(resp.coords);
+        // console.info(JSON.stringify(resp));
+        console.info(resp.coords.latitude);
+        console.info(resp.coords.longitude);
+        this.lat = resp.coords.latitude;
+        this.lng = resp.coords.longitude;
+        this.getNameAddress();
+      }).catch(() => {
+        console.log("Error to get location");
+      });
+    });
+  }
+
+  guardarDireccionGeo(geoDireccion){
+    let label = 'My Address';
+    this.ObjAddress.push({"label":label,"name":geoDireccion});
+    console.log(this.ObjAddress);
+    this.userService.newAddress(this.userActual,this.ObjAddress);
+  }
 }

@@ -74,10 +74,17 @@ page-cleaning-sale {
 			background: #444;
 			color: white;
 			box-shadow: none;
+			display: block;
+			margin: 0 auto;
 			margin-top: 6px;
 			ion-icon[name=search]{
 				color:white;
-				font-size:30px;
+				width: 45px;
+				height: 45px;
+				font-size: 28px;
+				padding: 7.5px !important;
+				padding-top: 13px !important;
+				
 			}
 		}
 	}

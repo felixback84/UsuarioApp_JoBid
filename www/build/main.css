@@ -4075,6 +4075,10 @@ form{
   color: blue;
 }
 
+.pink {
+  color: pink;
+}
+
 ion-action-sheet {
   left: 0;
   top: 0;
@@ -25498,6 +25502,29 @@ ion-item.imgUser.item-ios ion-thumbnail ion-img, ion-item.imgUser.item-ios ion-t
   text-align: center;
 }
 
+page-add-payment-method .barraRoja {
+  background: #b20000;
+}
+
+page-add-payment-method .btnBottom {
+  width: 80%;
+  margin: auto;
+}
+
+page-add-payment-method .btnBottom button {
+  background: #b20000;
+  color: white;
+  margin: 0;
+  width: 100%;
+  height: 48px;
+  border-radius: 5px;
+}
+
+page-add-payment-method .braintree-placeholder {
+  text-align: center;
+  margin-top: 20px;
+}
+
 page-cleaning .imgCenter ion-icon {
   width: 90px;
   display: block;
@@ -25802,16 +25829,28 @@ page-cleaning-sale ion-content ion-grid.body .button {
   color: white;
   -webkit-box-shadow: none;
   box-shadow: none;
+  display: block;
+  margin: 0 auto;
   margin-top: 6px;
 }
 
 page-cleaning-sale ion-content ion-grid.body .button ion-icon[name=search] {
   color: white;
-  font-size: 30px;
+  width: 45px;
+  height: 45px;
+  font-size: 28px;
+  padding: 7.5px !important;
+  padding-top: 13px !important;
 }
 
 page-cleaning-sale .btnBottom {
   margin-top: 20px;
+}
+
+page-cleaning-sale .mapa agm-map {
+  width: 100%;
+  height: 300px;
+  background: orange;
 }
 
 .alert-md .alert-wrapper, .alert-ios .alert-wrapper {
@@ -25867,6 +25906,44 @@ page-cleaning-vote textarea.text-input.text-input-md, page-cleaning-vote textare
   height: 300px;
 }
 
+page-edit-user h3 {
+  text-align: center;
+  font-weight: bold;
+}
+
+page-edit-user h4 {
+  font-weight: bold;
+}
+
+page-edit-user #signup-heading2 {
+  color: #000000;
+  text-align: center;
+}
+
+page-edit-user .force-back-button .back-button {
+  display: inline-block;
+}
+
+page-edit-user ion-list ion-grid.grid {
+  padding: 0;
+}
+
+page-edit-user ion-list ion-grid.grid .col {
+  padding: 0;
+}
+
+page-edit-user ion-list ion-grid.grid .col:first-child {
+  padding-right: 5px;
+}
+
+page-edit-user .grid {
+  padding: 0;
+}
+
+page-edit-user .grid [col-4], page-edit-user .grid [col-8] {
+  padding: 0;
+}
+
 page-home img {
   display: block;
   width: 100%;
@@ -25891,6 +25968,72 @@ page-login img {
 page-login #login-heading1 {
   color: #000000;
   text-align: center;
+}
+
+page-my-services h3 {
+  text-align: center;
+  font-weight: bold;
+}
+
+page-my-services h4 {
+  font-weight: bold;
+}
+
+page-my-services .btnItem {
+  border-bottom: 1px solid #666666;
+}
+
+page-myserviceinfo h3, page-myserviceinfo h5, page-myserviceinfo h6, page-myserviceinfo .textoCentrado {
+  text-align: center;
+}
+
+page-myserviceinfo h6, page-myserviceinfo h3 {
+  margin: 0;
+}
+
+page-myserviceinfo .barraGris {
+  background: #666666;
+}
+
+page-myserviceinfo .barraGris h4 {
+  padding: 10px;
+  color: white;
+  margin: 0;
+  text-align: center;
+}
+
+page-myserviceinfo .barraRoja {
+  background: #b20000;
+}
+
+page-myserviceinfo .item-md ion-avatar > img, page-myserviceinfo .item-ios ion-avatar > img {
+  margin: 0;
+  width: 80px;
+  height: 80px;
+}
+
+page-myserviceinfo h6 {
+  color: #2b8300;
+}
+
+page-myserviceinfo h3 {
+  margin-top: 5px;
+}
+
+page-myserviceinfo .textRed {
+  color: #b20000;
+}
+
+page-myserviceinfo p {
+  margin: 7px 0;
+}
+
+page-myserviceinfo .space {
+  height: 8px;
+}
+
+page-myserviceinfo .textoCentrado {
+  margin: 0;
 }
 
 page-new-address img {
@@ -25974,6 +26117,29 @@ page-payment-methods .spacer {
   height: 10px;
 }
 
+page-payments h3 {
+  text-align: center;
+  font-weight: bold;
+}
+
+page-payments h4 {
+  font-weight: bold;
+}
+
+ion-footer ion-toolbar .btnBottom {
+  width: 80%;
+  margin: auto;
+}
+
+ion-footer ion-toolbar .btnBottom button {
+  background: #b20000;
+  color: white;
+  margin: 0;
+  width: 100%;
+  height: 48px;
+  border-radius: 5px;
+}
+
 page-pre-home .card-background-page ion-card {
   position: relative;
   text-align: center;
@@ -26030,6 +26196,264 @@ page-pre-home ion-list button.item-md h3, page-pre-home ion-list button.item-ios
   color: black;
   text-transform: capitalize;
   font-weight: bold;
+}
+
+page-pre-home .mapa agm-map {
+  width: 100%;
+  height: 300px;
+  background: orange;
+}
+
+page-services-beauty ion-col#btn-camera {
+  padding-top: 0px;
+}
+
+page-services-beauty ion-col#btn-camera button {
+  height: 48px;
+  width: 100%;
+}
+
+page-services-beauty .imgCenter ion-icon {
+  width: 90px;
+  display: block;
+  margin: 0 auto;
+  font-size: 8em;
+}
+
+page-services-beauty h4, page-services-beauty p {
+  text-align: center;
+}
+
+page-services-beauty .TituloRojo h4 {
+  background: #b20000;
+  border-radius: 8px;
+  width: 200px;
+  margin: 0 auto;
+  color: white;
+}
+
+page-services-beauty .grid .row {
+  height: 60px;
+}
+
+page-services-beauty .grid .rowArea.row {
+  height: 90px;
+}
+
+page-services-care ion-col#btn-camera {
+  padding-top: 0px;
+}
+
+page-services-care ion-col#btn-camera button {
+  height: 48px;
+  width: 100%;
+}
+
+page-services-care .imgCenter ion-icon {
+  width: 90px;
+  display: block;
+  margin: 0 auto;
+  font-size: 8em;
+}
+
+page-services-care h4, page-services-care p {
+  text-align: center;
+}
+
+page-services-care .TituloRojo h4 {
+  background: #b20000;
+  border-radius: 8px;
+  width: 200px;
+  margin: 0 auto;
+  color: white;
+}
+
+page-services-care .grid .row {
+  height: 60px;
+}
+
+page-services-care .btnBottom {
+  margin-top: 30px;
+}
+
+page-services-cleaning ion-col#btn-camera {
+  padding-top: 0px;
+}
+
+page-services-cleaning ion-col#btn-camera button {
+  height: 48px;
+  width: 100%;
+}
+
+page-services-cleaning .imgCenter ion-icon {
+  width: 90px;
+  display: block;
+  margin: 0 auto;
+  font-size: 8em;
+}
+
+page-services-cleaning h4, page-services-cleaning p {
+  text-align: center;
+}
+
+page-services-cleaning .TituloRojo h4 {
+  background: #b20000;
+  border-radius: 8px;
+  width: 200px;
+  margin: 0 auto;
+  color: white;
+}
+
+page-services-cleaning .grid .row {
+  height: 60px;
+}
+
+page-services-cleaning .grid .rowArea.row {
+  height: 90px;
+}
+
+page-services-food ion-col#btn-camera {
+  padding-top: 0px;
+}
+
+page-services-food ion-col#btn-camera button {
+  height: 48px;
+  width: 100%;
+}
+
+page-services-food .imgCenter ion-icon {
+  width: 90px;
+  display: block;
+  margin: 0 auto;
+  font-size: 8em;
+}
+
+page-services-food h4, page-services-food p {
+  text-align: center;
+}
+
+page-services-food .TituloRojo h4 {
+  background: #b20000;
+  border-radius: 8px;
+  width: 200px;
+  margin: 0 auto;
+  color: white;
+}
+
+page-services-food .grid .row {
+  height: 60px;
+}
+
+page-services-food .grid .rowArea.row {
+  height: 90px;
+}
+
+page-services-janotorial ion-col#btn-camera {
+  padding-top: 0px;
+}
+
+page-services-janotorial ion-col#btn-camera button {
+  height: 48px;
+  width: 100%;
+}
+
+page-services-janotorial .imgCenter ion-icon {
+  width: 90px;
+  display: block;
+  margin: 0 auto;
+  font-size: 8em;
+}
+
+page-services-janotorial h4, page-services-janotorial p {
+  text-align: center;
+}
+
+page-services-janotorial .TituloRojo h4 {
+  background: #b20000;
+  border-radius: 8px;
+  width: 200px;
+  margin: 0 auto;
+  color: white;
+}
+
+page-services-janotorial .grid .row {
+  height: 60px;
+}
+
+page-services-janotorial .grid .rowArea.row {
+  height: 90px;
+}
+
+page-services-legal ion-col#btn-camera {
+  padding-top: 0px;
+}
+
+page-services-legal ion-col#btn-camera button {
+  height: 48px;
+  width: 100%;
+}
+
+page-services-legal .imgCenter ion-icon {
+  width: 90px;
+  display: block;
+  margin: 0 auto;
+  font-size: 8em;
+}
+
+page-services-legal h4, page-services-legal p {
+  text-align: center;
+}
+
+page-services-legal .TituloRojo h4 {
+  background: #b20000;
+  border-radius: 8px;
+  width: 200px;
+  margin: 0 auto;
+  color: white;
+}
+
+page-services-legal .grid .row {
+  height: 60px;
+}
+
+page-services-legal .grid .rowArea.row {
+  height: 90px;
+}
+
+page-services-transportation ion-col#btn-camera {
+  padding-top: 0px;
+}
+
+page-services-transportation ion-col#btn-camera button {
+  height: 48px;
+  width: 100%;
+}
+
+page-services-transportation .imgCenter ion-icon {
+  width: 90px;
+  display: block;
+  margin: 0 auto;
+  font-size: 8em;
+}
+
+page-services-transportation h4, page-services-transportation p {
+  text-align: center;
+}
+
+page-services-transportation .TituloRojo h4 {
+  background: #b20000;
+  border-radius: 8px;
+  width: 200px;
+  margin: 0 auto;
+  color: white;
+}
+
+page-services-transportation .grid .row {
+  height: 60px;
+}
+
+page-services-transportation .grid .rowArea.row {
+  height: 90px;
 }
 
 page-show .gridProfession {

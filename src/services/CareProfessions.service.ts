@@ -40,7 +40,7 @@ export class CareProfessionsService{
 	// public newOffer(serviceData : any = [],subCategory:string,keyNew?:any){
 		let key = undefined;
 		//default star
-		console.log('key:'+key);
+		// console.log('key:'+key);
 		console.log('keyNew:'+keyNew);
 		if(keyNew && keyNew != null  && keyNew != undefined){
 			keyOffer = keyNew;

@@ -40,22 +40,25 @@ export class MyServicesPage {
     .subscribe((value)=>{
       console.log(value);
       // console.log('get saleKey');
-    if(value['$value'] == null){  
-      //alert('User does not have services');
-      this.showAlertNoServices();
-    }else{
-      for(let key in value){
-        // console.log(key);
-        // this.offerService.getOffer(key);
-        // this.keyOffer.push(key);
-        OfferServiceGet = this.offerService.getOffer(key)
-        .subscribe((datos) =>{
-          console.info('get offerKey');
-          console.log(datos);
-          this.OffersList.push(datos);
-        });
+      // value.forEach((data) =>{
+        //   console.log(data);
+        // });
+        for(let key in value){
+          // console.log(key);
+          if('$value' == key){  
+          //   //alert('User does not have services');
+            this.showAlertNoServices();
+          }else{
+          // this.offerService.getOffer(key);
+          // this.keyOffer.push(key);
+          OfferServiceGet = this.offerService.getOffer(key)
+          .subscribe((datos) =>{
+            console.info('get offerKey');
+            console.log(datos);
+            this.OffersList.push(datos);
+          });
+        }
       }
-    }
       // OfferServiceGet.unsubscribe();
       SaleServiceGet.unsubscribe();
     });

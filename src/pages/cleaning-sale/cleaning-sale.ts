@@ -61,6 +61,7 @@ export class CleaningSalePage {
   ) {
       this.contador = '0'+this.minutos+':'+'0'+this.segundos;
       this.startTimer();
+      
       // this.getProfessionals();
     }
     
@@ -73,13 +74,15 @@ export class CleaningSalePage {
     this.keyOffer = this.dataOffer['offer']; 
     this.userActual = localStorage.getItem('verificacion');
     console.log(this.dataOffer);
+    console.log(JSON.stringify(this.dataService));
     
     //--Fin-comentado para evitar mas creaciones
     
     //--Ini-comentado para tener flujo normal
-    // this.userActual = "user_1504541320655";
-    // this.keyOffer = "offer_1504879203665"; 
-    // this.dataService = { "Clasificacion" : {  "categoria" : "Car washers", "certificacion" : "true",  "distancia" : "4M","experiencia" : "3Y","informacion" : {"brandCar" : "323","foto" : "","maxOffer" : "453","moreInformation" : "dsads","typeCar" : "fas"},"seguro" : "true"},"class" : "yellow","name" : "Cleaning"}; 
+    // this.userActual = "user_1504881933094";
+    // this.keyOffer = "offer_1505227659259"; 
+    // this.dataService = {"name":"Cleaning","class":"yellow","Clasificacion":{"categoria":"Maids","certificacion":"true","seguro":"true","distancia":"4M","experiencia":"3Y","informacion":{"maxOffer":"123","placeMaid":"grande","roomMaid":"1","batMaid":"1","foto":"","moreInformation":"maid service info"}}};
+    // this.maxOffer = 453;
     //--Fin-comentado para tener flujo normal
     this.getUserLocation();
     this.getUserLocationGeolocation();
@@ -277,6 +280,7 @@ export class CleaningSalePage {
         //console.log(this.Workers[index]);
         if(this.MenosPrecio == this.Workers[index]['offer']){
           this.goCleaningContractor(this.Workers[index]);
+          this.showAlertFinOffer();
         }
       }
     }else{
@@ -287,6 +291,7 @@ export class CleaningSalePage {
   goServiceSinOff(){
      //--set status offer y sale
      console.info('Sin Offer');
+     this.showAlertSinOffer();
     this.saleService.setStatus(this.userActual,this.keyOffer,'Saved');
     this.offerService.setStatus(this.keyOffer,'Saved');
     clearInterval(this.objNodeTimer);
@@ -348,5 +353,22 @@ export class CleaningSalePage {
   //   });
   // console.log(this.professionals);
   // }
+
+  showAlertSinOffer() {
+    let alert = this.alertCtrl.create({
+      title: 'Information',
+      subTitle: 'No offers',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+  showAlertFinOffer() {
+    let alert = this.alertCtrl.create({
+      title: 'Information',
+      subTitle: 'The sale ended',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
   
 }
