@@ -9,9 +9,9 @@ import { ShowPage } from '../show/show';
 import { UserService } from '../../services/user.service';
 import { Geolocation } from '@ionic-native/geolocation';
 
-import * as geonames from 'search-geonames';
+// import * as geonames from 'search-geonames';
 
-import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
+// import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 
 //provider create googleMaps
 import { GeocodeServiceProvider } from '../../providers/geocode-service';
@@ -48,7 +48,7 @@ export class PreHomePage {
       private userService: UserService,
       private geo: Geolocation, private platform: Platform,
       public afAuth: AngularFireAuth,
-      private nativeGeocoder: NativeGeocoder,
+      // private nativeGeocoder: NativeGeocoder,
       private geocodeServiceProvider: GeocodeServiceProvider
     
     ) {
@@ -129,6 +129,7 @@ export class PreHomePage {
   //   }
     
   //   getNamesDireccion(){
+
   //     //no disponible para browser
   //     this.nativeGeocoder.reverseGeocode(52.5072095, 13.1452818)
   //     .then((result: NativeGeocoderReverseResult) => console.log(JSON.stringify(result)))
@@ -157,14 +158,16 @@ export class PreHomePage {
         
         this.address.push({"label":datosUsuario[usuario]['addr_label'],"name":datosUsuario[usuario]['addr_info']});
         if(cont == 1){
-          localStorage.setItem('address', JSON.stringify({"label":datosUsuario[usuario]['addr_label'],"name":datosUsuario[usuario]['addr_info']}));
-          cont += 1;
+          if(!localStorage.getItem('address')){
+            localStorage.setItem('address', JSON.stringify({"label":datosUsuario[usuario]['addr_label'],"name":datosUsuario[usuario]['addr_info']}));
+            cont += 1;
+          }
         }
         //console.log(this.address);
       }
       //console.log(datosUsuario);
     });
-    console.info(localStorage);
+    // console.info(localStorage);
   }
 
   getUrlDataAddres(){
@@ -229,9 +232,27 @@ export class PreHomePage {
   }
 
   guardarDireccionGeo(geoDireccion){
+    let booleanGuardarDireccion :boolean = true;
     let label = 'My Address';
     this.ObjAddress.push({"label":label,"name":geoDireccion});
-    console.log(this.ObjAddress);
-    this.userService.newAddress(this.userActual,this.ObjAddress);
+    //console.log(DataItem);  
+    // console.log(this.ObjAddress);
+    // console.log(this.ObjAddress['0']);
+    for(let key in this.address){
+      // console.log(this.address[key]['name']);
+      if(this.address[key]['name'] ==  geoDireccion){
+        booleanGuardarDireccion=false;
+      }
+    }
+    if(booleanGuardarDireccion != false){
+      // console.log(JSON.stringify(this.ObjAddress['0']));
+      this.userService.newAddress(this.userActual,this.ObjAddress);
+      localStorage.setItem('address',JSON.stringify({"label":label,"name":geoDireccion}));
+      this.navCtrl.setRoot(ShowPage);
+    }else{
+      localStorage.setItem('address',JSON.stringify({"label":label,"name":geoDireccion}));
+      this.navCtrl.setRoot(ShowPage);
+    }
+    // console.info(localStorage);
   }
 }

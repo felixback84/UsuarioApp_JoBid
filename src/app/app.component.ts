@@ -36,11 +36,11 @@ export class MyApp {
   userName: string = 'hola logeado';
   srcUser: string = 'assets/img/user.png';
   star:any = '3';
-  //rootPage: any = PreHomePage;
+   //rootPage: any = PreHomePage;
   // rootPage: any = CleaningSalePage;
   rootPage: any = HomePage;
   // rootPage: any = PaymentMethodsPage;
-  // mensage : string = '';
+  
   userMenu:any;
   pages: Array<{title: string, component: any}>;
   menu_is_enabled:boolean=true;

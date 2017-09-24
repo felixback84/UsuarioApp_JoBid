@@ -280,6 +280,8 @@ export class CleaningSalePage {
         //console.log(this.Workers[index]);
         if(this.MenosPrecio == this.Workers[index]['offer']){
           this.goCleaningContractor(this.Workers[index]);
+          this.saleService.setStatus(this.userActual,this.keyOffer,'Evaluation');
+          this.offerService.setStatus(this.keyOffer,'Evaluation');
           this.showAlertFinOffer();
         }
       }

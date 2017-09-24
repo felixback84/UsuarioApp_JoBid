@@ -37,6 +37,7 @@ export class ShowPage {
     //console.log(this.direccion);
     // MyApp.userName = 'soy nuevo';
     //console.log(MyApp);
+    // console.log(localStorage);
   }
 
  	// profession(){

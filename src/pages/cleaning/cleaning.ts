@@ -67,6 +67,9 @@ export class CleaningPage {
     // this.dataService['distancia']=this.distancia;
     // this.dataService['experiencia']=this.experiencia;
     this.dataService['Clasificacion']=this.dataClasificaion;
+    this.dataService['status']='Published';
+    let userLocal = localStorage.getItem('verificacion');
+    this.dataService['User']=userLocal;
     console.log(this.dataService);
     let DataService = {'datos':this.dataService};
     //this.navCtrl.push(CleaningInfoPage,DataService);

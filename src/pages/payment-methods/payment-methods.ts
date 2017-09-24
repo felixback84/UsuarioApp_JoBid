@@ -30,7 +30,7 @@ export class PaymentMethodsPage {
   gateway:any;
   constructor(
     public alertCtrl: AlertController,
-    public navCt0rl: NavController, public navParams: NavParams) {
+    public navCtrl: NavController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
