@@ -109,19 +109,19 @@ export class CleaningInfoServicePage {
     }
   }
   
-  //-temporal
-  modificarStatus(){
-    if(this.cont == 2){
-      this.saleService.setStatus(this.userActual,this.keyOffer,'Finalized');
-      this.offerService.setStatus(this.keyOffer,'Finalized');
-    }
-    if(this.cont == 1){
-      this.saleService.setStatus(this.userActual,this.keyOffer,'In progress');
-      this.offerService.setStatus(this.keyOffer,'In progress');
-      this.cont = 2;
-    }
+  // //-temporal
+  // modificarStatus(){
+  //   if(this.cont == 2){
+  //     this.saleService.setStatus(this.userActual,this.keyOffer,'Finalized');
+  //     this.offerService.setStatus(this.keyOffer,'Finalized');
+  //   }
+  //   if(this.cont == 1){
+  //     this.saleService.setStatus(this.userActual,this.keyOffer,'In progress');
+  //     this.offerService.setStatus(this.keyOffer,'In progress');
+  //     this.cont = 2;
+  //   }
 
-  }
+  // }
 
   //--- timer
   startTimer(){
@@ -134,10 +134,10 @@ export class CleaningInfoServicePage {
     if(this.status == 'Service completed' && this.segundos == 1){ 
         clearInterval(this.objNodeTimer);
         console.log('servicion fin');
-        this.  goCleaningVote();
+        this.goCleaningVote();
     }else{
       if(--this.segundos< 0){
-        this.modificarStatus();
+        // this.modificarStatus();
         this.segundos=10;
       }
     }

@@ -10,6 +10,10 @@ import { ShowPage } from '../show/show';
 
 //import { OfferService } from '../../services/offer.service';
 import { ProfessionalsService } from '../../services/professionals.service';
+
+//-geoCodeInverse
+import { GeocodeServiceProvider } from '../../providers/geocode-service';
+
 import { Geolocation } from '@ionic-native/geolocation';
 import * as GeoFire from 'geofire';
 /**
@@ -58,6 +62,7 @@ export class CleaningSalePage {
     private geo: Geolocation, private platform: Platform,
     private saleService: SaleService,  
     private offerService: OfferService,  
+    private geocodeServiceProvider: GeocodeServiceProvider,  
   ) {
       this.contador = '0'+this.minutos+':'+'0'+this.segundos;
       this.startTimer();
@@ -84,7 +89,7 @@ export class CleaningSalePage {
     // this.dataService = {"name":"Cleaning","class":"yellow","Clasificacion":{"categoria":"Maids","certificacion":"true","seguro":"true","distancia":"4M","experiencia":"3Y","informacion":{"maxOffer":"123","placeMaid":"grande","roomMaid":"1","batMaid":"1","foto":"","moreInformation":"maid service info"}}};
     // this.maxOffer = 453;
     //--Fin-comentado para tener flujo normal
-    this.getUserLocation();
+    // this.getUserLocation();
     this.getUserLocationGeolocation();
     this.getSale();
   }
@@ -193,7 +198,7 @@ export class CleaningSalePage {
 
   private timer(){
     if(this.minutos == 0 && this.segundos == 1){ 
-    // if(this.minutos == 1 && this.segundos == 58 ){ 
+    // if(this.minutos == 1 && this.segundos == 40 ){ 
       //this.showContador = false;
         clearInterval(this.objNodeTimer);
          this.showContador = false;
@@ -342,12 +347,23 @@ export class CleaningSalePage {
         console.info(resp.coords.longitude);
         this.lat = resp.coords.latitude;
         this.lng = resp.coords.longitude;
+        this.getNameAddress();
       }).catch(() => {
         console.log("Error to get location");
       });
     });
   }
-
+  
+  getNameAddress(){
+      this.geocodeServiceProvider.GeoCodificationInversa(this.lat,this.lng)
+      // this.geocodeServiceProvider.GeoCodificationInversa('4.5510497999999995','-74.0984553')
+      .then( (result) => {
+        console.log(result);
+        this.offerService.setOfferUserLocation(this.keyOffer,{'latitud':this.lat,'longitud':this.lng,'nameAddress':result});
+      })
+      .catch( (error) => { console.log(error); console.log('error geoCdoficiacion');});
+    }
+  
   // private getProfessionals(){
   //   this.professionalsService.getProfessionals()
   //   .forEach(professionals =>{

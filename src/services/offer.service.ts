@@ -46,6 +46,13 @@ export class OfferService{
 	public setProvider(keyOffer,Provider){
 		return this.afDB.object('/offer/'+keyOffer+'/Profession/').set(Provider).catch(error => {console.log('error offer setUser'); console.log(error);console.log(JSON.stringify(error));});
 	}
+	public setOfferUserLocation(keyOffer,UserLocation){
+		console.info('set UserLocation');
+		console.log(UserLocation);
+		this.afDB.object('/offer/'+keyOffer+'/UserLocacion').set(UserLocation).catch(error => {console.log('error offer setOfferUserLocation'); console.log(error);console.log(JSON.stringify(error));});
+	}
+
+	//-get
 	public getStatus(keyOffer){
 		return this.afDB.object('/offer/'+keyOffer+'/status/');
 	}
