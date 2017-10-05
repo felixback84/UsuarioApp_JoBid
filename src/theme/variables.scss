@@ -271,6 +271,27 @@ form{
 		h4{color:white; text-align: center;padding: 10px; margin:0;} 
 	}
 
+.clasificacion{
+	direction: rtl;/* right to left */
+	unicode-bidi: bidi-override;/* bidi de bidireccional */
+	width: 100%;
+	text-align: center;
+	
+	label{
+		color:black;
+		font-size: 25px;
+		text-align: center;
+		&:hover, &:hover ~ label{
+			color:$Red;
+		}
+	}
+
+	input[type="radio"]{display: none;}
+	input[type="radio"]:checked ~ label {
+		color: $Red;
+		}
+}
+
 /*color professions*/
 .red{color:red;}
 .orange{color:orange;}

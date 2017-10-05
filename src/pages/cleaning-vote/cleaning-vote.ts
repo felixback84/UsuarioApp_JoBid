@@ -15,11 +15,15 @@ import { CleaningOkPage } from '../cleaning-ok/cleaning-ok';
   templateUrl: 'cleaning-vote.html',
 })
 export class CleaningVotePage {
+  //-data
   datasService:any;
   dataService:any;
   keyOffer:any;
   worker:any;
   userActual:any;
+
+  //-view
+  vote:any=[];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -38,7 +42,10 @@ export class CleaningVotePage {
   }
 
   goCleaningOk(){
-  	this.navCtrl.setRoot(CleaningOkPage);
+    console.log(this.vote);
+    let DataService = {'datos':{"offer":this.keyOffer,"win":this.worker}};
+    console.log(DataService);
+  	// this.navCtrl.setRoot(CleaningOkPage,DataService);
   }
 
 }

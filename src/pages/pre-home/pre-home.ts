@@ -143,7 +143,7 @@ export class PreHomePage {
         console.log(result);
         this.guardarDireccionGeo(result);
       })
-      .catch( (error) => { console.log(error); console.log('error geoCdoficiacion');});
+      .catch( (error) => { console.log(error); console.log('error geoCdoficiacion'); alert('e getname location');});
     }
 
   getAddressUser(userId: string ){
@@ -222,13 +222,48 @@ export class PreHomePage {
         // console.info(JSON.stringify(resp));
         console.info(resp.coords.latitude);
         console.info(resp.coords.longitude);
+        alert(resp.coords.latitude);
+        alert(resp.coords.longitude);
         this.lat = resp.coords.latitude;
         this.lng = resp.coords.longitude;
         this.getNameAddress();
       }).catch(() => {
         console.log("Error to get location");
+        alert('e get location');
+        this.getUserLocation();
       });
     });
+  }
+
+  private getUserLocation() {
+    /// locate the user
+    // console.info('get User location2');
+    alert('get User location2');
+    // console.info(navigator);
+    //console.info(navigator.geolocation);
+    //console.info(JSON.stringify(navigator));
+    //console.info(JSON.stringify(navigator.geolocation));
+    // if (navigator) {
+    //   console.log('soportado2');
+    //   console.log(navigator);
+    // } else {
+    //   console.log('no soportado');
+    //   /* geolocation IS NOT available */
+    // }
+    var geolocationz = navigator.geolocation;
+    // console.log(geolocationz);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log('Location');
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
+        console.info(position.coords.latitude);
+        console.info(position.coords.longitude);
+        alert('pos-lat:'+position.coords.latitude);
+        alert('pos-lng:'+position.coords.longitude);
+        this.getNameAddress();
+      });
+    }
   }
 
   guardarDireccionGeo(geoDireccion){

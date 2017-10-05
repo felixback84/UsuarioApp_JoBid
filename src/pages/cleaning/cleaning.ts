@@ -25,6 +25,10 @@ import { ServicesBeautyPage } from '../services-beauty/services-beauty';
   templateUrl: 'cleaning.html',
 })
 export class CleaningPage {
+
+  //-vista
+  estrellas:any;
+
   dataService = [];
   dataCategoria = [];
   nameService:any;
@@ -54,6 +58,8 @@ export class CleaningPage {
   }
   cleaningInfo(){
     // this.dataService['subCategoria']=this.categoria;
+    localStorage.setItem('SubService',this.dataClasificaion['categoria']);
+
     if(this.certificacion != ""){
       this.dataClasificaion['certificacion']="true";
     }else{
@@ -64,6 +70,10 @@ export class CleaningPage {
     }else{
       this.dataClasificaion['seguro']="false";
     }
+
+    if(this.estrellas == undefined || this.estrellas == null || this.estrellas == ""){
+      this.estrellas = 1;
+    }
     // this.dataService['distancia']=this.distancia;
     // this.dataService['experiencia']=this.experiencia;
     this.dataService['Clasificacion']=this.dataClasificaion;
@@ -73,6 +83,9 @@ export class CleaningPage {
     console.log(this.dataService);
     let DataService = {'datos':this.dataService};
     //this.navCtrl.push(CleaningInfoPage,DataService);
+    // console.log(this.estrellas);
+    this.dataService['Star']=this.estrellas;
+    
     switch(this.nameService){
       case "Care" :{
        //this.dataCategoria = ["Child care","Senior care","Family asistance","Dog walker","Personal shopper"];

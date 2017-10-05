@@ -496,7 +496,7 @@ OfferService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pre_home_pre_home__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(386);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__singup_singup__ = __webpack_require__(387);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_user_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_user_service__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_firebase_app__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_firebase_app__);
@@ -690,7 +690,7 @@ HomePage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cities___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_cities__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_states_utils__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_states_utils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_states_utils__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pre_home_pre_home__ = __webpack_require__(72);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -843,6 +843,7 @@ var CleaningPage = (function () {
     };
     CleaningPage.prototype.cleaningInfo = function () {
         // this.dataService['subCategoria']=this.categoria;
+        localStorage.setItem('SubService', this.dataClasificaion['categoria']);
         if (this.certificacion != "") {
             this.dataClasificaion['certificacion'] = "true";
         }
@@ -855,6 +856,9 @@ var CleaningPage = (function () {
         else {
             this.dataClasificaion['seguro'] = "false";
         }
+        if (this.estrellas == undefined || this.estrellas == null || this.estrellas == "") {
+            this.estrellas = 1;
+        }
         // this.dataService['distancia']=this.distancia;
         // this.dataService['experiencia']=this.experiencia;
         this.dataService['Clasificacion'] = this.dataClasificaion;
@@ -864,6 +868,8 @@ var CleaningPage = (function () {
         console.log(this.dataService);
         var DataService = { 'datos': this.dataService };
         //this.navCtrl.push(CleaningInfoPage,DataService);
+        // console.log(this.estrellas);
+        this.dataService['Star'] = this.estrellas;
         switch (this.nameService) {
             case "Care": {
                 //this.dataCategoria = ["Child care","Senior care","Family asistance","Dog walker","Personal shopper"];
@@ -910,7 +916,7 @@ var CleaningPage = (function () {
 }());
 CleaningPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-cleaning',template:/*ion-inline-start:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\cleaning\cleaning.html"*/'<!--\n\n  Generated template for the CleaningPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n  <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>joBid</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n  <div class="imgCenter">\n\n	 <ion-icon name="contact" [ngClass]="dataService.class"></ion-icon> \n\n  </div>\n\n	<div class="TituloRojo"><h4>{{dataService.name}}</h4></div>\n\n	<h4>Filter search</h4>\n\n	<p padding>Choose the options for the search of the professional you want to hire</p>\n\n	<form  class="list" >\n\n		<ion-grid>\n\n        <ion-row>\n\n          <ion-col>\n\n		        <ion-list>\n\n					  	<ion-item>\n\n				      	<ion-select [(ngModel)]="dataClasificaion.categoria" name="categoria" placeholder="Category"> <!--[(ngModel)]="gaming"-->\n\n                 <ion-option *ngFor="let category of dataCategoria" value="{{category}}">{{category}}</ion-option>\n\n				      	</ion-select>\n\n				    	</ion-item>\n\n						</ion-list>\n\n          </ion-col>\n\n			</ion-row>\n\n      <ion-row>\n\n        <ion-col col-6>\n\n          <ion-list radio-group [(ngModel)]="certificacion" name="certificacio" >\n\n			    	<ion-item>\n\n			      	<ion-label>Certificate</ion-label>\n\n    					<ion-radio value="true" ></ion-radio>\n\n				  	</ion-item>\n\n          </ion-list>\n\n        </ion-col>\n\n        <ion-col col-6>\n\n          <ion-list radio-group [(ngModel)]="seguro" name="seguro">\n\n			   		<ion-item>\n\n			      	<ion-label>Insurance</ion-label>\n\n    					<ion-radio value="true"   ></ion-radio>\n\n				  	</ion-item>\n\n					</ion-list>\n\n        </ion-col>\n\n			</ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n          <ion-item>\n\n            <ion-select class="mitad"  [(ngModel)]="dataClasificaion.distancia" name="distancia" placeholder="Distance"> <!--[(ngModel)]="gaming"-->\n\n              <ion-option value="1M">1 Miles</ion-option>\n\n              <ion-option value="2M">2 Miles</ion-option>\n\n              <ion-option value="3M">3 Miles</ion-option>\n\n              <ion-option value="4M">4 Miles</ion-option>\n\n              <ion-option value="5M">5 Miles</ion-option>\n\n              <ion-option value="5MM">&gt; 5 Milla</ion-option>\n\n            </ion-select>\n\n            <ion-select  class="mitad"  [(ngModel)]="dataClasificaion.experiencia" name="experiencia" placeholder="Experience"> <!--[(ngModel)]="gaming"-->\n\n              <ion-option value="1Y" >1 Year</ion-option>\n\n              <ion-option value="2Y" >2 Year</ion-option>\n\n              <ion-option value="3Y" >3 Year</ion-option>\n\n              <ion-option value="3YM" >&gt; 3 Year</ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n            <p>If you do not select a filter, will show up all professionals available within 3 miles.</p>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n          <div class="btnBottom">\n\n            <button id="verifyYourPhone-button6" ion-button block color="danger" (click)="cleaningInfo()">Continue <ion-icon name="arrow-dropright"></ion-icon></button>\n\n          </div>\n\n        </ion-col>\n\n			</ion-row>\n\n		</ion-grid>\n\n	</form>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\cleaning\cleaning.html"*/,
+        selector: 'page-cleaning',template:/*ion-inline-start:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\cleaning\cleaning.html"*/'<!--\n\n  Generated template for the CleaningPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n  <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>joBid</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n  <div class="imgCenter">\n\n	 <ion-icon name="contact" [ngClass]="dataService.class"></ion-icon> \n\n  </div>\n\n	<div class="TituloRojo"><h4>{{dataService.name}}</h4></div>\n\n	<h4>Filter search</h4>\n\n	<p padding>Choose the options for the search of the professional you want to hire</p>\n\n	<form  class="list" >\n\n		<ion-grid>\n\n        <ion-row>\n\n          <ion-col>\n\n		        <ion-list>\n\n					  	<ion-item>\n\n				      	<ion-select [(ngModel)]="dataClasificaion.categoria" name="categoria" placeholder="Category"> <!--[(ngModel)]="gaming"-->\n\n                 <ion-option *ngFor="let category of dataCategoria" value="{{category}}">{{category}}</ion-option>\n\n				      	</ion-select>\n\n				    	</ion-item>\n\n						</ion-list>\n\n          </ion-col>\n\n			</ion-row>\n\n      <ion-row>\n\n        <ion-col col-6>\n\n          <ion-list radio-group [(ngModel)]="certificacion" name="certificacio" >\n\n			    	<ion-item>\n\n			      	<ion-label>Certificate</ion-label>\n\n    					<ion-radio value="true" ></ion-radio>\n\n				  	</ion-item>\n\n          </ion-list>\n\n        </ion-col>\n\n        <ion-col col-6>\n\n          <ion-list radio-group [(ngModel)]="seguro" name="seguro">\n\n			   		<ion-item>\n\n			      	<ion-label>Insurance</ion-label>\n\n    					<ion-radio value="true"   ></ion-radio>\n\n				  	</ion-item>\n\n					</ion-list>\n\n        </ion-col>\n\n			</ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n          <ion-item>\n\n            <ion-select class="mitad"  [(ngModel)]="dataClasificaion.distancia" name="distancia" placeholder="Distance"> <!--[(ngModel)]="gaming"-->\n\n              <ion-option value="1M">1 Miles</ion-option>\n\n              <ion-option value="2M">2 Miles</ion-option>\n\n              <ion-option value="3M">3 Miles</ion-option>\n\n              <ion-option value="4M">4 Miles</ion-option>\n\n              <ion-option value="5M">5 Miles</ion-option>\n\n              <ion-option value="5MM">&gt; 5 Milla</ion-option>\n\n            </ion-select>\n\n            <ion-select  class="mitad"  [(ngModel)]="dataClasificaion.experiencia" name="experiencia" placeholder="Experience"> <!--[(ngModel)]="gaming"-->\n\n              <ion-option value="1Y" >1 Year</ion-option>\n\n              <ion-option value="2Y" >2 Year</ion-option>\n\n              <ion-option value="3Y" >3 Year</ion-option>\n\n              <ion-option value="3YM" >&gt; 3 Year</ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n            <p>If you do not select a filter, will show up all professionals available within 3 miles.</p>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p class="clasificacion">\n\n          <input id="radio1" type="radio" name="estrellas" [(ngModel)]="estrellas" value="5">\n\n          <label for="radio1">&#9733;</label>\n\n\n\n          <input id="radio2" type="radio" name="estrellas" [(ngModel)]="estrellas" value="4">\n\n          <label for="radio2">&#9733;</label>\n\n          \n\n          <input id="radio3" type="radio" name="estrellas" [(ngModel)]="estrellas" value="3">\n\n          <label for="radio3">&#9733;</label>\n\n          \n\n          <input id="radio4" type="radio" name="estrellas" [(ngModel)]="estrellas" value="2">\n\n          <label for="radio4">&#9733;</label>\n\n          \n\n          <input id="radio5" type="radio" name="estrellas" [(ngModel)]="estrellas" value="1">\n\n          <label for="radio5">&#9733;</label>\n\n        </p>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n          <div class="btnBottom">\n\n            <button id="verifyYourPhone-button6" ion-button block color="danger" (click)="cleaningInfo()">Continue <ion-icon name="arrow-dropright"></ion-icon></button>\n\n          </div>\n\n        </ion-col>\n\n			</ion-row>\n\n		</ion-grid>\n\n	</form>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\cleaning\cleaning.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_professions_service__["a" /* ProfessionsService */]])
 ], CleaningPage);
@@ -926,7 +932,7 @@ CleaningPage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ServicesCarePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_sale_cleaning_sale__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_sale_cleaning_sale__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_offer_service__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_sale_service__ = __webpack_require__(32);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1112,7 +1118,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * on Ionic pages and navigation.
  */
 var CleaningContractorPage = (function () {
-    //
     function CleaningContractorPage(navCtrl, navParams, alertCtrl, professionalsService, saleService, offerService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -1132,13 +1137,18 @@ var CleaningContractorPage = (function () {
         this.keyOffer = this.datasService['offer'];
         this.worker = this.datasService['win'];
         this.userActual = localStorage.getItem('verificacion');
+        this.SubServiceActual = localStorage.getItem('SubService');
         this.sale = this.worker['offer'];
-        console.log(this.datasService);
-        console.log(this.dataService);
-        console.log(this.keyOffer);
-        console.log(this.worker);
-        console.log(this.userActual);
+        // console.log(this.datasService);
+        // console.log(this.dataService);
+        // console.log(this.keyOffer);
+        // console.log(this.worker);
+        // console.log(this.userActual);
+        console.log(this.SubServiceActual);
         this.getProfessionals(this.worker['id']);
+        //-comentar si sale 
+        this.SubServiceActual = "Electrician";
+        //-comentar si sale -fin
     };
     CleaningContractorPage.prototype.goCleaningInfoService = function () {
         console.info('goCleaningContractor');
@@ -1188,57 +1198,58 @@ var CleaningContractorPage = (function () {
     };
     CleaningContractorPage.prototype.getProfessionals = function (keyWork) {
         var _this = this;
-        this.professionalsService.getProfessional(keyWork)
-            .forEach(function (professional) {
-            _this.workerInfo = professional;
+        console.log(keyWork);
+        this.profeSuns = this.professionalsService.getProfessional(keyWork).subscribe(function (professional) {
+            // console.log(professional);
+            _this.mostrarWorkInfo(professional);
         });
-        this.mostrarWorkInfo();
     };
-    CleaningContractorPage.prototype.mostrarWorkInfo = function () {
-        console.log(this.workerInfo);
+    CleaningContractorPage.prototype.mostrarWorkInfo = function (workerInfo) {
+        console.log(workerInfo);
         this.ImgJobr = this.imgJobDefault;
         this.galleryAJobr = this.galleryJobDefault;
         this.galleryBJobr = this.galleryJobDefault;
         this.galleryCJobr = this.galleryJobDefault;
         this.galleryDJobr = this.galleryJobDefault;
-        // let galleryJobr= this.galleryJobDefault;
-        this.nameJobr = this.workerInfo['prof_name'];
-        this.certificateJobr = this.workerInfo['prof_certificate'];
-        this.insuranceJobr = this.workerInfo['prof_insurance'];
-        this.presentationJobr = this.workerInfo['prof_presentation'];
-        this.commentsJobr = this.workerInfo['prof_comments'];
-        if (this.workerInfo['prof_picture'] && this.workerInfo['prof_picture'] != '') {
-            this.ImgJobr = this.workerInfo['prof_picture'];
+        //-info basic
+        this.nameJobr = workerInfo['prof_name'];
+        this.worker['star'] = workerInfo['prof_star'];
+        this.starJobr = Math.round(workerInfo['prof_star']);
+        // console.log(this.starJobr); 
+        if (workerInfo['prof_picture'] && workerInfo['prof_picture'] != '') {
+            this.ImgJobr = workerInfo['prof_picture'];
         }
-        if (this.workerInfo['prof_galleryA'] && this.workerInfo['prof_galleryA'] != '') {
-            this.galleryAJobr = this.workerInfo['prof_galleryA'];
+        //info servicion
+        for (var service in workerInfo.Service) {
+            if (workerInfo.Service[service].serv_subService == this.SubServiceActual || workerInfo.Service[service].serv_subService == 'Full') {
+                var infoService = workerInfo.Service[service];
+                // console.log(infoService);
+                // console.log(infoService.serv_subService);
+                this.certificateJobr = infoService.serv_detail['serv_certificate'];
+                this.insuranceJobr = infoService.serv_detail['serv_insurance'];
+                this.presentationJobr = infoService.serv_detail['serv_moreInformation'];
+                if (infoService.serv_detail.serv_gallery) {
+                    if (infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'] != '') {
+                        this.galleryAJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'];
+                    }
+                    if (infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'] != '') {
+                        this.galleryBJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'];
+                    }
+                    if (infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'] != '') {
+                        this.galleryCJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'];
+                    }
+                    if (infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'] != '') {
+                        this.galleryDJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'];
+                    }
+                }
+            }
         }
-        if (this.workerInfo['prof_galleryB'] && this.workerInfo['prof_galleryB'] != '') {
-            this.galleryBJobr = this.workerInfo['prof_galleryB'];
-        }
-        if (this.workerInfo['prof_galleryC'] && this.workerInfo['prof_galleryC'] != '') {
-            this.galleryCJobr = this.workerInfo['prof_galleryC'];
-        }
-        if (this.workerInfo['prof_galleryD'] && this.workerInfo['prof_galleryD'] != '') {
-            this.galleryDJobr = this.workerInfo['prof_galleryD'];
-        }
-        for (var key in this.commentsJobr) {
-            console.log(this.commentsJobr[key]);
-            // console.log(commentsJobr[key]['user_username']);
-            // console.log(commentsJobr[key]['comm_qualification']);
-            // // console.log(commentsJobr[key]['comm_description']);
-            // this.keyComments.push(key);
-            this.keyComments.push({ "user": this.commentsJobr[key]['user_username'], qualification: this.commentsJobr[key]['comm_qualification'], "description": this.commentsJobr[key]['comm_description'] });
-        }
-        this.commentsJobr = this.workerInfo['prof_comments'];
-        // this.keyComments = Object.keys(this.commentsJobr);
-        console.log(this.keyComments);
     };
     return CleaningContractorPage;
 }());
 CleaningContractorPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-cleaning-contractor',template:/*ion-inline-start:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\cleaning-contractor\cleaning-contractor.html"*/'<!--\n\n  Generated template for the CleaningContractorPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n  <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>joBid</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n<div class="barraRoja">\n\n	<h4>Bid winner</h4>\n\n</div>\n\n<div class="saleBox">\n\n	<h1>${{sale}}</h1>\n\n</div>\n\n<ion-grid>\n\n	<ion-row>\n\n		<ion-col col-3>\n\n			<ion-list>\n\n				<ion-item>\n\n					<ion-avatar>\n\n						<img src="{{ImgJobr}}">\n\n			    </ion-avatar>\n\n		  	</ion-item>\n\n			</ion-list>\n\n	  </ion-col>\n\n	  <ion-col col-9>\n\n			<ion-row>\n\n				<ion-col>\n\n					<h4>{{nameJobr}}</h4>\n\n	  			<img src="assets/img/Estrellas.png" alt="">\n\n	  		</ion-col>\n\n	  	</ion-row>	\n\n	  	<ion-row>	\n\n				<ion-col col-6 class="col-height"  *ngIf="certificateJobr" >\n\n					<ion-list><ion-item>\n\n						<ion-label>Certificate</ion-label>\n\n						<ion-radio checked="true" value="Certificate"></ion-radio>\n\n					</ion-item></ion-list>\n\n			  </ion-col>\n\n			  <ion-col col-6 class="col-height"  *ngIf="insuranceJobr">\n\n					<ion-list>\n\n						<ion-item>\n\n							<ion-label>Insurance</ion-label>\n\n							<ion-radio checked="true" value="Insurance"></ion-radio>\n\n				  	</ion-item>\n\n					</ion-list>\n\n			  </ion-col>\n\n	  	</ion-row>	\n\n	  </ion-col>\n\n	</ion-row>\n\n</ion-grid>\n\n<div  class="divScroll" padding>\n\n	<h5>Presentation</h5>\n\n	<p>{{presentationJobr}}</p>\n\n	<h5>Gallery</h5>\n\n	<ion-grid>\n\n		<ion-row>\n\n			<ion-col col-6>\n\n				<img src="{{galleryAJobr}}" alt="">\n\n			</ion-col>\n\n			<ion-col col-6>\n\n				<img src="{{galleryBJobr}}" alt="">\n\n			</ion-col>\n\n		</ion-row>\n\n		<ion-row>\n\n			<ion-col col-6>\n\n				<img src="{{galleryCJobr}}" alt="">\n\n			</ion-col>\n\n			<ion-col col-6>\n\n				<img src="{{galleryDJobr}}" alt="">\n\n			</ion-col>\n\n		</ion-row>\n\n	</ion-grid>\n\n	<h5>Comments</h5>\n\n<!-- <div class="comments" *ngFor="let Key of keyComments" > -->\n\n	<!-- {{Key}} -->\n\n	<!-- {{commentsJobr[key][\'user_username\']}}  -->\n\n	<!-- {{key.user}}  -->\n\n\n\n	<!-- {{commentsJobr[KeyComment][\'user_username\']}}\n\n	{{commentsJobr[KeyComment][\'comm_qualification\']}}\n\n	{{commentsJobr[KeyComment][\'comm_description\']}} -->\n\n<!-- </div> -->\n\n<div class="comments">\n\n	<h6>Luis Lorem <img src="assets/img/Estrellas.png" alt=""></h6>\n\n	 <p>Odit, cupiditate. Quibusdam ducimus minus incidunt voluptas consequatur odit, adipisci eveniet laborum obcaecati labore! Sapiente repellat ipsum in autem fuga sint enim recusandae incidunt tenetur corporis neque totam, quam sequi placeat cupiditate, inventore! Alias repudiandae ducimus laudantium nemo quisquam, quod sint et quam, id ipsum magnam veniam amet sit a voluptatibus, similique ipsa voluptatem voluptates velit quo. Quidem odio a nemo sit illum. </p>\n\n</div>\n\n<div class="comments">\n\n	<h6>Melisa Lorem <img src="assets/img/Estrellas.png" alt=""></h6>\n\n	 <p>Odit, cupiditate. Quibusdam ducimus minus incidunt voluptas consequatur odit, adipisci eveniet laborum obcaecati labore! Sapiente repellat ipsum in autem fuga sint enim recusandae incidunt tenetur corporis neque totam, quam sequi placeat cupiditate, inventore! Alias repudiandae ducimus laudantium nemo quisquam, quod sint et quam, id ipsum magnam veniam amet sit a voluptatibus, similique ipsa voluptatem voluptates velit quo. Quidem odio a nemo sit illum. </p>\n\n</div>\n\n\n\n</div>\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <ion-toolbar>\n\n    <ion-grid>\n\n     <ion-row>\n\n      <ion-col>\n\n        <button id="btnContractor" ion-button block color="light" (click)="goCleaningInfoService()">Hire\n\n        </button>\n\n      </ion-col>\n\n      <ion-col>\n\n        <button id="btnCancel" ion-button block color="light"(click)="goIndex()">Cancel service\n\n        </button>\n\n      </ion-col>\n\n     </ion-row>\n\n    </ion-grid>  \n\n  </ion-toolbar>\n\n</ion-footer>\n\n'/*ion-inline-end:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\cleaning-contractor\cleaning-contractor.html"*/,
+        selector: 'page-cleaning-contractor',template:/*ion-inline-start:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\cleaning-contractor\cleaning-contractor.html"*/'<!--\n\n  Generated template for the CleaningContractorPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n  <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>joBid</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n<div class="barraRoja">\n\n	<h4>Bid winner</h4>\n\n</div>\n\n<div class="saleBox">\n\n	<h1>${{sale}}</h1>\n\n</div>\n\n<ion-grid>\n\n	<ion-row>\n\n		<ion-col col-3>\n\n			<ion-list>\n\n				<ion-item>\n\n					<ion-avatar>\n\n						<img src="{{ImgJobr}}">\n\n			    </ion-avatar>\n\n		  	</ion-item>\n\n			</ion-list>\n\n	  </ion-col>\n\n	  <ion-col col-9>\n\n			<ion-row>\n\n				<ion-col>\n\n					<h4>{{nameJobr}}</h4>\n\n					<!-- <img src="assets/img/Estrellas.png" alt=""> -->\n\n					<p class="clasificacion">\n\n						<input id="radio1" type="radio" name="starJobr" [(ngModel)]="starJobr" value="5"  [checked]="5 == starJobr">\n\n						<label for="radio1">&#9733;</label>\n\n	\n\n						<input id="radio2" type="radio" name="starJobr" [(ngModel)]="starJobr" value="4"  [checked]="4 == starJobr">\n\n						<label for="radio2">&#9733;</label>\n\n						\n\n						<input id="radio3" type="radio" name="starJobr" [(ngModel)]="starJobr" value="3"  [checked]="3 == starJobr">\n\n						<label for="radio3">&#9733;</label>\n\n						\n\n						<input id="radio4" type="radio" name="starJobr" [(ngModel)]="starJobr" value="2"  [checked]="2 == starJobr">\n\n						<label for="radio4">&#9733;</label>\n\n						\n\n						<input id="radio5" type="radio" name="starJobr" [(ngModel)]="starJobr" value="1"  [checked]="1 == starJobr">\n\n						<label for="radio5">&#9733;</label>\n\n					</p>\n\n	  		</ion-col>\n\n	  	</ion-row>	\n\n	  	<ion-row>	\n\n				<ion-col col-6 class="col-height"  *ngIf="certificateJobr" >\n\n					<ion-list><ion-item>\n\n						<ion-label>Certificate</ion-label>\n\n						<ion-radio checked="true" value="Certificate"></ion-radio>\n\n					</ion-item></ion-list>\n\n			  </ion-col>\n\n			  <ion-col col-6 class="col-height"  *ngIf="insuranceJobr">\n\n					<ion-list>\n\n						<ion-item>\n\n							<ion-label>Insurance</ion-label>\n\n							<ion-radio checked="true" value="Insurance"></ion-radio>\n\n				  	</ion-item>\n\n					</ion-list>\n\n			  </ion-col>\n\n	  	</ion-row>	\n\n	  </ion-col>\n\n	</ion-row>\n\n</ion-grid>\n\n<div  class="divScroll" padding>\n\n	<h5>Presentation</h5>\n\n	<p>{{presentationJobr}}</p>\n\n	<h5>Gallery</h5>\n\n	<ion-grid>\n\n		<ion-row>\n\n			<ion-col col-6>\n\n				<img src="{{galleryAJobr}}" alt="">\n\n			</ion-col>\n\n			<ion-col col-6>\n\n				<img src="{{galleryBJobr}}" alt="">\n\n			</ion-col>\n\n		</ion-row>\n\n		<ion-row>\n\n			<ion-col col-6>\n\n				<img src="{{galleryCJobr}}" alt="">\n\n			</ion-col>\n\n			<ion-col col-6>\n\n				<img src="{{galleryDJobr}}" alt="">\n\n			</ion-col>\n\n		</ion-row>\n\n	</ion-grid>\n\n	<h5>Comments</h5>\n\n<!-- <div class="comments" *ngFor="let Key of keyComments" > -->\n\n	<!-- {{Key}} -->\n\n	<!-- {{commentsJobr[key][\'user_username\']}}  -->\n\n	<!-- {{key.user}}  -->\n\n\n\n	<!-- {{commentsJobr[KeyComment][\'user_username\']}}\n\n	{{commentsJobr[KeyComment][\'comm_qualification\']}}\n\n	{{commentsJobr[KeyComment][\'comm_description\']}} -->\n\n<!-- </div> -->\n\n<div class="comments">\n\n	<h6>Luis Lorem <img src="assets/img/Estrellas.png" alt=""></h6>\n\n	 <p>Odit, cupiditate. Quibusdam ducimus minus incidunt voluptas consequatur odit, adipisci eveniet laborum obcaecati labore! Sapiente repellat ipsum in autem fuga sint enim recusandae incidunt tenetur corporis neque totam, quam sequi placeat cupiditate, inventore! Alias repudiandae ducimus laudantium nemo quisquam, quod sint et quam, id ipsum magnam veniam amet sit a voluptatibus, similique ipsa voluptatem voluptates velit quo. Quidem odio a nemo sit illum. </p>\n\n</div>\n\n<div class="comments">\n\n	<h6>Melisa Lorem <img src="assets/img/Estrellas.png" alt=""></h6>\n\n	 <p>Odit, cupiditate. Quibusdam ducimus minus incidunt voluptas consequatur odit, adipisci eveniet laborum obcaecati labore! Sapiente repellat ipsum in autem fuga sint enim recusandae incidunt tenetur corporis neque totam, quam sequi placeat cupiditate, inventore! Alias repudiandae ducimus laudantium nemo quisquam, quod sint et quam, id ipsum magnam veniam amet sit a voluptatibus, similique ipsa voluptatem voluptates velit quo. Quidem odio a nemo sit illum. </p>\n\n</div>\n\n\n\n</div>\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <ion-toolbar>\n\n    <ion-grid>\n\n     <ion-row>\n\n      <ion-col>\n\n        <button id="btnContractor" ion-button block color="light" (click)="goCleaningInfoService()">Hire\n\n        </button>\n\n      </ion-col>\n\n      <ion-col>\n\n        <button id="btnCancel" ion-button block color="light"(click)="goIndex()">Cancel service\n\n        </button>\n\n      </ion-col>\n\n     </ion-row>\n\n    </ion-grid>  \n\n  </ion-toolbar>\n\n</ion-footer>\n\n'/*ion-inline-end:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\cleaning-contractor\cleaning-contractor.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
         __WEBPACK_IMPORTED_MODULE_4__services_professionals_service__["a" /* ProfessionalsService */],
@@ -1294,10 +1305,13 @@ var CleaningInfoServicePage = (function () {
         this.status = "Waiting for the professional";
         this.segundos = 10;
         this.cont = 1;
+        this.loadData();
     }
     CleaningInfoServicePage.prototype.ionViewDidLoad = function () {
-        var _this = this;
         console.log('ionViewDidLoad CleaningInfoServicePage');
+    };
+    CleaningInfoServicePage.prototype.loadData = function () {
+        var _this = this;
         this.datasService = this.navParams.get('datos');
         this.dataService = this.datasService['dataService'];
         this.keyOffer = this.datasService['offer'];
@@ -1323,8 +1337,9 @@ var CleaningInfoServicePage = (function () {
                 _this.status = 'Service completed';
             }
         });
-        //-provicional
         this.startTimer();
+        //-provicional
+        this.goCleaningVote();
     };
     CleaningInfoServicePage.prototype.goCleaningVote = function () {
         var DataService = { 'datos': { "dataService": this.dataService, "offer": this.keyOffer, "win": this.worker } };
@@ -1404,7 +1419,6 @@ CleaningInfoServicePage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CleaningVotePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_ok_cleaning_ok__ = __webpack_require__(377);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1414,7 +1428,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 /**
@@ -1427,6 +1440,8 @@ var CleaningVotePage = (function () {
     function CleaningVotePage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        //-view
+        this.vote = [];
     }
     CleaningVotePage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad CleaningVotePage');
@@ -1442,17 +1457,21 @@ var CleaningVotePage = (function () {
         console.log(this.userActual);
     };
     CleaningVotePage.prototype.goCleaningOk = function () {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__cleaning_ok_cleaning_ok__["a" /* CleaningOkPage */]);
+        console.log(this.vote);
+        var DataService = { 'datos': { "offer": this.keyOffer, "win": this.worker } };
+        console.log(DataService);
+        // this.navCtrl.setRoot(CleaningOkPage,DataService);
     };
     return CleaningVotePage;
 }());
 CleaningVotePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-cleaning-vote',template:/*ion-inline-start:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\cleaning-vote\cleaning-vote.html"*/'<!--\n\n  Generated template for the CleaningVotePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n  <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>joBid</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n<div class="barraRoja">\n\n	<h4>Service qualification</h4>\n\n</div>\n\n<p>Now you can qualify the professional and leave a comment of the service received.</p>\n\n<form id="signup-form3" class="list" padding>\n\n  <ion-list >\n\n    <ion-item>\n\n			<h4>Qualification <img src="assets/img/Estrellas.png" alt=""></h4>\n\n    </ion-item>\n\n    <ion-item>\n\n    <input type="text">\n\n    	<ion-textarea placeholder="Comments"></ion-textarea>\n\n    </ion-item>\n\n  </ion-list>\n\n	<div class="btnBottom">\n\n    <button ion-button color="danger" block icon-left (click)="goCleaningOk()">Qualify and pay<ion-icon name="arrow-dropright"></ion-icon></button>\n\n  </div>\n\n</form>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\cleaning-vote\cleaning-vote.html"*/,
+        selector: 'page-cleaning-vote',template:/*ion-inline-start:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\cleaning-vote\cleaning-vote.html"*/'<!--\n\n  Generated template for the CleaningVotePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n  <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>joBid</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n<div class="barraRoja">\n\n	<h4>Service qualification</h4>\n\n</div>\n\n<p>Now you can qualify the professional and leave a comment of the service received.</p>\n\n<form id="signup-form3" class="list" padding>\n\n  <ion-list >\n\n    <ion-item>\n\n			<p class="clasificacion">\n\n        <input id="radio1" type="radio" name="estrellas" [(ngModel)]="vote.estrellas" value="5">\n\n        <label for="radio1">&#9733;</label>\n\n\n\n        <input id="radio2" type="radio" name="estrellas" [(ngModel)]="vote.estrellas" value="4">\n\n        <label for="radio2">&#9733;</label>\n\n        \n\n        <input id="radio3" type="radio" name="estrellas" [(ngModel)]="vote.estrellas" value="3">\n\n        <label for="radio3">&#9733;</label>\n\n        \n\n        <input id="radio4" type="radio" name="estrellas" [(ngModel)]="vote.estrellas" value="2">\n\n        <label for="radio4">&#9733;</label>\n\n        \n\n        <input id="radio5" type="radio" name="estrellas" [(ngModel)]="vote.estrellas" value="1">\n\n        <label for="radio5">&#9733;</label>\n\n      </p>\n\n    </ion-item>\n\n    <ion-item>\n\n    <input type="text">\n\n    	<ion-textarea placeholder="Comments" name="comment" [(ngModel)]="vote.comment"></ion-textarea>\n\n    </ion-item>\n\n  </ion-list>\n\n	<div class="btnBottom">\n\n    <button ion-button color="danger" block icon-left (click)="goCleaningOk()">Qualify and pay<ion-icon name="arrow-dropright"></ion-icon></button>\n\n  </div>\n\n</form>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\cleaning-vote\cleaning-vote.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object])
 ], CleaningVotePage);
 
+var _a, _b;
 //# sourceMappingURL=cleaning-vote.js.map
 
 /***/ }),
@@ -1514,7 +1533,7 @@ CleaningOkPage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ServicesCleaningPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_sale_cleaning_sale__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_sale_cleaning_sale__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_offer_service__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_sale_service__ = __webpack_require__(32);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1647,7 +1666,7 @@ ServicesCleaningPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_offer_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cleaning_sale_cleaning_sale__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cleaning_sale_cleaning_sale__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_sale_service__ = __webpack_require__(32);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1799,7 +1818,7 @@ ServicesJanotorialPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_offer_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cleaning_sale_cleaning_sale__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cleaning_sale_cleaning_sale__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_sale_service__ = __webpack_require__(32);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1940,7 +1959,7 @@ ServicesTransportationPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_offer_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cleaning_sale_cleaning_sale__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cleaning_sale_cleaning_sale__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_sale_service__ = __webpack_require__(32);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2103,7 +2122,7 @@ ServicesFoodPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_offer_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cleaning_sale_cleaning_sale__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cleaning_sale_cleaning_sale__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_sale_service__ = __webpack_require__(32);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2208,7 +2227,7 @@ ServicesLegalPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_offer_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cleaning_sale_cleaning_sale__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cleaning_sale_cleaning_sale__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_sale_service__ = __webpack_require__(32);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2386,7 +2405,7 @@ ServicesBeautyPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pre_home_pre_home__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__ = __webpack_require__(95);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_auth__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase_app__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_firebase_app__);
@@ -2635,7 +2654,7 @@ LoginPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cities___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_cities__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_states_utils__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_states_utils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_states_utils__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__ = __webpack_require__(95);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__payment_methods_payment_methods__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__ = __webpack_require__(67);
@@ -3303,7 +3322,456 @@ SingupPage = __decorate([
 
 /***/ }),
 
-/***/ 45:
+/***/ 42:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CleaningSalePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_contractor_cleaning_contractor__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_sale_service__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_offer_service__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__show_show__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_professionals_service__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_geocode_service__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation__ = __webpack_require__(213);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+// import { HomePage } from '../home/home';
+//import { OfferService } from '../../services/offer.service';
+
+//-geoCodeInverse
+
+
+/**
+ * Generated class for the CleanigSalePage page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
+var CleaningSalePage = (function () {
+    function CleaningSalePage(navCtrl, navParams, alertCtrl, professionalsService, geo, platform, saleService, offerService, geocodeServiceProvider) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.alertCtrl = alertCtrl;
+        this.professionalsService = professionalsService;
+        this.geo = geo;
+        this.platform = platform;
+        this.saleService = saleService;
+        this.offerService = offerService;
+        this.geocodeServiceProvider = geocodeServiceProvider;
+        //--valiables por defecto
+        this.imgJobDefault = "assets/img/professions/cleaning.png";
+        this.galleryJobDefault = "assets/img/gallery.png";
+        this.Workers = [];
+        this.WorkersInfo = [];
+        this.professionals = [];
+        this.professsional = [];
+        //--timer
+        this.segundos = 0;
+        this.minutos = 2;
+        this.showContador = true;
+        //-- geoLocation
+        this.lat = 37.09024;
+        this.lng = -95.71289100000001;
+        this.zom = 16;
+        this.contador = '0' + this.minutos + ':' + '0' + this.segundos;
+        this.startTimer();
+        // this.getProfessionals();
+    }
+    CleaningSalePage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad CleaningSalePage');
+        //--Ini-comentado para evitar mas creaciones
+        // this.dataOffer = this.navParams.get('datos');
+        // this.maxOffer = this.dataOffer['dataService']['Clasificacion']['informacion']['maxOffer'];
+        // this.dataService = this.dataOffer['dataService'];
+        // this.keyOffer = this.dataOffer['offer']; 
+        // this.userActual = localStorage.getItem('verificacion');
+        // this.SubService = localStorage.getItem('SubService');
+        // console.log(this.dataOffer);
+        // console.log(JSON.stringify(this.dataService));
+        //--Fin-comentado para evitar mas creaciones
+        //--Ini-comentado para tener flujo normal
+        this.userActual = "user_1504881933094";
+        this.keyOffer = "offer_1507166489841";
+        this.dataService = { "name": "Janotorial", "class": "orange", "Clasificacion": { "categoria": "Electrician", "certificacion": "false", "seguro": "false", "distancia": "4M", "experiencia": "3Y", "informacion": { "maxOffer": "147", "roomElec": "156", "mtsElect": "12", "foto": "", "moreInformation": "fasdf erqw  zxcv" } }, "status": "Published", "User": "user_1504881933094", "Star": "4" };
+        this.maxOffer = 147;
+        this.SubServiceActual = "Electrician";
+        //--Fin-comentado para tener flujo normal
+        // this.getUserLocation();
+        this.getUserLocationGeolocation();
+        this.getSale();
+    };
+    CleaningSalePage.prototype.goCleaningContractor = function (ganador) {
+        console.info('goCleaningContractor');
+        // console.log(ganador);
+        this.saleSubs.unsubscribe();
+        var DataService = { 'datos': { "dataService": this.dataService, "offer": this.keyOffer, "win": ganador } };
+        // console.log(DataService);
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__cleaning_contractor_cleaning_contractor__["a" /* CleaningContractorPage */], DataService);
+    };
+    CleaningSalePage.prototype.goIndex = function () {
+        //--set status offer y sale
+        console.info('Offer -Cancelled');
+        this.saleService.setStatus(this.userActual, this.keyOffer, 'Cancelled');
+        this.offerService.setStatus(this.keyOffer, 'Cancelled');
+        clearInterval(this.objNodeTimer);
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__show_show__["a" /* ShowPage */]);
+    };
+    CleaningSalePage.prototype.showInfoCleaning = function (id) {
+        if (id === void 0) { id = "prof_1"; }
+        var index;
+        //--imagenes por defecto
+        var ImgJobr = this.imgJobDefault;
+        var galleryAJobr = this.galleryJobDefault;
+        var galleryBJobr = this.galleryJobDefault;
+        var galleryCJobr = this.galleryJobDefault;
+        var galleryDJobr = this.galleryJobDefault;
+        var presentationJobr = '';
+        var certificateJobr = true;
+        var insuranceJobr = true;
+        for (index in this.WorkersInfo) {
+            if (this.WorkersInfo[index]['$key'] == id) {
+                console.log(this.WorkersInfo[index]);
+                console.log(this.WorkersInfo[index].Service);
+                //-info basic
+                var nameJobr = this.WorkersInfo[index]['prof_name'];
+                if (this.WorkersInfo[index]['prof_picture'] && this.WorkersInfo[index]['prof_picture'] != '') {
+                    ImgJobr = this.WorkersInfo[index]['prof_picture'];
+                }
+                //info servicion
+                for (var service in this.WorkersInfo[index].Service) {
+                    if (this.WorkersInfo[index].Service[service].serv_subService == this.SubServiceActual || this.WorkersInfo[index].Service[service].serv_subService == 'Full') {
+                        var infoService = this.WorkersInfo[index].Service[service];
+                        console.log(infoService);
+                        console.log(infoService.serv_subService);
+                        certificateJobr = infoService.serv_detail['serv_certificate'];
+                        insuranceJobr = infoService.serv_detail['serv_insurance'];
+                        presentationJobr = infoService.serv_detail['serv_moreInformation'];
+                        if (infoService.serv_detail.serv_gallery) {
+                            if (infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'] != '') {
+                                galleryAJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'];
+                            }
+                            if (infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'] != '') {
+                                galleryBJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'];
+                            }
+                            if (infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'] != '') {
+                                galleryCJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'];
+                            }
+                            if (infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'] != '') {
+                                galleryDJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'];
+                            }
+                        }
+                    }
+                }
+                //-info comentarios
+                var commentsJobr = this.WorkersInfo[index]['prof_comments'];
+                console.log(commentsJobr);
+                //-mapear alert
+                var contenido = '';
+                contenido += '<div class="col-40"><img src="' + ImgJobr + '"></div>';
+                contenido += '<div class="col-60"><h4>' + nameJobr + '</h4><img src="assets/img/Estrellas.png">';
+                contenido += '<p>';
+                if (certificateJobr == true) {
+                    contenido += '<span class="ItemPService"><img src="assets/img/okBlue.png"> <span> Certificate</span>,';
+                }
+                if (insuranceJobr == true) {
+                    contenido += '</span><span class="ItemPService"><img src="assets/img/okBlue.png"> <span>  Insurance</span></span>';
+                }
+                contenido += '</p></div>';
+                contenido += "<h5>Presentation</h5><p>" + presentationJobr + "</p>";
+                // contenido += id+'';
+                contenido += '<h5>Gallery</h5>';
+                contenido += '<img src="' + galleryAJobr + '" alt="" class="imagen50">';
+                contenido += '<img src="' + galleryBJobr + '" alt="" class="imagen50">';
+                contenido += '<img src="' + galleryCJobr + '" alt="" class="imagen50">';
+                contenido += '<img src="' + galleryDJobr + '" alt="" class="imagen50">';
+                // console.log('commentsJobr');
+                // console.log(commentsJobr);
+                var cont = 0;
+                for (var key in commentsJobr) {
+                    // console.log(commentsJobr[key]);
+                    // console.log(commentsJobr[key]['user_username']);
+                    console.log(commentsJobr[key]['comm_qualification']);
+                    if (cont == 0) {
+                        contenido += '<h5>Comments</h5>';
+                        cont = 1;
+                    }
+                    // console.log(commentsJobr[key]['comm_description']);
+                    contenido += '<div class="comments">';
+                    contenido += '<h6>' + commentsJobr[key]['user_username'] + ' <img src="assets/img/Estrellas.png" alt=""></h6>';
+                    contenido += '<p>' + commentsJobr[key]['comm_description'] + '</p>';
+                    contenido += '</div>';
+                }
+                // contenido +='<div class="comments">';
+                // contenido +='<h6>Melisa Lorem <img src="assets/img/Estrellas.png" alt=""></h6>';
+                // contenido +='<p>Odit, cupiditate. Quibusdam ducimus minus incidunt voluptas consequatur odit, adipisci eveniet laborum obcaecati labore! Sapiente repellat ipsum in autem fuga sint enim recusandae incidunt tenetur corporis neque totam, quam sequi placeat cupiditate, inventore! Alias repudiandae ducimus laudantium nemo quisquam, quod sint et quam, id ipsum magnam veniam amet sit a voluptatibus, similique ipsa voluptatem voluptates velit quo. Quidem odio a nemo sit illum. </p>';
+                // contenido +='</div>';
+                var alert_1 = this.alertCtrl.create({
+                    // title: 'Estefania Lorem',
+                    message: contenido,
+                    buttons: ['OK']
+                });
+                alert_1.present();
+            }
+        }
+    };
+    //--- timer
+    CleaningSalePage.prototype.startTimer = function () {
+        var _this = this;
+        this.objNodeTimer = setInterval(function () { return _this.timer(); }, 1000);
+    };
+    CleaningSalePage.prototype.timer = function () {
+        // if(this.minutos == 0 && this.segundos == 1){ 
+        if (this.minutos == 1 && this.segundos == 50) {
+            //this.showContador = false;
+            clearInterval(this.objNodeTimer);
+            this.showContador = false;
+            this.ganador();
+        }
+        else {
+            if (--this.segundos < 0) {
+                this.segundos = 59;
+                if (--this.minutos < 0) {
+                    //this.minutos = 59;
+                    //if( (this.segundos = 0) && (this.minutos = 0)){ this.showContador = false;}
+                }
+            }
+            this.contador = this.dobleCifra(this.minutos) + ':' + this.dobleCifra(this.segundos);
+        }
+    };
+    //--- Functions
+    CleaningSalePage.prototype.getSale = function () {
+        var _this = this;
+        this.MenosPrecio = undefined;
+        // let finRegistro:boolean= false;
+        this.saleSubs = this.saleService.getSale(this.userActual, this.keyOffer)
+            .subscribe(function (result) {
+            _this.Workers = [];
+            _this.WorkersInfo = [];
+            _this.MenosPrecio = undefined;
+            //console.log(result);
+            //console.log(result.sale);
+            if (_this.MenosPrecio == undefined) {
+                _this.MenosPrecio = Number(result.sale);
+            }
+            //console.log(result.providers);
+            _this.getProviders(result.providers);
+            // finRegistro = true;
+        });
+    };
+    CleaningSalePage.prototype.getProviders = function (trabajadores) {
+        var _this = this;
+        var _loop_1 = function (trabajador) {
+            console.log(trabajador);
+            if (this_1.MenosPrecio > Number(trabajadores[trabajador]['offer'])) {
+                this_1.MenosPrecio = Number(trabajadores[trabajador]['offer']);
+            }
+            var userSubs = this_1.professionalsService.getProfessional(trabajador).subscribe(function (user) {
+                var img = _this.imgJobDefault;
+                _this.WorkersInfo.push(user);
+                if (user.prof_picture && user.prof_picture != undefined && user.prof_picture != '') {
+                    img = user.prof_picture;
+                }
+                _this.Workers.push({ "id": trabajador, "offer": trabajadores[trabajador]['offer'], "img": img, "name": user.prof_username });
+                userSubs.unsubscribe();
+            });
+        };
+        var this_1 = this;
+        for (var trabajador in trabajadores) {
+            _loop_1(trabajador);
+        }
+        console.log(this.WorkersInfo);
+        // let estadoUser= this.Workers;
+        // console.log(estadoUser);
+    };
+    CleaningSalePage.prototype.ganador = function () {
+        console.info('ganador');
+        // console.log(this.Workers.length);
+        // console.log('this.Workers.length');
+        if (this.Workers.length != 0) {
+            for (var index in this.Workers) {
+                console.log(index);
+                //console.log(this.Workers[index]);
+                if (this.MenosPrecio == this.Workers[index]['offer']) {
+                    this.goCleaningContractor(this.Workers[index]);
+                    this.saleService.setStatus(this.userActual, this.keyOffer, 'Evaluation');
+                    this.offerService.setStatus(this.keyOffer, 'Evaluation');
+                    this.showAlertFinOffer();
+                }
+            }
+        }
+        else {
+            this.goServiceSinOff();
+        }
+    };
+    CleaningSalePage.prototype.goServiceSinOff = function () {
+        //--set status offer y sale
+        console.info('Sin Offer');
+        this.showAlertSinOffer();
+        this.saleService.setStatus(this.userActual, this.keyOffer, 'Saved');
+        this.offerService.setStatus(this.keyOffer, 'Saved');
+        clearInterval(this.objNodeTimer);
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__show_show__["a" /* ShowPage */]);
+    };
+    CleaningSalePage.prototype.dobleCifra = function (num) {
+        if (num < 10) {
+            return '0' + num;
+        }
+        else {
+            return '' + num;
+        }
+    };
+    CleaningSalePage.prototype.getUserLocation = function () {
+        var _this = this;
+        /// locate the user
+        // console.info('get User location2');
+        // console.info(navigator);
+        //console.info(navigator.geolocation);
+        //console.info(JSON.stringify(navigator));
+        //console.info(JSON.stringify(navigator.geolocation));
+        // if (navigator) {
+        //   console.log('soportado2');
+        //   console.log(navigator);
+        // } else {
+        //   console.log('no soportado');
+        //   /* geolocation IS NOT available */
+        // }
+        var geolocationz = navigator.geolocation;
+        // console.log(geolocationz);
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                console.log('Location');
+                _this.lat = position.coords.latitude;
+                _this.lng = position.coords.longitude;
+                console.info(position.coords.latitude);
+                console.info(position.coords.longitude);
+            });
+        }
+    };
+    CleaningSalePage.prototype.getUserLocationGeolocation = function () {
+        var _this = this;
+        this.platform.ready().then(function () {
+            var options = {
+                timeout: 5000
+            };
+            _this.geo.getCurrentPosition(options).then(function (resp) {
+                console.log('geoLocation');
+                console.info(resp.coords.latitude);
+                console.info(resp.coords.longitude);
+                _this.lat = resp.coords.latitude;
+                _this.lng = resp.coords.longitude;
+                _this.getNameAddress();
+            }).catch(function () {
+                console.log("Error to get location");
+            });
+        });
+    };
+    CleaningSalePage.prototype.getNameAddress = function () {
+        var _this = this;
+        this.geocodeServiceProvider.GeoCodificationInversa(this.lat, this.lng)
+            .then(function (result) {
+            console.log(result);
+            _this.offerService.setOfferUserLocation(_this.keyOffer, { 'latitud': _this.lat, 'longitud': _this.lng, 'nameAddress': result });
+        })
+            .catch(function (error) { console.log(error); console.log('error geoCdoficiacion'); });
+    };
+    CleaningSalePage.prototype.showAlertSinOffer = function () {
+        var alert = this.alertCtrl.create({
+            title: 'Information',
+            subTitle: 'No offers',
+            buttons: ['OK']
+        });
+        alert.present();
+    };
+    CleaningSalePage.prototype.showAlertFinOffer = function () {
+        var alert = this.alertCtrl.create({
+            title: 'Information',
+            subTitle: 'The sale ended',
+            buttons: ['OK']
+        });
+        alert.present();
+    };
+    return CleaningSalePage;
+}());
+CleaningSalePage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-cleaning-sale',template:/*ion-inline-start:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\cleaning-sale\cleaning-sale.html"*/'<!--\n\n  Generated template for the CleanigSalePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n  <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>joBid</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n<div class="mapa">\n\n  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zom">\n\n    <agm-marker [latitude]="lat" [longitude]="lng">\n\n      <agm-info-window>\n\n        <h3><strong>Howdy!</strong></h3>\n\n        <p>You are here!</p>\n\n      </agm-info-window>\n\n    </agm-marker>\n\n  </agm-map>\n\n</div>\n\n\n\n<!-- <div *ngIf="lat && lng"> -->\n\n    <!-- <agm-map [latitude]="lat" [longitude]="lng">\n\n      <agm-marker [latitude]="lat" [longitude]="lng">\n\n        <agm-info-window>\n\n          <h3><strong>Howdy!</strong></h3>\n\n          <p>You are here!</p>\n\n        </agm-info-window>\n\n      </agm-marker>\n\n    </agm-map> -->\n\n  <!-- <div> -->\n\n<div class="contador" *ngIf="showContador" >\n\n    <h3>{{contador}}</h3>\n\n</div>\n\n<div class="barraRoja">\n\n  <h4>Offers received</h4>\n\n</div>\n\n<ion-grid class="body">\n\n  <ion-row *ngFor="let item of Workers">\n\n    <ion-col col-2>\n\n      <ion-icon name="trophy" *ngIf="item.offer == MenosPrecio"></ion-icon>\n\n      <!-- <ion-icon name="trophy" *ngIf="{{item.icon}}"></ion-icon> -->\n\n    </ion-col>\n\n    <ion-col col-6>\n\n     <ion-item>\n\n      <ion-avatar item-start>\n\n        <img src="{{item.img}}">\n\n      </ion-avatar>\n\n      <p>{{item.name}}</p>\n\n     </ion-item>\n\n    </ion-col>\n\n    <ion-col col-2>\n\n      <h5>{{item.offer}}</h5>\n\n    </ion-col>\n\n    <ion-col col-2>\n\n      <button ion-button icon-only round color="light" (click)="showInfoCleaning(item.id)">\n\n        <ion-icon name="search"></ion-icon>\n\n      </button>\n\n    </ion-col>\n\n  </ion-row>\n\n</ion-grid>\n\n<!-- <div class="btnBottom">\n\n          <button ion-button color="danger" block icon-left (click)="goCleaningContractor()">Continue<ion-icon name="arrow-dropright"></ion-icon></button>\n\n        </div> -->\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <ion-toolbar>\n\n    <ion-grid>\n\n     <ion-row>\n\n      <ion-col col-6>\n\n        <div class="price">\n\n          <p>Initial value</p>\n\n          <p>${{maxOffer}}</p>\n\n        </div>\n\n      </ion-col>\n\n      <ion-col col-6>\n\n        <button id="btnCancel" ion-button block color="light"(click)="goIndex()">Cancel\n\n        </button>\n\n      </ion-col>\n\n     </ion-row>\n\n    </ion-grid>  \n\n  </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\cleaning-sale\cleaning-sale.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_6__services_professionals_service__["a" /* ProfessionalsService */],
+        __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */],
+        __WEBPACK_IMPORTED_MODULE_3__services_sale_service__["a" /* SaleService */],
+        __WEBPACK_IMPORTED_MODULE_4__services_offer_service__["a" /* OfferService */],
+        __WEBPACK_IMPORTED_MODULE_7__providers_geocode_service__["a" /* GeocodeServiceProvider */]])
+], CleaningSalePage);
+
+//# sourceMappingURL=cleaning-sale.js.map
+
+/***/ }),
+
+/***/ 459:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return JobWithUsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the JobWithUsPage page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
+var JobWithUsPage = (function () {
+    function JobWithUsPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    JobWithUsPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad JobWithUsPage');
+    };
+    return JobWithUsPage;
+}());
+JobWithUsPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-job-with-us',template:/*ion-inline-start:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\job-with-us\job-with-us.html"*/'<!--\n\n  Generated template for the JobWithUsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  \n\n    <ion-navbar>\n\n      <ion-title>joBid</ion-title>\n\n    </ion-navbar>\n\n  \n\n  </ion-header>\n\n  \n\n  \n\n  <ion-content padding>\n\n  <h3>Job With Us</h3>\n\n  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur facilisis, lacus id tincidunt dapibus, turpis justo aliquet ante, ut vulputate turpis lacus non nulla. Suspendisse potenti. Maecenas arcu massa, volutpat quis auctor eget, mattis sit amet purus. Donec ac laoreet felis. Mauris dictum sapien congue eros ornare, id iaculis nunc pretium. Mauris bibendum blandit nisl, id finibus turpis volutpat nec. Ut interdum elementum tortor, non accumsan ligula interdum at. Donec mauris arcu, pellentesque lobortis venenatis sit amet, dictum a purus. Nam laoreet tellus quis justo imperdiet, quis placerat lectus pulvinar. Mauris interdum libero vel eleifend sodales. Aliquam ut dolor id mauris condimentum hendrerit. Nam blandit congue nulla ut viverra. Sed suscipit massa non auctor suscipit</p>\n\n  </ion-content>\n\n'/*ion-inline-end:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\job-with-us\job-with-us.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+], JobWithUsPage);
+
+//# sourceMappingURL=job-with-us.js.map
+
+/***/ }),
+
+/***/ 46:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3437,7 +3905,7 @@ var UserService = (function () {
         if (userData === void 0) { userData = []; }
         var key = undefined;
         //default star
-        var star = '3';
+        var star = '5';
         console.log('key:' + key);
         console.log('keyNew:' + keyNew);
         if (keyNew && keyNew != null && keyNew != undefined) {
@@ -3541,51 +4009,6 @@ UserService = __decorate([
 ], UserService);
 
 //# sourceMappingURL=user.service.js.map
-
-/***/ }),
-
-/***/ 459:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return JobWithUsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/**
- * Generated class for the JobWithUsPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-var JobWithUsPage = (function () {
-    function JobWithUsPage(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-    }
-    JobWithUsPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad JobWithUsPage');
-    };
-    return JobWithUsPage;
-}());
-JobWithUsPage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-job-with-us',template:/*ion-inline-start:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\job-with-us\job-with-us.html"*/'<!--\n\n  Generated template for the JobWithUsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  \n\n    <ion-navbar>\n\n      <ion-title>joBid</ion-title>\n\n    </ion-navbar>\n\n  \n\n  </ion-header>\n\n  \n\n  \n\n  <ion-content padding>\n\n  <h3>Job With Us</h3>\n\n  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur facilisis, lacus id tincidunt dapibus, turpis justo aliquet ante, ut vulputate turpis lacus non nulla. Suspendisse potenti. Maecenas arcu massa, volutpat quis auctor eget, mattis sit amet purus. Donec ac laoreet felis. Mauris dictum sapien congue eros ornare, id iaculis nunc pretium. Mauris bibendum blandit nisl, id finibus turpis volutpat nec. Ut interdum elementum tortor, non accumsan ligula interdum at. Donec mauris arcu, pellentesque lobortis venenatis sit amet, dictum a purus. Nam laoreet tellus quis justo imperdiet, quis placerat lectus pulvinar. Mauris interdum libero vel eleifend sodales. Aliquam ut dolor id mauris condimentum hendrerit. Nam blandit congue nulla ut viverra. Sed suscipit massa non auctor suscipit</p>\n\n  </ion-content>\n\n'/*ion-inline-end:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\job-with-us\job-with-us.html"*/,
-    }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
-], JobWithUsPage);
-
-//# sourceMappingURL=job-with-us.js.map
 
 /***/ }),
 
@@ -3799,7 +4222,7 @@ AddPaymentMethodPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cities___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_cities__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_states_utils__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_states_utils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_states_utils__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__ = __webpack_require__(95);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__ = __webpack_require__(67);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -4459,443 +4882,6 @@ MyserviceinfoPage = __decorate([
 
 /***/ }),
 
-/***/ 47:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CleaningSalePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_contractor_cleaning_contractor__ = __webpack_require__(374);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_sale_service__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_offer_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__show_show__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_professionals_service__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_geocode_service__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation__ = __webpack_require__(213);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-// import { HomePage } from '../home/home';
-//import { OfferService } from '../../services/offer.service';
-
-//-geoCodeInverse
-
-
-/**
- * Generated class for the CleanigSalePage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-var CleaningSalePage = (function () {
-    function CleaningSalePage(navCtrl, navParams, alertCtrl, professionalsService, geo, platform, saleService, offerService, geocodeServiceProvider) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.alertCtrl = alertCtrl;
-        this.professionalsService = professionalsService;
-        this.geo = geo;
-        this.platform = platform;
-        this.saleService = saleService;
-        this.offerService = offerService;
-        this.geocodeServiceProvider = geocodeServiceProvider;
-        //--valiables por defecto
-        this.imgJobDefault = "assets/img/professions/cleaning.png";
-        this.galleryJobDefault = "assets/img/gallery.png";
-        this.Workers = [];
-        this.WorkersInfo = [];
-        this.professionals = [];
-        this.professsional = [];
-        //--timer
-        this.segundos = 0;
-        this.minutos = 2;
-        this.showContador = true;
-        //-- geoLocation
-        this.lat = 37.09024;
-        this.lng = -95.71289100000001;
-        this.zom = 16;
-        this.contador = '0' + this.minutos + ':' + '0' + this.segundos;
-        this.startTimer();
-        // this.getProfessionals();
-    }
-    CleaningSalePage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad CleaningSalePage');
-        //--Ini-comentado para evitar mas creaciones
-        this.dataOffer = this.navParams.get('datos');
-        this.maxOffer = this.dataOffer['dataService']['Clasificacion']['informacion']['maxOffer'];
-        this.dataService = this.dataOffer['dataService'];
-        this.keyOffer = this.dataOffer['offer'];
-        this.userActual = localStorage.getItem('verificacion');
-        console.log(this.dataOffer);
-        console.log(JSON.stringify(this.dataService));
-        //--Fin-comentado para evitar mas creaciones
-        //--Ini-comentado para tener flujo normal
-        // this.userActual = "user_1504881933094";
-        // this.keyOffer = "offer_1505227659259"; 
-        // this.dataService = {"name":"Cleaning","class":"yellow","Clasificacion":{"categoria":"Maids","certificacion":"true","seguro":"true","distancia":"4M","experiencia":"3Y","informacion":{"maxOffer":"123","placeMaid":"grande","roomMaid":"1","batMaid":"1","foto":"","moreInformation":"maid service info"}}};
-        // this.maxOffer = 453;
-        //--Fin-comentado para tener flujo normal
-        // this.getUserLocation();
-        this.getUserLocationGeolocation();
-        this.getSale();
-    };
-    CleaningSalePage.prototype.goCleaningContractor = function (ganador) {
-        console.info('goCleaningContractor');
-        console.log(ganador);
-        var DataService = { 'datos': { "dataService": this.dataService, "offer": this.keyOffer, "win": ganador } };
-        console.log(DataService);
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__cleaning_contractor_cleaning_contractor__["a" /* CleaningContractorPage */], DataService);
-    };
-    CleaningSalePage.prototype.goIndex = function () {
-        //--set status offer y sale
-        console.info('Offer -Cancelled');
-        this.saleService.setStatus(this.userActual, this.keyOffer, 'Cancelled');
-        this.offerService.setStatus(this.keyOffer, 'Cancelled');
-        clearInterval(this.objNodeTimer);
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__show_show__["a" /* ShowPage */]);
-    };
-    CleaningSalePage.prototype.showInfoCleaning = function (id) {
-        if (id === void 0) { id = "prof_1"; }
-        var index;
-        for (index in this.WorkersInfo) {
-            if (this.WorkersInfo[index]['$key'] == id) {
-                // console.log(this.WorkersInfo[index]);
-                //--imagenes por defecto
-                var ImgJobr = this.imgJobDefault;
-                var galleryAJobr = this.galleryJobDefault;
-                var galleryBJobr = this.galleryJobDefault;
-                var galleryCJobr = this.galleryJobDefault;
-                var galleryDJobr = this.galleryJobDefault;
-                // let galleryJobr= this.galleryJobDefault;
-                var nameJobr = this.WorkersInfo[index]['prof_name'];
-                var certificateJobr = this.WorkersInfo[index]['prof_certificate'];
-                var insuranceJobr = this.WorkersInfo[index]['prof_insurance'];
-                var commentsJobr = this.WorkersInfo[index]['prof_comments'];
-                var presentationJobr = this.WorkersInfo[index]['prof_presentation'];
-                if (this.WorkersInfo[index]['prof_picture'] && this.WorkersInfo[index]['prof_picture'] != '') {
-                    ImgJobr = this.WorkersInfo[index]['prof_picture'];
-                }
-                if (this.WorkersInfo[index]['prof_galleryA'] && this.WorkersInfo[index]['prof_galleryA'] != '') {
-                    galleryAJobr = this.WorkersInfo[index]['prof_galleryA'];
-                }
-                if (this.WorkersInfo[index]['prof_galleryB'] && this.WorkersInfo[index]['prof_galleryB'] != '') {
-                    galleryBJobr = this.WorkersInfo[index]['prof_galleryB'];
-                }
-                if (this.WorkersInfo[index]['prof_galleryC'] && this.WorkersInfo[index]['prof_galleryC'] != '') {
-                    galleryCJobr = this.WorkersInfo[index]['prof_galleryC'];
-                }
-                if (this.WorkersInfo[index]['prof_galleryD'] && this.WorkersInfo[index]['prof_galleryD'] != '') {
-                    galleryDJobr = this.WorkersInfo[index]['prof_galleryD'];
-                }
-                var contenido = '';
-                contenido += '<div class="col-40"><img src="' + ImgJobr + '"></div>';
-                contenido += '<div class="col-60"><h4>' + nameJobr + '</h4><img src="assets/img/Estrellas.png">';
-                contenido += '<p>';
-                if (certificateJobr == true) {
-                    contenido += '<span class="ItemPService"><img src="assets/img/okBlue.png"> <span> Certificate</span>,';
-                }
-                if (insuranceJobr == true) {
-                    contenido += '</span><span class="ItemPService"><img src="assets/img/okBlue.png"> <span>  Insurance</span></span>';
-                }
-                contenido += '</p></div>';
-                contenido += "<h5>Presentation</h5><p>" + presentationJobr + "</p>";
-                // contenido += id+'';
-                contenido += '<h5>Gallery</h5>';
-                contenido += '<img src="' + galleryAJobr + '" alt="" class="imagen50">';
-                contenido += '<img src="' + galleryBJobr + '" alt="" class="imagen50">';
-                contenido += '<img src="' + galleryCJobr + '" alt="" class="imagen50">';
-                contenido += '<img src="' + galleryDJobr + '" alt="" class="imagen50">';
-                contenido += '<h5>Comments</h5>';
-                // console.log('commentsJobr');
-                // console.log(commentsJobr);
-                for (var key in commentsJobr) {
-                    // console.log(commentsJobr[key]);
-                    // console.log(commentsJobr[key]['user_username']);
-                    console.log(commentsJobr[key]['comm_qualification']);
-                    // console.log(commentsJobr[key]['comm_description']);
-                    contenido += '<div class="comments">';
-                    contenido += '<h6>' + commentsJobr[key]['user_username'] + ' <img src="assets/img/Estrellas.png" alt=""></h6>';
-                    contenido += '<p>' + commentsJobr[key]['comm_description'] + '</p>';
-                    contenido += '</div>';
-                }
-                // contenido +='<div class="comments">';
-                // contenido +='<h6>Melisa Lorem <img src="assets/img/Estrellas.png" alt=""></h6>';
-                // contenido +='<p>Odit, cupiditate. Quibusdam ducimus minus incidunt voluptas consequatur odit, adipisci eveniet laborum obcaecati labore! Sapiente repellat ipsum in autem fuga sint enim recusandae incidunt tenetur corporis neque totam, quam sequi placeat cupiditate, inventore! Alias repudiandae ducimus laudantium nemo quisquam, quod sint et quam, id ipsum magnam veniam amet sit a voluptatibus, similique ipsa voluptatem voluptates velit quo. Quidem odio a nemo sit illum. </p>';
-                // contenido +='</div>';
-                var alert_1 = this.alertCtrl.create({
-                    // title: 'Estefania Lorem',
-                    message: contenido,
-                    buttons: ['OK']
-                });
-                alert_1.present();
-            }
-        }
-    };
-    //--- timer
-    CleaningSalePage.prototype.startTimer = function () {
-        var _this = this;
-        this.objNodeTimer = setInterval(function () { return _this.timer(); }, 1000);
-    };
-    CleaningSalePage.prototype.timer = function () {
-        if (this.minutos == 0 && this.segundos == 1) {
-            // if(this.minutos == 1 && this.segundos == 40 ){ 
-            //this.showContador = false;
-            clearInterval(this.objNodeTimer);
-            this.showContador = false;
-            this.ganador();
-        }
-        else {
-            if (--this.segundos < 0) {
-                this.segundos = 59;
-                if (--this.minutos < 0) {
-                    //this.minutos = 59;
-                    //if( (this.segundos = 0) && (this.minutos = 0)){ this.showContador = false;}
-                }
-            }
-            this.contador = this.dobleCifra(this.minutos) + ':' + this.dobleCifra(this.segundos);
-        }
-    };
-    //--- Functions
-    CleaningSalePage.prototype.getSale = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var finRegistro;
-            return __generator(this, function (_a) {
-                this.MenosPrecio = undefined;
-                finRegistro = false;
-                this.saleService.getSale(this.userActual, this.keyOffer)
-                    .subscribe(function (result) {
-                    _this.Workers = [];
-                    _this.WorkersInfo = [];
-                    _this.MenosPrecio = undefined;
-                    //console.log(result);
-                    //console.log(result.sale);
-                    //console.log(result.providers);
-                    if (_this.MenosPrecio == undefined) {
-                        _this.MenosPrecio = Number(result.sale);
-                    }
-                    var trabajadores = result.providers;
-                    var _loop_1 = function (trabajador) {
-                        // console.log(trabajadores);
-                        // console.log(trabajadores[trabajador]);
-                        //console.log(trabajadores[trabajador]['offer']);
-                        // console.log(trabajador);
-                        if (_this.MenosPrecio > Number(trabajadores[trabajador]['offer'])) {
-                            _this.MenosPrecio = Number(trabajadores[trabajador]['offer']);
-                        }
-                        var PromiseUser = _this.professionalsService.getProfessional(trabajador);
-                        // console.log(PromiseUser);
-                        PromiseUser.subscribe(function (user) {
-                            //console.log(user);
-                            _this.WorkersInfo.push(user);
-                            var img = _this.imgJobDefault;
-                            if (user.prof_picture && user.prof_picture != undefined && user.prof_picture != '') {
-                                img = user.prof_picture;
-                            }
-                            _this.Workers.push({ "id": trabajador, "offer": trabajadores[trabajador]['offer'], "img": img, "name": user.prof_name });
-                        });
-                    };
-                    for (var trabajador in trabajadores) {
-                        _loop_1(trabajador);
-                    }
-                    finRegistro = true;
-                    console.log(_this.Workers);
-                    console.log(_this.WorkersInfo);
-                    console.log(_this.MenosPrecio);
-                    var estadoUser = _this.Workers;
-                    console.log(estadoUser);
-                    // for(let jobs in estadoUser){
-                    //   console.log('jobs');
-                    //   console.log(jobs);
-                    //   console.log(estadoUser[jobs]);
-                    // }
-                    // console.log('verifcar la informacion');
-                });
-                return [2 /*return*/];
-            });
-        });
-    };
-    CleaningSalePage.prototype.ganador = function () {
-        console.info('ganador');
-        // console.log(this.Workers.length);
-        // console.log('this.Workers.length');
-        if (this.Workers.length != 0) {
-            for (var index in this.Workers) {
-                console.log(index);
-                //console.log(this.Workers[index]);
-                if (this.MenosPrecio == this.Workers[index]['offer']) {
-                    this.goCleaningContractor(this.Workers[index]);
-                    this.saleService.setStatus(this.userActual, this.keyOffer, 'Evaluation');
-                    this.offerService.setStatus(this.keyOffer, 'Evaluation');
-                    this.showAlertFinOffer();
-                }
-            }
-        }
-        else {
-            this.goServiceSinOff();
-        }
-    };
-    CleaningSalePage.prototype.goServiceSinOff = function () {
-        //--set status offer y sale
-        console.info('Sin Offer');
-        this.showAlertSinOffer();
-        this.saleService.setStatus(this.userActual, this.keyOffer, 'Saved');
-        this.offerService.setStatus(this.keyOffer, 'Saved');
-        clearInterval(this.objNodeTimer);
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__show_show__["a" /* ShowPage */]);
-    };
-    CleaningSalePage.prototype.dobleCifra = function (num) {
-        if (num < 10) {
-            return '0' + num;
-        }
-        else {
-            return '' + num;
-        }
-    };
-    CleaningSalePage.prototype.getUserLocation = function () {
-        var _this = this;
-        /// locate the user
-        // console.info('get User location2');
-        // console.info(navigator);
-        //console.info(navigator.geolocation);
-        //console.info(JSON.stringify(navigator));
-        //console.info(JSON.stringify(navigator.geolocation));
-        // if (navigator) {
-        //   console.log('soportado2');
-        //   console.log(navigator);
-        // } else {
-        //   console.log('no soportado');
-        //   /* geolocation IS NOT available */
-        // }
-        var geolocationz = navigator.geolocation;
-        // console.log(geolocationz);
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                console.log('Location');
-                _this.lat = position.coords.latitude;
-                _this.lng = position.coords.longitude;
-                console.info(position.coords.latitude);
-                console.info(position.coords.longitude);
-            });
-        }
-    };
-    CleaningSalePage.prototype.getUserLocationGeolocation = function () {
-        var _this = this;
-        this.platform.ready().then(function () {
-            var options = {
-                timeout: 5000
-            };
-            _this.geo.getCurrentPosition(options).then(function (resp) {
-                console.log('geoLocation');
-                console.info(resp.coords.latitude);
-                console.info(resp.coords.longitude);
-                _this.lat = resp.coords.latitude;
-                _this.lng = resp.coords.longitude;
-                _this.getNameAddress();
-            }).catch(function () {
-                console.log("Error to get location");
-            });
-        });
-    };
-    CleaningSalePage.prototype.getNameAddress = function () {
-        var _this = this;
-        this.geocodeServiceProvider.GeoCodificationInversa(this.lat, this.lng)
-            .then(function (result) {
-            console.log(result);
-            _this.offerService.setOfferUserLocation(_this.keyOffer, { 'latitud': _this.lat, 'longitud': _this.lng, 'nameAddress': result });
-        })
-            .catch(function (error) { console.log(error); console.log('error geoCdoficiacion'); });
-    };
-    // private getProfessionals(){
-    //   this.professionalsService.getProfessionals()
-    //   .forEach(professionals =>{
-    //     this.professionals = professionals;
-    //   });
-    // console.log(this.professionals);
-    // }
-    CleaningSalePage.prototype.showAlertSinOffer = function () {
-        var alert = this.alertCtrl.create({
-            title: 'Information',
-            subTitle: 'No offers',
-            buttons: ['OK']
-        });
-        alert.present();
-    };
-    CleaningSalePage.prototype.showAlertFinOffer = function () {
-        var alert = this.alertCtrl.create({
-            title: 'Information',
-            subTitle: 'The sale ended',
-            buttons: ['OK']
-        });
-        alert.present();
-    };
-    return CleaningSalePage;
-}());
-CleaningSalePage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-cleaning-sale',template:/*ion-inline-start:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\cleaning-sale\cleaning-sale.html"*/'<!--\n\n  Generated template for the CleanigSalePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n  <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>joBid</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n<div class="mapa">\n\n  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zom">\n\n    <agm-marker [latitude]="lat" [longitude]="lng">\n\n      <agm-info-window>\n\n        <h3><strong>Howdy!</strong></h3>\n\n        <p>You are here!</p>\n\n      </agm-info-window>\n\n    </agm-marker>\n\n  </agm-map>\n\n</div>\n\n\n\n<!-- <div *ngIf="lat && lng"> -->\n\n    <!-- <agm-map [latitude]="lat" [longitude]="lng">\n\n      <agm-marker [latitude]="lat" [longitude]="lng">\n\n        <agm-info-window>\n\n          <h3><strong>Howdy!</strong></h3>\n\n          <p>You are here!</p>\n\n        </agm-info-window>\n\n      </agm-marker>\n\n    </agm-map> -->\n\n  <!-- <div> -->\n\n<div class="contador" *ngIf="showContador" >\n\n    <h3>{{contador}}</h3>\n\n</div>\n\n<div class="barraRoja">\n\n  <h4>Offers received</h4>\n\n</div>\n\n<ion-grid class="body">\n\n  <ion-row *ngFor="let item of Workers">\n\n    <ion-col col-2>\n\n      <ion-icon name="trophy" *ngIf="item.offer == MenosPrecio"></ion-icon>\n\n      <!-- <ion-icon name="trophy" *ngIf="{{item.icon}}"></ion-icon> -->\n\n    </ion-col>\n\n    <ion-col col-6>\n\n     <ion-item>\n\n      <ion-avatar item-start>\n\n        <img src="{{item.img}}">\n\n      </ion-avatar>\n\n      <p>{{item.name}}</p>\n\n     </ion-item>\n\n    </ion-col>\n\n    <ion-col col-2>\n\n      <h5>{{item.offer}}</h5>\n\n    </ion-col>\n\n    <ion-col col-2>\n\n      <button ion-button icon-only round color="light" (click)="showInfoCleaning(item.id)">\n\n        <ion-icon name="search"></ion-icon>\n\n      </button>\n\n    </ion-col>\n\n  </ion-row>\n\n</ion-grid>\n\n<!-- <div class="btnBottom">\n\n          <button ion-button color="danger" block icon-left (click)="goCleaningContractor()">Continue<ion-icon name="arrow-dropright"></ion-icon></button>\n\n        </div> -->\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <ion-toolbar>\n\n    <ion-grid>\n\n     <ion-row>\n\n      <ion-col col-6>\n\n        <div class="price">\n\n          <p>Initial value</p>\n\n          <p>${{maxOffer}}</p>\n\n        </div>\n\n      </ion-col>\n\n      <ion-col col-6>\n\n        <button id="btnCancel" ion-button block color="light"(click)="goIndex()">Cancel\n\n        </button>\n\n      </ion-col>\n\n     </ion-row>\n\n    </ion-grid>  \n\n  </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\pages\cleaning-sale\cleaning-sale.html"*/,
-    }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_6__services_professionals_service__["a" /* ProfessionalsService */],
-        __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */],
-        __WEBPACK_IMPORTED_MODULE_3__services_sale_service__["a" /* SaleService */],
-        __WEBPACK_IMPORTED_MODULE_4__services_offer_service__["a" /* OfferService */],
-        __WEBPACK_IMPORTED_MODULE_7__providers_geocode_service__["a" /* GeocodeServiceProvider */]])
-], CleaningSalePage);
-
-//# sourceMappingURL=cleaning-sale.js.map
-
-/***/ }),
-
 /***/ 474:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4934,7 +4920,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_payinfo_payinfo__ = __webpack_require__(805);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_cleaning_cleaning__ = __webpack_require__(372);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_cleaning_info_cleaning_info__ = __webpack_require__(806);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_cleaning_sale_cleaning_sale__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_cleaning_sale_cleaning_sale__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_cleaning_contractor_cleaning_contractor__ = __webpack_require__(374);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_cleaning_info_service_cleaning_info_service__ = __webpack_require__(375);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_cleaning_vote_cleaning_vote__ = __webpack_require__(376);
@@ -4960,7 +4946,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__services_offer_service__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__services_professionals_service__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__services_professions_service__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__services_user_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__services_user_service__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__services_encripty_service__ = __webpack_require__(809);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__services_careProfessions_service__ = __webpack_require__(812);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__services_cleaningProfessions_service__ = __webpack_require__(813);
@@ -5182,15 +5168,16 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(331);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(333);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(334);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_auth__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_show_show__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_job_with_us_job_with_us__ = __webpack_require__(459);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_policies_policies__ = __webpack_require__(460);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_pre_home_pre_home__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_payments_payments__ = __webpack_require__(461);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_edit_user_edit_user__ = __webpack_require__(463);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_my_services_my_services__ = __webpack_require__(464);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_user_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_cleaning_sale_cleaning_sale__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_show_show__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_job_with_us_job_with_us__ = __webpack_require__(459);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_policies_policies__ = __webpack_require__(460);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_pre_home_pre_home__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_payments_payments__ = __webpack_require__(461);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_edit_user_edit_user__ = __webpack_require__(463);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_my_services_my_services__ = __webpack_require__(464);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_user_service__ = __webpack_require__(46);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5205,6 +5192,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 //import { Facebook } from '@ionic-native/facebook';
+
+//import { CleaningContractorPage } from '../pages/cleaning-contractor/cleaning-contractor';
+//import { CleaningPage } from '../pages/cleaning/cleaning';
+//import { PreHomePage } from '../pages/pre-home/pre-home';
 
 // import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
 
@@ -5227,17 +5218,16 @@ var MyApp = (function () {
         this.srcUser = 'assets/img/user.png';
         this.star = '3';
         //rootPage: any = PreHomePage;
-        // rootPage: any = CleaningSalePage;
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */];
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_cleaning_sale_cleaning_sale__["a" /* CleaningSalePage */];
         this.menu_is_enabled = true;
         this.initializeApp();
         // used for an example of ngFor and navigation
         this.pages = [
-            { title: 'Edit', component: __WEBPACK_IMPORTED_MODULE_11__pages_edit_user_edit_user__["a" /* EditUserPage */] },
-            { title: 'Menu', component: __WEBPACK_IMPORTED_MODULE_6__pages_show_show__["a" /* ShowPage */] },
-            { title: 'My services', component: __WEBPACK_IMPORTED_MODULE_12__pages_my_services_my_services__["a" /* MyServicesPage */] },
-            { title: 'Address', component: __WEBPACK_IMPORTED_MODULE_9__pages_pre_home_pre_home__["a" /* PreHomePage */] },
-            { title: 'Payments', component: __WEBPACK_IMPORTED_MODULE_10__pages_payments_payments__["a" /* PaymentsPage */] },
+            { title: 'Edit', component: __WEBPACK_IMPORTED_MODULE_12__pages_edit_user_edit_user__["a" /* EditUserPage */] },
+            { title: 'Menu', component: __WEBPACK_IMPORTED_MODULE_7__pages_show_show__["a" /* ShowPage */] },
+            { title: 'My services', component: __WEBPACK_IMPORTED_MODULE_13__pages_my_services_my_services__["a" /* MyServicesPage */] },
+            { title: 'Address', component: __WEBPACK_IMPORTED_MODULE_10__pages_pre_home_pre_home__["a" /* PreHomePage */] },
+            { title: 'Payments', component: __WEBPACK_IMPORTED_MODULE_11__pages_payments_payments__["a" /* PaymentsPage */] },
         ];
     }
     MyApp.prototype.initializeApp = function () {
@@ -5335,10 +5325,10 @@ var MyApp = (function () {
         //     });
     };
     MyApp.prototype.goJobWithUs = function () {
-        this.nav.push(__WEBPACK_IMPORTED_MODULE_7__pages_job_with_us_job_with_us__["a" /* JobWithUsPage */]);
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_8__pages_job_with_us_job_with_us__["a" /* JobWithUsPage */]);
     };
     MyApp.prototype.goPolicies = function () {
-        this.nav.push(__WEBPACK_IMPORTED_MODULE_8__pages_policies_policies__["a" /* PoliciesPage */]);
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_9__pages_policies_policies__["a" /* PoliciesPage */]);
     };
     return MyApp;
 }());
@@ -5350,8 +5340,8 @@ MyApp = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\app\app.html"*/'<ion-menu [content]="content">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title class="tittleMenu">JOBID</ion-title>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content>\n\n    <ion-list>\n\n        <ion-item class="imgUser">\n\n          <ion-thumbnail item-start>\n\n            <img src="{{srcUser}}" alt="userLogo">\n\n          </ion-thumbnail>\n\n          <p>{{userName}}</p>\n\n          <p><ion-icon name="star" class="nota" item-start></ion-icon> {{star}}</p>\n\n        </ion-item>\n\n    </ion-list>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        {{p.title}}\n\n      </button>\n\n      <button ion-item class="loginOut" menuToggle (click)="cerrarSeccion()">\n\n        Login out\n\n      </button> \n\n    </ion-list>\n\n  </ion-content>\n\n  <ion-footer>\n\n      <ion-toolbar>\n\n          <ion-list>\n\n              <button ion-item (click)="goJobWithUs()" menuToggle>\n\n                Job with us\n\n              </button>\n\n              <button ion-item (click)="goPolicies()" menuToggle>\n\n                Policies <p class="version">V.1</p>\n\n              </button> \n\n               \n\n            </ion-list>\n\n      </ion-toolbar>\n\n    </ion-footer>\n\n\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false" ></ion-nav>'/*ion-inline-end:"E:\z-Trabajo\proyectoIonic\UsuarioApp_JoBid\src\app\app.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
-        __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_5_angularfire2_auth__["a" /* AngularFireAuth */],
-        __WEBPACK_IMPORTED_MODULE_13__services_user_service__["a" /* UserService */]])
+        __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__["a" /* AngularFireAuth */],
+        __WEBPACK_IMPORTED_MODULE_14__services_user_service__["a" /* UserService */]])
 ], MyApp);
 
 //# sourceMappingURL=app.component.js.map
@@ -5374,7 +5364,7 @@ MyApp = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__new_address_new_address__ = __webpack_require__(335);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__show_show__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_geocode_service__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__ = __webpack_require__(67);
@@ -5510,7 +5500,7 @@ var PreHomePage = (function () {
             console.log(result);
             _this.guardarDireccionGeo(result);
         })
-            .catch(function (error) { console.log(error); console.log('error geoCdoficiacion'); });
+            .catch(function (error) { console.log(error); console.log('error geoCdoficiacion'); alert('e getname location'); });
     };
     PreHomePage.prototype.getAddressUser = function (userId) {
         var _this = this;
@@ -5584,13 +5574,48 @@ var PreHomePage = (function () {
                 // console.info(JSON.stringify(resp));
                 console.info(resp.coords.latitude);
                 console.info(resp.coords.longitude);
+                alert(resp.coords.latitude);
+                alert(resp.coords.longitude);
                 _this.lat = resp.coords.latitude;
                 _this.lng = resp.coords.longitude;
                 _this.getNameAddress();
             }).catch(function () {
                 console.log("Error to get location");
+                alert('e get location');
+                _this.getUserLocation();
             });
         });
+    };
+    PreHomePage.prototype.getUserLocation = function () {
+        var _this = this;
+        /// locate the user
+        // console.info('get User location2');
+        alert('get User location2');
+        // console.info(navigator);
+        //console.info(navigator.geolocation);
+        //console.info(JSON.stringify(navigator));
+        //console.info(JSON.stringify(navigator.geolocation));
+        // if (navigator) {
+        //   console.log('soportado2');
+        //   console.log(navigator);
+        // } else {
+        //   console.log('no soportado');
+        //   /* geolocation IS NOT available */
+        // }
+        var geolocationz = navigator.geolocation;
+        // console.log(geolocationz);
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                console.log('Location');
+                _this.lat = position.coords.latitude;
+                _this.lng = position.coords.longitude;
+                console.info(position.coords.latitude);
+                console.info(position.coords.longitude);
+                alert('pos-lat:' + position.coords.latitude);
+                alert('pos-lng:' + position.coords.longitude);
+                _this.getNameAddress();
+            });
+        }
     };
     PreHomePage.prototype.guardarDireccionGeo = function (geoDireccion) {
         var booleanGuardarDireccion = true;
@@ -5767,7 +5792,7 @@ var ListPage_1;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__payment_methods_payment_methods__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__ = __webpack_require__(95);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__(46);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5948,7 +5973,7 @@ PayinfoPage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CleaningInfoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_sale_cleaning_sale__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cleaning_sale_cleaning_sale__ = __webpack_require__(42);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);

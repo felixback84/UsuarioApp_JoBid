@@ -4050,6 +4050,33 @@ form{
   margin: 0;
 }
 
+.clasificacion {
+  direction: rtl;
+  /* right to left */
+  unicode-bidi: bidi-override;
+  /* bidi de bidireccional */
+  width: 100%;
+  text-align: center;
+}
+
+.clasificacion label {
+  color: black;
+  font-size: 25px;
+  text-align: center;
+}
+
+.clasificacion label:hover, .clasificacion label:hover ~ label {
+  color: #b20000;
+}
+
+.clasificacion input[type="radio"] {
+  display: none;
+}
+
+.clasificacion input[type="radio"]:checked ~ label {
+  color: #b20000;
+}
+
 /*color professions*/
 .red {
   color: red;

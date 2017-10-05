@@ -38,7 +38,23 @@
 			<ion-row>
 				<ion-col>
 					<h4>{{nameJobr}}</h4>
-	  			<img src="assets/img/Estrellas.png" alt="">
+					<!-- <img src="assets/img/Estrellas.png" alt=""> -->
+					<p class="clasificacion">
+						<input id="radio1" type="radio" name="starJobr" [(ngModel)]="starJobr" value="5"  [checked]="5 == starJobr">
+						<label for="radio1">&#9733;</label>
+	
+						<input id="radio2" type="radio" name="starJobr" [(ngModel)]="starJobr" value="4"  [checked]="4 == starJobr">
+						<label for="radio2">&#9733;</label>
+						
+						<input id="radio3" type="radio" name="starJobr" [(ngModel)]="starJobr" value="3"  [checked]="3 == starJobr">
+						<label for="radio3">&#9733;</label>
+						
+						<input id="radio4" type="radio" name="starJobr" [(ngModel)]="starJobr" value="2"  [checked]="2 == starJobr">
+						<label for="radio4">&#9733;</label>
+						
+						<input id="radio5" type="radio" name="starJobr" [(ngModel)]="starJobr" value="1"  [checked]="1 == starJobr">
+						<label for="radio5">&#9733;</label>
+					</p>
 	  		</ion-col>
 	  	</ion-row>	
 	  	<ion-row>	

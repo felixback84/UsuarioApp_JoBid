@@ -51,10 +51,15 @@ export class CleaningInfoServicePage {
     public professionalsService : ProfessionalsService,
     private saleService: SaleService , private offerService : OfferService,
   ) {
+    this.loadData();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CleaningInfoServicePage');
+    
+  }
+
+  loadData(){
     this.datasService = this.navParams.get('datos');
     this.dataService = this.datasService['dataService'];
     this.keyOffer = this.datasService['offer']; 
@@ -80,9 +85,11 @@ export class CleaningInfoServicePage {
         this.status = 'Service completed';
       }
     });
+    this.startTimer();
     //-provicional
-    this.startTimer()
+    this.goCleaningVote();
   }
+  
   goCleaningVote(){
     let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer,"win":this.worker}};
     console.log(DataService);

@@ -42,6 +42,7 @@ export class CleaningSalePage {
   dataService:any;
   //--datas
   userActual:any;
+  SubServiceActual:any;
   professionals = [];
   professsional = [];
   //--timer
@@ -54,6 +55,10 @@ export class CleaningSalePage {
   lat: number= 37.09024;
   lng: number= -95.71289100000001;
   zom: number = 16;
+
+  //-Subs
+  saleSubs:any;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -73,22 +78,25 @@ export class CleaningSalePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CleaningSalePage');
     //--Ini-comentado para evitar mas creaciones
-    this.dataOffer = this.navParams.get('datos');
-    this.maxOffer = this.dataOffer['dataService']['Clasificacion']['informacion']['maxOffer'];
-    this.dataService = this.dataOffer['dataService'];
-    this.keyOffer = this.dataOffer['offer']; 
-    this.userActual = localStorage.getItem('verificacion');
-    console.log(this.dataOffer);
-    console.log(JSON.stringify(this.dataService));
+    // this.dataOffer = this.navParams.get('datos');
+    // this.maxOffer = this.dataOffer['dataService']['Clasificacion']['informacion']['maxOffer'];
+    // this.dataService = this.dataOffer['dataService'];
+    // this.keyOffer = this.dataOffer['offer']; 
+    // this.userActual = localStorage.getItem('verificacion');
+    // this.SubService = localStorage.getItem('SubService');
+    // console.log(this.dataOffer);
+    // console.log(JSON.stringify(this.dataService));
     
     //--Fin-comentado para evitar mas creaciones
     
     //--Ini-comentado para tener flujo normal
-    // this.userActual = "user_1504881933094";
-    // this.keyOffer = "offer_1505227659259"; 
-    // this.dataService = {"name":"Cleaning","class":"yellow","Clasificacion":{"categoria":"Maids","certificacion":"true","seguro":"true","distancia":"4M","experiencia":"3Y","informacion":{"maxOffer":"123","placeMaid":"grande","roomMaid":"1","batMaid":"1","foto":"","moreInformation":"maid service info"}}};
-    // this.maxOffer = 453;
+    this.userActual = "user_1504881933094";
+    this.keyOffer = "offer_1507166489841"; 
+    this.dataService = {"name":"Janotorial","class":"orange","Clasificacion":{"categoria":"Electrician","certificacion":"false","seguro":"false","distancia":"4M","experiencia":"3Y","informacion":{"maxOffer":"147","roomElec":"156","mtsElect":"12","foto":"","moreInformation":"fasdf erqw  zxcv"}},"status":"Published","User":"user_1504881933094","Star":"4"}
+    this.maxOffer = 147;
+    this.SubServiceActual = "Electrician";
     //--Fin-comentado para tener flujo normal
+
     // this.getUserLocation();
     this.getUserLocationGeolocation();
     this.getSale();
@@ -96,9 +104,10 @@ export class CleaningSalePage {
 
   goCleaningContractor(ganador?){
     console.info('goCleaningContractor');
-    console.log(ganador);
+    // console.log(ganador);
+    this.saleSubs.unsubscribe();
     let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer,"win":ganador}};
-    console.log(DataService);
+    // console.log(DataService);
   	this.navCtrl.setRoot(CleaningContractorPage,DataService);
   }
 
@@ -114,37 +123,58 @@ export class CleaningSalePage {
 
   showInfoCleaning(id: any = "prof_1"){
     let index:any;
+    //--imagenes por defecto
+    let ImgJobr= this.imgJobDefault;
+    let galleryAJobr = this.galleryJobDefault;
+    let galleryBJobr = this.galleryJobDefault;
+    let galleryCJobr = this.galleryJobDefault;
+    let galleryDJobr = this.galleryJobDefault;
+    let presentationJobr='';
+    let certificateJobr = true;
+    let insuranceJobr = true;
+
     for(index in this.WorkersInfo){
         if(this.WorkersInfo[index]['$key'] == id){
-          // console.log(this.WorkersInfo[index]);
-          //--imagenes por defecto
-          let ImgJobr= this.imgJobDefault;
-          let galleryAJobr = this.galleryJobDefault;
-          let galleryBJobr = this.galleryJobDefault;
-          let galleryCJobr = this.galleryJobDefault;
-          let galleryDJobr = this.galleryJobDefault;
-          // let galleryJobr= this.galleryJobDefault;
+          console.log(this.WorkersInfo[index]);
+          console.log(this.WorkersInfo[index].Service);
+          
+          //-info basic
           let nameJobr= this.WorkersInfo[index]['prof_name']; 
-          let certificateJobr= this.WorkersInfo[index]['prof_certificate']; 
-          let insuranceJobr= this.WorkersInfo[index]['prof_insurance']; 
-          let commentsJobr= this.WorkersInfo[index]['prof_comments']; 
-          let presentationJobr= this.WorkersInfo[index]['prof_presentation']; 
-
           if(this.WorkersInfo[index]['prof_picture'] && this.WorkersInfo[index]['prof_picture'] != ''){
             ImgJobr = this.WorkersInfo[index]['prof_picture'];
           }
-          if(this.WorkersInfo[index]['prof_galleryA'] && this.WorkersInfo[index]['prof_galleryA'] != ''){
-            galleryAJobr = this.WorkersInfo[index]['prof_galleryA'];
+          //info servicion
+          for(let service in this.WorkersInfo[index].Service){
+            if(this.WorkersInfo[index].Service[service].serv_subService == this.SubServiceActual || this.WorkersInfo[index].Service[service].serv_subService == 'Full'  ){
+
+              let infoService = this.WorkersInfo[index].Service[service];
+              console.log(infoService);
+              console.log(infoService.serv_subService);
+              certificateJobr= infoService.serv_detail['serv_certificate']; 
+              insuranceJobr= infoService.serv_detail['serv_insurance']; 
+              presentationJobr= infoService.serv_detail['serv_moreInformation']; 
+              if(infoService.serv_detail.serv_gallery){
+                if(infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'] != ''){
+                  galleryAJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'];
+                }
+                if(infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'] != ''){
+                  galleryBJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'];
+                }
+                if(infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'] != ''){
+                  galleryCJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'];
+                }
+                if(infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'] != ''){
+                  galleryDJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'];
+                }
+              }
+            }
           }
-          if(this.WorkersInfo[index]['prof_galleryB'] && this.WorkersInfo[index]['prof_galleryB'] != ''){
-            galleryBJobr = this.WorkersInfo[index]['prof_galleryB'];
-          }
-          if(this.WorkersInfo[index]['prof_galleryC'] && this.WorkersInfo[index]['prof_galleryC'] != ''){
-            galleryCJobr = this.WorkersInfo[index]['prof_galleryC'];
-          }
-          if(this.WorkersInfo[index]['prof_galleryD'] && this.WorkersInfo[index]['prof_galleryD'] != ''){
-            galleryDJobr = this.WorkersInfo[index]['prof_galleryD'];
-          }
+          
+          //-info comentarios
+          let commentsJobr= this.WorkersInfo[index]['prof_comments']; 
+          console.log(commentsJobr);
+
+          //-mapear alert
           var contenido='';
           contenido +='<div class="col-40"><img src="'+ImgJobr+'"></div>';
           contenido +='<div class="col-60"><h4>'+nameJobr+'</h4><img src="assets/img/Estrellas.png">';
@@ -163,14 +193,18 @@ export class CleaningSalePage {
           contenido +='<img src="'+galleryBJobr+'" alt="" class="imagen50">';
           contenido +='<img src="'+galleryCJobr+'" alt="" class="imagen50">';
           contenido +='<img src="'+galleryDJobr+'" alt="" class="imagen50">';
-          contenido +='<h5>Comments</h5>';
           
           // console.log('commentsJobr');
           // console.log(commentsJobr);
+          let cont=0;
           for(let key in commentsJobr){
             // console.log(commentsJobr[key]);
             // console.log(commentsJobr[key]['user_username']);
             console.log(commentsJobr[key]['comm_qualification']);
+            if(cont == 0){
+              contenido +='<h5>Comments</h5>';
+              cont=1;
+            }
             // console.log(commentsJobr[key]['comm_description']);
             contenido +='<div class="comments">';
             contenido +='<h6>'+commentsJobr[key]['user_username']+' <img src="assets/img/Estrellas.png" alt=""></h6>';
@@ -191,14 +225,15 @@ export class CleaningSalePage {
     }
   }
 }  
+
   //--- timer
   startTimer(){
     this.objNodeTimer=setInterval( () => this.timer(),1000);
   }
 
   private timer(){
-    if(this.minutos == 0 && this.segundos == 1){ 
-    // if(this.minutos == 1 && this.segundos == 40 ){ 
+    // if(this.minutos == 0 && this.segundos == 1){ 
+    if(this.minutos == 1 && this.segundos == 50 ){ 
       //this.showContador = false;
         clearInterval(this.objNodeTimer);
          this.showContador = false;
@@ -217,62 +252,46 @@ export class CleaningSalePage {
   
   //--- Functions
 
-  async getSale(){
+  getSale(){
     this.MenosPrecio= undefined;
-    let finRegistro:boolean= false;
-    this.saleService.getSale(this.userActual,this.keyOffer)
+    // let finRegistro:boolean= false;
+    this.saleSubs= this.saleService.getSale(this.userActual,this.keyOffer)
     .subscribe((result) =>{
       this.Workers = [];
       this.WorkersInfo =[];
       this.MenosPrecio = undefined;
       //console.log(result);
       //console.log(result.sale);
-      //console.log(result.providers);
       if(this.MenosPrecio ==  undefined){
         this.MenosPrecio = Number(result.sale);
       }
-      let trabajadores = result.providers;
-      for(let trabajador in trabajadores){
-        // console.log(trabajadores);
-        // console.log(trabajadores[trabajador]);
-        //console.log(trabajadores[trabajador]['offer']);
-        // console.log(trabajador);
-        if(this.MenosPrecio > Number(trabajadores[trabajador]['offer']) ) { this.MenosPrecio= Number(trabajadores[trabajador]['offer']);}
-        let PromiseUser =this.professionalsService.getProfessional(trabajador);
-        // console.log(PromiseUser);
-        PromiseUser.subscribe((user) =>{
-          //console.log(user);
-          this.WorkersInfo.push(user);
+      //console.log(result.providers);
+      this.getProviders(result.providers);
+      // finRegistro = true;
+    });
+  }
+
+  getProviders(trabajadores){
+    for(let trabajador in trabajadores){
+      console.log(trabajador);
+      if(this.MenosPrecio > Number(trabajadores[trabajador]['offer']) ) { this.MenosPrecio= Number(trabajadores[trabajador]['offer']);}
+      let userSubs =this.professionalsService.getProfessional(trabajador).subscribe(
+        (user) =>{
           let img = this.imgJobDefault;
+
+          this.WorkersInfo.push(user);
+          
           if(user.prof_picture && user.prof_picture != undefined && user.prof_picture != ''){
             img = user.prof_picture;
           }
-          this.Workers.push({"id":trabajador,"offer":trabajadores[trabajador]['offer'],"img":img,"name":user.prof_name});
+          this.Workers.push({"id":trabajador,"offer":trabajadores[trabajador]['offer'],"img":img,"name":user.prof_username});
+          userSubs.unsubscribe();
         });
-      }
-      finRegistro = true;
-      console.log(this.Workers);
-      console.log(this.WorkersInfo);
-      console.log(this.MenosPrecio);
-      let estadoUser= this.Workers;
-      console.log(estadoUser);
-      // for(let jobs in estadoUser){
-      //   console.log('jobs');
-      //   console.log(jobs);
-      //   console.log(estadoUser[jobs]);
-      // }
-      // console.log('verifcar la informacion');
+    }
 
-    });
-    // this.Workers=[
-    //   {"icon":false,"img":"assets/img/professions/cleaning.png","name":"Loren","offer":"$89","id":"1"},
-    //   {"icon":true,"img":"assets/img/professions/cleaning.png","name":"Espera","offer":"$83","id":"2"},
-    // ];
-
-    // if(await finRegistro){
-    //   this.llemarTrabajadores();
-    // }
-    
+    console.log(this.WorkersInfo);
+    // let estadoUser= this.Workers;
+    // console.log(estadoUser);
   }
 
   ganador(){
@@ -364,14 +383,6 @@ export class CleaningSalePage {
       .catch( (error) => { console.log(error); console.log('error geoCdoficiacion');});
     }
   
-  // private getProfessionals(){
-  //   this.professionalsService.getProfessionals()
-  //   .forEach(professionals =>{
-  //     this.professionals = professionals;
-  //   });
-  // console.log(this.professionals);
-  // }
-
   showAlertSinOffer() {
     let alert = this.alertCtrl.create({
       title: 'Information',

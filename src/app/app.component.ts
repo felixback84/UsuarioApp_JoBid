@@ -37,8 +37,8 @@ export class MyApp {
   srcUser: string = 'assets/img/user.png';
   star:any = '3';
    //rootPage: any = PreHomePage;
-  // rootPage: any = CleaningSalePage;
-  rootPage: any = HomePage;
+  rootPage: any = CleaningSalePage;
+  // rootPage: any = HomePage;
   // rootPage: any = PaymentMethodsPage;
   
   userMenu:any;

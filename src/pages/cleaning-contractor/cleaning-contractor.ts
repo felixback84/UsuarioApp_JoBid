@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component ,ElementRef} from '@angular/core';
 import { NavController, NavParams , AlertController} from 'ionic-angular';
 
 import { CleaningInfoServicePage } from '../cleaning-info-service/cleaning-info-service';
@@ -14,7 +14,6 @@ import { OfferService } from '../../services/offer.service';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-
 @Component({
   selector: 'page-cleaning-contractor',
   templateUrl: 'cleaning-contractor.html',
@@ -29,6 +28,7 @@ export class CleaningContractorPage {
   keyOffer:any;
   worker:any;
   userActual:any;
+  SubServiceActual:any;
 
   //-datos vista
 ImgJobr:any;
@@ -43,10 +43,11 @@ presentationJobr:any;
 commentsJobr:any;
 keyComments:any=[];
 sale:any;
+starJobr:number;
 
-  //-datos consultados
-  workerInfo:any;
-  //
+  //-subs
+  profeSuns:any;
+
   constructor(
     public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
     public professionalsService : ProfessionalsService,
@@ -61,13 +62,19 @@ sale:any;
     this.keyOffer = this.datasService['offer']; 
     this.worker = this.datasService['win']; 
     this.userActual = localStorage.getItem('verificacion');
+    this.SubServiceActual = localStorage.getItem('SubService');
     this.sale=this.worker['offer'];
-    console.log(this.datasService);
-    console.log(this.dataService);
-    console.log(this.keyOffer);
-    console.log(this.worker);
-    console.log(this.userActual);
+    // console.log(this.datasService);
+    // console.log(this.dataService);
+    // console.log(this.keyOffer);
+    // console.log(this.worker);
+    // console.log(this.userActual);
+    console.log(this.SubServiceActual);
     this.getProfessionals(this.worker['id']);
+
+    //-comentar si sale 
+    this.SubServiceActual = "Electrician";
+    //-comentar si sale -fin
   }
   goCleaningInfoService(){
     console.info('goCleaningContractor');
@@ -117,55 +124,59 @@ sale:any;
   }
 
   private getProfessionals(keyWork){
-    this.professionalsService.getProfessional(keyWork)
-    .forEach(professional =>{
-      this.workerInfo= professional;
-    });
-    this.mostrarWorkInfo();
+    console.log(keyWork);
+    this.profeSuns = this.professionalsService.getProfessional(keyWork).subscribe(
+      (professional) =>{
+        // console.log(professional);
+        this.mostrarWorkInfo(professional);
+      });
   }
   
-  mostrarWorkInfo(){
-    console.log(this.workerInfo);
+  mostrarWorkInfo(workerInfo){
+    console.log(workerInfo);
     this.ImgJobr= this.imgJobDefault;
     this.galleryAJobr = this.galleryJobDefault;
     this.galleryBJobr = this.galleryJobDefault;
     this.galleryCJobr = this.galleryJobDefault;
     this.galleryDJobr = this.galleryJobDefault;
-    // let galleryJobr= this.galleryJobDefault;
-    this.nameJobr= this.workerInfo['prof_name']; 
-    this.certificateJobr= this.workerInfo['prof_certificate']; 
-    this.insuranceJobr= this.workerInfo['prof_insurance']; 
-    this.presentationJobr= this.workerInfo['prof_presentation']; 
-
-    this.commentsJobr= this.workerInfo['prof_comments'];
     
-    if(this.workerInfo['prof_picture'] && this.workerInfo['prof_picture'] != ''){
-      this.ImgJobr = this.workerInfo['prof_picture'];
+    //-info basic
+    this.nameJobr= workerInfo['prof_name']; 
+    this.worker['star'] = workerInfo['prof_star'];
+    this.starJobr= Math.round(workerInfo['prof_star']); 
+    // console.log(this.starJobr); 
+    if(workerInfo['prof_picture'] && workerInfo['prof_picture'] != ''){
+      this.ImgJobr =workerInfo['prof_picture'];
     }
-    if(this.workerInfo['prof_galleryA'] && this.workerInfo['prof_galleryA'] != ''){
-      this.galleryAJobr = this.workerInfo['prof_galleryA'];
-    }
-    if(this.workerInfo['prof_galleryB'] && this.workerInfo['prof_galleryB'] != ''){
-      this.galleryBJobr = this.workerInfo['prof_galleryB'];
-    }
-    if(this.workerInfo['prof_galleryC'] && this.workerInfo['prof_galleryC'] != ''){
-      this.galleryCJobr = this.workerInfo['prof_galleryC'];
-    }
-    if(this.workerInfo['prof_galleryD'] && this.workerInfo['prof_galleryD'] != ''){
-      this.galleryDJobr = this.workerInfo['prof_galleryD'];
-    }
-    for(let key in this.commentsJobr){
-        console.log(this.commentsJobr[key]);
-        // console.log(commentsJobr[key]['user_username']);
-        // console.log(commentsJobr[key]['comm_qualification']);
-        // // console.log(commentsJobr[key]['comm_description']);
-        // this.keyComments.push(key);
-        this.keyComments.push({"user":this.commentsJobr[key]['user_username'],qualification:this.commentsJobr[key]['comm_qualification'],"description":this.commentsJobr[key]['comm_description']});
+    //info servicion
+    for(let service in workerInfo.Service){
+      if(workerInfo.Service[service].serv_subService == this.SubServiceActual || workerInfo.Service[service].serv_subService == 'Full'  ){
+
+        let infoService = workerInfo.Service[service];
+        // console.log(infoService);
+        // console.log(infoService.serv_subService);
+        this.certificateJobr= infoService.serv_detail['serv_certificate']; 
+        this.insuranceJobr= infoService.serv_detail['serv_insurance']; 
+        this.presentationJobr= infoService.serv_detail['serv_moreInformation']; 
+
+        if(infoService.serv_detail.serv_gallery){
+          if(infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'] != ''){
+            this.galleryAJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'];
+          }
+          if(infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'] != ''){
+            this.galleryBJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'];
+          }
+          if(infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'] != ''){
+            this.galleryCJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'];
+          }
+          if(infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'] != ''){
+            this.galleryDJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'];
+          }
+        }
       }
-      this.commentsJobr= this.workerInfo['prof_comments']; 
-      // this.keyComments = Object.keys(this.commentsJobr);
-      console.log(this.keyComments);
-  }
+    }
+
+  } 
+
 
 }
-
