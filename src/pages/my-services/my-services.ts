@@ -38,7 +38,9 @@ export class MyServicesPage {
     let OfferServiceGet:any;
     let SaleServiceGet=this.saleService.getSales(this.userActual)
     .subscribe((value)=>{
-      console.log(value);
+      this.OffersList=[];
+      // console.log('saleServiceGet');
+      // console.log(value);
       // console.log('get saleKey');
       // value.forEach((data) =>{
         //   console.log(data);
@@ -51,11 +53,16 @@ export class MyServicesPage {
           }else{
           // this.offerService.getOffer(key);
           // this.keyOffer.push(key);
+          console.log(key);
           OfferServiceGet = this.offerService.getOffer(key)
           .subscribe((datos) =>{
-            console.info('get offerKey');
             console.log(datos);
-            this.OffersList.push(datos);
+            // if(datos['$value'] == null){
+
+            // }else{
+              console.info('get offerKey');
+              this.OffersList.push(datos);
+            // }
           });
         }
       }
@@ -63,7 +70,7 @@ export class MyServicesPage {
       SaleServiceGet.unsubscribe();
     });
     
-    console.log(this.OffersList);
+    // console.log(this.OffersList);
     // for(let valueOffer of this.keyOffer){
     //   console.log('this.keyOffer');
     //   console.log(this.keyOffer);

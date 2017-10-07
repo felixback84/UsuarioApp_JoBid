@@ -87,7 +87,7 @@ export class CleaningInfoServicePage {
     });
     this.startTimer();
     //-provicional
-    this.goCleaningVote();
+    // this.goCleaningVote();
   }
   
   goCleaningVote(){

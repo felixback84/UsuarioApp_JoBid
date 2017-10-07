@@ -15,7 +15,17 @@ import { ShowPage } from '../show/show';
 })
 export class CleaningOkPage {
 
+  //-data
+  datasService:any;
+  keyOffer:any;
+  worker:any;
+  userActual:any;
+
+  //-vista
+  offer:any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.loadData();
   }
 
   ionViewDidLoad() {
@@ -23,5 +33,17 @@ export class CleaningOkPage {
   }
   goIndex(){
  		this.navCtrl.setRoot(ShowPage);
- 	}
+  }
+   
+  loadData(){
+    this.datasService = this.navParams.get('datos');
+    this.keyOffer = this.datasService['offer']; 
+    this.worker = this.datasService['win']; 
+    this.userActual = localStorage.getItem('verificacion');
+    this.offer= this.worker['offer'];
+    console.log(this.datasService);
+    console.log(this.keyOffer);
+    console.log(this.worker);
+    console.log(this.userActual);
+  }
 }

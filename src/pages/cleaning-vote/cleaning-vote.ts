@@ -3,6 +3,10 @@ import { NavController, NavParams } from 'ionic-angular';
 
 
 import { CleaningOkPage } from '../cleaning-ok/cleaning-ok';
+
+//-service
+import { ProfessionalsService } from '../../services/professionals.service';
+
 /**
  * Generated class for the CleaningVotePage page.
  *
@@ -24,7 +28,10 @@ export class CleaningVotePage {
 
   //-view
   vote:any=[];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private professionalsService : ProfessionalsService,
+  ) {
+
   }
 
   ionViewDidLoad() {
@@ -43,9 +50,18 @@ export class CleaningVotePage {
 
   goCleaningOk(){
     console.log(this.vote);
+    this.vote['userId']=this.worker['id'];
     let DataService = {'datos':{"offer":this.keyOffer,"win":this.worker}};
     console.log(DataService);
-  	// this.navCtrl.setRoot(CleaningOkPage,DataService);
+
+    this.professionalsService.setComment(this.worker['id'],this.vote);
+
+    //-cambiar calificacion proveedor
+    let calificacion = (Number(this.vote.estrellas) + Number(this.worker['star']) )/2;
+    console.log(calificacion);
+    this.professionalsService.setStar(this.worker['id'],calificacion);
+
+  	this.navCtrl.setRoot(CleaningOkPage,DataService);
   }
 
 }

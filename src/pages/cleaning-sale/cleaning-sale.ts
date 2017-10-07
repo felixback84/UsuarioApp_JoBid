@@ -78,23 +78,23 @@ export class CleaningSalePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CleaningSalePage');
     //--Ini-comentado para evitar mas creaciones
-    // this.dataOffer = this.navParams.get('datos');
-    // this.maxOffer = this.dataOffer['dataService']['Clasificacion']['informacion']['maxOffer'];
-    // this.dataService = this.dataOffer['dataService'];
-    // this.keyOffer = this.dataOffer['offer']; 
-    // this.userActual = localStorage.getItem('verificacion');
-    // this.SubService = localStorage.getItem('SubService');
-    // console.log(this.dataOffer);
-    // console.log(JSON.stringify(this.dataService));
+    this.dataOffer = this.navParams.get('datos');
+    this.maxOffer = this.dataOffer['dataService']['Clasificacion']['informacion']['maxOffer'];
+    this.dataService = this.dataOffer['dataService'];
+    this.keyOffer = this.dataOffer['offer']; 
+    this.userActual = localStorage.getItem('verificacion');
+    this.SubServiceActual = localStorage.getItem('SubService');
+    console.log(this.dataOffer);
+    console.log(JSON.stringify(this.dataService));
     
     //--Fin-comentado para evitar mas creaciones
     
     //--Ini-comentado para tener flujo normal
-    this.userActual = "user_1504881933094";
-    this.keyOffer = "offer_1507166489841"; 
-    this.dataService = {"name":"Janotorial","class":"orange","Clasificacion":{"categoria":"Electrician","certificacion":"false","seguro":"false","distancia":"4M","experiencia":"3Y","informacion":{"maxOffer":"147","roomElec":"156","mtsElect":"12","foto":"","moreInformation":"fasdf erqw  zxcv"}},"status":"Published","User":"user_1504881933094","Star":"4"}
-    this.maxOffer = 147;
-    this.SubServiceActual = "Electrician";
+    // this.userActual = "user_1504881933094";
+    // this.keyOffer = "offer_1507166489841"; 
+    // this.dataService = {"name":"Janotorial","class":"orange","Clasificacion":{"categoria":"Electrician","certificacion":"false","seguro":"false","distancia":"4M","experiencia":"3Y","informacion":{"maxOffer":"147","roomElec":"156","mtsElect":"12","foto":"","moreInformation":"fasdf erqw  zxcv"}},"status":"Published","User":"user_1504881933094","Star":"4"}
+    // this.maxOffer = 147;
+    // this.SubServiceActual = "Electrician";
     //--Fin-comentado para tener flujo normal
 
     // this.getUserLocation();
@@ -232,8 +232,8 @@ export class CleaningSalePage {
   }
 
   private timer(){
-    // if(this.minutos == 0 && this.segundos == 1){ 
-    if(this.minutos == 1 && this.segundos == 50 ){ 
+    if(this.minutos == 0 && this.segundos == 1){ 
+    // if(this.minutos == 1 && this.segundos == 50 ){ 
       //this.showContador = false;
         clearInterval(this.objNodeTimer);
          this.showContador = false;

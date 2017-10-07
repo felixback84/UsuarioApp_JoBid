@@ -143,7 +143,7 @@ export class PreHomePage {
         console.log(result);
         this.guardarDireccionGeo(result);
       })
-      .catch( (error) => { console.log(error); console.log('error geoCdoficiacion'); alert('e getname location');});
+      .catch( (error) => { console.log(error); console.log('error geoCdoficiacion'); });
     }
 
   getAddressUser(userId: string ){
@@ -222,14 +222,14 @@ export class PreHomePage {
         // console.info(JSON.stringify(resp));
         console.info(resp.coords.latitude);
         console.info(resp.coords.longitude);
-        alert(resp.coords.latitude);
-        alert(resp.coords.longitude);
+        // alert(resp.coords.latitude);
+        // alert(resp.coords.longitude);
         this.lat = resp.coords.latitude;
         this.lng = resp.coords.longitude;
         this.getNameAddress();
       }).catch(() => {
         console.log("Error to get location");
-        alert('e get location');
+        // alert('e get location');
         this.getUserLocation();
       });
     });
@@ -238,7 +238,7 @@ export class PreHomePage {
   private getUserLocation() {
     /// locate the user
     // console.info('get User location2');
-    alert('get User location2');
+    // alert('get User location2');
     // console.info(navigator);
     //console.info(navigator.geolocation);
     //console.info(JSON.stringify(navigator));
@@ -259,8 +259,8 @@ export class PreHomePage {
         this.lng = position.coords.longitude;
         console.info(position.coords.latitude);
         console.info(position.coords.longitude);
-        alert('pos-lat:'+position.coords.latitude);
-        alert('pos-lng:'+position.coords.longitude);
+        // alert('pos-lat:'+position.coords.latitude);
+        // alert('pos-lng:'+position.coords.longitude);
         this.getNameAddress();
       });
     }
