@@ -52,11 +52,22 @@ export class OfferService{
 		this.afDB.object('/offer/'+keyOffer+'/UserLocacion').set(UserLocation).catch(error => {console.log('error offer setOfferUserLocation'); console.log(error);console.log(JSON.stringify(error));});
 	}
 
+	
+
 	//-get
 	public getStatus(keyOffer){
 		return this.afDB.object('/offer/'+keyOffer+'/status/');
 	}
 	public getOffer(keyOffer){
 		return this.afDB.object('/offer/'+keyOffer);
+	}
+
+	//timer
+	public setTimer(keyOffer,timer){
+		this.afDB.object('/time/'+keyOffer+'/Timer').set(timer).catch(error => {console.log('error offer setTimer'); console.log(error);console.log(JSON.stringify(error));});
+	}
+
+	public dropTimer(keyOffer){
+		this.afDB.object('/time/'+keyOffer).remove().catch(error => {console.log('error offer dropTimer'); console.log(error);console.log(JSON.stringify(error));});
 	}
 }

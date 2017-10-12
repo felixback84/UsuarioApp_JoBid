@@ -44,10 +44,19 @@
         },
         "cordova-plugin-nativegeocoder": {
             "PACKAGE_NAME": "com.JoBit.com"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.JoBit.com"
+        },
+        "cordova-plugin-nativeaudio": {
+            "PACKAGE_NAME": "com.JoBit.com"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.JoBit.com"
+        },
+        "cordova-plugin-file": {
             "PACKAGE_NAME": "com.JoBit.com"
         }
     }

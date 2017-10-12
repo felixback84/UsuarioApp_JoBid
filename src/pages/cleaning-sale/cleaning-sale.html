@@ -36,7 +36,12 @@
     </agm-map> -->
   <!-- <div> -->
 <div class="contador" *ngIf="showContador" >
+  <div class="contenido" *ngIf="StaringLabel" >
+    <h3><p>Start</p>{{contador}}</h3>
+  </div>
+  <div class="contenido2" *ngIf="!StaringLabel">
     <h3>{{contador}}</h3>
+  </div>
 </div>
 <div class="barraRoja">
   <h4>Offers received</h4>

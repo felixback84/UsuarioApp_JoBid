@@ -25770,16 +25770,36 @@ page-cleaning-sale .contador {
   width: 100%;
 }
 
-page-cleaning-sale .contador > h3 {
-  color: white;
+page-cleaning-sale .contador > .contenido {
   background: #b20000;
-  height: 80px;
-  /* line-height: 30px; */
+  height: 75px;
   width: 30%;
   border-radius: 7px;
   margin: 0 auto;
-  padding: 27px 0 0 0;
   text-align: center;
+}
+
+page-cleaning-sale .contador > .contenido p, page-cleaning-sale .contador > .contenido h3 {
+  color: white;
+}
+
+page-cleaning-sale .contador > .contenido p {
+  margin-bottom: 1px;
+  padding-top: 5px;
+}
+
+page-cleaning-sale .contador > .contenido2 {
+  background: #b20000;
+  height: 75px;
+  width: 30%;
+  border-radius: 7px;
+  margin: 0 auto;
+  padding: 5px 0 0 0;
+  text-align: center;
+}
+
+page-cleaning-sale .contador > .contenido2 p, page-cleaning-sale .contador > .contenido2 h3 {
+  color: white;
 }
 
 page-cleaning-sale ion-item.item-md, page-cleaning-sale ion-item.item-ios {

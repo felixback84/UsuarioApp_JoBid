@@ -9,6 +9,8 @@ import { CleaningPage } from '../cleaning/cleaning';
 
 import { ProfessionsService } from '../../services/professions.service';
 
+import { Media, MediaObject } from '@ionic-native/media';
+
 /**
  * Generated class for the ShowPage page.
  *
@@ -23,8 +25,13 @@ import { ProfessionsService } from '../../services/professions.service';
 export class ShowPage {
   direccion: any = [];
   professions: any = [] ;
+
+  //-tempo
+  file: MediaObject;
   constructor(
-    public navCtrl: NavController, public navParams: NavParams, public professionsService : ProfessionsService) {
+    public navCtrl: NavController, public navParams: NavParams, public professionsService : ProfessionsService,
+    private media: Media,
+  ) {
     this.showProfessionals();
   }
 
@@ -32,6 +39,21 @@ export class ShowPage {
     console.log('ionViewDidLoad ShowPage');
     //console.log(localStorage);
     this.direccion = JSON.parse(localStorage.getItem('address'));
+    
+    const  file = this.media.create('assets/timbre.mp3');
+
+    console.log(file);
+    
+// to listen to plugin events:
+// console.log(file.statusCallback.toString());
+// file.onStatusUpdate.subscribe(status => console.log(status)); // fires when file status changes
+
+// file.onSuccess.subscribe(() => console.log('Action is successful'));
+
+// file.onError.subscribe(error => console.log('Error!', error));
+
+// play the file
+// file.play();
   }
 
   Cleaning(item : any){

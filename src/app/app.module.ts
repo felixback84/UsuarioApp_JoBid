@@ -4,6 +4,8 @@ import { HttpModule } from '@angular/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { GeocodeServiceProvider } from '../providers/geocode-service';
+import { Media } from '@ionic-native/media';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 //---pages
 import { MyApp } from './app.component';
@@ -187,6 +189,8 @@ export const googleMapsKey = 'AIzaSyB8zF6lhZegDjsV_mrqxd9Fb3YFTw2__AA';
     Facebook,
     Geolocation,
     NativeGeocoder,
+    Media,
+    NativeAudio,
     // EmailComposer
   ]
 })

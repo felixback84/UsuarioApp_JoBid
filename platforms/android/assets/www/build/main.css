@@ -3839,6 +3839,37 @@ ion-content .list-ios > .item-block:first-child {
   border-top: none;
 }
 
+.text-input-md, .text-input-ios {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  font-size: 14px;
+}
+
+[type=color]:focus, [type=date]:focus, [type=datetime-local]:focus, [type=datetime]:focus, [type=email]:focus, [type=month]:focus, [type=number]:focus, [type=password]:focus, [type=search]:focus, [type=tel]:focus, [type=text]:focus, [type=time]:focus, [type=url]:focus, [type=week]:focus, textarea:focus {
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.grid .row {
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.list-md > .item-block:last-child ion-label, .list-md > .item-block:last-child .item-inner, .list-md > .item-wrapper:last-child ion-label, .list-md > .item-wrapper:last-child .item-inner,
+.list-ios > .item-block:last-child ion-label, .list-ios > .item-block:last-child .item-inner, .list-ios > .item-wrapper:last-child ion-label, .list-ios > .item-wrapper:last-child .item-inner {
+  background: transparent;
+  color: #444;
+  font-size: 14px;
+}
+
+.label.label-md, .label.label-ios, .label.primary {
+  background: transparent;
+  color: #444;
+  font-size: 14px;
+}
+
 ion-item.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
 ion-item.item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-ios.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
   border-bottom-color: transparent;
@@ -3852,7 +3883,7 @@ ion-item.item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus)
 
 ion-item.item-md, ion-item.item-ios {
   padding: 0;
-  padding-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 ion-item.item-md > ion-icon[item-start] + .item-inner, ion-item.item-ios > ion-icon[item-start] + .item-inner {
@@ -3886,12 +3917,14 @@ ion-item.item-md ion-input, ion-item.item-md ion-select, ion-item.item-ios ion-i
   height: 48px;
   color: #444;
   padding: 5px;
+  margin: 0;
 }
 
 ion-item.item-md ion-textarea, ion-item.item-ios ion-textarea {
   border: 1px solid #ddd;
   color: #444;
   padding: 5px;
+  min-height: 80px;
 }
 
 ion-item.item-md ion-select, ion-item.item-ios ion-select {
@@ -3917,6 +3950,10 @@ ion-item.item-md ion-select.mitad:first-child, ion-item.item-md ion-input.mitad:
 
 ion-item.item-md.item-radio-checked.item-md ion-label, ion-item.item-md .item-radio-checked.item-ios ion-label, ion-item.item-ios.item-radio-checked.item-md ion-label, ion-item.item-ios .item-radio-checked.item-ios ion-label {
   color: #444;
+}
+
+ion-item.item-md ion-label.label, ion-item.item-ios ion-label.label {
+  background: transparent !important;
 }
 
 ion-item.item-md .radio-md .radio-icon, ion-item.item-md .radio-ios .radio-icon, ion-item.item-ios .radio-md .radio-icon, ion-item.item-ios .radio-ios .radio-icon {
@@ -4013,6 +4050,33 @@ form{
   margin: 0;
 }
 
+.clasificacion {
+  direction: rtl;
+  /* right to left */
+  unicode-bidi: bidi-override;
+  /* bidi de bidireccional */
+  width: 100%;
+  text-align: center;
+}
+
+.clasificacion label {
+  color: black;
+  font-size: 25px;
+  text-align: center;
+}
+
+.clasificacion label:hover, .clasificacion label:hover ~ label {
+  color: #b20000;
+}
+
+.clasificacion input[type="radio"] {
+  display: none;
+}
+
+.clasificacion input[type="radio"]:checked ~ label {
+  color: #b20000;
+}
+
 /*color professions*/
 .red {
   color: red;
@@ -4036,6 +4100,10 @@ form{
 
 .blue {
   color: blue;
+}
+
+.pink {
+  color: pink;
 }
 
 ion-action-sheet {
@@ -25426,6 +25494,64 @@ ion-navbar.toolbar {
   text-align: center;
 }
 
+.item-md p.version, .item-ios p.version {
+  text-align: right;
+  margin-top: -15px;
+}
+
+.loginOut, .loginOut .label-md, .loginOut .label-ios {
+  background: #666666;
+  color: white !important;
+}
+
+ion-item.item-md ion-icon.nota[item-start], ion-item.item-ios ion-icon.nota[item-start] {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  color: #b20000;
+  height: 20px;
+  min-width: 15px;
+}
+
+ion-item.imgUser.item-md, ion-item.imgUser.item-ios {
+  padding-left: 16px;
+}
+
+ion-item.imgUser.item-md ion-thumbnail ion-img, ion-item.imgUser.item-md ion-thumbnail img,
+ion-item.imgUser.item-md ion-thumbnail ion-img, ion-item.imgUser.item-md ion-thumbnail img, ion-item.imgUser.item-ios ion-thumbnail ion-img, ion-item.imgUser.item-ios ion-thumbnail img,
+ion-item.imgUser.item-ios ion-thumbnail ion-img, ion-item.imgUser.item-ios ion-thumbnail img {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+}
+
+.toolbar-md .tittleMenu, .toolbar-ios .tittleMenu {
+  text-align: center;
+}
+
+page-add-payment-method .barraRoja {
+  background: #b20000;
+}
+
+page-add-payment-method .btnBottom {
+  width: 80%;
+  margin: auto;
+}
+
+page-add-payment-method .btnBottom button {
+  background: #b20000;
+  color: white;
+  margin: 0;
+  width: 100%;
+  height: 48px;
+  border-radius: 5px;
+}
+
+page-add-payment-method .braintree-placeholder {
+  text-align: center;
+  margin-top: 20px;
+}
+
 page-cleaning .imgCenter ion-icon {
   width: 90px;
   display: block;
@@ -25644,16 +25770,36 @@ page-cleaning-sale .contador {
   width: 100%;
 }
 
-page-cleaning-sale .contador > h3 {
-  color: white;
+page-cleaning-sale .contador > .contenido {
   background: #b20000;
-  height: 80px;
-  /* line-height: 30px; */
+  height: 75px;
   width: 30%;
   border-radius: 7px;
   margin: 0 auto;
-  padding: 27px 0 0 0;
   text-align: center;
+}
+
+page-cleaning-sale .contador > .contenido p, page-cleaning-sale .contador > .contenido h3 {
+  color: white;
+}
+
+page-cleaning-sale .contador > .contenido p {
+  margin-bottom: 1px;
+  padding-top: 5px;
+}
+
+page-cleaning-sale .contador > .contenido2 {
+  background: #b20000;
+  height: 75px;
+  width: 30%;
+  border-radius: 7px;
+  margin: 0 auto;
+  padding: 5px 0 0 0;
+  text-align: center;
+}
+
+page-cleaning-sale .contador > .contenido2 p, page-cleaning-sale .contador > .contenido2 h3 {
+  color: white;
 }
 
 page-cleaning-sale ion-item.item-md, page-cleaning-sale ion-item.item-ios {
@@ -25692,7 +25838,7 @@ page-cleaning-sale ion-footer ion-toolbar #btnCancel {
   background: #b20000;
   color: white;
   margin: 0;
-  height: 45px;
+  height: 55px;
 }
 
 page-cleaning-sale ion-content ion-grid.body ion-row.row {
@@ -25730,16 +25876,28 @@ page-cleaning-sale ion-content ion-grid.body .button {
   color: white;
   -webkit-box-shadow: none;
   box-shadow: none;
+  display: block;
+  margin: 0 auto;
   margin-top: 6px;
 }
 
 page-cleaning-sale ion-content ion-grid.body .button ion-icon[name=search] {
   color: white;
-  font-size: 30px;
+  width: 45px;
+  height: 45px;
+  font-size: 28px;
+  padding: 7.5px !important;
+  padding-top: 13px !important;
 }
 
 page-cleaning-sale .btnBottom {
   margin-top: 20px;
+}
+
+page-cleaning-sale .mapa agm-map {
+  width: 100%;
+  height: 300px;
+  background: orange;
 }
 
 .alert-md .alert-wrapper, .alert-ios .alert-wrapper {
@@ -25795,6 +25953,44 @@ page-cleaning-vote textarea.text-input.text-input-md, page-cleaning-vote textare
   height: 300px;
 }
 
+page-edit-user h3 {
+  text-align: center;
+  font-weight: bold;
+}
+
+page-edit-user h4 {
+  font-weight: bold;
+}
+
+page-edit-user #signup-heading2 {
+  color: #000000;
+  text-align: center;
+}
+
+page-edit-user .force-back-button .back-button {
+  display: inline-block;
+}
+
+page-edit-user ion-list ion-grid.grid {
+  padding: 0;
+}
+
+page-edit-user ion-list ion-grid.grid .col {
+  padding: 0;
+}
+
+page-edit-user ion-list ion-grid.grid .col:first-child {
+  padding-right: 5px;
+}
+
+page-edit-user .grid {
+  padding: 0;
+}
+
+page-edit-user .grid [col-4], page-edit-user .grid [col-8] {
+  padding: 0;
+}
+
 page-home img {
   display: block;
   width: 100%;
@@ -25819,6 +26015,72 @@ page-login img {
 page-login #login-heading1 {
   color: #000000;
   text-align: center;
+}
+
+page-my-services h3 {
+  text-align: center;
+  font-weight: bold;
+}
+
+page-my-services h4 {
+  font-weight: bold;
+}
+
+page-my-services .btnItem {
+  border-bottom: 1px solid #666666;
+}
+
+page-myserviceinfo h3, page-myserviceinfo h5, page-myserviceinfo h6, page-myserviceinfo .textoCentrado {
+  text-align: center;
+}
+
+page-myserviceinfo h6, page-myserviceinfo h3 {
+  margin: 0;
+}
+
+page-myserviceinfo .barraGris {
+  background: #666666;
+}
+
+page-myserviceinfo .barraGris h4 {
+  padding: 10px;
+  color: white;
+  margin: 0;
+  text-align: center;
+}
+
+page-myserviceinfo .barraRoja {
+  background: #b20000;
+}
+
+page-myserviceinfo .item-md ion-avatar > img, page-myserviceinfo .item-ios ion-avatar > img {
+  margin: 0;
+  width: 80px;
+  height: 80px;
+}
+
+page-myserviceinfo h6 {
+  color: #2b8300;
+}
+
+page-myserviceinfo h3 {
+  margin-top: 5px;
+}
+
+page-myserviceinfo .textRed {
+  color: #b20000;
+}
+
+page-myserviceinfo p {
+  margin: 7px 0;
+}
+
+page-myserviceinfo .space {
+  height: 8px;
+}
+
+page-myserviceinfo .textoCentrado {
+  margin: 0;
 }
 
 page-new-address img {
@@ -25902,6 +26164,29 @@ page-payment-methods .spacer {
   height: 10px;
 }
 
+page-payments h3 {
+  text-align: center;
+  font-weight: bold;
+}
+
+page-payments h4 {
+  font-weight: bold;
+}
+
+ion-footer ion-toolbar .btnBottom {
+  width: 80%;
+  margin: auto;
+}
+
+ion-footer ion-toolbar .btnBottom button {
+  background: #b20000;
+  color: white;
+  margin: 0;
+  width: 100%;
+  height: 48px;
+  border-radius: 5px;
+}
+
 page-pre-home .card-background-page ion-card {
   position: relative;
   text-align: center;
@@ -25958,6 +26243,264 @@ page-pre-home ion-list button.item-md h3, page-pre-home ion-list button.item-ios
   color: black;
   text-transform: capitalize;
   font-weight: bold;
+}
+
+page-pre-home .mapa agm-map {
+  width: 100%;
+  height: 300px;
+  background: orange;
+}
+
+page-services-beauty ion-col#btn-camera {
+  padding-top: 0px;
+}
+
+page-services-beauty ion-col#btn-camera button {
+  height: 48px;
+  width: 100%;
+}
+
+page-services-beauty .imgCenter ion-icon {
+  width: 90px;
+  display: block;
+  margin: 0 auto;
+  font-size: 8em;
+}
+
+page-services-beauty h4, page-services-beauty p {
+  text-align: center;
+}
+
+page-services-beauty .TituloRojo h4 {
+  background: #b20000;
+  border-radius: 8px;
+  width: 200px;
+  margin: 0 auto;
+  color: white;
+}
+
+page-services-beauty .grid .row {
+  height: 60px;
+}
+
+page-services-beauty .grid .rowArea.row {
+  height: 90px;
+}
+
+page-services-care ion-col#btn-camera {
+  padding-top: 0px;
+}
+
+page-services-care ion-col#btn-camera button {
+  height: 48px;
+  width: 100%;
+}
+
+page-services-care .imgCenter ion-icon {
+  width: 90px;
+  display: block;
+  margin: 0 auto;
+  font-size: 8em;
+}
+
+page-services-care h4, page-services-care p {
+  text-align: center;
+}
+
+page-services-care .TituloRojo h4 {
+  background: #b20000;
+  border-radius: 8px;
+  width: 200px;
+  margin: 0 auto;
+  color: white;
+}
+
+page-services-care .grid .row {
+  height: 60px;
+}
+
+page-services-care .btnBottom {
+  margin-top: 30px;
+}
+
+page-services-cleaning ion-col#btn-camera {
+  padding-top: 0px;
+}
+
+page-services-cleaning ion-col#btn-camera button {
+  height: 48px;
+  width: 100%;
+}
+
+page-services-cleaning .imgCenter ion-icon {
+  width: 90px;
+  display: block;
+  margin: 0 auto;
+  font-size: 8em;
+}
+
+page-services-cleaning h4, page-services-cleaning p {
+  text-align: center;
+}
+
+page-services-cleaning .TituloRojo h4 {
+  background: #b20000;
+  border-radius: 8px;
+  width: 200px;
+  margin: 0 auto;
+  color: white;
+}
+
+page-services-cleaning .grid .row {
+  height: 60px;
+}
+
+page-services-cleaning .grid .rowArea.row {
+  height: 90px;
+}
+
+page-services-food ion-col#btn-camera {
+  padding-top: 0px;
+}
+
+page-services-food ion-col#btn-camera button {
+  height: 48px;
+  width: 100%;
+}
+
+page-services-food .imgCenter ion-icon {
+  width: 90px;
+  display: block;
+  margin: 0 auto;
+  font-size: 8em;
+}
+
+page-services-food h4, page-services-food p {
+  text-align: center;
+}
+
+page-services-food .TituloRojo h4 {
+  background: #b20000;
+  border-radius: 8px;
+  width: 200px;
+  margin: 0 auto;
+  color: white;
+}
+
+page-services-food .grid .row {
+  height: 60px;
+}
+
+page-services-food .grid .rowArea.row {
+  height: 90px;
+}
+
+page-services-janotorial ion-col#btn-camera {
+  padding-top: 0px;
+}
+
+page-services-janotorial ion-col#btn-camera button {
+  height: 48px;
+  width: 100%;
+}
+
+page-services-janotorial .imgCenter ion-icon {
+  width: 90px;
+  display: block;
+  margin: 0 auto;
+  font-size: 8em;
+}
+
+page-services-janotorial h4, page-services-janotorial p {
+  text-align: center;
+}
+
+page-services-janotorial .TituloRojo h4 {
+  background: #b20000;
+  border-radius: 8px;
+  width: 200px;
+  margin: 0 auto;
+  color: white;
+}
+
+page-services-janotorial .grid .row {
+  height: 60px;
+}
+
+page-services-janotorial .grid .rowArea.row {
+  height: 90px;
+}
+
+page-services-legal ion-col#btn-camera {
+  padding-top: 0px;
+}
+
+page-services-legal ion-col#btn-camera button {
+  height: 48px;
+  width: 100%;
+}
+
+page-services-legal .imgCenter ion-icon {
+  width: 90px;
+  display: block;
+  margin: 0 auto;
+  font-size: 8em;
+}
+
+page-services-legal h4, page-services-legal p {
+  text-align: center;
+}
+
+page-services-legal .TituloRojo h4 {
+  background: #b20000;
+  border-radius: 8px;
+  width: 200px;
+  margin: 0 auto;
+  color: white;
+}
+
+page-services-legal .grid .row {
+  height: 60px;
+}
+
+page-services-legal .grid .rowArea.row {
+  height: 90px;
+}
+
+page-services-transportation ion-col#btn-camera {
+  padding-top: 0px;
+}
+
+page-services-transportation ion-col#btn-camera button {
+  height: 48px;
+  width: 100%;
+}
+
+page-services-transportation .imgCenter ion-icon {
+  width: 90px;
+  display: block;
+  margin: 0 auto;
+  font-size: 8em;
+}
+
+page-services-transportation h4, page-services-transportation p {
+  text-align: center;
+}
+
+page-services-transportation .TituloRojo h4 {
+  background: #b20000;
+  border-radius: 8px;
+  width: 200px;
+  margin: 0 auto;
+  color: white;
+}
+
+page-services-transportation .grid .row {
+  height: 60px;
+}
+
+page-services-transportation .grid .rowArea.row {
+  height: 90px;
 }
 
 page-show .gridProfession {

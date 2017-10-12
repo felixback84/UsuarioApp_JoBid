@@ -12,14 +12,30 @@ page-cleaning-sale {
 		position: absolute;
 		top:27%;
 		width: 100%;
-		&>h3{ color: white;
+		&>.contenido{ 
+			p,h3{
+				color: white;
+			}
+			p{
+				margin-bottom: 1px;
+				padding-top: 5px;
+			}
 			background:$Red;
-			height: 80px;
-			/* line-height: 30px; */
+			height: 75px;
 			width: 30%;
 			border-radius: 7px;
 			margin: 0 auto;
-			padding: 27px 0 0 0;
+			text-align: center;}
+		&>.contenido2{ 
+			p,h3{
+				color: white;
+			}
+			background:$Red;
+			height: 75px;
+			width: 30%;
+			border-radius: 7px;
+			margin: 0 auto;
+			padding: 5px 0 0 0;
 			text-align: center;}
 	}
 	ion-item.item-md, ion-item.item-ios{

@@ -16,6 +16,8 @@ import { GeocodeServiceProvider } from '../../providers/geocode-service';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import * as GeoFire from 'geofire';
+
+import { Media, MediaObject } from '@ionic-native/media';
 /**
  * Generated class for the CleanigSalePage page.
  *
@@ -45,12 +47,16 @@ export class CleaningSalePage {
   SubServiceActual:any;
   professionals = [];
   professsional = [];
+  
   //--timer
   segundos:number = 0;
-  minutos:number = 2;
+  minutos:number = 3;
   contador:string;
   showContador: boolean = true;
   objNodeTimer:any;
+  NumeroContador:number = 1;
+  StaringLabel = true;
+  
   //-- geoLocation
   lat: number= 37.09024;
   lng: number= -95.71289100000001;
@@ -59,6 +65,8 @@ export class CleaningSalePage {
   //-Subs
   saleSubs:any;
 
+  //-file
+  file: MediaObject;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -68,16 +76,19 @@ export class CleaningSalePage {
     private saleService: SaleService,  
     private offerService: OfferService,  
     private geocodeServiceProvider: GeocodeServiceProvider,  
+    private media: Media,
   ) {
-      this.contador = '0'+this.minutos+':'+'0'+this.segundos;
-      this.startTimer();
-      
+    this.contador = '0'+this.minutos+':'+'0'+this.segundos;
+    this.startTimer();
+    this.file = this.media.create('assets/timbre.mp3');
+    this.file.play();
       // this.getProfessionals();
     }
     
   ionViewDidLoad() {
     console.log('ionViewDidLoad CleaningSalePage');
     //--Ini-comentado para evitar mas creaciones
+    
     this.dataOffer = this.navParams.get('datos');
     this.maxOffer = this.dataOffer['dataService']['Clasificacion']['informacion']['maxOffer'];
     this.dataService = this.dataOffer['dataService'];
@@ -91,15 +102,16 @@ export class CleaningSalePage {
     
     //--Ini-comentado para tener flujo normal
     // this.userActual = "user_1504881933094";
-    // this.keyOffer = "offer_1507166489841"; 
-    // this.dataService = {"name":"Janotorial","class":"orange","Clasificacion":{"categoria":"Electrician","certificacion":"false","seguro":"false","distancia":"4M","experiencia":"3Y","informacion":{"maxOffer":"147","roomElec":"156","mtsElect":"12","foto":"","moreInformation":"fasdf erqw  zxcv"}},"status":"Published","User":"user_1504881933094","Star":"4"}
-    // this.maxOffer = 147;
+    // this.keyOffer = "offer_1507673673537"; 
+    // this.dataService = {"name":"Janotorial","class":"orange","Clasificacion":{"categoria":"Electrician","certificacion":"true","seguro":"true","distancia":"4M","experiencia":"3Y","informacion":{"maxOffer":"189","roomElec":"1","mtsElect":"2","foto":"","moreInformation":"more information. fads"}},"status":"Published","User":"user_1504881933094","Star":"3"};
+    // this.maxOffer = 189;
     // this.SubServiceActual = "Electrician";
-    //--Fin-comentado para tener flujo normal
+    // --Fin-comentado para tener flujo normal
 
     // this.getUserLocation();
     this.getUserLocationGeolocation();
     this.getSale();
+  
   }
 
   goCleaningContractor(ganador?){
@@ -108,6 +120,7 @@ export class CleaningSalePage {
     this.saleSubs.unsubscribe();
     let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer,"win":ganador}};
     // console.log(DataService);
+    this.offerService.dropTimer(this.keyOffer);
   	this.navCtrl.setRoot(CleaningContractorPage,DataService);
   }
 
@@ -117,6 +130,7 @@ export class CleaningSalePage {
   console.info('Offer -Cancelled');
   this.saleService.setStatus(this.userActual,this.keyOffer,'Cancelled');
   this.offerService.setStatus(this.keyOffer,'Cancelled');
+  this.offerService.dropTimer(this.keyOffer);
     clearInterval(this.objNodeTimer);
     this.navCtrl.setRoot(ShowPage);
   }
@@ -232,12 +246,20 @@ export class CleaningSalePage {
   }
 
   private timer(){
-    if(this.minutos == 0 && this.segundos == 1){ 
-    // if(this.minutos == 1 && this.segundos == 50 ){ 
+    // if(this.minutos == 0 && this.segundos == 1){ 
+    if(this.minutos == 1 && this.segundos == 50 ){ 
       //this.showContador = false;
+      if(this.NumeroContador == 2){
         clearInterval(this.objNodeTimer);
-         this.showContador = false;
-         this.ganador();
+        this.showContador = false;
+        this.ganador();
+      }else{
+        this.minutos = 2;
+        this.segundos = 0;
+        this.NumeroContador = 2;
+        this.StaringLabel = false;this.saleService.setStatus(this.userActual,this.keyOffer,'Start');
+        this.offerService.setStatus(this.keyOffer,'Start');
+      }
     }else{
       if(--this.segundos< 0){
         this.segundos = 59;
@@ -247,6 +269,7 @@ export class CleaningSalePage {
         }
       }
       this.contador = this.dobleCifra(this.minutos)+':'+this.dobleCifra(this.segundos);
+      this.offerService.setTimer(this.keyOffer,this.contador);
     }
   }
   
@@ -284,7 +307,7 @@ export class CleaningSalePage {
           if(user.prof_picture && user.prof_picture != undefined && user.prof_picture != ''){
             img = user.prof_picture;
           }
-          this.Workers.push({"id":trabajador,"offer":trabajadores[trabajador]['offer'],"img":img,"name":user.prof_username});
+          this.Workers.push({"id":trabajador,"offer":trabajadores[trabajador]['offer'],"img":img,"name":user.prof_name});
           userSubs.unsubscribe();
         });
     }
@@ -296,6 +319,7 @@ export class CleaningSalePage {
 
   ganador(){
     console.info('ganador');
+    
     // console.log(this.Workers.length);
     // console.log('this.Workers.length');
     if(this.Workers.length != 0){
@@ -320,6 +344,7 @@ export class CleaningSalePage {
      this.showAlertSinOffer();
     this.saleService.setStatus(this.userActual,this.keyOffer,'Saved');
     this.offerService.setStatus(this.keyOffer,'Saved');
+    this.offerService.dropTimer(this.keyOffer);
     clearInterval(this.objNodeTimer);
     this.navCtrl.setRoot(ShowPage);
   }

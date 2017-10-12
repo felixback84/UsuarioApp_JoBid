@@ -37,6 +37,19 @@
     <feature name="Sms">
         <param name="android-package" value="com.cordova.plugins.sms.Sms" />
     </feature>
+    <feature name="Geolocation">
+        <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
+    </feature>
+    <feature name="NativeGeocoder">
+        <param name="android-package" value="cordova.plugin.nativegeocoder.NativeGeocoder" />
+    </feature>
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Media">
+        <param name="android-package" value="org.apache.cordova.media.AudioHandler" />
+    </feature>
     <name>MyApp</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -79,10 +92,7 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
-    <feature name="Geolocation">
-        <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
-    </feature>
-    <feature name="NativeGeocoder">
-        <param name="android-package" value="cordova.plugin.nativegeocoder.NativeGeocoder" />
+    <feature name="NativeAudio">
+        <param name="android-package" value="com.rjfun.cordova.plugin.nativeaudio.NativeAudio" />
     </feature>
 </widget>
