@@ -46,17 +46,21 @@ export class CleaningInfoServicePage {
   objNodeTimer:any;
   segundos:any=10;
   cont=1;
+
+  //-subs
+  saleStatusSubs:any;
+
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
     public professionalsService : ProfessionalsService,
-    private saleService: SaleService , private offerService : OfferService,
+    private saleService: SaleService , 
+    private offerService : OfferService,
   ) {
     this.loadData();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CleaningInfoServicePage');
-    
   }
 
   loadData(){
@@ -69,14 +73,15 @@ export class CleaningInfoServicePage {
     this.information= this.dataService['Clasificacion']['informacion']['moreInformation'];
     this.serviceCode = this.keyOffer.substring(6);
     console.log(this.datasService);
-    console.log(this.dataService);
-    console.log(this.keyOffer);
-    console.log(this.worker);
-    console.log(this.userActual);
+    // console.log(this.dataService);
+    // console.log(this.keyOffer);
+    // console.log(this.worker);
+    // console.log(this.userActual);
+    // console.log(localStorage);
     this.getProfessionals(this.worker['id']);
-    this.saleService.getStatus(this.userActual,this.keyOffer).subscribe((resul)=>{
-      console.log(resul);
-      console.log(resul['$value']);
+    this.saleStatusSubs= this.saleService.getStatus(this.userActual,this.keyOffer).subscribe((resul)=>{
+      // console.log(resul);
+      // console.log(resul['$value']);
       this.status = resul['$value'];
       if(resul['$value'] == 'In progress'){
         this.status = 'Service in progress';
@@ -93,6 +98,7 @@ export class CleaningInfoServicePage {
   goCleaningVote(){
     let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer,"win":this.worker}};
     console.log(DataService);
+    this.saleStatusSubs.unsubscribe();
   	this.navCtrl.setRoot(CleaningVotePage,DataService);
   }
 

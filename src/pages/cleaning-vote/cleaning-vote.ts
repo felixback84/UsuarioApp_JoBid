@@ -31,27 +31,26 @@ export class CleaningVotePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private professionalsService : ProfessionalsService,
   ) {
-
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CleaningVotePage');
     this.datasService = this.navParams.get('datos');
     this.dataService = this.datasService['dataService'];
     this.keyOffer = this.datasService['offer']; 
     this.worker = this.datasService['win']; 
     this.userActual = localStorage.getItem('verificacion');
-    console.log(this.datasService);
-    console.log(this.dataService);
-    console.log(this.keyOffer);
-    console.log(this.worker);
-    console.log(this.userActual);
+    // console.log(this.datasService);
+    // console.log(this.dataService);
+    // console.log(this.keyOffer);
+    // console.log(this.worker);
+    // console.log(this.userActual);
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad CleaningVotePage');
   }
 
   goCleaningOk(){
     console.log(this.vote);
-    this.vote['userId']=this.worker['id'];
-    let DataService = {'datos':{"offer":this.keyOffer,"win":this.worker}};
+    this.vote['userId']=this.userActual;
+    let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer,"win":this.worker}};
     console.log(DataService);
 
     this.professionalsService.setComment(this.worker['id'],this.vote);

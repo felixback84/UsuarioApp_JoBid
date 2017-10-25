@@ -65,7 +65,7 @@ export class ServicesCarePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ServicesCarePage');
-    console.log(localStorage);
+    // console.log(localStorage);
   }
   goCleaningSale(){
     switch(this.subCategory){

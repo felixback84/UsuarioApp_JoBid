@@ -13,12 +13,12 @@ export class OfferService{
 	//---new offer 
 	public newOffer(serviceData : any = [],keyNew?:any){
 	// public newOffer(serviceData : any = [],subCategory:string,keyNew?:any){
-		console.log('metodoNewOffer');
+		console.info('off NewOffer');
 		let key = undefined;
 		//default star
-		console.log(JSON.stringify(serviceData));
+		// console.log(JSON.stringify(serviceData));
 		// console.log('key:'+key);
-		console.log('keyNew:'+keyNew);
+		// console.log('keyNew:'+keyNew);
 		if(keyNew && keyNew != null  && keyNew != undefined){
 			keyOffer = keyNew;
 		}else{
@@ -27,7 +27,7 @@ export class OfferService{
 			var keyOffer = "offer_"+(key);
 		}
 		
-		console.log(serviceData);
+		// console.log(serviceData);
 		// console.log(JSON.stringify(serviceData));
 		// console.log(subCategory);
 		this.afDB.object('/offer/'+keyOffer).set(serviceData).catch(error => {console.log('error offer setNOff'); console.log(error);console.log(JSON.stringify(error));});
@@ -48,7 +48,7 @@ export class OfferService{
 	}
 	public setOfferUserLocation(keyOffer,UserLocation){
 		console.info('set UserLocation');
-		console.log(UserLocation);
+		// console.log(UserLocation);
 		this.afDB.object('/offer/'+keyOffer+'/UserLocacion').set(UserLocation).catch(error => {console.log('error offer setOfferUserLocation'); console.log(error);console.log(JSON.stringify(error));});
 	}
 

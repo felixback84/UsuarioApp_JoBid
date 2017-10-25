@@ -16,12 +16,23 @@
 <ion-content>
 <div class="mapa">
   <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zom">
-    <agm-marker [latitude]="lat" [longitude]="lng">
+    <!-- <agm-marker [latitude]="lat" [longitude]="lng">
       <agm-info-window>
         <h3><strong>Howdy!</strong></h3>
         <p>You are here!</p>
       </agm-info-window>
+    </agm-marker> -->
+    <agm-marker *ngFor="let marker of WorkersMap" style="z-index:9;"
+      [latitude]="marker.latitud"
+      [longitude]="marker.longitud" >
     </agm-marker>
+    <!-- <agm-marker *ngFor="let marker of WorkersMap" style="z-index:9;"
+    [latitude]="marker.latitud"
+    [longitude]="marker.longitud"
+    [iconUrl]="marker.imagen"
+    
+    >
+  </agm-marker> -->
   </agm-map>
 </div>
 

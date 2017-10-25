@@ -53,7 +53,7 @@ export class ServicesJanotorialPage {
   ) {
     this.dataService = this.navParams.get('datos');
     
-    console.log(this.dataService);
+    // console.log(this.dataService);
     this.subCategory = this.dataService['Clasificacion']['categoria'];
     //this.getForm(this.subCategory);
     this.getForm();
@@ -64,7 +64,7 @@ export class ServicesJanotorialPage {
   }
 
   goCleaningSale(){
-    console.log(this.subCategory);
+    // console.log(this.subCategory);
     switch(this.subCategory){
       
         case "Handyman":{
@@ -93,18 +93,18 @@ export class ServicesJanotorialPage {
           break;
         } 
     }
-    console.log(this.dataInformacion);
+    // console.log(this.dataInformacion);
     this.guardarServicio(this.dataInformacion);
   }
   
   guardarServicio(datos){
-    console.log(datos);
-    console.log(this.dataService);
+    // console.log(datos);
+    // console.log(this.dataService);
     this.dataService['Clasificacion']['informacion']=datos['0'];
     var d = new Date();
     let key = d.getTime();
     var keyOffer = "offer_"+(key);
-    console.log(this.dataService);
+    // console.log(this.dataService);
     
     // let subCategory=this.dataService['Clasificacion']['categoria'];
     //this.careProfessionS.newOffer(this.dataService,subCategory,keyOffer);
@@ -131,7 +131,7 @@ export class ServicesJanotorialPage {
           {"value":"Mowing","label":"Mowing"},
           {"value":"CleanGutters","label":"Clean gutters"}
         ]; 
-        console.log(this.Jobs);
+        // console.log(this.Jobs);
         break;
       }
       case "Pluming":{

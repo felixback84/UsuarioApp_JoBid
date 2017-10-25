@@ -72,11 +72,11 @@ export class PreHomePage {
       localStorage.setItem('userData', JSON.stringify(this.userData));
       localStorage.setItem('verificacion', this.userData['verificacion']);
       //console.log(this.userName);
-      console.log(this.userData);
+      // console.log(this.userData);
       console.log(this.userActual);
       //this.getUrlDataAddres(); 
       this.getAddressUser(this.userActual);
-      this.afAuth.authState.forEach( data => console.log(data));
+      // this.afAuth.authState.forEach( data => console.log(data));
       // let user:any = firebase.auth().currentUser;
       // console.log(user);
       // if (user.isEmailVerified()) {
@@ -140,7 +140,7 @@ export class PreHomePage {
       this.geocodeServiceProvider.GeoCodificationInversa(this.lat,this.lng)
       // this.geocodeServiceProvider.GeoCodificationInversa('4.5510497999999995','-74.0984553')
       .then( (result) => {
-        console.log(result);
+        // console.log(result);
         this.guardarDireccionGeo(result);
       })
       .catch( (error) => { console.log(error); console.log('error geoCdoficiacion'); });
@@ -216,12 +216,12 @@ export class PreHomePage {
         timeout: 5000
       };
       this.geo.getCurrentPosition(options).then(resp => {
-        console.log('geoLocation');
+        console.info('geoLocation');
         // console.log(resp);
         // console.log(resp.coords);
         // console.info(JSON.stringify(resp));
-        console.info(resp.coords.latitude);
-        console.info(resp.coords.longitude);
+        // console.info(resp.coords.latitude);
+        // console.info(resp.coords.longitude);
         // alert(resp.coords.latitude);
         // alert(resp.coords.longitude);
         this.lat = resp.coords.latitude;
@@ -250,15 +250,14 @@ export class PreHomePage {
     //   console.log('no soportado');
     //   /* geolocation IS NOT available */
     // }
-    var geolocationz = navigator.geolocation;
     // console.log(geolocationz);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log('Location');
+        console.info('Location');
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
-        console.info(position.coords.latitude);
-        console.info(position.coords.longitude);
+        // console.info(position.coords.latitude);
+        // console.info(position.coords.longitude);
         // alert('pos-lat:'+position.coords.latitude);
         // alert('pos-lng:'+position.coords.longitude);
         this.getNameAddress();

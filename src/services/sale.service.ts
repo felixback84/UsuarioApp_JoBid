@@ -28,11 +28,12 @@ export class SaleService{
 		// 	var keySale = "sale_"+(key);
 		// }
 		
-		console.log('metodoNewSale');
-		console.log(keyUser);
-		console.log(keySale);
-		console.log(maxOffer);
-		this.afDB.object('/sale/'+keyUser+'/'+keySale).set({"status":"Published","sale":maxOffer,"providers":{"prof_1":{"offer":"87"},"prof_2":{"offer":"65"}}}).catch(error => {console.log('errorNewSale'); console.log(error);console.log(JSON.stringify(error));});
+		// console.info('metodoNewSale');
+		// console.log(keyUser);
+		// console.log(keySale);
+		// console.log(maxOffer);
+		this.afDB.object('/sale/'+keyUser+'/'+keySale).set({"status":"Published","sale":maxOffer}).catch(error => {console.log('errorNewSale'); console.log(error);console.log(JSON.stringify(error));});
+		// this.afDB.object('/sale/'+keyUser+'/'+keySale).set({"status":"Published","sale":maxOffer,"providers":{"prof_1":{"offer":"87"},"prof_2":{"offer":"65"}}}).catch(error => {console.log('errorNewSale'); console.log(error);console.log(JSON.stringify(error));});
 		//this.afDB.object('/sale/'+keyUser+'/'+keySale).set({"status":"new","sale":maxOffer});
 		console.info('sale create');
 	}

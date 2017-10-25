@@ -16,7 +16,7 @@ let yourKeyApiGoogleMaps= "AIzaSyAN3iZp5m77ySYU9f6Iq3TX0g-Y2DelY70";
 export class GeocodeServiceProvider {
 
   constructor(public http: Http) {
-    console.log('Hello GeocodeServiceProvider Provider');
+    // console.log('Hello GeocodeServiceProvider Provider');
   }
 
   GeoCodificationInversa(latitud,longitud) {

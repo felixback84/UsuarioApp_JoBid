@@ -41,6 +41,7 @@ export class CleaningSalePage {
   keyOffer:any;
   Workers:any=[];
   WorkersInfo:any=[];
+  WorkersMap:any=[];
   dataService:any;
   //--datas
   userActual:any;
@@ -60,7 +61,7 @@ export class CleaningSalePage {
   //-- geoLocation
   lat: number= 37.09024;
   lng: number= -95.71289100000001;
-  zom: number = 16;
+  zom: number = 14;
 
   //-Subs
   saleSubs:any;
@@ -95,8 +96,8 @@ export class CleaningSalePage {
     this.keyOffer = this.dataOffer['offer']; 
     this.userActual = localStorage.getItem('verificacion');
     this.SubServiceActual = localStorage.getItem('SubService');
-    console.log(this.dataOffer);
-    console.log(JSON.stringify(this.dataService));
+    // console.log(this.dataOffer);
+    // console.log(JSON.stringify(this.dataService));
     
     //--Fin-comentado para evitar mas creaciones
     
@@ -114,13 +115,14 @@ export class CleaningSalePage {
   
   }
 
-  goCleaningContractor(ganador?){
+  goCleaningContractor(ganador){
     console.info('goCleaningContractor');
     // console.log(ganador);
-    this.saleSubs.unsubscribe();
     let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer,"win":ganador}};
     // console.log(DataService);
     this.offerService.dropTimer(this.keyOffer);
+
+    this.saleSubs.unsubscribe();
   	this.navCtrl.setRoot(CleaningContractorPage,DataService);
   }
 
@@ -132,6 +134,7 @@ export class CleaningSalePage {
   this.offerService.setStatus(this.keyOffer,'Cancelled');
   this.offerService.dropTimer(this.keyOffer);
     clearInterval(this.objNodeTimer);
+    this.saleSubs.unsubscribe();
     this.navCtrl.setRoot(ShowPage);
   }
 
@@ -149,8 +152,8 @@ export class CleaningSalePage {
 
     for(index in this.WorkersInfo){
         if(this.WorkersInfo[index]['$key'] == id){
-          console.log(this.WorkersInfo[index]);
-          console.log(this.WorkersInfo[index].Service);
+          // console.log(this.WorkersInfo[index]);
+          // console.log(this.WorkersInfo[index].Service);
           
           //-info basic
           let nameJobr= this.WorkersInfo[index]['prof_name']; 
@@ -162,8 +165,8 @@ export class CleaningSalePage {
             if(this.WorkersInfo[index].Service[service].serv_subService == this.SubServiceActual || this.WorkersInfo[index].Service[service].serv_subService == 'Full'  ){
 
               let infoService = this.WorkersInfo[index].Service[service];
-              console.log(infoService);
-              console.log(infoService.serv_subService);
+              // console.log(infoService);
+              // console.log(infoService.serv_subService);
               certificateJobr= infoService.serv_detail['serv_certificate']; 
               insuranceJobr= infoService.serv_detail['serv_insurance']; 
               presentationJobr= infoService.serv_detail['serv_moreInformation']; 
@@ -211,20 +214,23 @@ export class CleaningSalePage {
           // console.log('commentsJobr');
           // console.log(commentsJobr);
           let cont=0;
-          for(let key in commentsJobr){
-            // console.log(commentsJobr[key]);
-            // console.log(commentsJobr[key]['user_username']);
-            console.log(commentsJobr[key]['comm_qualification']);
-            if(cont == 0){
-              contenido +='<h5>Comments</h5>';
-              cont=1;
-            }
-            // console.log(commentsJobr[key]['comm_description']);
-            contenido +='<div class="comments">';
-            contenido +='<h6>'+commentsJobr[key]['user_username']+' <img src="assets/img/Estrellas.png" alt=""></h6>';
-            contenido +='<p>'+commentsJobr[key]['comm_description']+'</p>';
-            contenido +='</div>';
+          if(commentsJobr != null && commentsJobr != undefined){
+            for(let key in commentsJobr){
+              // console.log(commentsJobr[key]);
+              // console.log(commentsJobr[key]['user_username']);
+              console.log(commentsJobr[key]['comm_qualification']);
+              if(cont == 0){
+                contenido +='<h5>Comments</h5>';
+                cont=1;
+              }
+              // console.log(commentsJobr[key]['comm_description']);
+              contenido +='<div class="comments">';
+              contenido +='<h6>'+commentsJobr[key]['user_username']+' <img src="assets/img/Estrellas.png" alt=""></h6>';
+              contenido +='<p>'+commentsJobr[key]['comm_description']+'</p>';
+              contenido +='</div>';
+            }  
           }
+          
           // contenido +='<div class="comments">';
           // contenido +='<h6>Melisa Lorem <img src="assets/img/Estrellas.png" alt=""></h6>';
           // contenido +='<p>Odit, cupiditate. Quibusdam ducimus minus incidunt voluptas consequatur odit, adipisci eveniet laborum obcaecati labore! Sapiente repellat ipsum in autem fuga sint enim recusandae incidunt tenetur corporis neque totam, quam sequi placeat cupiditate, inventore! Alias repudiandae ducimus laudantium nemo quisquam, quod sint et quam, id ipsum magnam veniam amet sit a voluptatibus, similique ipsa voluptatem voluptates velit quo. Quidem odio a nemo sit illum. </p>';
@@ -246,18 +252,19 @@ export class CleaningSalePage {
   }
 
   private timer(){
-    // if(this.minutos == 0 && this.segundos == 1){ 
-    if(this.minutos == 1 && this.segundos == 50 ){ 
+    if(this.minutos == 0 && this.segundos == 1){ 
+    // if(this.minutos == 1 && this.segundos == 50 ){ 
       //this.showContador = false;
       if(this.NumeroContador == 2){
-        clearInterval(this.objNodeTimer);
         this.showContador = false;
+        clearInterval(this.objNodeTimer);
         this.ganador();
       }else{
         this.minutos = 2;
         this.segundos = 0;
         this.NumeroContador = 2;
-        this.StaringLabel = false;this.saleService.setStatus(this.userActual,this.keyOffer,'Start');
+        this.StaringLabel = false;
+        this.saleService.setStatus(this.userActual,this.keyOffer,'Start');
         this.offerService.setStatus(this.keyOffer,'Start');
       }
     }else{
@@ -270,6 +277,7 @@ export class CleaningSalePage {
       }
       this.contador = this.dobleCifra(this.minutos)+':'+this.dobleCifra(this.segundos);
       this.offerService.setTimer(this.keyOffer,this.contador);
+      // console.log('contador: ',this.contador);
     }
   }
   
@@ -282,6 +290,7 @@ export class CleaningSalePage {
     .subscribe((result) =>{
       this.Workers = [];
       this.WorkersInfo =[];
+      this.WorkersMap=[];
       this.MenosPrecio = undefined;
       //console.log(result);
       //console.log(result.sale);
@@ -307,12 +316,24 @@ export class CleaningSalePage {
           if(user.prof_picture && user.prof_picture != undefined && user.prof_picture != ''){
             img = user.prof_picture;
           }
+          try {
+            if(trabajadores[trabajador]['UserLocacion']['latitud'] && trabajadores[trabajador]['UserLocacion']['longitud']){
+              if(trabajadores[trabajador]['UserLocacion']['latitud'] != undefined && trabajadores[trabajador]['UserLocacion']['longitud'] != undefined && trabajadores[trabajador]['UserLocacion']['latitud'] != null && trabajadores[trabajador]['UserLocacion']['longitud'] != null){
+                this.WorkersMap.push({"latitud":trabajadores[trabajador]['UserLocacion']['latitud'], "longitud":trabajadores[trabajador]['UserLocacion']['longitud'],"imagen":img});
+              }
+            }
+            
+          } catch (error) {
+            // console.log(error);
+            console.info('experando localizacion user');
+          }
           this.Workers.push({"id":trabajador,"offer":trabajadores[trabajador]['offer'],"img":img,"name":user.prof_name});
           userSubs.unsubscribe();
         });
     }
 
-    console.log(this.WorkersInfo);
+    // console.log(this.WorkersInfo);
+    // console.log(this.WorkersMap);
     // let estadoUser= this.Workers;
     // console.log(estadoUser);
   }
@@ -324,13 +345,18 @@ export class CleaningSalePage {
     // console.log('this.Workers.length');
     if(this.Workers.length != 0){
       for(let index in this.Workers){
-        console.log(index);
-        //console.log(this.Workers[index]);
-        if(this.MenosPrecio == this.Workers[index]['offer']){
+        // console.log(index);
+        console.log(this.MenosPrecio);
+        if(this.MenosPrecio == Number(this.Workers[index]['offer']) ){
+          // console.log(this.Workers[index]);
           this.goCleaningContractor(this.Workers[index]);
+          
           this.saleService.setStatus(this.userActual,this.keyOffer,'Evaluation');
           this.offerService.setStatus(this.keyOffer,'Evaluation');
+          this.offerService.dropTimer(this.keyOffer);
           this.showAlertFinOffer();
+        }else{
+          this.goServiceSinOff();
         }
       }
     }else{
@@ -346,6 +372,7 @@ export class CleaningSalePage {
     this.offerService.setStatus(this.keyOffer,'Saved');
     this.offerService.dropTimer(this.keyOffer);
     clearInterval(this.objNodeTimer);
+    this.saleSubs.unsubscribe();
     this.navCtrl.setRoot(ShowPage);
   }
   private dobleCifra(num:number):any{
@@ -371,11 +398,11 @@ export class CleaningSalePage {
     // console.log(geolocationz);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log('Location');
+        console.info('Location');
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
-        console.info(position.coords.latitude);
-        console.info(position.coords.longitude);
+        // console.info(position.coords.latitude);
+        // console.info(position.coords.longitude);
       });
     }
   }
@@ -386,9 +413,9 @@ export class CleaningSalePage {
         timeout: 5000
       };
       this.geo.getCurrentPosition(options).then(resp => {
-        console.log('geoLocation');
-        console.info(resp.coords.latitude);
-        console.info(resp.coords.longitude);
+        console.info('geoLocation');
+        // console.info(resp.coords.latitude);
+        // console.info(resp.coords.longitude);
         this.lat = resp.coords.latitude;
         this.lng = resp.coords.longitude;
         this.getNameAddress();
@@ -402,7 +429,8 @@ export class CleaningSalePage {
       this.geocodeServiceProvider.GeoCodificationInversa(this.lat,this.lng)
       // this.geocodeServiceProvider.GeoCodificationInversa('4.5510497999999995','-74.0984553')
       .then( (result) => {
-        console.log(result);
+        // console.log(result);
+        console.info('name Location');
         this.offerService.setOfferUserLocation(this.keyOffer,{'latitud':this.lat,'longitud':this.lng,'nameAddress':result});
       })
       .catch( (error) => { console.log(error); console.log('error geoCdoficiacion');});

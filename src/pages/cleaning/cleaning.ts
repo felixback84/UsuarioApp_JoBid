@@ -42,15 +42,16 @@ export class CleaningPage {
   dataClasificaion = {"categoria":"","certificacion":"","seguro":"","distancia":"","experiencia":""};
   constructor(public navCtrl: NavController, public navParams: NavParams, private professionsService:ProfessionsService) {
      this.dataService = this.navParams.get('datos');
-     console.log(this.dataService['name']);
+    //  console.log(this.dataService['name']);
      this.categoryByProfession(this.dataService['name']);
+    //  console.log(localStorage);
 
   }
  
   categoryByProfession(nameService = ""){
     this.nameService=nameService;
     this.dataCategoria=this.professionsService.getCategoryByProfession(nameService);
-    console.log(this.dataCategoria);
+    // console.log(this.dataCategoria);
   }
 
   ionViewDidLoad() {
@@ -80,7 +81,10 @@ export class CleaningPage {
     this.dataService['status']='Published';
     let userLocal = localStorage.getItem('verificacion');
     this.dataService['User']=userLocal;
-    console.log(this.dataService);
+    let userLocalAddress =JSON.parse(localStorage.getItem('address'));
+    // console.log(userLocalAddress);
+    this.dataService['Address']=userLocalAddress;
+    // console.log(this.dataService);
     let DataService = {'datos':this.dataService};
     //this.navCtrl.push(CleaningInfoPage,DataService);
     // console.log(this.estrellas);

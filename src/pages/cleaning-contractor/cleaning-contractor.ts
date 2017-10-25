@@ -4,6 +4,8 @@ import { NavController, NavParams , AlertController} from 'ionic-angular';
 import { CleaningInfoServicePage } from '../cleaning-info-service/cleaning-info-service';
 import { ShowPage } from '../show/show';
 
+//---services
+import { BraintreeService } from '../../services/braintree.service';
 import { ProfessionalsService } from '../../services/professionals.service';
 import { SaleService } from '../../services/sale.service';
 import { OfferService } from '../../services/offer.service';
@@ -52,6 +54,7 @@ starJobr:number;
     public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
     public professionalsService : ProfessionalsService,
     private saleService: SaleService , private offerService: OfferService,
+    private braintreeService : BraintreeService,
   ) {
   }
 
@@ -69,11 +72,11 @@ starJobr:number;
     // console.log(this.keyOffer);
     // console.log(this.worker);
     // console.log(this.userActual);
-    console.log(this.SubServiceActual);
+    // console.log(this.SubServiceActual);
     this.getProfessionals(this.worker['id']);
 
     //-comentar si sale 
-    this.SubServiceActual = "Electrician";
+    // this.SubServiceActual = "Electrician";
     //-comentar si sale -fin
   }
   goCleaningInfoService(){
@@ -91,6 +94,8 @@ starJobr:number;
     this.saleService.setProvider(this.userActual,this.keyOffer,this.worker.id);
     let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer,"win":this.worker}};
     console.log(DataService);
+    this.profeSuns.unsubscribe();
+    
   	this.navCtrl.setRoot(CleaningInfoServicePage,DataService);
   }
   // goIndex(){
@@ -115,6 +120,9 @@ starJobr:number;
             //--set status offer y sale
             this.saleService.setStatus(this.userActual,this.keyOffer,'Cancelled');
             this.offerService.setStatus(this.keyOffer,'Cancelled');
+            let descuento = (this.sale * 5 )/ 100;
+            this.braintreeService.CancelSaleCustomer(this.userActual,descuento);
+            this.profeSuns.unsubscribe();
             this.navCtrl.setRoot(ShowPage);
           }
         }
@@ -124,7 +132,7 @@ starJobr:number;
   }
 
   private getProfessionals(keyWork){
-    console.log(keyWork);
+    // console.log(keyWork);
     this.profeSuns = this.professionalsService.getProfessional(keyWork).subscribe(
       (professional) =>{
         // console.log(professional);
@@ -133,7 +141,7 @@ starJobr:number;
   }
   
   mostrarWorkInfo(workerInfo){
-    console.log(workerInfo);
+    // console.log(workerInfo);
     this.ImgJobr= this.imgJobDefault;
     this.galleryAJobr = this.galleryJobDefault;
     this.galleryBJobr = this.galleryJobDefault;
