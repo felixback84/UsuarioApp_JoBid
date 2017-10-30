@@ -23,16 +23,16 @@
     <div class="TituloRojo"><h4>{{dataService.name}}</h4></div>
     <h4>Service information</h4>
     <p padding>Describes what the professional requires</p>
-  <form id="formPayinfo" class="list">
+  <form id="formPayinfo" class="list" [formGroup]="ServiceCleaning">
     <ion-grid>
       <ion-row>
           <!-- <ion-row > -->
             <ion-col col-10>
               <ion-list>
                 <ion-item>
-                <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer" name="maxOffer"></ion-input>
+                <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer" formControlName="maxOffer" name="maxOffer"></ion-input>
                 <ion-icon name="camera" item-start></ion-icon>
-                <input type="hidden" placeholder="Photography" [(ngModel)]="fotoDog" name="fotoDog" />
+                <input type="hidden" placeholder="Photography" [(ngModel)]="foto" formControlName="foto" name="foto" />
               </ion-item>
             </ion-list>
           </ion-col>
@@ -46,7 +46,7 @@
           <ion-list>
             <ion-item>
                 <ion-icon name="map" item-start></ion-icon>
-                <ion-input type="text" placeholder="Type of place" [(ngModel)]="placeMaid" name="placeMaid"></ion-input>
+                <ion-input type="text" placeholder="Type of place" [(ngModel)]="placeMaid" formControlName="placeMaid" name="placeMaid"></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -57,8 +57,8 @@
           <ion-list>
             <ion-item>
               <ion-icon name="shirt" item-start></ion-icon>
-              <ion-input type="number" placeholder="# Rooms" class="mitad" [(ngModel)]="roomMaid" name="roomMaid"></ion-input>
-              <ion-input type="number" placeholder="# bathrooms" value="" class="batMaid" [(ngModel)]="batMaid" name="DirecA"></ion-input>
+              <ion-input type="number" placeholder="# Rooms" class="mitad" [(ngModel)]="roomMaid" formControlName="roomMaid" name="roomMaid"></ion-input>
+              <ion-input type="number" placeholder="# bathrooms" value="" class="batMaid" [(ngModel)]="batMaid" formControlName="batMaid" name="batMaid"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -69,8 +69,8 @@
           <ion-list>
             <ion-item>
               <ion-icon name="car" item-start></ion-icon>
-              <ion-input type="text" placeholder="Type of car" class="mitad" [(ngModel)]="typeCar" name="typeCar"></ion-input>
-              <ion-input type="text" placeholder="Brand" class="mitad"  [(ngModel)]="brandCar" name="brandCar"></ion-input>
+              <ion-input type="text" placeholder="Type of car" class="mitad" [(ngModel)]="typeCar" formControlName="typeCar" name="typeCar"></ion-input>
+              <ion-input type="text" placeholder="Brand" class="mitad"  [(ngModel)]="brandCar" formControlName="brandCar" name="brandCar"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -80,8 +80,8 @@
           <ion-list>
             <ion-item>
               <ion-icon name="shirt" item-start></ion-icon>
-              <ion-input type="text" placeholder="What to clean" class="mitad"[(ngModel)]="placeClean" name="placeClean"></ion-input>
-              <ion-input type="number" placeholder="Mts" class="mitad" [(ngModel)]="mtsClean" name="mtsClean"></ion-input>
+              <ion-input type="text" placeholder="What to clean" class="mitad"[(ngModel)]="placeClean" formControlName="placeClean" name="placeClean"></ion-input>
+              <ion-input type="number" placeholder="Mts" class="mitad" [(ngModel)]="mtsClean" formControlName="mtsClean" name="mtsClean"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -91,8 +91,8 @@
           <ion-list>
             <ion-item>
               <ion-icon name="shirt" item-start></ion-icon>
-              <ion-input type="text" placeholder="Type of carpet" class="mitad"[(ngModel)]="typeCarpet" name="typeCarpet"></ion-input>
-              <ion-input type="number" placeholder="Mts" class="mitad" [(ngModel)]="mtsCarpet" name="mtsCarpet"></ion-input>
+              <ion-input type="text" placeholder="Type of carpet" class="mitad"[(ngModel)]="typeCarpet" formControlName="typeCarpet" name="typeCarpet"></ion-input>
+              <ion-input type="number" placeholder="Mts" class="mitad" [(ngModel)]="mtsCarpet" formControlName="mtsCarpet" name="mtsCarpet"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -101,14 +101,16 @@
         <ion-col>
           <ion-list><ion-item>
             <ion-icon name="paper" item-start></ion-icon>
-            <ion-textarea type="text" placeholder="More information" [(ngModel)]="moreInformation" name="moreInformation"></ion-textarea>
+            <ion-textarea type="text" placeholder="More information" [(ngModel)]="moreInformation" formControlName="moreInformation" name="moreInformation"></ion-textarea>
           </ion-item></ion-list>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col> 
           <div class="btnBottom">
-            <button ion-button color="danger" block icon-left (click)="goCleaningSale()">Continue<ion-icon name="arrow-dropright"></ion-icon></button>
+            <button ion-button color="danger" block icon-left (click)="goCleaningSale()" [disabled]="!ServiceCleaning.valid">
+              Go to the sale<ion-icon name="arrow-dropright"></ion-icon>
+            </button>
           </div>
         </ion-col>
       </ion-row>

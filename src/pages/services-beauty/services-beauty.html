@@ -20,14 +20,14 @@
     <div class="TituloRojo"><h4>{{dataService.name}}</h4></div>
     <h4>Service information</h4>
     <p padding>Describes what the professional requires</p>
-  <form id="formPayinfo" class="list">
+  <form id="formPayinfo" class="list" [formGroup]="beauty">
     <ion-grid>
       <ion-row>
         <ion-col>
           <ion-list>
             <ion-item>
               <ion-icon name="cash" item-start></ion-icon>
-              <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer" name="maxOffer"></ion-input>
+              <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer" formControlName="maxOffer" name="maxOffer"></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -37,8 +37,8 @@
           <ion-list>
             <ion-item>
               <ion-icon name="person" item-start></ion-icon>
-              <ion-input type="text" placeholder="Exercise" class="mitad"[(ngModel)]="exerciseTrainer" name="exerciseTrainer"></ion-input>
-              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="timeTrainer" name="timeTrainer"></ion-input>
+              <ion-input type="text" placeholder="Exercise" class="mitad"[(ngModel)]="exerciseTrainer" formControlName="exerciseTrainer" name="exerciseTrainer"></ion-input>
+              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="timeTrainer" formControlName="timeTrainer" name="timeTrainer"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -48,10 +48,10 @@
           <ion-list>
             <ion-item>
               <ion-icon name="cut" item-start></ion-icon>
-              <ion-select class="mitad" [(ngModel)]="peinadosCut" name="peinadosCut" placeholder="Services" > 
+              <ion-select class="mitad" [(ngModel)]="peinadosCut" formControlName="peinadosCut" name="peinadosCut" placeholder="Services" > 
                 <ion-option *ngFor="let peinados of peinados" value="{{peinados.value}}">{{peinados.label}}</ion-option>
               </ion-select>
-              <ion-input type="text" placeholder="Cut" class="mitad" class="mitad" [(ngModel)]="typeCut" name="typeCut"></ion-input>
+              <ion-input type="text" placeholder="Cut" class="mitad" [(ngModel)]="typeCut" formControlName="typeCut" name="typeCut"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -61,7 +61,7 @@
           <ion-list>
             <ion-item>
               <ion-icon name="cut" item-start></ion-icon>
-              <ion-select [(ngModel)]="barbaCut" name="barbaCut" placeholder="Barbershop" > 
+              <ion-select [(ngModel)]="barbaCut" formControlName="barbaCut" name="barbaCut" placeholder="Barbershop" > 
                 <ion-option *ngFor="let barba of barbas" value="{{barba.value}}">{{barba.label}}</ion-option>
               </ion-select>
             </ion-item>
@@ -73,7 +73,7 @@
           <ion-list>
             <ion-item>
               <ion-icon name="person" item-start></ion-icon>
-              <ion-select [(ngModel)]="tipoMenicure" name="tipoMenicure" placeholder="Service" > 
+              <ion-select [(ngModel)]="tipoMenicure" formControlName="tipoMenicure" name="tipoMenicure" placeholder="Service" > 
                 <ion-option *ngFor="let type of typeMenicure" value="{{type.value}}">{{type.label}}</ion-option>
               </ion-select>
             </ion-item>
@@ -86,10 +86,10 @@
           <ion-list>
             <ion-item>
               <ion-icon name="person" item-start></ion-icon>
-              <ion-select [(ngModel)]="unaMenicure" class="mitad"  name="unaMenicure" placeholder="Status"  > 
+              <ion-select [(ngModel)]="unaMenicure" class="mitad" formControlName="unaMenicure"  name="unaMenicure" placeholder="Status"  > 
                 <ion-option *ngFor="let nail of nailMenicure" value="{{nail.value}}">{{nail.label}}</ion-option>
               </ion-select>
-              <ion-select [(ngModel)]="estiloMenicure" class="mitad"  name="estiloMenicure" placeholder="Style"  > 
+              <ion-select [(ngModel)]="estiloMenicure" class="mitad" formControlName="estiloMenicure" name="estiloMenicure" placeholder="Style"  > 
                 <ion-option *ngFor="let styleM of styleMenicure" value="{{styleM.value}}">{{styleM.label}}</ion-option>
               </ion-select>
             </ion-item>
@@ -101,7 +101,7 @@
           <ion-list>
             <ion-item>
               <ion-icon name="person" item-start></ion-icon>
-              <ion-select [(ngModel)]="estiloMeke"  name="estiloMeke" placeholder="Service"> 
+              <ion-select [(ngModel)]="estiloMeke" formControlName="estiloMeke" name="estiloMeke" placeholder="Service"> 
                 <ion-option *ngFor="let styleMe of styleMekeup" value="{{styleMe.value}}">{{styleMe.label}}</ion-option>
               </ion-select>
             </ion-item>
@@ -113,10 +113,10 @@
           <ion-list>
             <ion-item>
               <ion-icon name="person" item-start></ion-icon>
-              <ion-select [(ngModel)]="estiloMassage" class="mitad"  name="estiloMassage"  placeholder="Service"> 
+              <ion-select [(ngModel)]="estiloMassage" class="mitad" formControlName="estiloMassage" name="estiloMassage"  placeholder="Service"> 
                 <ion-option *ngFor="let styleMa of styleMassage" value="{{styleMa.value}}">{{styleMa.label}}</ion-option>
               </ion-select>
-              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="eventNotary" name="eventNotary"></ion-input>
+              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="timeMassage" formControlName="timeMassage" name="timeMassage"></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -126,14 +126,16 @@
         <ion-col>
           <ion-list><ion-item>
             <ion-icon name="paper" item-start></ion-icon>
-            <ion-textarea type="text" placeholder="More information" [(ngModel)]="moreInformation" name="moreInformation"></ion-textarea>
+            <ion-textarea type="text" placeholder="More information" [(ngModel)]="moreInformation" formControlName="moreInformation" name="moreInformation"></ion-textarea>
           </ion-item></ion-list>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col> 
           <div class="btnBottom">
-            <button ion-button color="danger" block icon-left (click)="goCleaningSale()">Continue<ion-icon name="arrow-dropright"></ion-icon></button>
+            <button ion-button color="danger" block icon-left (click)="goCleaningSale()" [disabled]="!beauty.valid">
+              Go to the sale<ion-icon name="arrow-dropright"></ion-icon>
+            </button>
           </div>
         </ion-col>
       </ion-row>

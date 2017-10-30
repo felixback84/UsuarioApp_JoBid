@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { CleaningSalePage } from '../cleaning-sale/cleaning-sale';
 
@@ -48,8 +49,11 @@ export class ServicesCleaningPage {
     foto:any='';
     moreInformation:any;
   
+     //-form
+  private ServiceCleaning : FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     // private cleanProfessionS: CleaningProfessionsService,
+      private formBuilder: FormBuilder,
     private offerService: OfferService,
     private saleService:SaleService    
   ) {
@@ -112,18 +116,74 @@ export class ServicesCleaningPage {
     switch(this.subCategory){
       case "Maids":{
         this.booleanMaids=true;
+        this.ServiceCleaning = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          foto: [''],
+          placeMaid: ['', Validators.required],
+          roomMaid: ['', Validators.required],
+          batMaid: ['', Validators.required],
+          typeCar: [''],
+          brandCar: [''],
+          placeClean: [''],
+          mtsClean: [''],
+          typeCarpet: [''],
+          mtsCarpet: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Car washers":{
         this.booleanCarWashers=true;
+        this.ServiceCleaning = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          foto: [''],
+          placeMaid: [''],
+          roomMaid: [''],
+          batMaid: [''],
+          typeCar: ['', Validators.required],
+          brandCar: ['', Validators.required],
+          placeClean: [''],
+          mtsClean: [''],
+          typeCarpet: [''],
+          mtsCarpet: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Pressure cleaning":{
         this.booleanPressureCleaning=true;
+        this.ServiceCleaning = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          foto: [''],
+          placeMaid: [''],
+          roomMaid: [''],
+          batMaid: [''],
+          typeCar: [''],
+          brandCar: [''],
+          placeClean: ['', Validators.required],
+          mtsClean: ['', Validators.required],
+          typeCarpet: [''],
+          mtsCarpet: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Carpet & upholstery cleaning":{
         this.booleanCarpetCleaning=true;
+        this.ServiceCleaning = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          foto: [''],
+          placeMaid: [''],
+          roomMaid: [''],
+          batMaid: [''],
+          typeCar: [''],
+          brandCar: [''],
+          placeClean: [''],
+          mtsClean: [''],
+          typeCarpet: ['', Validators.required],
+          mtsCarpet: ['', Validators.required],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
 	  }

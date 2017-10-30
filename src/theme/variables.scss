@@ -264,6 +264,9 @@ form{
 .btnBottom{ position: relative;
 	.button-md,.button-ios{font-size: 20px;text-transform: capitalize;
 		ion-icon{ position: absolute; right: 10px; }
+		span{
+			text-transform: none;
+		}
 	}
 }
 
@@ -300,3 +303,10 @@ form{
 .purple{color:purple;}
 .blue{color:blue;}
 .pink{color:pink;}
+
+// .ng-valid{
+// 	border: 1px solid $Red;
+// }
+// .ng-invalid{
+// 	border: 1px solid green;
+// }

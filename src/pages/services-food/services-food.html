@@ -22,14 +22,14 @@
     <div class="TituloRojo"><h4>{{dataService.name}}</h4></div>
     <h4>Service information</h4>
     <p padding>Describes what the professional requires</p>
-  <form id="formPayinfo" class="list">
+  <form id="formPayinfo" class="list" [formGroup]="ServiceFood">
     <ion-grid>
       <ion-row>
         <ion-col>
           <ion-list>
             <ion-item>
               <ion-icon name="cash" item-start></ion-icon>
-              <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer" name="maxOffer"></ion-input>
+              <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer" formControlName="maxOffer" name="maxOffer"></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -39,7 +39,7 @@
           <ion-list>
             <ion-item>
               <ion-icon name="beaker" item-start></ion-icon>
-              <ion-input type="number" placeholder="Type of drinks" [(ngModel)]="typeBart" name="typeBart"></ion-input>
+              <ion-input type="text" placeholder="Type of drinks" [(ngModel)]="typeBart" formControlName="typeBart" name="typeBart"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -49,8 +49,8 @@
           <ion-list>
             <ion-item>
               <ion-icon name="beaker" item-start></ion-icon>
-              <ion-input type="text" placeholder="Event" class="mitad"[(ngModel)]="eventBart" name="eventBart"></ion-input>
-              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="tiemBart" name="tiemBart"></ion-input>
+              <ion-input type="text" placeholder="Event" class="mitad"[(ngModel)]="eventBart" formControlName="eventBart" name="eventBart"></ion-input>
+              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="tiemBart" formControlName="tiemBart" name="tiemBart"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -60,8 +60,8 @@
           <ion-list>
             <ion-item>
               <ion-icon name="beaker" item-start></ion-icon>
-              <ion-input type="text" placeholder="Event" class="mitad"[(ngModel)]="eventWaiter" name="eventWaiter"></ion-input>
-              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="timeWaiter" name="timeWaiter"></ion-input>
+              <ion-input type="text" placeholder="Event" class="mitad"[(ngModel)]="eventWaiter" formControlName="eventWaiter" name="eventWaiter"></ion-input>
+              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="timeWaiter" formControlName="timeWaiter" name="timeWaiter"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -71,7 +71,7 @@
           <ion-list>
             <ion-item>
               <ion-icon name="pin" item-start></ion-icon>
-              <ion-input type="text" placeholder="Type of Event" [(ngModel)]="eventChef" name="eventChef"></ion-input>
+              <ion-input type="text" placeholder="Type of Event" [(ngModel)]="eventChef" formControlName="eventChef" name="eventChef"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -81,8 +81,8 @@
           <ion-list>
             <ion-item>
               <ion-icon name="beaker" item-start></ion-icon>
-              <ion-input type="text" placeholder="Menu" class="mitad"[(ngModel)]="menuChef" name="menuChef"></ion-input>
-              <ion-input type="text" placeholder="Diners" class="mitad" [(ngModel)]="dinersChef" name="dinersChef"></ion-input>
+              <ion-input type="text" placeholder="Menu" class="mitad"[(ngModel)]="menuChef" formControlName="menuChef" name="menuChef"></ion-input>
+              <ion-input type="number" placeholder="Diners" class="mitad" [(ngModel)]="dinersChef" formControlName="dinersChef" name="dinersChef"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -92,8 +92,8 @@
           <ion-list>
             <ion-item>
               <ion-icon name="beaker" item-start></ion-icon>
-              <ion-input type="text" placeholder="Event" class="mitad"[(ngModel)]="eventRunners" name="eventRunners"></ion-input>
-              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="tiemRunners" name="tiemRunners"></ion-input>
+              <ion-input type="text" placeholder="Event" class="mitad"[(ngModel)]="eventRunners" formControlName="eventRunners" name="eventRunners"></ion-input>
+              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="tiemRunners" formControlName="tiemRunners" name="tiemRunners"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -103,7 +103,7 @@
           <ion-list>
             <ion-item>
               <ion-icon name="pin" item-start></ion-icon>
-              <ion-input type="text" placeholder="Type of Event" [(ngModel)]="eventParking" name="eventParking"></ion-input>
+              <ion-input type="text" placeholder="Type of Event" [(ngModel)]="eventParking" formControlName="eventParking" name="eventParking"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -113,8 +113,8 @@
           <ion-list>
             <ion-item>
               <ion-icon name="beaker" item-start></ion-icon>
-              <ion-input type="text" placeholder="Place" class="mitad"[(ngModel)]="placeParking" name="placeParking"></ion-input>
-              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="timeParking" name="timeParking"></ion-input>
+              <ion-input type="text" placeholder="Place" class="mitad"[(ngModel)]="placeParking" formControlName="placeParking" name="placeParking"></ion-input>
+              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="timeParking" formControlName="timeParking" name="timeParking"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -124,7 +124,7 @@
           <ion-list>
             <ion-item>
               <ion-icon name="pin" item-start></ion-icon>
-              <ion-input type="text" placeholder="Type of Event" [(ngModel)]="eventHostess" name="eventHostess"></ion-input>
+              <ion-input type="text" placeholder="Type of Event" [(ngModel)]="eventHostess" formControlName="eventHostess" name="eventHostess"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -134,8 +134,8 @@
           <ion-list>
             <ion-item>
               <ion-icon name="beaker" item-start></ion-icon>
-              <ion-input type="text" placeholder="Place" class="mitad"[(ngModel)]="placeHostess" name="placeHostess"></ion-input>
-              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="timeHostess" name="timeHostess"></ion-input>
+              <ion-input type="text" placeholder="Place" class="mitad"[(ngModel)]="placeHostess" formControlName="placeHostess" name="placeHostess"></ion-input>
+              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="timeHostess" formControlName="timeHostess" name="timeHostess"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -144,14 +144,16 @@
         <ion-col>
           <ion-list><ion-item>
             <ion-icon name="paper" item-start></ion-icon>
-            <ion-textarea type="text" placeholder="More information" [(ngModel)]="moreInformation" name="moreInformation"></ion-textarea>
+            <ion-textarea type="text" placeholder="More information" [(ngModel)]="moreInformation" formControlName="moreInformation" name="moreInformation"></ion-textarea>
           </ion-item></ion-list>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col> 
           <div class="btnBottom">
-            <button ion-button color="danger" block icon-left (click)="goCleaningSale()">Continue<ion-icon name="arrow-dropright"></ion-icon></button>
+            <button ion-button color="danger" block icon-left (click)="goCleaningSale()" [disabled]="!ServiceFood.valid">
+              Go to the sale<ion-icon name="arrow-dropright"></ion-icon>
+            </button>
           </div>
         </ion-col>
       </ion-row>

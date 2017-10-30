@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { OfferService } from '../../services/offer.service';
 
@@ -34,7 +35,9 @@ export class ServicesLegalPage {
     eventNotary:any;
     moreInformation:any;
 
+    private ServiceLegal : FormGroup;
     constructor(public navCtrl: NavController, public navParams: NavParams,
+      private formBuilder: FormBuilder,
       private offerService:OfferService,
       private saleService:SaleService    
 ) {
@@ -93,6 +96,12 @@ getForm(){
     switch(this.subCategory){
       case "Notary":{
         this.booleanNotary=true;
+        this.ServiceLegal = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          documentNotary: ['', Validators.required],
+          eventNotary: ['', Validators.required],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
     }

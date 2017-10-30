@@ -23,14 +23,14 @@
     <div class="TituloRojo"><h4>{{dataService.name}}</h4></div>
     <h4>Service information</h4>
     <p padding>Describes what the professional requires</p>
-  <form id="formPayinfo" class="list">
+  <form id="formPayinfo" class="list" [formGroup]="ServiceCare">
     <ion-grid>
       <ion-row *ngIf="!booleamDogWalker">
         <ion-col>
           <ion-list>
             <ion-item>
               <ion-icon name="cash" item-start></ion-icon>
-              <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer" name="maxOffer"></ion-input>
+              <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer" formControlName="maxOffer" name="maxOffer"></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -40,9 +40,9 @@
           <ion-col col-10>
             <ion-list>
               <ion-item>
-              <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer2" name="maxOffer2"></ion-input>
+              <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer2" formControlName="maxOffer2" name="maxOffer2"></ion-input>
               <ion-icon name="camera" item-start></ion-icon>
-              <input type="hidden" placeholder="Photography" [(ngModel)]="fotoDog" name="fotoDog" />
+              <input type="hidden" placeholder="Photography" [(ngModel)]="fotoDog" formControlName="fotoDog" name="fotoDog" />
             </ion-item>
           </ion-list>
         </ion-col>
@@ -55,15 +55,15 @@
           <ion-list>
             <ion-item>
               <ion-icon name="man" item-start></ion-icon>
-              <ion-input type="number" placeholder="# Children" [(ngModel)]="numChildren" name="numChildren"></ion-input>
+              <ion-input type="number" placeholder="# Children" [(ngModel)]="numChildren" formControlName="numChildren" name="numChildren"></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
         <ion-col col-6>
           <ion-list>
             <ion-item>
-              <ion-input type="number" placeholder="Age" [(ngModel)]="ageChildren" name="ageChildren"></ion-input>
-              <ion-input type="number" placeholder="Time" [(ngModel)]="timeChildren" name="timeChildren"></ion-input>
+              <ion-input type="number" placeholder="Age" [(ngModel)]="ageChildren" formControlName="ageChildren" name="ageChildren"></ion-input>
+              <ion-input type="number" placeholder="Time" [(ngModel)]="timeChildren" formControlName="timeChildren" name="timeChildren"></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -74,7 +74,7 @@
           <ion-list>
             <ion-item>
               <ion-icon name="man" item-start></ion-icon>
-              <ion-input type="number" placeholder="Age" [(ngModel)]="ageSenior" name="ageSenior"></ion-input>
+              <ion-input type="number" placeholder="Age" [(ngModel)]="ageSenior" formControlName="ageSenior" name="ageSenior"></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -85,7 +85,7 @@
           <ion-list>
             <ion-item>
                 <ion-icon name="albums" item-start></ion-icon>
-                <ion-select [(ngModel)]="asistenceFamilia" name="asistenceFamilia" placeholder="Issues">
+                <ion-select [(ngModel)]="asistenceFamilia" formControlName="asistenceFamilia" name="asistenceFamilia" placeholder="Issues">
                     <ion-option *ngFor="let asistence of FamiliaAsistence" value="{{asistence.value}}">{{asistence.label}}</ion-option>
                 </ion-select>
             </ion-item>
@@ -98,8 +98,8 @@
           <ion-list>
             <ion-item>
                 <ion-icon name="clipboard" item-start></ion-icon>
-                <ion-input type="text" placeholder="Race" class="mitad" [(ngModel)]="raceDog" name="raceDog"></ion-input>
-                <ion-input type="number" placeholder="# Dogs" class="mitad" [(ngModel)]="numDog" name="numDog"></ion-input>
+                <ion-input type="text" placeholder="Race" class="mitad" [(ngModel)]="raceDog" formControlName="raceDog" name="raceDog"></ion-input>
+                <ion-input type="number" placeholder="# Dogs" class="mitad" [(ngModel)]="numDog" formControlName="numDog" name="numDog"></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -123,8 +123,8 @@
           <ion-list>
             <ion-item>
               <ion-icon name="basket" item-start></ion-icon>
-              <ion-input type="text" placeholder="Type of purchase." class="mitad" [(ngModel)]="purchaseShopper" name="purchaseShopper"></ion-input>
-              <ion-input type="text" placeholder="Type of place"  class="mitad" [(ngModel)]="placeShopper" name="placeShopper"></ion-input>
+              <ion-input type="text" placeholder="Type of purchase." class="mitad" [(ngModel)]="purchaseShopper" formControlName="purchaseShopper" name="purchaseShopper"></ion-input>
+              <ion-input type="text" placeholder="Type of place"  class="mitad" [(ngModel)]="placeShopper" formControlName="placeShopper" name="placeShopper"></ion-input>
           </ion-item>
         </ion-list>
       </ion-col>
@@ -133,14 +133,16 @@
         <ion-col>
           <ion-list><ion-item>
             <ion-icon name="paper" item-start></ion-icon>
-            <ion-textarea type="text" placeholder="{{labelComments}}" [(ngModel)]="moreInformation" name="moreInformation"></ion-textarea>
+            <ion-textarea type="text" placeholder="{{labelComments}}" [(ngModel)]="moreInformation" formControlName="moreInformation" name="moreInformation"></ion-textarea>
           </ion-item></ion-list>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col> 
           <div class="btnBottom">
-            <button ion-button color="danger" block icon-left (click)="goCleaningSale()">Continue<ion-icon name="arrow-dropright"></ion-icon></button>
+            <button ion-button color="danger" block icon-left (click)="goCleaningSale()" [disabled]="!ServiceCare.valid">
+              Go to the sale<ion-icon name="arrow-dropright"></ion-icon>
+            </button>
           </div>
         </ion-col>
       </ion-row>

@@ -15,22 +15,26 @@
 
 
 <ion-content>
-    <img src="assets/img/LogoJoBid.png">
-    <h5 id="login-heading1">Log in</h5>
-    <div padding>
-        <button ion-button block (click)="facebookir()">Log in with Faceook</button>
-      </div>
-    <ion-list padding>
-	  <ion-item>
-      <ion-icon name="person" item-start></ion-icon>
-      <ion-input type="text" placeholder="User / Email" [(ngModel)]="userData.username" name="username" ></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="home" item-start></ion-icon>
-      <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password" name="password"></ion-input>
-	  </ion-item>
-    <div class="btnBottom">
-	   <button  ion-button block color="danger" (click)="login()" >Enter<ion-icon name="arrow-dropright"></ion-icon></button> 
+  <img src="assets/img/LogoJoBid.png">
+  <h5 id="login-heading1">Log in</h5>
+  <div padding>
+      <button ion-button block (click)="facebookir()">Log in with Faceook</button>
     </div>
+  <ion-list padding>
+    <form [formGroup]="todo">
+      <ion-item>
+        <ion-icon name="person" item-start></ion-icon>
+        <ion-input type="text" placeholder="User / Email" [(ngModel)]="userData.username" name="username" formControlName="username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="home" item-start></ion-icon>
+        <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password" name="password" formControlName="password"></ion-input>
+      </ion-item>
+      <div class="btnBottom">
+      <button  ion-button block color="danger" (click)="login()" [disabled]="!todo.valid">
+        Enter<ion-icon name="arrow-dropright"  ></ion-icon>
+      </button> 
+      </div>
+    </form>
 	</ion-list>
 </ion-content>

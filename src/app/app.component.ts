@@ -21,6 +21,7 @@ import { JobWithUsPage } from '../pages/job-with-us/job-with-us';
 import { PoliciesPage } from '../pages/policies/policies';
 import { PreHomePage } from '../pages/pre-home/pre-home';
 import { PaymentsPage } from '../pages/payments/payments';
+import { AddPaymentMethodPage } from '../pages/add-payment-method/add-payment-method';
 import { EditUserPage } from '../pages/edit-user/edit-user';
 import { MyServicesPage } from '../pages/my-services/my-services';
 
@@ -57,7 +58,7 @@ export class MyApp {
       { title: 'Menu', component: ShowPage },
       { title: 'My services', component: MyServicesPage },
       { title: 'Address', component: PreHomePage },
-      { title: 'Payments', component: PaymentsPage },
+      { title: 'Payments', component: AddPaymentMethodPage },
     ];
 
   }

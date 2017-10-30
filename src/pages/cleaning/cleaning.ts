@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 // import { CleaningInfoPage } from '../cleaning-info/cleaning-info';
 
@@ -40,12 +41,24 @@ export class CleaningPage {
   // distancia:any;
   // experiencia:any;
   dataClasificaion = {"categoria":"","certificacion":"","seguro":"","distancia":"","experiencia":""};
-  constructor(public navCtrl: NavController, public navParams: NavParams, private professionsService:ProfessionsService) {
+
+  private service : FormGroup;
+  constructor(
+    public navCtrl: NavController, public navParams: NavParams, 
+    private professionsService:ProfessionsService, private formBuilder: FormBuilder,
+  ) {
      this.dataService = this.navParams.get('datos');
     //  console.log(this.dataService['name']);
      this.categoryByProfession(this.dataService['name']);
     //  console.log(localStorage);
-
+    this.service = this.formBuilder.group({
+      categoria: ['', Validators.required],
+      certificacio: [''],
+      seguro: [''],
+      distancia: [''],
+      experiencia: ['', Validators.required],
+      estrellas: [''],
+    });
   }
  
   categoryByProfession(nameService = ""){
@@ -75,6 +88,10 @@ export class CleaningPage {
     if(this.estrellas == undefined || this.estrellas == null || this.estrellas == ""){
       this.estrellas = 1;
     }
+
+    if( this.dataClasificaion['distancia'] == undefined || this.dataClasificaion['distancia'] == null || this.dataClasificaion['distancia'] == ""){
+      this.dataClasificaion['distancia'] = '3M';
+    }
     // this.dataService['distancia']=this.distancia;
     // this.dataService['experiencia']=this.experiencia;
     this.dataService['Clasificacion']=this.dataClasificaion;
@@ -89,7 +106,7 @@ export class CleaningPage {
     //this.navCtrl.push(CleaningInfoPage,DataService);
     // console.log(this.estrellas);
     this.dataService['Star']=this.estrellas;
-    
+    console.log(this.dataService);
     switch(this.nameService){
       case "Care" :{
        //this.dataCategoria = ["Child care","Senior care","Family asistance","Dog walker","Personal shopper"];

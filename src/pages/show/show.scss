@@ -12,10 +12,13 @@ page-show {
 		}
 		.button-md-light,.button-ios-light{
 			box-shadow: none;
+			margin: 0;
 			background: transparent;
-			height: 140px;
+			height: 150px;
 			padding:0;
-			/*background: yellow;*/
+			.grid{
+				padding: 0;
+			}
 		}
 		ion-icon{
 			display: block;
@@ -25,5 +28,13 @@ page-show {
 	}
 	h3,p{ text-align: center; }
 	h3,strong{font-weight: bold;}
-	
+	// .mapa{
+	// 	// height: 400px;
+	// 	// background: blue;
+	// 	agm-map{
+	// 		width: 100%;
+	// 		height: 300px;
+	// 		background: orange;
+	// 	}
+	// }
 }

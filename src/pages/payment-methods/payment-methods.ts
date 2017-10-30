@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams , AlertController} from 'ionic-angular';
+import { NavController, NavParams , AlertController, LoadingController} from 'ionic-angular';
 import { PayinfoPage } from '../payinfo/payinfo';
 
 import { PreHomePage } from '../pre-home/pre-home';
@@ -42,7 +42,9 @@ export class PaymentMethodsPage {
   constructor(
     public alertCtrl: AlertController,
     public navCtrl: NavController, public navParams: NavParams,
-    private braintreeService : BraintreeService,) {
+    private braintreeService : BraintreeService,
+    public loadingCtrl: LoadingController,
+  ) {
     }
 
     ionViewDidLoad() {
@@ -128,23 +130,6 @@ export class PaymentMethodsPage {
       }
       );
     }
-
-  showAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Information',
-      subTitle: 'An email has been sent to verify your acount',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
-  showAlertPay() {
-    let alert = this.alertCtrl.create({
-      title: 'Information',
-      subTitle: 'verify the payment method information',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
   
   //--- timer
   startTimer(){
@@ -200,4 +185,29 @@ export class PaymentMethodsPage {
     let Data = {'datos':this.userData};
     this.navCtrl.setRoot(PreHomePage,Data);
   } 
+  //-show alert
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Information',
+      subTitle: 'An email has been sent to verify your acount',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+  showAlertPay() {
+    let alert = this.alertCtrl.create({
+      title: 'Information',
+      subTitle: 'verify the payment method information',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 5000
+    });
+    loader.present();
+  }
 }

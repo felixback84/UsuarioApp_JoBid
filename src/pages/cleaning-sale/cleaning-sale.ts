@@ -350,7 +350,6 @@ export class CleaningSalePage {
         if(this.MenosPrecio == Number(this.Workers[index]['offer']) ){
           // console.log(this.Workers[index]);
           this.goCleaningContractor(this.Workers[index]);
-          
           this.saleService.setStatus(this.userActual,this.keyOffer,'Evaluation');
           this.offerService.setStatus(this.keyOffer,'Evaluation');
           this.offerService.dropTimer(this.keyOffer);

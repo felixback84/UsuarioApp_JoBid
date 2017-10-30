@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { OfferService } from '../../services/offer.service';
 
@@ -53,7 +54,9 @@ export class ServicesBeautyPage {
     estiloMassage:any;
     moreInformation:any;
 
+    private beauty : FormGroup;
     constructor(public navCtrl: NavController, public navParams: NavParams,
+      private formBuilder: FormBuilder,
       private offerService:OfferService,
       private saleService:SaleService    
 ) {
@@ -128,6 +131,20 @@ export class ServicesBeautyPage {
     switch(this.subCategory){
       case "Personal trainer":{
         this.booleanPersonaTrainer=true;
+        this.beauty = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          exerciseTrainer: ['', Validators.required],
+          timeTrainer: ['', Validators.required],
+          peinadosCut: [''],
+          typeCut: [''],
+          barbaCut: [''],
+          tipoMenicure: [''],
+          unaMenicure: [''],
+          estiloMenicure: [''],
+          estiloMeke: [''],
+          timeMassage: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Hair cut and DIY":{
@@ -142,6 +159,20 @@ export class ServicesBeautyPage {
           {"value":"Moustache","label":"Moustache"},
           {"value":"beardAndMoustache","label":"Beard and Moustache"}
         ]; 
+        this.beauty = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          exerciseTrainer: [''],
+          timeTrainer: [''],
+          peinadosCut: ['', Validators.required],
+          typeCut: ['', Validators.required],
+          barbaCut: ['', Validators.required],
+          tipoMenicure: [''],
+          unaMenicure: [''],
+          estiloMenicure: [''],
+          estiloMeke: [''],
+          timeMassage: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Manicure and pedicure":{
@@ -159,6 +190,20 @@ export class ServicesBeautyPage {
           {"value":"Si","label":"With style"},
           {"value":"No","label":"Without style"}
         ]; 
+        this.beauty = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          exerciseTrainer: [''],
+          timeTrainer: [''],
+          peinadosCut: [''],
+          typeCut: [''],
+          barbaCut: [''],
+          tipoMenicure: ['', Validators.required],
+          unaMenicure: ['', Validators.required],
+          estiloMenicure: ['', Validators.required],
+          estiloMeke: [''],
+          timeMassage: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Makeup":{
@@ -167,6 +212,20 @@ export class ServicesBeautyPage {
           {"value":"Masks","label":"Masks"}
         ]; 
         this.booleanMekeup=true;
+        this.beauty = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          exerciseTrainer: [''],
+          timeTrainer: [''],
+          peinadosCut: [''],
+          typeCut: [''],
+          barbaCut: [''],
+          tipoMenicure: [''],
+          unaMenicure: [''],
+          estiloMenicure: [''],
+          estiloMeke: ['', Validators.required],
+          timeMassage: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Massage":{
@@ -180,6 +239,21 @@ export class ServicesBeautyPage {
           {"value":"Leg","label":"Leg"},
           {"value":"feet","label":"feet"}
         ];
+        this.beauty = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          exerciseTrainer: [''],
+          timeTrainer: [''],
+          peinadosCut: [''],
+          typeCut: [''],
+          barbaCut: [''],
+          tipoMenicure: [''],
+          unaMenicure: [''],
+          estiloMenicure: [''],
+          estiloMeke: [''],
+          estiloMassage: ['', Validators.required],
+          timeMassage: ['', Validators.required],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
     }

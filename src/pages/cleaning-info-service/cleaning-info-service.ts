@@ -30,7 +30,12 @@ export class CleaningInfoServicePage {
   sale:any;
   information:any;
   serviceCode:any;
-
+  //-map
+  Userlat:any;
+  Userlng:any;
+  zom: number = 14;
+  providerLatitud:any;
+  providerLongitud:any;
   //-datos BD
   status="Waiting for the professional";
 
@@ -49,7 +54,9 @@ export class CleaningInfoServicePage {
 
   //-subs
   saleStatusSubs:any;
-
+  OfferUserLocationSubs:any;
+  getOfferProviderLocationSubs:any;
+  
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
     public professionalsService : ProfessionalsService,
@@ -79,6 +86,7 @@ export class CleaningInfoServicePage {
     // console.log(this.userActual);
     // console.log(localStorage);
     this.getProfessionals(this.worker['id']);
+    this.getUsersLocation();
     this.saleStatusSubs= this.saleService.getStatus(this.userActual,this.keyOffer).subscribe((resul)=>{
       // console.log(resul);
       // console.log(resul['$value']);
@@ -103,11 +111,12 @@ export class CleaningInfoServicePage {
   }
 
   private getProfessionals(keyWork){
-    this.professionalsService.getProfessional(keyWork)
-    .forEach(professional =>{
+    let getProfessionalSubs = this.professionalsService.getProfessional(keyWork).subscribe(
+    professional =>{
       this.workerInfo= professional;
+      this.mostrarWorkInfo();
+      getProfessionalSubs.unsubscribe();
     });
-    this.mostrarWorkInfo();
   }
   
   mostrarWorkInfo(){
@@ -154,5 +163,28 @@ export class CleaningInfoServicePage {
         this.segundos=10;
       }
     }
+  }
+
+  getUsersLocation(){
+    this.OfferUserLocationSubs = this.offerService.getOfferUserLocation(this.keyOffer).subscribe(
+      (LocationUser)=>{
+        console.info(LocationUser);        
+        this.Userlat =LocationUser.latitud;
+        this.Userlng =LocationUser.longitud;
+        console.log(this.Userlat);
+        console.log(this.Userlng);
+        this.OfferUserLocationSubs.unsubscribe();
+      }
+    );
+    this.getOfferProviderLocationSubs = this.offerService.getOfferProviderLocation(this.keyOffer).subscribe(
+      (LocationProvider)=>{
+        console.info(LocationProvider);        
+        this.providerLatitud =LocationProvider.latitud;
+        this.providerLongitud =LocationProvider.longitud;
+        console.log(this.providerLatitud);
+        console.log(this.providerLongitud);
+        this.getOfferProviderLocationSubs.unsubscribe();
+      }
+    );
   }
 }

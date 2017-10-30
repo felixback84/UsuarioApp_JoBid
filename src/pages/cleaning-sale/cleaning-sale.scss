@@ -10,10 +10,12 @@ page-cleaning-sale {
 	h4,h5{ font-weight: bold; }
 	.contador{
 		position: absolute;
-		top:27%;
+		top:0;
+		left:0;
 		width: 100%;
 		&>.contenido{ 
 			p,h3{
+				margin:0px;
 				color: white;
 			}
 			p{
@@ -24,17 +26,18 @@ page-cleaning-sale {
 			height: 75px;
 			width: 30%;
 			border-radius: 7px;
-			margin: 0 auto;
+			// margin: 0 auto;
 			text-align: center;}
 		&>.contenido2{ 
 			p,h3{
+				margin-top: 1.6rem;
 				color: white;
 			}
 			background:$Red;
 			height: 65px;
 			width: 30%;
 			border-radius: 7px;
-			margin: 0 auto;
+			// margin: 0 auto;
 			padding: 5px 0 0 0;
 			text-align: center;}
 	}

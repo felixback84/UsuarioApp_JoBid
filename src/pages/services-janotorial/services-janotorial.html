@@ -23,14 +23,14 @@
       <div class="TituloRojo"><h4>{{dataService.name}}</h4></div>
       <h4>Service information</h4>
       <p padding>Describes what the professional requires</p>
-    <form id="formPayinfo" class="list">
+    <form id="formPayinfo" class="list" [formGroup]="ServiceJanotorial">
       <ion-grid>
         <ion-row *ngIf="booleanLuckSmith">
           <ion-col>
             <ion-list>
               <ion-item>
                 <ion-icon name="cash" item-start></ion-icon>
-                <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer" name="maxOffer"></ion-input>
+                <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer"  formControlName="maxOffer" name="maxOffer"></ion-input>
               </ion-item>
             </ion-list>
           </ion-col>
@@ -40,9 +40,9 @@
               <ion-col col-10>
                 <ion-list>
                   <ion-item>
-                  <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer2" name="maxOffer2"></ion-input>
+                  <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer2"  formControlName="maxOffer2" name="maxOffer2"></ion-input>
                   <ion-icon name="camera" item-start></ion-icon>
-                  <input type="hidden" placeholder="Photography" [(ngModel)]="fotoDog" name="fotoDog" />
+                  <input type="hidden" placeholder="Photography" [(ngModel)]="foto"  formControlName="foto" name="foto" />
                 </ion-item>
               </ion-list>
             </ion-col>
@@ -55,11 +55,10 @@
             <ion-list>
               <ion-item>
                 <ion-icon name="build" item-start></ion-icon>
-                <ion-select [(ngModel)]="jobHand" name="jobHand" placeholder="Type of job">
+                <ion-select [(ngModel)]="jobHand"  formControlName="jobHand" name="jobHand" placeholder="Type of job" class="mitad">
                     <ion-option *ngFor="let job of Jobs" value="{{job.value}}">{{job.label}}</ion-option>
                 </ion-select>
-                <ion-input type="text" placeholder="Type of job" class="mitad"[(ngModel)]="jobHand" name="jobHand"></ion-input>
-                <ion-input type="number" placeholder="Mts" class="mitad" [(ngModel)]="mtsHand" name="mtsHand"></ion-input>
+                <ion-input type="number" placeholder="Mts" class="mitad" [(ngModel)]="mtsHand"  formControlName="mtsHand" name="mtsHand"></ion-input>
             </ion-item>
             </ion-list>
           </ion-col>
@@ -69,8 +68,8 @@
             <ion-list>
               <ion-item>
                 <ion-icon name="build" item-start></ion-icon>
-                <ion-input type="number" placeholder="# Rooms" class="mitad"[(ngModel)]="roomPluming" name="roomPluming"></ion-input>
-                <ion-input type="number" placeholder="Mts" class="mitad" [(ngModel)]="mtsPluming" name="mtsPluming"></ion-input>
+                <ion-input type="number" placeholder="# Rooms" class="mitad"[(ngModel)]="roomPluming"  formControlName="roomPluming" name="roomPluming"></ion-input>
+                <ion-input type="number" placeholder="Mts" class="mitad" [(ngModel)]="mtsPluming"  formControlName="mtsPluming" name="mtsPluming"></ion-input>
             </ion-item>
             </ion-list>
           </ion-col>
@@ -80,8 +79,8 @@
             <ion-list>
               <ion-item>
                 <ion-icon name="build" item-start></ion-icon>
-                <ion-input type="number" placeholder="# Rooms" class="mitad"[(ngModel)]="roomElec" name="roomElec"></ion-input>
-                <ion-input type="number" placeholder="Mts" class="mitad" [(ngModel)]="mtsElect" name="mtsElect"></ion-input>
+                <ion-input type="number" placeholder="# Rooms" class="mitad"[(ngModel)]="roomElec" formControlName="roomElec"  name="roomElec"></ion-input>
+                <ion-input type="number" placeholder="Mts" class="mitad" [(ngModel)]="mtsElect" formControlName="mtsElect"  name="mtsElect"></ion-input>
             </ion-item>
             </ion-list>
           </ion-col>
@@ -91,8 +90,8 @@
             <ion-list>
               <ion-item>
                 <ion-icon name="build" item-start></ion-icon>
-                <ion-input type="text" placeholder="Pool type" class="mitad"[(ngModel)]="typePool" name="typePool"></ion-input>
-                <ion-input type="number" placeholder="Mts" class="mitad" [(ngModel)]="mtsPool" name="mtsPool"></ion-input>
+                <ion-input type="text" placeholder="Pool type" class="mitad"[(ngModel)]="typePool" formControlName="typePool"  name="typePool"></ion-input>
+                <ion-input type="number" placeholder="Mts" class="mitad" [(ngModel)]="mtsPool"  formControlName="mtsPool" name="mtsPool"></ion-input>
             </ion-item>
             </ion-list>
           </ion-col>
@@ -102,7 +101,7 @@
             <ion-list>
               <ion-item>
                 <ion-icon name="build" item-start></ion-icon>
-                <ion-input type="text" placeholder="Type of lock" [(ngModel)]="lockLuck" name="lockLuck"></ion-input>
+                <ion-input type="text" placeholder="Type of lock" [(ngModel)]="lockLuck"  formControlName="lockLuck" name="lockLuck"></ion-input>
             </ion-item>
             </ion-list>
           </ion-col>
@@ -111,14 +110,17 @@
           <ion-col>
             <ion-list><ion-item>
               <ion-icon name="paper" item-start></ion-icon>
-              <ion-textarea type="text" placeholder="More information" [(ngModel)]="moreInformation" name="moreInformation"></ion-textarea>
+              <ion-textarea type="text" placeholder="More information" [(ngModel)]="moreInformation"  formControlName="moreInformation" name="moreInformation"></ion-textarea>
             </ion-item></ion-list>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col> 
             <div class="btnBottom">
-              <button ion-button color="danger" block icon-left (click)="goCleaningSale()">Continue<ion-icon name="arrow-dropright"></ion-icon></button>
+              <button ion-button color="danger" block icon-left (click)="goCleaningSale()" [disabled]="!ServiceJanotorial.valid">
+                Go to the sale
+                <ion-icon name="arrow-dropright"></ion-icon>
+              </button>
             </div>
           </ion-col>
         </ion-row>

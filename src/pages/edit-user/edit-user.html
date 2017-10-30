@@ -79,9 +79,18 @@
         </ion-row>
       </ion-grid>
       
-      <div class="btnBottom">
-        <button ion-button color="danger" block (click)="goPrehome()" id="sign-in-button">Continue <ion-icon name="arrow-dropright"></ion-icon></button>
-      </div>
+      <!-- <div class="btnBottom">
+        <button ion-button color="danger" block (click)="goPrehome()" id="sign-in-button">Save <ion-icon name="arrow-dropright"></ion-icon></button>
+      </div> -->
     </ion-list>
   </form>
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <div class="btnBottom">
+          <button (click)="goPrehome()">
+              Save
+          </button> 
+        </div>
+    </ion-toolbar>
+  </ion-footer>

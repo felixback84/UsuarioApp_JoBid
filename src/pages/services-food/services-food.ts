@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { OfferService } from '../../services/offer.service';
 
@@ -56,7 +57,9 @@ export class ServicesFoodPage {
     timeHostess:any
     moreInformation:any
 
+    private ServiceFood : FormGroup;
     constructor(public navCtrl: NavController, public navParams: NavParams,
+      private formBuilder: FormBuilder,
       private offerService:OfferService,
       private saleService:SaleService  
 ) {
@@ -149,26 +152,146 @@ this.getForm();
     switch(this.subCategory){
       case "Bartenders":{
         this.booleanBartenders=true;
+        this.ServiceFood = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          typeBart: ['', Validators.required],
+          eventBart: ['', Validators.required],
+          tiemBart: ['', Validators.required],
+          eventWaiter: [''],
+          timeWaiter: [''],
+          eventChef: [''],
+          menuChef: [''],
+          dinersChef: [''],
+          eventRunners: [''],
+          tiemRunners: [''],
+          eventParking: [''],
+          placeParking: [''],
+          timeParking: [''],
+          eventHostess: [''],
+          placeHostess: [''],
+          timeHostess: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Waitress":{
         this.booleanWaitress=true;
+        this.ServiceFood = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          typeBart: [''],
+          eventBart: [''],
+          tiemBart: [''],
+          eventWaiter: ['', Validators.required],
+          timeWaiter: ['', Validators.required],
+          eventChef: [''],
+          menuChef: [''],
+          dinersChef: [''],
+          eventRunners: [''],
+          tiemRunners: [''],
+          eventParking: [''],
+          placeParking: [''],
+          timeParking: [''],
+          eventHostess: [''],
+          placeHostess: [''],
+          timeHostess: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Chef":{
         this.booleanChef=true;
+        this.ServiceFood = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          typeBart: [''],
+          eventBart: [''],
+          tiemBart: [''],
+          eventWaiter: [''],
+          timeWaiter: [''],
+          eventChef: ['', Validators.required],
+          menuChef: ['', Validators.required],
+          dinersChef: ['', Validators.required],
+          eventRunners: [''],
+          tiemRunners: [''],
+          eventParking: [''],
+          placeParking: [''],
+          timeParking: [''],
+          eventHostess: [''],
+          placeHostess: [''],
+          timeHostess: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Runners":{
         this.booleanRunners=true;
+        this.ServiceFood = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          typeBart: [''],
+          eventBart: [''],
+          tiemBart: [''],
+          eventWaiter: [''],
+          timeWaiter: [''],
+          eventChef: [''],
+          menuChef: [''],
+          dinersChef: [''],
+          eventRunners: ['', Validators.required],
+          tiemRunners: ['', Validators.required],
+          eventParking: [''],
+          placeParking: [''],
+          timeParking: [''],
+          eventHostess: [''],
+          placeHostess: [''],
+          timeHostess: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Valet parking":{
         this.booleanValetParking=true;
+        this.ServiceFood = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          typeBart: [''],
+          eventBart: [''],
+          tiemBart: [''],
+          eventWaiter: [''],
+          timeWaiter: [''],
+          eventChef: [''],
+          menuChef: [''],
+          dinersChef: [''],
+          eventRunners: [''],
+          tiemRunners: [''],
+          eventParking: ['', Validators.required],
+          placeParking: ['', Validators.required],
+          timeParking: ['', Validators.required],
+          eventHostess: [''],
+          placeHostess: [''],
+          timeHostess: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Hostess":{
         this.booleanHostess=true;
+        this.ServiceFood = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          typeBart: [''],
+          eventBart: [''],
+          tiemBart: [''],
+          eventWaiter: [''],
+          timeWaiter: [''],
+          eventChef: [''],
+          menuChef: [''],
+          dinersChef: [''],
+          eventRunners: [''],
+          tiemRunners: [''],
+          eventParking: [''],
+          placeParking: [''],
+          timeParking: [''],
+          eventHostess: ['', Validators.required],
+          placeHostess: ['', Validators.required],
+          timeHostess: ['', Validators.required],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       

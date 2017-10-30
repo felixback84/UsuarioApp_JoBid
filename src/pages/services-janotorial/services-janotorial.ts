@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { OfferService } from '../../services/offer.service';
 
@@ -47,7 +48,10 @@ export class ServicesJanotorialPage {
     lockLuck:any;
     foto:any='';
     moreInformation:any;
+
+    private ServiceJanotorial : FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams,
+    private formBuilder: FormBuilder,
             private offerService:OfferService,
             private saleService:SaleService    
   ) {
@@ -132,22 +136,97 @@ export class ServicesJanotorialPage {
           {"value":"CleanGutters","label":"Clean gutters"}
         ]; 
         // console.log(this.Jobs);
+        this.ServiceJanotorial = this.formBuilder.group({
+          maxOffer: [''],
+          maxOffer2: ['', Validators.required],
+          foto: [''],
+          jobHand: ['', Validators.required],
+          mtsHand: ['', Validators.required],
+          roomPluming: [''],
+          mtsPluming: [''],
+          roomElec: [''],
+          mtsElect: [''],
+          typePool: [''],
+          mtsPool: [''],
+          lockLuck: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Pluming":{
         this.booleanPluming=true;
+        this.ServiceJanotorial = this.formBuilder.group({
+          maxOffer: [''],
+          maxOffer2: ['', Validators.required],
+          foto: [''],
+          jobHand: [''],
+          mtsHand: [''],
+          roomPluming: ['', Validators.required],
+          mtsPluming: ['', Validators.required],
+          roomElec: [''],
+          mtsElect: [''],
+          typePool: [''],
+          mtsPool: [''],
+          lockLuck: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Electrician":{
         this.booleanElectrician=true;
+        this.ServiceJanotorial = this.formBuilder.group({
+          maxOffer: [''],
+          maxOffer2: ['', Validators.required],
+          foto: [''],
+          jobHand: [''],
+          mtsHand: [''],
+          roomPluming: [''],
+          mtsPluming: [''],
+          roomElec: ['', Validators.required],
+          mtsElect: ['', Validators.required],
+          typePool: [''],
+          mtsPool: [''],
+          lockLuck: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Pool cleaning":{
         this.booleanPoolSleaning=true;
+        this.ServiceJanotorial = this.formBuilder.group({
+          maxOffer: [''],
+          maxOffer2: ['', Validators.required],
+          foto: [''],
+          jobHand: [''],
+          mtsHand: [''],
+          roomPluming: [''],
+          mtsPluming: [''],
+          roomElec: [''],
+          mtsElect: [''],
+          typePool: ['', Validators.required],
+          mtsPool: ['', Validators.required],
+          lockLuck: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Luck smith":{
         this.booleanLuckSmith=true;
+        this.ServiceJanotorial = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          maxOffer2: [''],
+          foto: [''],
+          jobHand: [''],
+          mtsHand: [''],
+          roomPluming: [''],
+          mtsPluming: [''],
+          roomElec: [''],
+          mtsElect: [''],
+          typePool: [''],
+          mtsPool: [''],
+          lockLuck: ['', Validators.required],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
      

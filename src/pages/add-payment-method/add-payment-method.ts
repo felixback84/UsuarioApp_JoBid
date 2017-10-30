@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 
 // import * as braintree from "braintree";
 import * as braintree from "braintree-web";
@@ -35,12 +35,14 @@ export class AddPaymentMethodPage {
     public alertCtrl: AlertController,
     public navCtrl: NavController, public navParams: NavParams,
     private braintreeService : BraintreeService,
+    public loadingCtrl: LoadingController,
   ) {
       // console.log(localStorage);
       this.UserActual = localStorage.getItem('verificacion');
       console.log(this.UserActual);
       this.crearCustomer();
       this.CallToken();
+      this.presentLoading();
   }
 
   ionViewDidLoad(){
@@ -124,5 +126,13 @@ this.braintreeService.CrearTokenCustomer(this.UserActual).then(
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 5000
+    });
+    loader.present();
   }
 }

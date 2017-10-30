@@ -4039,6 +4039,10 @@ form{
   right: 10px;
 }
 
+.btnBottom .button-md span, .btnBottom .button-ios span {
+  text-transform: none;
+}
+
 .barraRoja {
   background: #b20000;
 }
@@ -25552,6 +25556,18 @@ page-add-payment-method .braintree-placeholder {
   margin-top: 20px;
 }
 
+page-add-payment-method h3 {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+  padding: 5px;
+}
+
+page-add-payment-method h4 {
+  font-weight: bold;
+}
+
 page-cleaning .imgCenter ion-icon {
   width: 90px;
   display: block;
@@ -25717,6 +25733,12 @@ page-cleaning-info-service .textoCentrado {
   margin: 0;
 }
 
+page-cleaning-info-service .mapa agm-map {
+  width: 100%;
+  height: 300px;
+  background: orange;
+}
+
 page-cleaning-ok img {
   width: 100%;
   height: 250px;
@@ -25766,7 +25788,8 @@ page-cleaning-sale h4, page-cleaning-sale h5 {
 
 page-cleaning-sale .contador {
   position: absolute;
-  top: 27%;
+  top: 0;
+  left: 0;
   width: 100%;
 }
 
@@ -25775,11 +25798,11 @@ page-cleaning-sale .contador > .contenido {
   height: 75px;
   width: 30%;
   border-radius: 7px;
-  margin: 0 auto;
   text-align: center;
 }
 
 page-cleaning-sale .contador > .contenido p, page-cleaning-sale .contador > .contenido h3 {
+  margin: 0px;
   color: white;
 }
 
@@ -25793,12 +25816,12 @@ page-cleaning-sale .contador > .contenido2 {
   height: 65px;
   width: 30%;
   border-radius: 7px;
-  margin: 0 auto;
   padding: 5px 0 0 0;
   text-align: center;
 }
 
 page-cleaning-sale .contador > .contenido2 p, page-cleaning-sale .contador > .contenido2 h3 {
+  margin-top: 1.6rem;
   color: white;
 }
 
@@ -26520,10 +26543,14 @@ page-show .gridProfession .row > p {
 page-show .gridProfession .button-md-light, page-show .gridProfession .button-ios-light {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin: 0;
   background: transparent;
-  height: 140px;
+  height: 150px;
   padding: 0;
-  /*background: yellow;*/
+}
+
+page-show .gridProfession .button-md-light .grid, page-show .gridProfession .button-ios-light .grid {
+  padding: 0;
 }
 
 page-show .gridProfession ion-icon {

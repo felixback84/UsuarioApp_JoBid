@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { OfferService } from '../../services/offer.service';
 
@@ -49,7 +50,9 @@ export class ServicesTransportationPage {
     addressDelivery:any;
     moreInformation:any;
 
+    private ServiceTransportation : FormGroup;
     constructor(public navCtrl: NavController, public navParams: NavParams,
+      private formBuilder: FormBuilder,
       private offerService:OfferService,
       private saleService:SaleService    
 ) {
@@ -126,22 +129,102 @@ this.getForm();
     switch(this.subCategory){
       case "Day VIP chofer":{
         this.booleanDayVIPChofer=true;
+        this.ServiceTransportation = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          carVip: ['', Validators.required],
+          timeVip: ['', Validators.required],
+          distanceTaxi: [''],
+          addressTaxi: [''],
+          carPool: [''],
+          passePool: [''],
+          distancePool: [''],
+          distanceMovil: [''],
+          boxMovil: [''],
+          furniMovil: [''],
+          objDelivery: [''],
+          addressDelivery: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Taxi":{
         this.booleanTaxi=true;
+        this.ServiceTransportation = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          carVip: [''],
+          timeVip: [''],
+          distanceTaxi: ['', Validators.required],
+          addressTaxi: ['', Validators.required],
+          carPool: [''],
+          passePool: [''],
+          distancePool: [''],
+          distanceMovil: [''],
+          boxMovil: [''],
+          furniMovil: [''],
+          objDelivery: [''],
+          addressDelivery: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Car pool":{
         this.booleanCarPool=true;
+        this.ServiceTransportation = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          carVip: [''],
+          timeVip: [''],
+          distanceTaxi: [''],
+          addressTaxi: [''],
+          carPool: ['', Validators.required],
+          passePool: ['', Validators.required],
+          distancePool: ['', Validators.required],
+          distanceMovil: [''],
+          boxMovil: [''],
+          furniMovil: [''],
+          objDelivery: [''],
+          addressDelivery: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Moving services":{
         this.booleanMovingServices=true;
+        this.ServiceTransportation = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          carVip: [''],
+          timeVip: [''],
+          distanceTaxi: [''],
+          addressTaxi: [''],
+          carPool: [''],
+          passePool: [''],
+          distancePool: [''],
+          distanceMovil: ['', Validators.required],
+          boxMovil: ['', Validators.required],
+          furniMovil: ['', Validators.required],
+          objDelivery: [''],
+          addressDelivery: [''],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
       case "Delivery":{
         this.booleanDelivery=true;
+        this.ServiceTransportation = this.formBuilder.group({
+          maxOffer: ['', Validators.required],
+          carVip: [''],
+          timeVip: [''],
+          distanceTaxi: [''],
+          addressTaxi: [''],
+          carPool: [''],
+          passePool: [''],
+          distancePool: [''],
+          distanceMovil: [''],
+          boxMovil: [''],
+          furniMovil: [''],
+          objDelivery: ['', Validators.required],
+          addressDelivery: ['', Validators.required],
+          moreInformation: ['', Validators.required],
+        });
         break;
       }
 	  }

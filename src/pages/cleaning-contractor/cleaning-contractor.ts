@@ -89,9 +89,6 @@ starJobr:number;
     this.offerService.setSale(this.keyOffer,this.sale);
     //- saved user in offer
     this.offerService.setUser(this.keyOffer,this.userActual);
-    //- saved provider contract
-    this.offerService.setProvider(this.keyOffer,this.worker.id);
-    this.saleService.setProvider(this.userActual,this.keyOffer,this.worker.id);
     let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer,"win":this.worker}};
     console.log(DataService);
     this.profeSuns.unsubscribe();

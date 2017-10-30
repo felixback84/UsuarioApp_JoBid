@@ -17,7 +17,15 @@
 
 
 <ion-content>
-<img src="assets/img/map.png" class="imageFull">
+<!-- <img src="assets/img/map.png" class="imageFull"> -->
+<div class="mapa">
+  <agm-map [latitude]="Userlat" [longitude]="Userlng" [zoom]="zom">
+    <agm-marker style="z-index:9;"
+      [latitude]="providerLatitud"
+      [longitude]="providerLongitud" >
+    </agm-marker>
+  </agm-map>
+</div>
 <div class="barraGris">
 	<h4>Service information</h4>
 </div>

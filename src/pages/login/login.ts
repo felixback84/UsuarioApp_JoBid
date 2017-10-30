@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 //import { NavController, NavParams } from 'ionic-angular';
 import { NavController, AlertController, NavParams} from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 //import { ShowPage } from '../show/show';
 //import { HomePage } from '../home/home';
@@ -32,16 +33,24 @@ export class LoginPage {
   userDataUpdate: any =[];
   userAndEmail: string = '';
   pass:any;
-    constructor(public navCtrl: NavController , 
+  //-form
+  private todo : FormGroup;
+    constructor(
+      public navCtrl: NavController , 
       public navParams: NavParams, 
       public authServiceProvider: AuthServiceProvider,
       public alertCtrl: AlertController,
       //private encriptyService : EncriptyService,
       //private storageService : StorageService,
       private userService : UserService,
-      public afAuth: AngularFireAuth  
+      public afAuth: AngularFireAuth,
+      private formBuilder: FormBuilder,
     ) {
       this.pass ="mi clave";
+      this.todo = this.formBuilder.group({
+        username: ['', Validators.required],
+        password: ['', Validators.required],
+      });
   	}
     
   ionViewDidLoad() {

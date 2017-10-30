@@ -51,6 +51,10 @@ export class OfferService{
 		// console.log(UserLocation);
 		this.afDB.object('/offer/'+keyOffer+'/UserLocacion').set(UserLocation).catch(error => {console.log('error offer setOfferUserLocation'); console.log(error);console.log(JSON.stringify(error));});
 	}
+	public setOfferProviderLocation(keyOffer,ProviderLocation){
+		console.info('set ProviderLocation');
+		this.afDB.object('/offer/'+keyOffer+'/ProviderLocacion').set(ProviderLocation).catch(error => {console.log('error offer setOfferProviderLocation'); console.log(error);console.log(JSON.stringify(error));});
+	}
 
 	
 
@@ -61,6 +65,15 @@ export class OfferService{
 	public getOffer(keyOffer){
 		return this.afDB.object('/offer/'+keyOffer);
 	}
+	public getOfferUserLocation(keyOffer){
+		console.info('get UserLocation');
+		return this.afDB.object('/offer/'+keyOffer+'/UserLocacion');
+	}
+	public getOfferProviderLocation(keyOffer){
+		console.info('get ProviderLocation');
+		return this.afDB.object('/offer/'+keyOffer+'/ProviderLocacion');
+	}
+
 
 	//timer
 	public setTimer(keyOffer,timer){

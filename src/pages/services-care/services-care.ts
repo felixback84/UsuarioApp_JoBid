@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { CleaningSalePage } from '../cleaning-sale/cleaning-sale';
 // import { CareProfessionsService } from '../../services/careProfessions.service';
@@ -51,8 +52,10 @@ export class ServicesCarePage {
 
   //label comments
   labelComments:string="More information";
-
+  
+  private ServiceCare : FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams,
+    private formBuilder: FormBuilder,
     // private careProfessionS: CareProfessionsService,
     private offerService: OfferService,
     private saleService:SaleService  
@@ -122,11 +125,41 @@ export class ServicesCarePage {
 			case "Child care":{
         this.booleamChildCare = true;
         this.labelComments="Special cares";
+        this.ServiceCare = this.formBuilder.group({
+          maxOffer : ['', Validators.required],
+          maxOffer2: [''],
+          fotoDog: [''],
+          numChildren: ['', Validators.required],
+          ageChildren: ['', Validators.required],
+          timeChildren: ['', Validators.required],
+          ageSenior: [''],
+          asistenceFamilia: [''],
+          raceDog: [''],
+          numDog : [''],
+          purchaseShopper : [''],
+          placeShopper : [''],
+          moreInformation : ['', Validators.required],
+        });
 				break;
 			}
 			case "Senior care":{
         this.booleamSeniorCare = true;
         this.labelComments="Special cares";
+        this.ServiceCare = this.formBuilder.group({
+          maxOffer : ['', Validators.required],
+          maxOffer2: [''],
+          fotoDog: [''],
+          numChildren: [''],
+          ageChildren: [''],
+          timeChildren: [''],
+          ageSenior: ['', Validators.required],
+          asistenceFamilia: [''],
+          raceDog: [''],
+          numDog : [''],
+          purchaseShopper : [''],
+          placeShopper : [''],
+          moreInformation : ['', Validators.required],
+        });
 				break;
 			}
 			case "Family asistance":{
@@ -142,14 +175,59 @@ export class ServicesCarePage {
           {"value":"StandWithWomen","label":"Stand with women"}
         ]; 
         console.log(this.FamiliaAsistence);
+        this.ServiceCare = this.formBuilder.group({
+          maxOffer : ['', Validators.required],
+          maxOffer2: [''],
+          fotoDog: [''],
+          numChildren: [''],
+          ageChildren: [''],
+          timeChildren: [''],
+          ageSenior: [''],
+          asistenceFamilia: ['', Validators.required],
+          raceDog: [''],
+          numDog : [''],
+          purchaseShopper : [''],
+          placeShopper : [''],
+          moreInformation : ['', Validators.required],
+        });
 				break;
 			}
 			case "Dog walker":{
         this.booleamDogWalker = true;
+        this.ServiceCare = this.formBuilder.group({
+          maxOffer : [''],
+          maxOffer2: ['', Validators.required],
+          fotoDog: [''],
+          numChildren: [''],
+          ageChildren: [''],
+          timeChildren: [''],
+          ageSenior: [''],
+          asistenceFamilia: [''],
+          raceDog: ['', Validators.required],
+          numDog : ['', Validators.required],
+          purchaseShopper : [''],
+          placeShopper : [''],
+          moreInformation : ['', Validators.required],
+        });
 				break;
 			}
 			case "Personal shopper":{
         this.booleamPersonalShopper = true;
+        this.ServiceCare = this.formBuilder.group({
+          maxOffer : ['', Validators.required],
+          maxOffer2: [''],
+          fotoDog: [''],
+          numChildren: [''],
+          ageChildren: [''],
+          timeChildren: [''],
+          ageSenior: [''],
+          asistenceFamilia: [''],
+          raceDog: [''],
+          numDog : [''],
+          purchaseShopper : ['', Validators.required],
+          placeShopper : ['', Validators.required],
+          moreInformation : ['', Validators.required],
+        });
 				break;
 			}
 	  }

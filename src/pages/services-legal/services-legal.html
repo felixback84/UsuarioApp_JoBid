@@ -22,14 +22,14 @@
     <div class="TituloRojo"><h4>{{dataService.name}}</h4></div>
     <h4>Service information</h4>
     <p padding>Describes what the professional requires</p>
-  <form id="formPayinfo" class="list">
+  <form id="formPayinfo" class="list" [formGroup]="ServiceLegal">
     <ion-grid>
       <ion-row>
         <ion-col>
           <ion-list>
             <ion-item>
               <ion-icon name="cash" item-start></ion-icon>
-              <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer" name="maxOffer"></ion-input>
+              <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer" formControlName="maxOffer" name="maxOffer"></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -39,8 +39,8 @@
           <ion-list>
             <ion-item>
               <ion-icon name="people" item-start></ion-icon>
-              <ion-input type="text" placeholder="Type of document" class="mitad"[(ngModel)]="documentNotary" name="documentNotary"></ion-input>
-              <ion-input type="text" placeholder="Event" class="mitad" [(ngModel)]="eventNotary" name="eventNotary"></ion-input>
+              <ion-input type="text" placeholder="Type of document" class="mitad"[(ngModel)]="documentNotary" formControlName="documentNotary" name="documentNotary"></ion-input>
+              <ion-input type="text" placeholder="Event" class="mitad" [(ngModel)]="eventNotary" formControlName="eventNotary" name="eventNotary"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -49,14 +49,16 @@
         <ion-col>
           <ion-list><ion-item>
             <ion-icon name="paper" item-start></ion-icon>
-            <ion-textarea type="text" placeholder="More information" [(ngModel)]="moreInformation" name="moreInformation"></ion-textarea>
+            <ion-textarea type="text" placeholder="More information" [(ngModel)]="moreInformation" formControlName="moreInformation" name="moreInformation"></ion-textarea>
           </ion-item></ion-list>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col> 
           <div class="btnBottom">
-            <button ion-button color="danger" block icon-left (click)="goCleaningSale()">Continue<ion-icon name="arrow-dropright"></ion-icon></button>
+            <button ion-button color="danger" block icon-left (click)="goCleaningSale()" [disabled]="!ServiceLegal.valid">
+              Go to the sale<ion-icon name="arrow-dropright"></ion-icon>
+            </button>
           </div>
         </ion-col>
       </ion-row>
