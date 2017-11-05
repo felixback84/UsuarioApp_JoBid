@@ -39,22 +39,14 @@
 				<ion-col>
 					<h4>{{nameJobr}}</h4>
 					<!-- <img src="assets/img/Estrellas.png" alt=""> -->
-					<p class="clasificacion">
-						<input id="radio1" type="radio" name="starJobr" [(ngModel)]="starJobr" value="5"  [checked]="5 == starJobr">
-						<label for="radio1">&#9733;</label>
-	
-						<input id="radio2" type="radio" name="starJobr" [(ngModel)]="starJobr" value="4"  [checked]="4 == starJobr">
-						<label for="radio2">&#9733;</label>
-						
-						<input id="radio3" type="radio" name="starJobr" [(ngModel)]="starJobr" value="3"  [checked]="3 == starJobr">
-						<label for="radio3">&#9733;</label>
-						
-						<input id="radio4" type="radio" name="starJobr" [(ngModel)]="starJobr" value="2"  [checked]="2 == starJobr">
-						<label for="radio4">&#9733;</label>
-						
-						<input id="radio5" type="radio" name="starJobr" [(ngModel)]="starJobr" value="1"  [checked]="1 == starJobr">
-						<label for="radio5">&#9733;</label>
-					</p>
+					
+				<p class="Calificacion Usuario {{starJobr}}">
+					<label for="radio1">&#9733;</label>
+					<label for="radio2">&#9733;</label>
+					<label for="radio3">&#9733;</label>
+					<label for="radio4">&#9733;</label>
+					<label for="radio5">&#9733;</label>
+				</p>
 	  		</ion-col>
 	  	</ion-row>	
 	  	<ion-row>	
@@ -99,23 +91,22 @@
 		</ion-row>
 	</ion-grid>
 	<h5>Comments</h5>
-<!-- <div class="comments" *ngFor="let Key of keyComments" > -->
-	<!-- {{Key}} -->
-	<!-- {{commentsJobr[key]['user_username']}}  -->
-	<!-- {{key.user}}  -->
-
-	<!-- {{commentsJobr[KeyComment]['user_username']}}
-	{{commentsJobr[KeyComment]['comm_qualification']}}
-	{{commentsJobr[KeyComment]['comm_description']}} -->
-<!-- </div> -->
-<div class="comments">
+<div class="comments" *ngFor="let value of commentsJobr" >
+	{{value.user}}
+	<!-- {{value.star}} -->
+	<p class="Calificacion {{value.star}}">
+		<label for="radio1">&#9733;</label><label for="radio2">&#9733;</label><label for="radio3">&#9733;</label><label for="radio4">&#9733;</label><label for="radio5">&#9733;</label>
+	</p>
+	<p>{{value.description}}</p>
+</div>
+<!-- <div class="comments">
 	<h6>Luis Lorem <img src="assets/img/Estrellas.png" alt=""></h6>
 	 <p>Odit, cupiditate. Quibusdam ducimus minus incidunt voluptas consequatur odit, adipisci eveniet laborum obcaecati labore! Sapiente repellat ipsum in autem fuga sint enim recusandae incidunt tenetur corporis neque totam, quam sequi placeat cupiditate, inventore! Alias repudiandae ducimus laudantium nemo quisquam, quod sint et quam, id ipsum magnam veniam amet sit a voluptatibus, similique ipsa voluptatem voluptates velit quo. Quidem odio a nemo sit illum. </p>
 </div>
 <div class="comments">
 	<h6>Melisa Lorem <img src="assets/img/Estrellas.png" alt=""></h6>
 	 <p>Odit, cupiditate. Quibusdam ducimus minus incidunt voluptas consequatur odit, adipisci eveniet laborum obcaecati labore! Sapiente repellat ipsum in autem fuga sint enim recusandae incidunt tenetur corporis neque totam, quam sequi placeat cupiditate, inventore! Alias repudiandae ducimus laudantium nemo quisquam, quod sint et quam, id ipsum magnam veniam amet sit a voluptatibus, similique ipsa voluptatem voluptates velit quo. Quidem odio a nemo sit illum. </p>
-</div>
+</div> -->
 
 </div>
 </ion-content>

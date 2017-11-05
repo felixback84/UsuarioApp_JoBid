@@ -60,7 +60,10 @@ export class MyServicesPage {
             // if(datos['$value'] == null){
 
             // }else{
-              console.info('get offerKey');
+              // console.info('get offerKey');
+              if(datos.sale == null || datos.sale == undefined){
+                datos['sale'] = datos.Clasificacion.informacion.maxOffer
+              }
               this.OffersList.push(datos);
             // }
           });

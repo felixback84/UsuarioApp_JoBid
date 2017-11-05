@@ -58,7 +58,7 @@ export class PaymentMethodsPage {
       console.log(this.UserActual);
       this.crearCustomer();
       this.showAlert();
-      
+      this.presentLoading();
       // this.dropin();
       //this.newGateWay();
       // this.setTokenClient();

@@ -76,17 +76,6 @@ export class PreHomePage {
       console.log(this.userActual);
       //this.getUrlDataAddres(); 
       this.getAddressUser(this.userActual);
-      // this.afAuth.authState.forEach( data => console.log(data));
-      // let user:any = firebase.auth().currentUser;
-      // console.log(user);
-      // if (user.isEmailVerified()) {
-      //   console.log('user verificado');
-      // }else{
-      //   console.log('user no verificado');
-      // }
-      // geonames.findNearBy(this.lat, this.lng, callback, options);
-      
-
   }
 
   goShow(item : any){
@@ -100,6 +89,11 @@ export class PreHomePage {
   goNewAddress(){
     let DataItem = {'datos':this.userData};
     this.navCtrl.push(NewAddressPage,DataItem);
+  }
+
+  DropAddress(item :any){
+    console.log(item);
+    this.userService.dropAddress(this.userActual,item.keyAddress);
   }
 
   goLocation(){
@@ -156,7 +150,7 @@ export class PreHomePage {
         //console.log(usuario);
         //console.log(datosUsuario[usuario]);
         
-        this.address.push({"label":datosUsuario[usuario]['addr_label'],"name":datosUsuario[usuario]['addr_info']});
+        this.address.push({"label":datosUsuario[usuario]['addr_label'],"name":datosUsuario[usuario]['addr_info'],"keyAddress":usuario});
         if(cont == 1){
           if(!localStorage.getItem('address')){
             localStorage.setItem('address', JSON.stringify({"label":datosUsuario[usuario]['addr_label'],"name":datosUsuario[usuario]['addr_info']}));

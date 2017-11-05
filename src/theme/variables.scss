@@ -262,10 +262,11 @@ form{
 	background: $Red !important;
 }
 .btnBottom{ position: relative;
-	.button-md,.button-ios{font-size: 20px;text-transform: capitalize;
+	.button-md,.button-ios{font-size: 20px;text-transform: capitalize; height: 48px;
 		ion-icon{ position: absolute; right: 10px; }
 		span{
 			text-transform: none;
+			font-size: 20px;
 		}
 	}
 }

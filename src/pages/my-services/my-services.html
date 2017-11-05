@@ -25,7 +25,8 @@
     <p> <strong>{{p.name}}</strong>: {{p.Clasificacion.categoria}}</p>
     <!-- <p>professional:</p> -->
     <p><strong>Status</strong>:{{p.status}}</p>
-    <p *ngIf="p.status != 'Cancelled' "><strong>Sale</strong>:{{p.sale}}</p>
+    <!-- <p *ngIf="p.status != 'Cancelled' "><strong>Sale</strong>:{{p.sale}}</p> -->
+    <p><strong>Sale</strong>:{{p.sale}}</p>
   </button>
 </ion-list>
 <!-- (click)="openPage(p) -->

@@ -9,6 +9,7 @@ import { BraintreeService } from '../../services/braintree.service';
 import { ProfessionalsService } from '../../services/professionals.service';
 import { SaleService } from '../../services/sale.service';
 import { OfferService } from '../../services/offer.service';
+import { UserService } from '../../services/user.service';
 
 /**
  * Generated class for the CleaningContractorPage page.
@@ -42,18 +43,18 @@ nameJobr:any;
 certificateJobr:any;
 insuranceJobr:any;
 presentationJobr:any;
-commentsJobr:any;
-keyComments:any=[];
+commentsJobr:any=[];
 sale:any;
-starJobr:number;
+starJobr:any;
 
   //-subs
   profeSuns:any;
+  userNameSubs:any;
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
     public professionalsService : ProfessionalsService,
-    private saleService: SaleService , private offerService: OfferService,
+    private saleService: SaleService , private offerService: OfferService, private userService : UserService,
     private braintreeService : BraintreeService,
   ) {
   }
@@ -67,7 +68,7 @@ starJobr:number;
     this.userActual = localStorage.getItem('verificacion');
     this.SubServiceActual = localStorage.getItem('SubService');
     this.sale=this.worker['offer'];
-    // console.log(this.datasService);
+    console.log(this.datasService);
     // console.log(this.dataService);
     // console.log(this.keyOffer);
     // console.log(this.worker);
@@ -138,7 +139,7 @@ starJobr:number;
   }
   
   mostrarWorkInfo(workerInfo){
-    // console.log(workerInfo);
+    console.log(workerInfo);
     this.ImgJobr= this.imgJobDefault;
     this.galleryAJobr = this.galleryJobDefault;
     this.galleryBJobr = this.galleryJobDefault;
@@ -148,7 +149,24 @@ starJobr:number;
     //-info basic
     this.nameJobr= workerInfo['prof_name']; 
     this.worker['star'] = workerInfo['prof_star'];
-    this.starJobr= Math.round(workerInfo['prof_star']); 
+    let starJobrBD= Math.round(workerInfo['prof_star']); 
+    let contenido='';
+    if(Math.round(starJobrBD) == 5){
+      contenido +='cinco';
+    }
+    if(Math.round(starJobrBD) == 4){
+      contenido +='cuatro';
+    }
+    if(Math.round(starJobrBD) == 3){
+      contenido +='tres';
+    }
+    if(Math.round(starJobrBD) == 2){
+      contenido +='dos';
+    }
+    if(Math.round(starJobrBD) == 1){
+      contenido +='one';
+    }
+    this.starJobr= contenido; 
     // console.log(this.starJobr); 
     if(workerInfo['prof_picture'] && workerInfo['prof_picture'] != ''){
       this.ImgJobr =workerInfo['prof_picture'];
@@ -178,6 +196,49 @@ starJobr:number;
             this.galleryDJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'];
           }
         }
+        //-info comentarios
+        let commentsJobr= workerInfo['prof_comments']; 
+        console.log(commentsJobr);
+        for(let key in commentsJobr){
+          this.userNameSubs = this.userService.getUser(commentsJobr[key]['user_username']).subscribe(
+            (UserBD)=>{
+              if(UserBD){
+                console.log(key);
+                if(this.userNameSubs != undefined){
+                  // console.log(this.userNameSubs);
+                  // console.log('userNameSubs S - contractor');
+                  // console.log(UserBD);
+                console.log(commentsJobr[key]['user_username']);
+                if(UserBD['user_username']){
+                  UserBD['user_username']
+                  let contenido ='';
+                  // contenido +=Math.round(commentsJobr[key]['comm_qualification'])+'';
+                  if(Math.round(commentsJobr[key]['comm_qualification']) == 5){
+                    contenido +='cinco';
+                  }
+                  if(Math.round(commentsJobr[key]['comm_qualification']) == 4){
+                    contenido +='cuatro';
+                  }
+                  if(Math.round(commentsJobr[key]['comm_qualification']) == 3){
+                    contenido +='tres';
+                  }
+                  if(Math.round(commentsJobr[key]['comm_qualification']) == 2){
+                    contenido +='dos';
+                  }
+                  if(Math.round(commentsJobr[key]['comm_qualification']) == 1){
+                    contenido +='one';
+                  }
+                  this.commentsJobr.push({'user':UserBD['user_username'],'star':contenido,'description':commentsJobr[key]['comm_description']});
+                  this.userNameSubs.unsubscribe();
+                }
+                // console.log('userNameSubs US - contractor');
+                console.log(this.commentsJobr);
+              }
+            }
+          }
+        );
+        }
+        console.log(this.commentsJobr);
       }
     }
 

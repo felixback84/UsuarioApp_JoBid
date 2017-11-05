@@ -46,17 +46,18 @@ export class CleaningInfoServicePage {
   certificateJobr:any;
   insuranceJobr:any;
   presentationJobr:any;
+  starJobr:any;
 
   //-tempoaral animaicion
   objNodeTimer:any;
-  segundos:any=10;
-  cont=1;
+  segundos:any=2;
 
   //-subs
   saleStatusSubs:any;
   OfferUserLocationSubs:any;
   getOfferProviderLocationSubs:any;
-  
+  SubServiceActual:any;
+
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
     public professionalsService : ProfessionalsService,
@@ -76,6 +77,7 @@ export class CleaningInfoServicePage {
     this.keyOffer = this.datasService['offer']; 
     this.worker = this.datasService['win']; 
     this.userActual = localStorage.getItem('verificacion');
+    this.SubServiceActual = localStorage.getItem('SubService');
     this.sale=this.worker['offer'];
     this.information= this.dataService['Clasificacion']['informacion']['moreInformation'];
     this.serviceCode = this.keyOffer.substring(6);
@@ -96,11 +98,9 @@ export class CleaningInfoServicePage {
       }
       if(resul['$value'] == 'Finalized'){
         this.status = 'Service completed';
+        this.startTimer();
       }
     });
-    this.startTimer();
-    //-provicional
-    // this.goCleaningVote();
   }
   
   goCleaningVote(){
@@ -123,35 +123,51 @@ export class CleaningInfoServicePage {
     console.log(this.workerInfo);
     this.ImgJobr= this.imgJobDefault;
     // let galleryJobr= this.galleryJobDefault;
-    this.nameJobr= this.workerInfo['prof_name']; 
-    this.certificateJobr= this.workerInfo['prof_certificate']; 
-    this.insuranceJobr= this.workerInfo['prof_insurance'];     
+    this.nameJobr= this.workerInfo['prof_name'];
+    let starJobrBD= Math.round(this.workerInfo['prof_star']); 
+    let contenido='';
+    if(Math.round(starJobrBD) == 5){
+      contenido +='cinco';
+    }
+    if(Math.round(starJobrBD) == 4){
+      contenido +='cuatro';
+    }
+    if(Math.round(starJobrBD) == 3){
+      contenido +='tres';
+    }
+    if(Math.round(starJobrBD) == 2){
+      contenido +='dos';
+    }
+    if(Math.round(starJobrBD) == 1){
+      contenido +='one';
+    }
+    this.starJobr= contenido;
+    // this.certificateJobr= this.workerInfo['prof_certificate']; 
+    // this.insuranceJobr= this.workerInfo['prof_insurance'];     
     if(this.workerInfo['prof_picture'] && this.workerInfo['prof_picture'] != ''){
       this.ImgJobr = this.workerInfo['prof_picture'];
     }
-  }
-  
-  // //-temporal
-  // modificarStatus(){
-  //   if(this.cont == 2){
-  //     this.saleService.setStatus(this.userActual,this.keyOffer,'Finalized');
-  //     this.offerService.setStatus(this.keyOffer,'Finalized');
-  //   }
-  //   if(this.cont == 1){
-  //     this.saleService.setStatus(this.userActual,this.keyOffer,'In progress');
-  //     this.offerService.setStatus(this.keyOffer,'In progress');
-  //     this.cont = 2;
-  //   }
+    //info servicion
+    for(let service in this.workerInfo.Service){
+      if(this.workerInfo.Service[service].serv_subService == this.SubServiceActual || this.workerInfo.Service[service].serv_subService == 'Full'  ){
 
-  // }
-
+        let infoService = this.workerInfo.Service[service];
+        // console.log(infoService);
+        // console.log(infoService.serv_subService);
+        this.certificateJobr= infoService.serv_detail['serv_certificate']; 
+        this.insuranceJobr= infoService.serv_detail['serv_insurance']; 
+        this.presentationJobr= infoService.serv_detail['serv_moreInformation']; 
+        }
+      }
+    }
+ 
   //--- timer
   startTimer(){
     this.objNodeTimer=setInterval( () => this.timer(),1000);
   }
 
   private timer(){
-    // console.log(this.segundos);
+    console.log(this.segundos);
     // console.log(this.status);
     if(this.status == 'Service completed' && this.segundos == 1){ 
         clearInterval(this.objNodeTimer);
@@ -160,7 +176,7 @@ export class CleaningInfoServicePage {
     }else{
       if(--this.segundos< 0){
         // this.modificarStatus();
-        this.segundos=10;
+        this.segundos=2;
       }
     }
   }

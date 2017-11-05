@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams ,AlertController,Platform} from 'ionic-angular';
+import {Observable} from 'rxjs/Observable';
 
 import { CleaningContractorPage } from '../cleaning-contractor/cleaning-contractor';
 import { SaleService } from '../../services/sale.service';
 import { OfferService } from '../../services/offer.service';
+import { UserService } from '../../services/user.service';
 
 import { ShowPage } from '../show/show';
 // import { HomePage } from '../home/home';
@@ -51,6 +53,7 @@ export class CleaningSalePage {
   
   //--timer
   segundos:number = 0;
+  // minutos:number = 2;
   minutos:number = 3;
   contador:string;
   showContador: boolean = true;
@@ -65,18 +68,14 @@ export class CleaningSalePage {
 
   //-Subs
   saleSubs:any;
+  userNameSubs:any;
 
   //-file
   file: MediaObject;
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams,
-    public alertCtrl: AlertController, 
-    public professionalsService : ProfessionalsService,
-    private geo: Geolocation, private platform: Platform,
-    private saleService: SaleService,  
-    private offerService: OfferService,  
-    private geocodeServiceProvider: GeocodeServiceProvider,  
+    public navCtrl: NavController,public navParams: NavParams,public alertCtrl: AlertController, 
+    public professionalsService : ProfessionalsService,private saleService: SaleService,  private offerService: OfferService, private userService: UserService,
+    private geo: Geolocation, private platform: Platform,private geocodeServiceProvider: GeocodeServiceProvider,  
     private media: Media,
   ) {
     this.contador = '0'+this.minutos+':'+'0'+this.segundos;
@@ -88,23 +87,28 @@ export class CleaningSalePage {
     
   ionViewDidLoad() {
     console.log('ionViewDidLoad CleaningSalePage');
+
     //--Ini-comentado para evitar mas creaciones
-    
     this.dataOffer = this.navParams.get('datos');
-    this.maxOffer = this.dataOffer['dataService']['Clasificacion']['informacion']['maxOffer'];
     this.dataService = this.dataOffer['dataService'];
     this.keyOffer = this.dataOffer['offer']; 
     this.userActual = localStorage.getItem('verificacion');
+    
+    //-
+    // this.userActual = "user_1509139021478";
+    // localStorage.setItem('verificacion',this.userActual);
+    // this.dataService = {"name":"Janotorial","class":"orange","Clasificacion":{"categoria":"Electrician","certificacion":"true","seguro":"true","distancia":"3M","experiencia":"2Y","informacion":{"maxOffer":"179","roomElec":"5","mtsElect":"6","foto":"","moreInformation":"FADFASD"}},"status":"Published","User":"user_1509139021478","Address":{"label":"My Address","name":"134 azxc,cqe,CA 90001"},"Star":1};
+    // this.keyOffer = "offer_1509549987105"; 
+    //-
+
+    this.maxOffer = this.dataService['Clasificacion']['informacion']['maxOffer'];
     this.SubServiceActual = localStorage.getItem('SubService');
-    // console.log(this.dataOffer);
-    // console.log(JSON.stringify(this.dataService));
+    console.log(this.dataOffer);
+    console.log(JSON.stringify(this.dataOffer));
     
     //--Fin-comentado para evitar mas creaciones
-    
     //--Ini-comentado para tener flujo normal
-    // this.userActual = "user_1504881933094";
-    // this.keyOffer = "offer_1507673673537"; 
-    // this.dataService = {"name":"Janotorial","class":"orange","Clasificacion":{"categoria":"Electrician","certificacion":"true","seguro":"true","distancia":"4M","experiencia":"3Y","informacion":{"maxOffer":"189","roomElec":"1","mtsElect":"2","foto":"","moreInformation":"more information. fads"}},"status":"Published","User":"user_1504881933094","Star":"3"};
+    // this.userActual = "user_1509139021478";
     // this.maxOffer = 189;
     // this.SubServiceActual = "Electrician";
     // --Fin-comentado para tener flujo normal
@@ -128,11 +132,11 @@ export class CleaningSalePage {
 
   goIndex(){
     
-  //--set status offer y sale
-  console.info('Offer -Cancelled');
-  this.saleService.setStatus(this.userActual,this.keyOffer,'Cancelled');
-  this.offerService.setStatus(this.keyOffer,'Cancelled');
-  this.offerService.dropTimer(this.keyOffer);
+    //--set status offer y sale
+    console.info('Offer -Cancelled');
+    this.saleService.setStatus(this.userActual,this.keyOffer,'Cancelled');
+    this.offerService.setStatus(this.keyOffer,'Cancelled');
+    this.offerService.dropTimer(this.keyOffer);
     clearInterval(this.objNodeTimer);
     this.saleSubs.unsubscribe();
     this.navCtrl.setRoot(ShowPage);
@@ -157,6 +161,7 @@ export class CleaningSalePage {
           
           //-info basic
           let nameJobr= this.WorkersInfo[index]['prof_name']; 
+          let starJobr= this.WorkersInfo[index]['prof_star']; 
           if(this.WorkersInfo[index]['prof_picture'] && this.WorkersInfo[index]['prof_picture'] != ''){
             ImgJobr = this.WorkersInfo[index]['prof_picture'];
           }
@@ -167,9 +172,10 @@ export class CleaningSalePage {
               let infoService = this.WorkersInfo[index].Service[service];
               // console.log(infoService);
               // console.log(infoService.serv_subService);
-              certificateJobr= infoService.serv_detail['serv_certificate']; 
-              insuranceJobr= infoService.serv_detail['serv_insurance']; 
-              presentationJobr= infoService.serv_detail['serv_moreInformation']; 
+              certificateJobr= (infoService.serv_detail['serv_certificate'] == 'true')?true:false;
+              insuranceJobr= (infoService.serv_detail['serv_insurance'] == 'true')?true:false;
+              console.log(certificateJobr);
+              console.log(insuranceJobr);
               if(infoService.serv_detail.serv_gallery){
                 if(infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'] != ''){
                   galleryAJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'];
@@ -189,18 +195,35 @@ export class CleaningSalePage {
           
           //-info comentarios
           let commentsJobr= this.WorkersInfo[index]['prof_comments']; 
-          console.log(commentsJobr);
+          // console.log(commentsJobr);
 
           //-mapear alert
           var contenido='';
           contenido +='<div class="col-40"><img src="'+ImgJobr+'"></div>';
-          contenido +='<div class="col-60"><h4>'+nameJobr+'</h4><img src="assets/img/Estrellas.png">';
+          contenido +='<div class="col-60"><h4>'+nameJobr+'</h4>';
+          if(Math.round(starJobr) == 5){
+            contenido +='<p class="Calificacion cinco">';
+          }
+          if(Math.round(starJobr) == 4){
+            contenido +='<p class="Calificacion cuatro">';
+          }
+          if(Math.round(starJobr) == 3){
+            contenido +='<p class="Calificacion tres">';
+          }
+          if(Math.round(starJobr) == 2){
+            contenido +='<p class="Calificacion dos">';
+          }
+          if(Math.round(starJobr) == 1){
+            contenido +='<p class="Calificacion one">';
+          }
+          contenido +='<label for="radio1">&#9733;</label><label for="radio2">&#9733;</label><label for="radio3">&#9733;</label><label for="radio4">&#9733;</label><label for="radio5">&#9733;</label></p>';
+          // contenido +='<h4>'+starJobr+'</h4>';
           contenido +='<p>'
           if(certificateJobr == true){
             contenido +='<span class="ItemPService"><img src="assets/img/okBlue.png"> <span> Certificate</span>,';
           }
           if(insuranceJobr == true){
-            contenido +='</span><span class="ItemPService"><img src="assets/img/okBlue.png"> <span>  Insurance</span></span>';
+            contenido +='<span class="ItemPService"><img src="assets/img/okBlue.png"> <span>  Insurance</span></span>';
           }
           contenido +='</p></div>';
           contenido += "<h5>Presentation</h5><p>"+presentationJobr+"</p>";
@@ -216,26 +239,62 @@ export class CleaningSalePage {
           let cont=0;
           if(commentsJobr != null && commentsJobr != undefined){
             for(let key in commentsJobr){
-              // console.log(commentsJobr[key]);
-              // console.log(commentsJobr[key]['user_username']);
-              console.log(commentsJobr[key]['comm_qualification']);
               if(cont == 0){
                 contenido +='<h5>Comments</h5>';
-                cont=1;
+                cont+=1;
               }
-              // console.log(commentsJobr[key]['comm_description']);
-              contenido +='<div class="comments">';
-              contenido +='<h6>'+commentsJobr[key]['user_username']+' <img src="assets/img/Estrellas.png" alt=""></h6>';
-              contenido +='<p>'+commentsJobr[key]['comm_description']+'</p>';
-              contenido +='</div>';
+              // console.log(commentsJobr[key]);
+                this.userNameSubs = this.userService.getUser(commentsJobr[key]['user_username']).subscribe(
+                (UserBD)=>{
+                  if(UserBD){
+                    if(this.userNameSubs != undefined){
+                      // console.log(this.userNameSubs);
+                      // console.log('userNameSubs S - sale');
+                      // console.log(UserBD);
+                      // console.log(UserBD['user_username']);
+                      if(UserBD['user_username']){
+                        // listCommentsJobr.push(commentsJobr[key]);
+                        contenido +='<div class="comments">';
+                        contenido +='<h6 class="nameUser">'+UserBD['user_username']+'</h6>';
+                        // contenido +=Math.round(commentsJobr[key]['comm_qualification'])+'';
+                        if(Math.round(commentsJobr[key]['comm_qualification']) == 5){
+                          contenido +='<p class="Calificacion cinco">';
+                        }
+                        if(Math.round(commentsJobr[key]['comm_qualification']) == 4){
+                          contenido +='<p class="Calificacion cuatro">';
+                        }
+                        if(Math.round(commentsJobr[key]['comm_qualification']) == 3){
+                          contenido +='<p class="Calificacion tres">';
+                        }
+                        if(Math.round(commentsJobr[key]['comm_qualification']) == 2){
+                          contenido +='<p class="Calificacion dos">';
+                        }
+                        if(Math.round(commentsJobr[key]['comm_qualification']) == 1){
+                          contenido +='<p class="Calificacion one">';
+                        }
+                        contenido +='<label for="radio1">&#9733;</label><label for="radio2">&#9733;</label><label for="radio3">&#9733;</label><label for="radio4">&#9733;</label><label for="radio5">&#9733;</label></p>';
+                        contenido +='<p>'+commentsJobr[key]['comm_description']+'</p>';
+                        contenido +='</div>';
+                      }
+                      // console.log('userNameSubs US - sale');
+                      this.userNameSubs.unsubscribe();
+                    }
+                  }
+                }
+              );
+              // console.log(listCommentsJobr);
+              // console.log(commentsJobr[key]['user_username']);
+              // console.log(listCommentsJobr[key]['comm_qualification']);
+              // // if(cont > 2){
+              //   // console.log(listCommentsJobr[key]['comm_description']);
+              //   contenido +='<div class="comments">';
+              //   contenido +='<h6>'+listCommentsJobr[key]['user_username']+'</h6>';
+              //   contenido +='<p>'+Math.round(listCommentsJobr[key]['comm_qualification'])+'</p>';
+              //   contenido +='<p>'+listCommentsJobr[key]['comm_description']+'</p>';
+              //   contenido +='</div>';
+              // }
             }  
           }
-          
-          // contenido +='<div class="comments">';
-          // contenido +='<h6>Melisa Lorem <img src="assets/img/Estrellas.png" alt=""></h6>';
-          // contenido +='<p>Odit, cupiditate. Quibusdam ducimus minus incidunt voluptas consequatur odit, adipisci eveniet laborum obcaecati labore! Sapiente repellat ipsum in autem fuga sint enim recusandae incidunt tenetur corporis neque totam, quam sequi placeat cupiditate, inventore! Alias repudiandae ducimus laudantium nemo quisquam, quod sint et quam, id ipsum magnam veniam amet sit a voluptatibus, similique ipsa voluptatem voluptates velit quo. Quidem odio a nemo sit illum. </p>';
-          // contenido +='</div>';
-          
           let alert = this.alertCtrl.create({
             // title: 'Estefania Lorem',
             message: contenido,
@@ -288,6 +347,7 @@ export class CleaningSalePage {
     // let finRegistro:boolean= false;
     this.saleSubs= this.saleService.getSale(this.userActual,this.keyOffer)
     .subscribe((result) =>{
+      // console.log(this.saleSubs);
       this.Workers = [];
       this.WorkersInfo =[];
       this.WorkersMap=[];
@@ -365,8 +425,8 @@ export class CleaningSalePage {
 
   goServiceSinOff(){
      //--set status offer y sale
-     console.info('Sin Offer');
-     this.showAlertSinOffer();
+    console.info('Sin Offer');
+    this.showAlertSinOffer();
     this.saleService.setStatus(this.userActual,this.keyOffer,'Saved');
     this.offerService.setStatus(this.keyOffer,'Saved');
     this.offerService.dropTimer(this.keyOffer);

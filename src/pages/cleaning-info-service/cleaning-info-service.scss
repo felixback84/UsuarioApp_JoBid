@@ -25,4 +25,42 @@ page-cleaning-info-service {
 			background: orange;
 		}
 	}
+	.Calificacion{
+		display: inline-block;
+		margin-left: 5px;
+		label{
+			display: inline-block;
+			font-size: 20px;
+		}
+		&.cinco{
+			label:nth-child(5){ color: $Red; }
+			label:nth-child(4){ color: $Red; }
+			label:nth-child(3){ color: $Red; }
+			label:nth-child(2){ color: $Red; }
+			label:nth-child(1){ color: $Red; }
+		}
+		&.cuatro{
+			label:nth-child(4){ color: $Red; }
+			label:nth-child(3){ color: $Red; }
+			label:nth-child(2){ color: $Red; }
+			label:nth-child(1){ color: $Red; }
+		}
+		&.tres{
+			label:nth-child(3){ color: $Red; }
+			label:nth-child(2){ color: $Red; }
+			label:nth-child(1){ color: $Red; }
+		}
+		&.dos{
+			label:nth-child(2){ color: $Red; }
+			label:nth-child(1){ color: $Red; }
+		}
+		&.uno{
+			label:nth-child(1){ color: $Red; }
+		}
+	}
+	.Calificacion.Usuario{
+		label{
+			font-size: 28px;
+		}
+	}
 }

@@ -17,8 +17,8 @@ export class UserService{
 	}
 
 	public getUser(userId){
-		console.log(this.afDB.list('/user/'+userId));
-		return this.afDB.list('/user/'+userId);
+		// console.log(this.afDB.object('/user/'+userId));
+		return this.afDB.object('/user/'+userId);
 	}
 
 	public getUserLogin(name:string , pwd: any ){
@@ -113,16 +113,23 @@ export class UserService{
 
 
 	public getUserEmailPerfil(email:string  ) {
-		return this.afDB.list('/user')
-	 	.map((users) => {
-			 //console.log(users);
-			 return users.map(user =>{
-				if(user['user_email'] == email){
-					//console.log(user);
-					return user;
-				}
-			});
-		 });
+		// return this.afDB.list('/user')
+	 	// .map((users) => {
+		// 	 //console.log(users);
+		// 	 return users.map(user =>{
+		// 		if(user['user_email'] == email){
+		// 			//console.log(user);
+		// 			return user;
+		// 		}
+		// 	});
+		//  });
+		 return this.afDB.list('/user',{
+			query: {
+			  orderByChild: 'user_email',
+			  equalTo: email
+			}
+		});
+
 	}
 	
 
@@ -208,7 +215,7 @@ export class UserService{
 	public getAddress(userId: string =""){
 		//return this.afDB.list('/user/'+userId);
 		//return this.afDB.object('/user/'+userId);
-		return this.afDB.list('/user/'+userId+'/user_address/');
+		return this.afDB.object('/user/'+userId+'/user_address/');
 	}
 
 	public newAddress(userId: string ="",ObjAddress : any = []){
@@ -228,6 +235,15 @@ export class UserService{
 				return this.afDB.object('/user/'+userId+'/user_address/'+keyAddress).set({"addr_label": label,"addr_info": name});
 			}
 		}
+	}
+
+	//-drop
+	dropAddress(keyUser,keyAddress){
+		console.log(keyUser);
+		console.log(keyAddress);
+		
+		this.afDB.object('/user/'+keyUser+'/user_address/'+keyAddress).remove().then( ()=> { console.log('drop Address');} ).catch( () => {console.log('-drop Address');
+		});
 	}
 
 }

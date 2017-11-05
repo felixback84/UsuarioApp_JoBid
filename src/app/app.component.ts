@@ -84,37 +84,58 @@ export class MyApp {
         //if(user.providerData["0"].providerId == "facebook.com"){
             console.info('find user menu');
             let email=  userAuth.providerData["0"].email;
-            //console.log(email);
-            let Userexists= this.userService.getUserEmailPerfil(email);
-            Userexists.forEach((users) => {
-              //console.log('user1');
-              //console.log(users);
-              users.forEach((user) =>{
-                if(user != undefined && user != null){
-                    //console.log('usuario load data');
-                    //console.log(user);
-                    // userDBLoad = user;
-                    this.userMenu = { "email":user['user_email'],"name":user['user_name'],"pais":user['user_pais'],"password":user['user_password'],"picture":user['user_picture'],"state":user['user_state'],"tel":user['user_tel'],"username":user['user_username'],"verificacion":user['$key'],"zipcode":user['user_zipcode']};
-                    this.userName= user['user_username'];
-                    if(user['user_picture'] && user['user_picture'] != '' && user['user_picture'] != null && user['user_picture'] != undefined){
-                      this.srcUser= user['user_picture'];
-                    }
-                    if(user['user_star'] && user['user_star'] != '' && user['user_star'] != null && user['user_star'] != undefined){
-                      this.star= user['user_star'];
-                    }
-
-                    // goPagePrehomeLoad= true;
-                    // console.log(goPagePrehomeLoad);
-                    // if(goPagePrehomeLoad){
-                    //   ---this.goNextPagePrehomeFace(userDBLoad);
-                    // }
+            let Userexists= this.userService.getUserEmailPerfil(email).subscribe( (User) => {
+              console.log('User Logueado');
+              console.log(User);
+              if(Userexists != undefined){
+                if(User['0']){
+                  this.loadViewUser(User['0']);
                 }
-              });
+              }
+              // Userexists.unsubscribe();
             });
+            //console.log(email);
+            // let Userexists= this.userService.getUserEmailPerfil(email);
+            // Userexists.forEach((users) => {
+            //   //console.log('user1');
+            //   //console.log(users);
+            //   users.forEach((user) =>{
+            //     if(user != undefined && user != null){
+            //         //console.log('usuario load data');
+            //         //console.log(user);
+            //         // userDBLoad = user;
+            //         this.userMenu = { "email":user['user_email'],"name":user['user_name'],"pais":user['user_pais'],"password":user['user_password'],"picture":user['user_picture'],"state":user['user_state'],"tel":user['user_tel'],"username":user['user_username'],"verificacion":user['$key'],"zipcode":user['user_zipcode']};
+            //         this.userName= user['user_username'];
+            //         if(user['user_picture'] && user['user_picture'] != '' && user['user_picture'] != null && user['user_picture'] != undefined){
+            //           this.srcUser= user['user_picture'];
+            //         }
+            //         if(user['user_star'] && user['user_star'] != '' && user['user_star'] != null && user['user_star'] != undefined){
+            //           this.star= Math.round(user['user_star']);
+            //         }
+
+            //         // goPagePrehomeLoad= true;
+            //         // console.log(goPagePrehomeLoad);
+            //         // if(goPagePrehomeLoad){
+            //         //   ---this.goNextPagePrehomeFace(userDBLoad);
+            //         // }
+            //     }
+            //   });
+            // });
       } else {
         console.info('find user menu - no');
       }
     });
+  }
+
+  loadViewUser(user){
+    this.userMenu = { "email":user['user_email'],"name":user['user_name'],"pais":user['user_pais'],"password":user['user_password'],"picture":user['user_picture'],"state":user['user_state'],"tel":user['user_tel'],"username":user['user_username'],"verificacion":user['$key'],"zipcode":user['user_zipcode']};
+    this.userName= user['user_username'];
+    if(user['user_picture'] && user['user_picture'] != '' && user['user_picture'] != null && user['user_picture'] != undefined){
+      this.srcUser= user['user_picture'];
+    }
+    if(user['user_star'] && user['user_star'] != '' && user['user_star'] != null && user['user_star'] != undefined){
+      this.star= Math.round(user['user_star']);
+    }
   }
 
   openPage(page) {

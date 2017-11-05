@@ -139,34 +139,47 @@ ionViewDidLoad() {
 
    
   usuarioLogeado(){
+    console.log('userLogeado');
+    
     let userDBLoad:any;
     let goPagePrehomeLoad = false;
     let homeStatus=this.afAuth.authState.subscribe( userAuth => {
       if (userAuth){
             console.info('find user home login');
             let email=  userAuth.providerData["0"].email;
-            let Userexists= this.userService.getUserEmailPerfil(email);
-            Userexists.forEach((users) => {
-              users.forEach((user) =>{
-                if(user != undefined && user != null){
-                    userDBLoad = user;
-                    goPagePrehomeLoad= true;
-                    console.log(goPagePrehomeLoad);
-                    if(goPagePrehomeLoad){
-                      this.goNextPagePrehomeFace(userDBLoad);
-                    }
+            let Userexists= this.userService.getUserEmailPerfil(email).subscribe( (User) => {
+              console.log('User Logueado');
+              console.log(User);
+              if(Userexists != undefined){
+                if(User['0']){
+                  this.goNextPagePrehomeFace(User['0']);
                 }
-              });
+              }
+              Userexists.unsubscribe();
             });
+            // let Userexists= this.userService.getUserEmailPerfil(email);
+            // Userexists.forEach((users) => {
+            //   users.forEach((user) =>{
+            //     if(user != undefined && user != null){
+            //         userDBLoad = user;
+            //         goPagePrehomeLoad= true;
+            //         console.log(goPagePrehomeLoad);
+            //         if(goPagePrehomeLoad){
+            //           this.goNextPagePrehomeFace(userDBLoad);
+            //         }
+            //     }
+            //   });
+            // });
       } else {
         console.info('find user home login - no');
       }
     });
     // homeStatus.unsubscribe();
   }
+
   goNextPagePrehomeFace(datos:any){
     this.userDataUpdate ={ "email":datos['user_email'],"name":datos['user_name'],"pais":datos['user_pais'],"password":datos['user_password'],"picture":datos['user_picture'],"state":datos['user_state'],"tel":datos['user_tel'],"username":datos['user_username'],"verificacion":datos['$key'],"zipcode":datos['user_zipcode']};
-   let Data = {'datos':this.userDataUpdate}
+    let Data = {'datos':this.userDataUpdate};
     this.navCtrl.setRoot(PreHomePage,Data);
   } 
 }

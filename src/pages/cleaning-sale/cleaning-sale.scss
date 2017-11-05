@@ -14,7 +14,9 @@ page-cleaning-sale {
 		left:0;
 		width: 100%;
 		&>.contenido{ 
+			margin: 5px;
 			p,h3{
+				
 				margin:0px;
 				color: white;
 			}
@@ -29,7 +31,9 @@ page-cleaning-sale {
 			// margin: 0 auto;
 			text-align: center;}
 		&>.contenido2{ 
+			margin: 5px;
 			p,h3{
+				
 				margin-top: 1.6rem;
 				color: white;
 			}
@@ -53,15 +57,17 @@ page-cleaning-sale {
 
 		}
 		.price{ 
-			background: $Red; color:white; height: 100%; padding: 5px; border-radius: 5px;
-			>p{color:white;text-align: center;margin: 0;}
+			background: $Red; color:white; height:48px; padding: 5px; border-radius: 5px;
+			>p{color:white;text-align: center;margin: 0; font-size: 20px; margin-top: 5px;}
 		}
 	
 		#btnCancel{
 			background: $Red;
 			color:white;
 			margin:0;
-			height: 55px;
+			height: 48px;
+			font-size: 20px;
+			border-radius: 5px;
 		}
 	
 	}
@@ -141,20 +147,89 @@ page-cleaning-sale {
 		display: inline-block;
 	}
 	.col-40{
-		width: 38%;
+		width: 37%;
+		margin-right: 3%;
 		display: inline-block;
+		img{
+			vertical-align: initial;
+			border-radius: 50%;
+		}
 	}
 	.col-60{
 		width: 58%;
 		display: inline-block;
+		h4{
+			margin:0;
+		}
+		span.ItemPService{
+			display: block;
+			margin-bottom: 5px;
+			span{
+				padding: 5px 0;
+			}
+		}
 	}
 	.ItemPService{
-		img{margin-bottom: -5px;}
+		// img{margin-bottom: -5px;}
 		span{margin-bottom: 5px;}
 	}
 	.imagen50{
 		width: 50%;
 	}
 	p{text-align: initial;}
+	.nameUser{
+		display: inline-block;
+	}
+	.Calificacion{
+		display: inline-block;
+		margin-left: 5px;
+		label{
+			display: inline-block;
+			font-size: 20px;
+		}
+		&.cinco{
+			label:nth-child(5){ color: $Red; }
+			label:nth-child(4){ color: $Red; }
+			label:nth-child(3){ color: $Red; }
+			label:nth-child(2){ color: $Red; }
+			label:nth-child(1){ color: $Red; }
+		}
+		&.cuatro{
+			label:nth-child(4){ color: $Red; }
+			label:nth-child(3){ color: $Red; }
+			label:nth-child(2){ color: $Red; }
+			label:nth-child(1){ color: $Red; }
+		}
+		&.tres{
+			label:nth-child(3){ color: $Red; }
+			label:nth-child(2){ color: $Red; }
+			label:nth-child(1){ color: $Red; }
+		}
+		&.dos{
+			label:nth-child(2){ color: $Red; }
+			label:nth-child(1){ color: $Red; }
+		}
+		&.uno{
+			label:nth-child(1){ color: $Red; }
+		}
+	}
+	.col-60 .Calificacion{
+		margin-left: 0;
+		label{
+			font-size: 26px;
+		}
+	}
+	// @media (max-width:370px) {
+	// 	.col-60, .col-40{
+	// 		width: 100%;
+	// 		display: block;
+	// 	}
+	// 	.col-60{
+	// 		h4{
+	// 			// margin-top: 10px;
+	// 		}
+	// 	}
+	// }
+
 
 }
