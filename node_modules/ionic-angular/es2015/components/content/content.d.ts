@@ -21,7 +21,7 @@ export declare class EventEmitterProxy<T> extends EventEmitter<T> {
  * The Content component provides an easy to use content area with
  * some useful methods to control the scrollable area. There should
  * only be one content in a single view component. If additional scrollable
- * elements are need, use [ionScroll](../../scroll/Scroll).
+ * elements are needed, use [ionScroll](../../scroll/Scroll).
  *
  *
  * The content area can also implement pull-to-refresh with the
@@ -204,6 +204,7 @@ export declare class Content extends Ion implements OnDestroy, AfterViewInit, IC
     _viewCtrlWriteSub: any;
     /** @internal */
     _scrollDownOnLoad: boolean;
+    _viewCtrl: any;
     private _imgReqBfr;
     private _imgRndBfr;
     private _imgVelMax;
