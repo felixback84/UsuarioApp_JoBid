@@ -8,6 +8,12 @@ import { CleaningSalePage } from '../cleaning-sale/cleaning-sale';
 
 import { OfferService } from '../../services/offer.service';
 import { SaleService } from '../../services/sale.service';
+
+
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { storage } from 'firebase';
+
+import * as firebase from 'firebase/app';
 /**
  * Generated class for the ServicesCleaningPage page.
  *
@@ -51,16 +57,24 @@ export class ServicesCleaningPage {
   
      //-form
   private ServiceCleaning : FormGroup;
+  userActual:any;
+  keyOffer:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     // private cleanProfessionS: CleaningProfessionsService,
       private formBuilder: FormBuilder,
     private offerService: OfferService,
-    private saleService:SaleService    
+    private saleService:SaleService,
+    private camera:Camera,
   ) {
     this.dataService = this.navParams.get('datos');
     this.subCategory = this.dataService['Clasificacion']['categoria'];
     //this.getForm(this.subCategory);
+    this.userActual = localStorage.getItem('verificacion');
+    var d = new Date();
+    let key = d.getTime();
+    this.keyOffer = "offer_"+(key);
     this.getForm();
+
   }
 
   ionViewDidLoad() {
@@ -91,23 +105,23 @@ export class ServicesCleaningPage {
   guardarServicio(datos){
     // console.log(datos);
     this.dataService['Clasificacion']['informacion']=datos['0'];
-    var d = new Date();
-    let key = d.getTime();
-    var keyOffer = "offer_"+(key);
+    // var d = new Date();
+    // let key = d.getTime();
+    // var keyOffer = "offer_"+(key);
     // console.log(this.dataService);
     // let subCategory=this.dataService['Clasificacion']['categoria'];
     //this.careProfessionS.newOffer(this.dataService,subCategory,keyOffer);
     // this.cleanProfessionS.newOffer(this.dataService,keyOffer);
-    this.offerService.newOffer(this.dataService,keyOffer);
+    this.offerService.newOffer(this.dataService,this.keyOffer);
     // console.log(localStorage);
     let maxOffer=datos['0']['maxOffer'];
-    let userLocal = localStorage.getItem('verificacion');
-    this.saleService.newSale(userLocal,keyOffer,maxOffer);
+    // let userLocal = localStorage.getItem('verificacion');
+    this.saleService.newSale(this.userActual,this.keyOffer,maxOffer);
     // console.log(userLocal);
     // console.log(keyOffer);
     // console.log(maxOffer);
     
-    let DataService = {'datos':{"dataService":this.dataService,"offer":keyOffer}};
+    let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer}};
     console.log(DataService);
     this.navCtrl.setRoot(CleaningSalePage,DataService);
   }
@@ -188,4 +202,34 @@ export class ServicesCleaningPage {
       }
 	  }
   }
+
+  async  camaraFoto(){
+    let file = this.userActual+'/'+this.keyOffer+'/foto';
+    console.log('clickCamara');
+    try{
+      const options: CameraOptions = {
+        quality: 60,
+        // targetHeight: 100,
+        // targetWidth: 100,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+      }
+      const result = await this.camera.getPicture(options);
+      const image = 'data:image/jpeg;base64,' + result;
+      const picture = storage().ref(file);
+      let UploadTask = picture.putString(image,'data_url');
+      UploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+        (snapshot) =>  {
+          let url = UploadTask.snapshot.downloadURL;
+          console.log(url);
+          this.foto = url;
+        },
+        (error) => { console.log(error)  },
+        // () => { 
+        // }
+      );
+    } catch(e){ console.error(e);}
+  }
+
 }

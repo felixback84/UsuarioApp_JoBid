@@ -93,7 +93,7 @@ export class UserService{
 	}
 
 	public updateUserPicture(userId:string, picture:string ){
-		console.log(this.afDB.list('/user/'+userId));
+		// console.log(this.afDB.list('/user/'+userId));
 		return this.afDB.object('/user/'+userId).set({'user_picture':picture});
 	}
 	public getUserEmail(email:string  ){
@@ -130,6 +130,20 @@ export class UserService{
 			}
 		});
 
+	}
+
+	public getUserLoginPwd(pwd: any ){
+		// let password = this.encriptyService.GenerateEncripty(pwd);
+		let password = pwd;
+		let listBD =this.afDB.list('/user',{
+			query: {
+				orderByChild: 'user_password',
+				equalTo: password
+			  }
+		})
+		// console.log(listBD);
+		// console.log(JSON.stringify( listBD) );
+		return listBD;
 	}
 	
 

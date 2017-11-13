@@ -58,32 +58,63 @@ export class LoginPage {
   }
 
   login(){
-      console.log(this.userData);
-      let estoyLogueado:boolean = false;
-      let userDB:any;
-      // let key:any;
-      //let finEvent:boolean;
-        this.userService.getUserLogin(this.userData["username"],this.userData["password"])
-        .forEach((users) => {
-          console.log('user1');
-          console.log(users);
-          users.forEach((user) =>{
-            if(user != undefined && user != null){
-              //console.log(user);
-              // if(user['user_email'] == user.email){
-                //console.log(user);
-                console.log('usuario userService ->Userexists');
-                userDB = user;
-                estoyLogueado= true;
-              // }
+      
+    console.log(this.userData['password']);
+    
+    let getUserLogin= this.userService.getUserLoginPwd(this.userData["password"]);
+    // console.log(getUserLogin);
+    // console.log(JSON.stringify( getUserLogin) );
+
+    let userPromesa = getUserLogin.subscribe( (value)=> {
+        // console.log('success');
+        console.log('userPromesa-S login');
+        // console.log(value);
+        for(let key in value){
+          // console.log(value[key]);
+          if(value[key]){
+            // console.log(value['0']['prof_username']);
+            // console.log(value['0']['prof_email']);
+            if( (this.userData["username"] == value[key]['user_username']) || (this.userData["username"] == value[key]['user_email'])){
+              console.info('existeUserPwd');
+              this.goNextPagePrehome(value[key]);
             }
-          });
-          if(!estoyLogueado){
-            this.showAlertLogin();
           }else{
-            this.goNextPagePrehome(userDB);
+            this.showAlertLogin();
+            console.error('-usuario no se encuentra en base de datos');
           }
-        }).catch((error) => {console.log(error);this.showAlertLogin();});
+        }
+        console.log('userPromesa-US login');
+      userPromesa.unsubscribe();  
+    });
+    
+    
+    // console.log(this.userData);
+    //   let estoyLogueado:boolean = false;
+    //   let userDB:any;
+    //   // let key:any;
+    //   //let finEvent:boolean;
+      
+    //     this.userService.getUserLogin(this.userData["username"],this.userData["password"])
+    //     .forEach((users) => {
+    //       console.log('user1');
+    //       console.log(users);
+    //       users.forEach((user) =>{
+    //         if(user != undefined && user != null){
+    //           //console.log(user);
+    //           // if(user['user_email'] == user.email){
+    //             //console.log(user);
+    //             console.log('usuario userService ->Userexists');
+    //             userDB = user;
+    //             estoyLogueado= true;
+    //           // }
+    //         }
+    //       });
+    //       if(!estoyLogueado){
+    //         this.showAlertLogin();
+    //       }else{
+    //         this.goNextPagePrehome(userDB);
+    //       }
+    //     }).catch((error) => {console.log(error);this.showAlertLogin();});
 
 
         
@@ -113,7 +144,7 @@ export class LoginPage {
   }
 
   async goNextPagePrehome(datos:any){
-    //console.log(datos);
+    console.log(datos);
     //console.log(datos['$key']);
 
     this.userDataUpdate = { "email":datos['user_email'],"name":datos['user_name'],"pais":datos['user_pais'],"password":datos['user_password'],"picture":datos['user_picture'],"state":datos['user_state'],"tel":datos['user_tel'],"username":datos['user_username'],"verificacion":datos['$key'],"zipcode":datos['user_zipcode']};

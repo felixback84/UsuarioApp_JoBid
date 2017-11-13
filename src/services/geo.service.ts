@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from 'angularfire2/database';
 
-import * as GeoFire from 'geofire';
+// import * as GeoFire from 'geofire';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 
 @Injectable()
@@ -16,7 +16,7 @@ export class GeoService{
 	) {
 
 		this.dbRef = this.afDB.list('locations');
-		this.geoFire = new GeoFire(this.dbRef.$ref);
+		// this.geoFire = new GeoFire(this.dbRef.$ref);
 	}	
 
 	setLocations(key:string, coords:Array<number>){

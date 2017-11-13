@@ -17,9 +17,10 @@ import { ProfessionalsService } from '../../services/professionals.service';
 import { GeocodeServiceProvider } from '../../providers/geocode-service';
 
 import { Geolocation } from '@ionic-native/geolocation';
-import * as GeoFire from 'geofire';
+import { NativeAudio } from '@ionic-native/native-audio';
+// import * as GeoFire from 'geofire';
 
-import { Media, MediaObject } from '@ionic-native/media';
+// import { Media, MediaObject } from '@ionic-native/media';
 /**
  * Generated class for the CleanigSalePage page.
  *
@@ -71,17 +72,16 @@ export class CleaningSalePage {
   userNameSubs:any;
 
   //-file
-  file: MediaObject;
+  // file: MediaObject;
   constructor(
     public navCtrl: NavController,public navParams: NavParams,public alertCtrl: AlertController, 
     public professionalsService : ProfessionalsService,private saleService: SaleService,  private offerService: OfferService, private userService: UserService,
     private geo: Geolocation, private platform: Platform,private geocodeServiceProvider: GeocodeServiceProvider,  
-    private media: Media,
+    // private media: Media,
+    private nativeAudio : NativeAudio,
   ) {
     this.contador = '0'+this.minutos+':'+'0'+this.segundos;
     this.startTimer();
-    this.file = this.media.create('assets/timbre.mp3');
-    this.file.play();
       // this.getProfessionals();
     }
     
@@ -318,6 +318,7 @@ export class CleaningSalePage {
         this.showContador = false;
         clearInterval(this.objNodeTimer);
         this.ganador();
+        this.audio();
       }else{
         this.minutos = 2;
         this.segundos = 0;
@@ -511,5 +512,15 @@ export class CleaningSalePage {
     });
     alert.present();
   }
-  
+  audio(){
+    this.nativeAudio.preloadSimple('uniqueId1', 'assets/timbre.mp3').then(this.onSuccess, this.onError);
+    this.nativeAudio.play('uniqueId1').then(this.onSuccess, this.onError);
+  }
+  onSuccess(){
+    console.log(' success');
+  }
+  onError(){
+    console.log('error');
+  }
+
 }

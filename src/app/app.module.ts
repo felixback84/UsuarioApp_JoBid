@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { GeocodeServiceProvider } from '../providers/geocode-service';
-import { Media } from '@ionic-native/media';
+// import { Media } from '@ionic-native/media';
 import { NativeAudio } from '@ionic-native/native-audio';
 
 //---pages
@@ -58,7 +58,7 @@ import { SaleService } from '../services/sale.service';
 import { StatusBar } from '@ionic-native/status-bar';
 import {  NativeGeocoder} from '@ionic-native/native-geocoder';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Facebook } from '@ionic-native/facebook';
+// import { Facebook } from '@ionic-native/facebook';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -67,6 +67,8 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { AgmCoreModule } from '@agm/core';
 import { Geolocation } from '@ionic-native/geolocation';
+
+import { Camera } from '@ionic-native/camera';
 
 //import firebase from 'firebase';
 
@@ -186,11 +188,12 @@ export const googleMapsKey = 'AIzaSyB8zF6lhZegDjsV_mrqxd9Fb3YFTw2__AA';
     SaleService,
     UserService,
     EncriptyService,
-    Facebook,
     Geolocation,
     NativeGeocoder,
-    Media,
+    // Facebook,
+    // Media,
     NativeAudio,
+    Camera,
     // EmailComposer
   ]
 })

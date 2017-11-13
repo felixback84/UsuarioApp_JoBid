@@ -9,7 +9,7 @@ import { CleaningPage } from '../cleaning/cleaning';
 
 import { ProfessionsService } from '../../services/professions.service';
 
-import { Media, MediaObject } from '@ionic-native/media';
+// import { Media, MediaObject } from '@ionic-native/media';
 import { NativeAudio } from '@ionic-native/native-audio';
 
 /**
@@ -28,10 +28,11 @@ export class ShowPage {
   professions: any = [] ;
 
   //-tempo
-  file: MediaObject;
+  // file: MediaObject;
   constructor(
     public navCtrl: NavController, public navParams: NavParams, public professionsService : ProfessionsService,
-    private media: Media, private nativeAudio: NativeAudio,
+    // private media: Media, 
+    private nativeAudio: NativeAudio,
   ) {
     this.showProfessionals();
   }
@@ -85,7 +86,7 @@ export class ShowPage {
 
   showProfessionals(){
     this.professions = this.professionsService.getProfessions();
-    // console.log(this.professions);
+    console.log(this.professions);
   }
   
 

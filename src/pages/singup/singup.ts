@@ -53,13 +53,11 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
   stateZipcode: string = undefined;
   estados : any = [];
 
-  windowRef: any;
   user:any;
   userB:any;
-  //messaging:any;
-  //messaging = firebase.messaging;
-  //messaging = firebase.messaging();
-  
+
+  //-sub
+  SubcribeUserexists:any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -173,31 +171,37 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
     let estoyLogueado:boolean = false;
     let userDB:any;
     //let finEvent:boolean;
-      let Userexists= this.userService.getUserexists(this.userData["username"],this.userData["email"]);
-      Userexists.forEach((users) => {
+
+    // console.log(this.userData["username"]);
+    // console.log(this.userData["email"]);
+      let Userexists= this.userService.getUserEmailPerfil(this.userData["email"]);
+      // console.log(JSON.stringify( Userexists));
+      // Userexists.forEach((value)=>{ console.log(value);});
+      this.SubcribeUserexists = Userexists.subscribe((value) => {
+        console.log('SubcribeUserexists-US singup');
         console.log('user1');
-        console.log(users);
-        users.forEach((user) =>{
-          if(user != undefined && user != null){
-            //console.log(user);
-            // if(user['user_email'] == user.email){
-              //console.log(user);
-              console.log('usuario userService ->Userexists');
-              userDB = user;
-              estoyLogueado= true;
-            // }
+        console.log(value);
+        if(value['0']){
+          console.log(value["0"].user_username);
+          console.log(this.userData["username"]);
+          if(value["0"].user_username == this.userData["username"]){
+              console.log(value["0"].user_username);
+              estoyLogueado = true;
+              console.log(estoyLogueado);
           }
-        });
-        //console.log(Userexists);
-        //console.log(userDB);
-        //console.log(estoyLogueado);
-        
+        }
+        //-usuario existe
+        if(estoyLogueado == false){
+          console.log('enviar correo');
+          // this.crearUserFirebase();
+          this.enviarCorreo();
+        }else{
+          console.log('alerta signUp');
+          this.showAlertSignUp();
+        }
+        console.log('SubcribeUserexists-US singup');
+        this.SubcribeUserexists.unsubscribe();
       });
-      if(estoyLogueado){
-        this.showAlertSignUp();
-      }else{
-        this.enviarCorreo();
-      }
   }
   
   enviarCorreo(){
@@ -303,14 +307,14 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
   //   const num = this.country + this.area + this.prefix + this.line;
   //   return `+${num}`
   // }
-  verifyLoginCode() {
-    this.windowRef.confirmationResult
-                  .confirm(this.userData['verificacion'])
-                  .then( result => {
-                    this.user = result.user;
-    })
-    .catch( error => console.log(error, "Incorrect code entered?"));
-  }
+  // verifyLoginCode() {
+  //   this.windowRef.confirmationResult
+  //                 .confirm(this.userData['verificacion'])
+  //                 .then( result => {
+  //                   this.user = result.user;
+  //   })
+  //   .catch( error => console.log(error, "Incorrect code entered?"));
+  // }
   setZipCode(){
     //alert('select other item');
     //console.log (this.userData.city);

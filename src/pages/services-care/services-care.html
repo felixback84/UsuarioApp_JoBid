@@ -42,12 +42,12 @@
               <ion-item>
               <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer2" formControlName="maxOffer2" name="maxOffer2"></ion-input>
               <ion-icon name="camera" item-start></ion-icon>
-              <input type="hidden" placeholder="Photography" [(ngModel)]="fotoDog" formControlName="fotoDog" name="fotoDog" />
+              <input type="hidden" placeholder="Photography" [(ngModel)]="foto" formControlName="foto" name="foto" />
             </ion-item>
           </ion-list>
         </ion-col>
         <ion-col col-2 id="btn-camera">
-            <button ion-button color="danger" outline><ion-icon name="camera"></ion-icon></button>
+            <button ion-button color="danger" outline (click)="camaraFoto()"><ion-icon name="camera"></ion-icon></button>
         </ion-col>
       </ion-row>
       <ion-row *ngIf="booleamChildCare">

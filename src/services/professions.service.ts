@@ -4,13 +4,13 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class ProfessionsService{
     professions = [
-    	{name:'Care',class:'red'},
-    	{name:'Cleaning',class:'yellow'},
-    	{name:'Janotorial',class:'orange'},
-    	{name:'Transportation',class:'green'},
-    	{name:'Food & Beverage',class:'purple'},
-    	{name:'Legal services',class:'blue'},
-    	{name:'Beauty',class:'pink'}
+    	{name:'Care',class:'red',img:'assets/img/services/Care.png'},
+    	{name:'Cleaning',class:'yellow',img:'assets/img/services/Cleaning.png'},
+    	{name:'Janotorial',class:'orange',img:'assets/img/services/Janitorial.png'},
+    	{name:'Transportation',class:'green',img:'assets/img/services/Transportation.png'},
+    	{name:'Food & Beverage',class:'purple',img:'assets/img/services/Food.png'},
+    	{name:'Legal services',class:'blue',img:'assets/img/services/Legal.png'},
+    	{name:'Beauty',class:'pink',img:'assets/img/services/Beauty.png'}
     	];
 	dataCategoria: any = [];
 

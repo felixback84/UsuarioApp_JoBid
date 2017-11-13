@@ -113,9 +113,11 @@ export class CleaningInfoServicePage {
   private getProfessionals(keyWork){
     let getProfessionalSubs = this.professionalsService.getProfessional(keyWork).subscribe(
     professional =>{
-      this.workerInfo= professional;
-      this.mostrarWorkInfo();
-      getProfessionalSubs.unsubscribe();
+      if(getProfessionalSubs != undefined){
+        this.workerInfo= professional;
+        this.mostrarWorkInfo();
+        getProfessionalSubs.unsubscribe();
+      }
     });
   }
   
