@@ -10,7 +10,7 @@
         "spec": "1.1.4",
         "type": "version"
       },
-      "/Users/carlos/ionicPruebas/userApp/node_modules"
+      "E:\\z-Trabajo\\proyectoIonic\\UsuarioApp_JoBid"
     ]
   ],
   "_from": "cordova-plugin-device@1.1.4",
@@ -45,7 +45,7 @@
   "_shasum": "d5fe74712069d03f6d386ef0bd321b3abd0d38dc",
   "_shrinkwrap": null,
   "_spec": "cordova-plugin-device@1.1.4",
-  "_where": "/Users/carlos/ionicPruebas/userApp/node_modules",
+  "_where": "E:\\z-Trabajo\\proyectoIonic\\UsuarioApp_JoBid",
   "author": {
     "name": "Apache Software Foundation"
   },

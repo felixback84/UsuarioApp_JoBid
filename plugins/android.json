@@ -1,63 +1,39 @@
 {
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "io.ionic.starter"
     },
-    "config_munge": {
-        "files": {}
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "io.ionic.starter"
     },
-    "installed_plugins": {
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.JoBit.com"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.JoBit.com"
-        },
-        "cordova-plugin-facebook4": {
-            "APP_ID": "539258269738575",
-            "APP_NAME": "JoBid Usuario",
-            "PACKAGE_NAME": "com.JoBit.com"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.JoBit.com"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.JoBit.com"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.JoBit.com"
-        },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.JoBit.com"
-        },
-        "cordova-plugin-nativestorage": {
-            "PACKAGE_NAME": "com.JoBit.com"
-        },
-        "cordova-plugin-email-composer": {
-            "PACKAGE_NAME": "com.JoBit.com"
-        },
-        "cordova-sms-plugin": {
-            "PACKAGE_NAME": "com.JoBit.com"
-        },
-        "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.JoBit.com"
-        },
-        "cordova-plugin-nativegeocoder": {
-            "PACKAGE_NAME": "com.JoBit.com"
-        },
-        "cordova-plugin-media": {
-            "PACKAGE_NAME": "com.JoBit.com"
-        },
-        "cordova-plugin-nativeaudio": {
-            "PACKAGE_NAME": "com.JoBit.com"
-        }
+    "cordova-plugin-nativeaudio": {
+      "PACKAGE_NAME": "io.ionic.starter"
     },
-    "dependent_plugins": {
-        "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.JoBit.com"
-        },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "com.JoBit.com"
-        }
+    "cordova-plugin-nativegeocoder": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "io.ionic.starter"
     }
+  },
+  "dependent_plugins": {}
 }

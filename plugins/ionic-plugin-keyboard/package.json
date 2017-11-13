@@ -10,7 +10,7 @@
         "spec": ">=2.2.1 <2.3.0",
         "type": "range"
       },
-      "/Users/carlos/ionicPruebas/userApp/node_modules"
+      "E:\\z-Trabajo\\proyectoIonic\\UsuarioApp_JoBid"
     ]
   ],
   "_from": "ionic-plugin-keyboard@>=2.2.1 <2.3.0",
@@ -45,7 +45,7 @@
   "_shasum": "f2a9e169bbe9b5522400347c9fd6d3467ee3fa12",
   "_shrinkwrap": null,
   "_spec": "ionic-plugin-keyboard@~2.2.1",
-  "_where": "/Users/carlos/ionicPruebas/userApp/node_modules",
+  "_where": "E:\\z-Trabajo\\proyectoIonic\\UsuarioApp_JoBid",
   "author": {
     "name": "Ionic"
   },
