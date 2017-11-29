@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
-
-// import * as braintree from "braintree";
-import * as braintree from "braintree-web";
+//import * as braintree from "braintree-web";
 import * as dropin from 'braintree-web-drop-in';
+
 
 //---services
 import { BraintreeService } from '../../services/braintree.service';

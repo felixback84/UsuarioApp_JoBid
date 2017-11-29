@@ -3,31 +3,27 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 //import { Facebook } from '@ionic-native/facebook';
+import { AngularFireAuth } from 'angularfire2/auth';
 
+//--page
 import { HomePage } from '../pages/home/home';
-
 //import { CleaningContractorPage } from '../pages/cleaning-contractor/cleaning-contractor';
 //import { CleaningPage } from '../pages/cleaning/cleaning';
 //import { PreHomePage } from '../pages/pre-home/pre-home';
-
-import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
-import { PaymentMethodsPage } from '../pages/payment-methods/payment-methods';
+//import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
+//import { PaymentMethodsPage } from '../pages/payment-methods/payment-methods';
 // import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
-
-import { AngularFireAuth } from 'angularfire2/auth';
-
 import { ShowPage } from '../pages/show/show';
 import { JobWithUsPage } from '../pages/job-with-us/job-with-us';
 import { PoliciesPage } from '../pages/policies/policies';
 import { PreHomePage } from '../pages/pre-home/pre-home';
-import { PaymentsPage } from '../pages/payments/payments';
+//import { PaymentsPage } from '../pages/payments/payments';
 import { AddPaymentMethodPage } from '../pages/add-payment-method/add-payment-method';
 import { EditUserPage } from '../pages/edit-user/edit-user';
 import { MyServicesPage } from '../pages/my-services/my-services';
 
+//-service
 import { UserService } from '../services/user.service';
-
-
 
 @Component({
   templateUrl: 'app.html'
@@ -75,8 +71,8 @@ export class MyApp {
   }
 
   usuarioLogeado(){
-    let userDBLoad:any;
-    let goPagePrehomeLoad = false;
+    //let userDBLoad:any;
+    //let goPagePrehomeLoad = false;
     this.afAuth.authState.subscribe( userAuth => {
       //console.log('find user menu');
       //console.log(userAuth);

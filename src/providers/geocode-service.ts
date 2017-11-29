@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http , Headers} from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 //let apiUrl = "http://localhost/PHP-Slim-Restful-master/api/";
@@ -24,7 +24,6 @@ export class GeocodeServiceProvider {
       // https://maps.googleapis.com/maps/api/geocode/json?latlng=4.5510497999999995,%20-74.0984553&key=AIzaSyAN3iZp5m77ySYU9f6Iq3TX0g-Y2DelY70
       // https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyAN3iZp5m77ySYU9f6Iq3TX0g-Y2DelY70
     return new Promise((resolve, reject) => {
-      let headers = new Headers();
       this.http.get(apiUrl + latitud+','+longitud+apiKey+yourKeyApiGoogleMaps)
         .subscribe(res => {
           // console.log(res);

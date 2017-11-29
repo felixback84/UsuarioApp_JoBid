@@ -1,26 +1,19 @@
 import { Component } from '@angular/core';
+import { Geolocation } from '@ionic-native/geolocation';
 import { NavController, NavParams, Platform } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
+// import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
+// import * as geonames from 'search-geonames';
+// import * as firebase from 'firebase/app';
 
-
+//-pages
 import { NewAddressPage } from '../new-address/new-address';
 import { ShowPage } from '../show/show';
 
-//import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+//-service
 import { UserService } from '../../services/user.service';
-import { Geolocation } from '@ionic-native/geolocation';
-
-import { Camera, CameraOptions } from '@ionic-native/camera';
-import { storage } from 'firebase';
-
-// import * as geonames from 'search-geonames';
-
-// import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
-
-//provider create googleMaps
 import { GeocodeServiceProvider } from '../../providers/geocode-service';
 
-import { AngularFireAuth } from 'angularfire2/auth';
-// import * as firebase from 'firebase/app';
 /**
  * Generated class for the PreHomePage page.
  *
@@ -53,7 +46,6 @@ export class PreHomePage {
       public afAuth: AngularFireAuth,
       // private nativeGeocoder: NativeGeocoder,
       private geocodeServiceProvider: GeocodeServiceProvider,
-      private camera: Camera,    
     ) {
   	// this.address =[
   	// 	{"label":"casa","name":"direccion1"},
@@ -285,43 +277,6 @@ export class PreHomePage {
       this.navCtrl.setRoot(ShowPage);
     }
     // console.info(localStorage);
-  }
-
-async  clickCamara(){
-    console.log('clickCamara');
-   try{
-
-  
-    const options: CameraOptions = {
-      quality: 60,
-      targetHeight: 100,
-      targetWidth: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-    // console.log(options);
-    const result = await this.camera.getPicture(options);
-    const image = 'data:image/jpeg;base64,' + result;
-    const picture = storage().ref('pictures');
-    picture.putString(result,'data_url');
-    // resutl.then((imageData) => {
-    //  // imageData is either a base64 encoded string or a file URI
-    //  // If it's base64:
-    //  let base64Image = 'data:image/jpeg;base64,' + imageData;
-    //  console.log(imageData);
-    //  console.log(base64Image);
-    //  alert(imageData);
-    //  alert(base64Image);
-
-    // }, (err) => {
-    //  // Handle error
-    //  console.error(err);
-    //  alert(err);
-    // });
-  } catch(e){
-    console.error(e);
-   }
   }
 
 }

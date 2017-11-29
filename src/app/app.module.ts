@@ -4,8 +4,21 @@ import { HttpModule } from '@angular/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { GeocodeServiceProvider } from '../providers/geocode-service';
-// import { Media } from '@ionic-native/media';
 import { NativeAudio } from '@ionic-native/native-audio';
+import { StatusBar } from '@ionic-native/status-bar';
+import {  NativeGeocoder } from '@ionic-native/native-geocoder';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { IonicStorageModule } from '@ionic/storage';
+import { AgmCoreModule } from '@agm/core';
+import { Geolocation } from '@ionic-native/geolocation';
+import { Camera } from '@ionic-native/camera';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+// import { Facebook } from '@ionic-native/facebook';
+//import firebase from 'firebase';
+//import { EmailComposer } from '@ionic-native/email-composer';
 
 //---pages
 import { MyApp } from './app.component';
@@ -54,31 +67,14 @@ import { EncriptyService } from '../services/encripty.service';
 import { CareProfessionsService } from '../services/careProfessions.service';
 import { CleaningProfessionsService } from '../services/cleaningProfessions.service';
 import { SaleService } from '../services/sale.service';
+import { NotificacionService } from '../services/notificacion.service';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import {  NativeGeocoder} from '@ionic-native/native-geocoder';
-import { SplashScreen } from '@ionic-native/splash-screen';
-// import { Facebook } from '@ionic-native/facebook';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-
-import { IonicStorageModule } from '@ionic/storage';
-
-import { AgmCoreModule } from '@agm/core';
-import { Geolocation } from '@ionic-native/geolocation';
-
-import { Camera } from '@ionic-native/camera';
-
-//import firebase from 'firebase';
-
-//import { EmailComposer } from '@ionic-native/email-composer';
 export const firebaseConfig = {
-    apiKey: "AIzaSyBmrc2CjBbIJD_Pu_kkCcV8qNXJfsEBaxo",
-    authDomain: "usuarioappjobid.firebaseapp.com",
-    databaseURL: "https://usuarioappjobid.firebaseio.com",
-    projectId: "usuarioappjobid",
-    storageBucket: "usuarioappjobid.appspot.com",
+  apiKey: "AIzaSyBmrc2CjBbIJD_Pu_kkCcV8qNXJfsEBaxo",
+  authDomain: "usuarioappjobid.firebaseapp.com",
+  databaseURL: "https://usuarioappjobid.firebaseio.com",
+  projectId: "usuarioappjobid",
+  storageBucket: "usuarioappjobid.appspot.com",
     messagingSenderId: "679089691484"
 };
 
@@ -194,6 +190,8 @@ export const googleMapsKey = 'AIzaSyB8zF6lhZegDjsV_mrqxd9Fb3YFTw2__AA';
     // Media,
     NativeAudio,
     Camera,
+    LocalNotifications,
+    NotificacionService,
     // EmailComposer
   ]
 })

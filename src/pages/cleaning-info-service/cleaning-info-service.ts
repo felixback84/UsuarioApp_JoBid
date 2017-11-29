@@ -6,6 +6,7 @@ import { CleaningVotePage } from '../cleaning-vote/cleaning-vote';
 import { ProfessionalsService } from '../../services/professionals.service';
 import { SaleService } from '../../services/sale.service';
 import { OfferService } from '../../services/offer.service';
+import { NotificacionService } from '../../services/notificacion.service';
 /**
  * Generated class for the CleaningInfoServicePage page.
  *
@@ -63,6 +64,7 @@ export class CleaningInfoServicePage {
     public professionalsService : ProfessionalsService,
     private saleService: SaleService , 
     private offerService : OfferService,
+    private notificacionService: NotificacionService,
   ) {
     this.loadData();
   }
@@ -95,9 +97,11 @@ export class CleaningInfoServicePage {
       this.status = resul['$value'];
       if(resul['$value'] == 'In progress'){
         this.status = 'Service in progress';
+        this.notificacionServiceStart();
       }
       if(resul['$value'] == 'Finalized'){
         this.status = 'Service completed';
+        this.notificacionServiceFinish();
         this.startTimer();
       }
     });
@@ -205,4 +209,14 @@ export class CleaningInfoServicePage {
       }
     );
   }
+
+  //-notification
+  notificacionServiceStart(){
+    console.info('Nota: The service has started');
+    this.notificacionService.mostrar('The service has started',4);
+  } 
+  notificacionServiceFinish(){
+    console.info('Nota: The service has finished');
+    this.notificacionService.mostrar('The service has finished',5);
+  } 
 }

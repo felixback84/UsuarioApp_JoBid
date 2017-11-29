@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams ,AlertController,Platform} from 'ionic-angular';
-import {Observable} from 'rxjs/Observable';
 
 import { CleaningContractorPage } from '../cleaning-contractor/cleaning-contractor';
 import { SaleService } from '../../services/sale.service';
@@ -12,7 +11,7 @@ import { ShowPage } from '../show/show';
 
 //import { OfferService } from '../../services/offer.service';
 import { ProfessionalsService } from '../../services/professionals.service';
-
+import { NotificacionService } from '../../services/notificacion.service';
 //-geoCodeInverse
 import { GeocodeServiceProvider } from '../../providers/geocode-service';
 
@@ -20,7 +19,6 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { NativeAudio } from '@ionic-native/native-audio';
 // import * as GeoFire from 'geofire';
 
-// import { Media, MediaObject } from '@ionic-native/media';
 /**
  * Generated class for the CleanigSalePage page.
  *
@@ -46,6 +44,7 @@ export class CleaningSalePage {
   WorkersInfo:any=[];
   WorkersMap:any=[];
   dataService:any;
+  arrayIdProveder:any=[];
   //--datas
   userActual:any;
   SubServiceActual:any;
@@ -71,13 +70,12 @@ export class CleaningSalePage {
   saleSubs:any;
   userNameSubs:any;
 
-  //-file
-  // file: MediaObject;
+  
   constructor(
     public navCtrl: NavController,public navParams: NavParams,public alertCtrl: AlertController, 
     public professionalsService : ProfessionalsService,private saleService: SaleService,  private offerService: OfferService, private userService: UserService,
     private geo: Geolocation, private platform: Platform,private geocodeServiceProvider: GeocodeServiceProvider,  
-    // private media: Media,
+    private notificacionService: NotificacionService,
     private nativeAudio : NativeAudio,
   ) {
     this.contador = '0'+this.minutos+':'+'0'+this.segundos;
@@ -316,6 +314,7 @@ export class CleaningSalePage {
       //this.showContador = false;
       if(this.NumeroContador == 2){
         this.showContador = false;
+        this.notificacionSaleTimeOver();
         clearInterval(this.objNodeTimer);
         this.ganador();
         this.audio();
@@ -326,6 +325,7 @@ export class CleaningSalePage {
         this.StaringLabel = false;
         this.saleService.setStatus(this.userActual,this.keyOffer,'Start');
         this.offerService.setStatus(this.keyOffer,'Start');
+        this.notificacionProviderWaitTimeOver();
       }
     }else{
       if(--this.segundos< 0){
@@ -367,6 +367,13 @@ export class CleaningSalePage {
   getProviders(trabajadores){
     for(let trabajador in trabajadores){
       console.log(trabajador);
+      //verifica que es un nuevo proveedro y manda la notificacion
+      if( this.arrayIdProveder.indexOf(trabajador) == -1){
+        this.notificacionNewProvider();
+        this.arrayIdProveder.push(trabajador);
+      }
+      // console.log(this.arrayIdProveder);
+
       if(this.MenosPrecio > Number(trabajadores[trabajador]['offer']) ) { this.MenosPrecio= Number(trabajadores[trabajador]['offer']);}
       let userSubs =this.professionalsService.getProfessional(trabajador).subscribe(
         (user) =>{
@@ -440,33 +447,6 @@ export class CleaningSalePage {
     }else{ return ''+num;}
   }
 
-  private getUserLocation() {
-    /// locate the user
-    // console.info('get User location2');
-    // console.info(navigator);
-    //console.info(navigator.geolocation);
-    //console.info(JSON.stringify(navigator));
-    //console.info(JSON.stringify(navigator.geolocation));
-    // if (navigator) {
-    //   console.log('soportado2');
-    //   console.log(navigator);
-    // } else {
-    //   console.log('no soportado');
-    //   /* geolocation IS NOT available */
-    // }
-    var geolocationz = navigator.geolocation;
-    // console.log(geolocationz);
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        console.info('Location');
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
-        // console.info(position.coords.latitude);
-        // console.info(position.coords.longitude);
-      });
-    }
-  }
-
   private getUserLocationGeolocation(){
     this.platform.ready().then(() => {
       var options = {
@@ -512,6 +492,8 @@ export class CleaningSalePage {
     });
     alert.present();
   }
+
+  //-audio
   audio(){
     this.nativeAudio.preloadSimple('uniqueId1', 'assets/timbre.mp3').then(this.onSuccess, this.onError);
     this.nativeAudio.play('uniqueId1').then(this.onSuccess, this.onError);
@@ -522,5 +504,17 @@ export class CleaningSalePage {
   onError(){
     console.log('error');
   }
-
+  //-notificacion
+  notificacionNewProvider(){
+    console.info('Nota: A new provider has entered the bid');
+    this.notificacionService.mostrar('A new provider has entered the bid',1);
+  } 
+  notificacionProviderWaitTimeOver(){
+    console.info('Nota: Providers waiting time is over');
+    this.notificacionService.mostrar('Providers waiting time is over',2);
+  } 
+  notificacionSaleTimeOver(){
+    console.info('Nota: The bid is over');
+    this.notificacionService.mostrar('The bid is over',3);
+  } 
 }

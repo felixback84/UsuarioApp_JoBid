@@ -1,16 +1,16 @@
 //import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
-//import { ShowPage } from '../show/show';
+//--page
 import { PreHomePage } from '../pre-home/pre-home';
 import { LoginPage } from '../login/login';
 import { SingupPage } from '../singup/singup';
 
+//--service
 import { UserService } from '../../services/user.service';
-
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'page-home',
@@ -140,10 +140,9 @@ ionViewDidLoad() {
    
   usuarioLogeado(){
     console.log('userLogeado');
-    
-    let userDBLoad:any;
-    let goPagePrehomeLoad = false;
-    let homeStatus=this.afAuth.authState.subscribe( userAuth => {
+    //let goPagePrehomeLoad = false;
+    this.afAuth.authState.subscribe( userAuth => {
+    //let homeStatus=this.afAuth.authState.subscribe( userAuth => {
       if (userAuth){
             console.info('find user home login');
             let email=  userAuth.providerData["0"].email;

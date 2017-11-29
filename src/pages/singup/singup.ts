@@ -169,7 +169,7 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
 
   goPhoneV(){
     let estoyLogueado:boolean = false;
-    let userDB:any;
+    // let userDB:any;
     //let finEvent:boolean;
 
     // console.log(this.userData["username"]);

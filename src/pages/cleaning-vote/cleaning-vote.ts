@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
-
 import { CleaningOkPage } from '../cleaning-ok/cleaning-ok';
 
 //-service
 import { ProfessionalsService } from '../../services/professionals.service';
+import { NotificacionService } from '../../services/notificacion.service';
 
 /**
  * Generated class for the CleaningVotePage page.
@@ -30,12 +29,14 @@ export class CleaningVotePage {
   vote:any=[];
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private professionalsService : ProfessionalsService,
+    private notificacionService: NotificacionService,
   ) {
     this.datasService = this.navParams.get('datos');
     this.dataService = this.datasService['dataService'];
     this.keyOffer = this.datasService['offer']; 
     this.worker = this.datasService['win']; 
     this.userActual = localStorage.getItem('verificacion');
+    this.notificacionVoteProvider();
     // console.log(this.datasService);
     // console.log(this.dataService);
     // console.log(this.keyOffer);
@@ -62,5 +63,9 @@ export class CleaningVotePage {
 
   	this.navCtrl.setRoot(CleaningOkPage,DataService);
   }
-
+  //-notification
+  notificacionVoteProvider(){
+    console.info('Nota: Do not forget to rate your provider');
+    this.notificacionService.mostrar('Do not forget to rate your provider',4);
+  } 
 }

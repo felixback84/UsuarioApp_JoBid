@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
+//-import page
+import { CleaningSalePage } from '../cleaning-sale/cleaning-sale';
+
+//-import service
+import { SaleService } from '../../services/sale.service';
 import { OfferService } from '../../services/offer.service';
 
-import { CleaningSalePage } from '../cleaning-sale/cleaning-sale';
-import { SaleService } from '../../services/sale.service';
-
-
-import { Camera, CameraOptions } from '@ionic-native/camera';
+//-import firebase storage
 import { storage } from 'firebase';
 
 import * as firebase from 'firebase/app';
@@ -129,7 +131,6 @@ export class ServicesJanotorialPage {
     this.offerService.newOffer(this.dataService,this.keyOffer);
      // console.log(localStorage);
      let maxOffer=datos['0']['maxOffer'];
-     let userLocal = localStorage.getItem('verificacion');
      this.saleService.newSale(this.userActual,this.keyOffer,maxOffer);
      // console.log(userLocal);
      // console.log(keyOffer);
