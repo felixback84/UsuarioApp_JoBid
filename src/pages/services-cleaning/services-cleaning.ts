@@ -61,7 +61,7 @@ export class ServicesCleaningPage {
   keyOffer:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     // private cleanProfessionS: CleaningProfessionsService,
-      private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,
     private offerService: OfferService,
     private saleService:SaleService,
     private camera:Camera,

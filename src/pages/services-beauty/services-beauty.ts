@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { storage } from 'firebase';
 
+//--page
 import { OfferService } from '../../services/offer.service';
-
-import { CleaningSalePage } from '../cleaning-sale/cleaning-sale';
 import { SaleService } from '../../services/sale.service';
 
+//--service
+import { CleaningSalePage } from '../cleaning-sale/cleaning-sale';
 /**
  * Generated class for the ServicesBeautyPage page.
  *
@@ -41,6 +44,7 @@ export class ServicesBeautyPage {
     styleMassage:any;
 
     //datos del formulario
+    foto:any='';
     maxOffer:any;
     exerciseTrainer:any;
     timeTrainer:any;
@@ -54,16 +58,25 @@ export class ServicesBeautyPage {
     estiloMassage:any;
     moreInformation:any;
 
+    //data
+    userActual:any;
+    keyOffer:any;
+
     private beauty : FormGroup;
     constructor(public navCtrl: NavController, public navParams: NavParams,
       private formBuilder: FormBuilder,
       private offerService:OfferService,
-      private saleService:SaleService    
+      private saleService:SaleService,
+      private camera : Camera,    
 ) {
     this.dataService = this.navParams.get('datos');
     console.log(this.dataService);
     this.subCategory = this.dataService['Clasificacion']['categoria'];
     //this.getForm(this.subCategory);
+    var d = new Date();
+    let key = d.getTime();
+    this.keyOffer = "offer_"+(key);
+    this.userActual = localStorage.getItem('verificacion');
     this.getForm();
 }
 
@@ -76,23 +89,23 @@ export class ServicesBeautyPage {
     switch(this.subCategory){
       
       case "Personal trainer":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"exerciseTrainer":this.exerciseTrainer,"timeTrainer":this.timeTrainer,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"exerciseTrainer":this.exerciseTrainer,"timeTrainer":this.timeTrainer,"moreInformation":this.moreInformation}];
         break;
       }
       case "Hair cut and DIY":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"peinadosCut":this.peinadosCut,"typeCut":this.typeCut,"barbaCut":this.barbaCut,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"peinadosCut":this.peinadosCut,"typeCut":this.typeCut,"barbaCut":this.barbaCut,"moreInformation":this.moreInformation}];
         break;
       }
       case "Manicure and pedicure":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"tipoMenicure":this.tipoMenicure,"unaMenicure":this.unaMenicure,"estiloMenicure":this.estiloMenicure,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"tipoMenicure":this.tipoMenicure,"unaMenicure":this.unaMenicure,"estiloMenicure":this.estiloMenicure,"moreInformation":this.moreInformation}];
         break;
       }
       case "Makeup":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"estiloMeke":this.estiloMeke,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"estiloMeke":this.estiloMeke,"moreInformation":this.moreInformation}];
         break;
       }
       case "Massage":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"estiloMassage":this.estiloMassage,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"estiloMassage":this.estiloMassage,"moreInformation":this.moreInformation}];
         break;
       }
      
@@ -105,24 +118,20 @@ export class ServicesBeautyPage {
     console.log(datos);
     console.log(this.dataService);
     this.dataService['Clasificacion']['informacion']=datos['0'];
-    var d = new Date();
-    let key = d.getTime();
-    var keyOffer = "offer_"+(key);
     console.log(this.dataService);
     
     // let subCategory=this.dataService['Clasificacion']['categoria'];
-    //this.careProfessionS.newOffer(this.dataService,subCategory,keyOffer);
+    //this.careProfessionS.newOffer(this.dataService,subCategory,this.keyOffer);
     //this.saleService.newSale();
     
-    this.offerService.newOffer(this.dataService,keyOffer);
+    this.offerService.newOffer(this.dataService,this.keyOffer);
     // console.log(localStorage);
     let maxOffer=datos['0']['maxOffer'];
-    let userLocal = localStorage.getItem('verificacion');
-    this.saleService.newSale(userLocal,keyOffer,maxOffer);
-    // console.log(userLocal);
-    // console.log(keyOffer);
+    this.saleService.newSale(this.userActual,this.keyOffer,maxOffer);
+    // console.log(this.userActual);
+    // console.log(this.keyOffer);
     // console.log(maxOffer);
-    let DataService = {'datos':{"dataService":this.dataService,"offer":keyOffer}};
+    let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer}};
     console.log(DataService);
     this.navCtrl.setRoot(CleaningSalePage,DataService);
   }
@@ -132,6 +141,7 @@ export class ServicesBeautyPage {
       case "Personal trainer":{
         this.booleanPersonaTrainer=true;
         this.beauty = this.formBuilder.group({
+          foto: [''],
           maxOffer: ['', Validators.required],
           exerciseTrainer: ['', Validators.required],
           timeTrainer: ['', Validators.required],
@@ -160,6 +170,7 @@ export class ServicesBeautyPage {
           {"value":"beardAndMoustache","label":"Beard and Moustache"}
         ]; 
         this.beauty = this.formBuilder.group({
+          foto: [''],
           maxOffer: ['', Validators.required],
           exerciseTrainer: [''],
           timeTrainer: [''],
@@ -191,6 +202,7 @@ export class ServicesBeautyPage {
           {"value":"No","label":"Without style"}
         ]; 
         this.beauty = this.formBuilder.group({
+          foto: [''],
           maxOffer: ['', Validators.required],
           exerciseTrainer: [''],
           timeTrainer: [''],
@@ -213,6 +225,7 @@ export class ServicesBeautyPage {
         ]; 
         this.booleanMekeup=true;
         this.beauty = this.formBuilder.group({
+          foto: [''],
           maxOffer: ['', Validators.required],
           exerciseTrainer: [''],
           timeTrainer: [''],
@@ -240,6 +253,7 @@ export class ServicesBeautyPage {
           {"value":"feet","label":"feet"}
         ];
         this.beauty = this.formBuilder.group({
+          foto: [''],
           maxOffer: ['', Validators.required],
           exerciseTrainer: [''],
           timeTrainer: [''],
@@ -257,5 +271,34 @@ export class ServicesBeautyPage {
         break;
       }
     }
+  }
+
+  async  camaraFoto(){
+    let file = this.userActual+'/'+this.keyOffer+'/foto';
+    console.log('clickCamara');
+    try{
+      const options: CameraOptions = {
+        quality: 60,
+        // targetHeight: 100,
+        // targetWidth: 100,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+      }
+      const result = await this.camera.getPicture(options);
+      const image = 'data:image/jpeg;base64,' + result;
+      const picture = storage().ref(file);
+      let UploadTask = picture.putString(image,'data_url');
+      UploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+        (snapshot) =>  {
+          let url = UploadTask.snapshot.downloadURL;
+          console.log(url);
+          this.foto = url;
+        },
+        (error) => { console.log(error)  },
+        // () => { 
+        // }
+      );
+    } catch(e){ console.error(e);}
   }
 }

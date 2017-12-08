@@ -1,23 +1,22 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams ,AlertController,Platform} from 'ionic-angular';
-
-import { CleaningContractorPage } from '../cleaning-contractor/cleaning-contractor';
-import { SaleService } from '../../services/sale.service';
-import { OfferService } from '../../services/offer.service';
-import { UserService } from '../../services/user.service';
-
-import { ShowPage } from '../show/show';
-// import { HomePage } from '../home/home';
-
-//import { OfferService } from '../../services/offer.service';
-import { ProfessionalsService } from '../../services/professionals.service';
-import { NotificacionService } from '../../services/notificacion.service';
-//-geoCodeInverse
-import { GeocodeServiceProvider } from '../../providers/geocode-service';
-
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeAudio } from '@ionic-native/native-audio';
 // import * as GeoFire from 'geofire';
+
+//--page
+import { CleaningContractorPage } from '../cleaning-contractor/cleaning-contractor';
+import { ShowPage } from '../show/show';
+// import { HomePage } from '../home/home';
+
+//--service
+import { UserService } from '../../services/user.service';
+import { OfferService } from '../../services/offer.service';
+import { SaleService } from '../../services/sale.service';
+//import { OfferService } from '../../services/offer.service';
+import { ProfessionalsService } from '../../services/professionals.service';
+import { NotificacionService } from '../../services/notificacion.service';
+import { GeocodeServiceProvider } from '../../providers/geocode-service';
 
 /**
  * Generated class for the CleanigSalePage page.
@@ -70,7 +69,6 @@ export class CleaningSalePage {
   saleSubs:any;
   userNameSubs:any;
 
-  
   constructor(
     public navCtrl: NavController,public navParams: NavParams,public alertCtrl: AlertController, 
     public professionalsService : ProfessionalsService,private saleService: SaleService,  private offerService: OfferService, private userService: UserService,
@@ -88,6 +86,7 @@ export class CleaningSalePage {
 
     //--Ini-comentado para evitar mas creaciones
     this.dataOffer = this.navParams.get('datos');
+    console.log(this.dataOffer);
     this.dataService = this.dataOffer['dataService'];
     this.keyOffer = this.dataOffer['offer']; 
     this.userActual = localStorage.getItem('verificacion');
@@ -319,13 +318,9 @@ export class CleaningSalePage {
         this.ganador();
         this.audio();
       }else{
-        this.minutos = 2;
-        this.segundos = 0;
-        this.NumeroContador = 2;
-        this.StaringLabel = false;
-        this.saleService.setStatus(this.userActual,this.keyOffer,'Start');
-        this.offerService.setStatus(this.keyOffer,'Start');
+        this.audio();
         this.notificacionProviderWaitTimeOver();
+        this.ProviderInSale();
       }
     }else{
       if(--this.segundos< 0){
@@ -342,16 +337,27 @@ export class CleaningSalePage {
   }
   
   //--- Functions
-
+  ProviderInSale(){
+    console.info('provider in sale');
+    if(this.Workers.length != 0){
+      console.info('Sale with providers');
+      this.minutos = 2;
+      this.segundos = 0;
+      this.NumeroContador = 2;
+      this.StaringLabel = false;
+      this.saleService.setStatus(this.userActual,this.keyOffer,'Start');
+      this.offerService.setStatus(this.keyOffer,'Start');
+    }else{
+      this.goServiceSinOff();
+    }
+  }
+  
   getSale(){
     this.MenosPrecio= undefined;
     // let finRegistro:boolean= false;
     this.saleSubs= this.saleService.getSale(this.userActual,this.keyOffer)
     .subscribe((result) =>{
       // console.log(this.saleSubs);
-      this.Workers = [];
-      this.WorkersInfo =[];
-      this.WorkersMap=[];
       this.MenosPrecio = undefined;
       //console.log(result);
       //console.log(result.sale);
@@ -363,8 +369,11 @@ export class CleaningSalePage {
       // finRegistro = true;
     });
   }
-
+  
   getProviders(trabajadores){
+    this.Workers = [];
+    this.WorkersInfo =[];
+    this.WorkersMap=[];
     for(let trabajador in trabajadores){
       console.log(trabajador);
       //verifica que es un nuevo proveedro y manda la notificacion
@@ -378,9 +387,7 @@ export class CleaningSalePage {
       let userSubs =this.professionalsService.getProfessional(trabajador).subscribe(
         (user) =>{
           let img = this.imgJobDefault;
-
           this.WorkersInfo.push(user);
-          
           if(user.prof_picture && user.prof_picture != undefined && user.prof_picture != ''){
             img = user.prof_picture;
           }
@@ -390,7 +397,6 @@ export class CleaningSalePage {
                 this.WorkersMap.push({"latitud":trabajadores[trabajador]['UserLocacion']['latitud'], "longitud":trabajadores[trabajador]['UserLocacion']['longitud'],"imagen":img});
               }
             }
-            
           } catch (error) {
             // console.log(error);
             console.info('experando localizacion user');
@@ -399,7 +405,6 @@ export class CleaningSalePage {
           userSubs.unsubscribe();
         });
     }
-
     // console.log(this.WorkersInfo);
     // console.log(this.WorkersMap);
     // let estadoUser= this.Workers;
@@ -408,26 +413,31 @@ export class CleaningSalePage {
 
   ganador(){
     console.info('ganador');
-    
+    let contWorkWin = 0;
     // console.log(this.Workers.length);
     // console.log('this.Workers.length');
     if(this.Workers.length != 0){
       for(let index in this.Workers){
         // console.log(index);
         console.log(this.MenosPrecio);
+        console.log(this.Workers[index]);
         if(this.MenosPrecio == Number(this.Workers[index]['offer']) ){
-          // console.log(this.Workers[index]);
+          contWorkWin = 1;
           this.goCleaningContractor(this.Workers[index]);
           this.saleService.setStatus(this.userActual,this.keyOffer,'Evaluation');
           this.offerService.setStatus(this.keyOffer,'Evaluation');
           this.offerService.dropTimer(this.keyOffer);
           this.showAlertFinOffer();
-        }else{
-          this.goServiceSinOff();
+          console.info('provider with offer');
         }
       }
+      if( contWorkWin == 0 ){
+        console.info('providers without offers');
+        this.goServiceSinOff();
+      }
     }else{
-          this.goServiceSinOff();
+      console.info('Without providers');
+      this.goServiceSinOff();
     }
   }
 

@@ -26252,6 +26252,10 @@ page-cleaning-info-service h6, page-cleaning-info-service h3 {
   margin: 0;
 }
 
+page-cleaning-info-service h4 {
+  margin: 0;
+}
+
 page-cleaning-info-service .barraGris {
   background: #666666;
 }
@@ -26299,8 +26303,13 @@ page-cleaning-info-service .mapa agm-map {
   background: orange;
 }
 
+page-cleaning-info-service ion-item.item-md ion-label.label, page-cleaning-info-service ion-item.item-ios ion-label.label {
+  margin: 0;
+}
+
 page-cleaning-info-service .Calificacion {
   display: inline-block;
+  margin: 0;
   margin-left: 5px;
 }
 
@@ -26798,6 +26807,10 @@ page-myserviceinfo h6, page-myserviceinfo h3 {
   margin: 0;
 }
 
+page-myserviceinfo h4 {
+  margin: 0;
+}
+
 page-myserviceinfo .barraGris {
   background: #666666;
 }
@@ -26841,6 +26854,85 @@ page-myserviceinfo .space {
 
 page-myserviceinfo .textoCentrado {
   margin: 0;
+}
+
+page-myserviceinfo ion-item.item-md ion-label.label, page-myserviceinfo ion-item.item-ios ion-label.label {
+  margin: 0;
+}
+
+page-myserviceinfo .Calificacion {
+  display: inline-block;
+  margin: 0;
+  margin-left: 5px;
+}
+
+page-myserviceinfo .Calificacion label {
+  display: inline-block;
+  font-size: 20px;
+}
+
+page-myserviceinfo .Calificacion.cinco label:nth-child(5) {
+  color: #b20000;
+}
+
+page-myserviceinfo .Calificacion.cinco label:nth-child(4) {
+  color: #b20000;
+}
+
+page-myserviceinfo .Calificacion.cinco label:nth-child(3) {
+  color: #b20000;
+}
+
+page-myserviceinfo .Calificacion.cinco label:nth-child(2) {
+  color: #b20000;
+}
+
+page-myserviceinfo .Calificacion.cinco label:nth-child(1) {
+  color: #b20000;
+}
+
+page-myserviceinfo .Calificacion.cuatro label:nth-child(4) {
+  color: #b20000;
+}
+
+page-myserviceinfo .Calificacion.cuatro label:nth-child(3) {
+  color: #b20000;
+}
+
+page-myserviceinfo .Calificacion.cuatro label:nth-child(2) {
+  color: #b20000;
+}
+
+page-myserviceinfo .Calificacion.cuatro label:nth-child(1) {
+  color: #b20000;
+}
+
+page-myserviceinfo .Calificacion.tres label:nth-child(3) {
+  color: #b20000;
+}
+
+page-myserviceinfo .Calificacion.tres label:nth-child(2) {
+  color: #b20000;
+}
+
+page-myserviceinfo .Calificacion.tres label:nth-child(1) {
+  color: #b20000;
+}
+
+page-myserviceinfo .Calificacion.dos label:nth-child(2) {
+  color: #b20000;
+}
+
+page-myserviceinfo .Calificacion.dos label:nth-child(1) {
+  color: #b20000;
+}
+
+page-myserviceinfo .Calificacion.uno label:nth-child(1) {
+  color: #b20000;
+}
+
+page-myserviceinfo .Calificacion.Usuario label {
+  font-size: 28px;
 }
 
 page-new-address img {
@@ -26959,7 +27051,7 @@ page-pre-home .card-background-page ion-card {
 page-pre-home .card-background-page .card-title {
   position: absolute;
   text-align: center;
-  top: 60%;
+  top: 80%;
   font-size: 2.0em;
   width: 100%;
   font-weight: bold;
@@ -26977,7 +27069,7 @@ page-pre-home .card-background-page .card-subtitle {
   text-align: center;
   font-size: 1.0em;
   position: absolute;
-  top: 70%;
+  top: 88%;
   width: 100%;
 }
 
@@ -27013,6 +27105,12 @@ page-pre-home .mapa agm-map {
 
 page-pre-home .grid .button-md {
   margin-top: 20px;
+}
+
+page-pre-home .row .item-md ion-icon[item-left], page-pre-home .row .item-md ion-icon[item-right], page-pre-home .row .item-md ion-icon[item-start], page-pre-home .row .item-md ion-icon[item-end] {
+  margin-left: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 page-services-beauty ion-col#btn-camera {
@@ -27319,7 +27417,7 @@ page-show h3, page-show strong {
 page-singup img {
   display: block;
   width: 100%;
-  height: 200px;
+  height: auto;
   margin-left: auto;
   margin-right: auto;
 }

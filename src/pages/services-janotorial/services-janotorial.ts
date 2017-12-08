@@ -86,27 +86,27 @@ export class ServicesJanotorialPage {
     switch(this.subCategory){
       
         case "Handyman":{
-          this.dataInformacion=[{"maxOffer":this.maxOffer2,"jobHand":this.jobHand,"mtsHand":this.mtsHand,"foto":this.foto,"moreInformation":this.moreInformation,
+          this.dataInformacion=[{"maxOffer":this.maxOffer,"jobHand":this.jobHand,"mtsHand":this.mtsHand,"foto":this.foto,"moreInformation":this.moreInformation,
          }];
           break;
         }
         case "Pluming":{
-          this.dataInformacion=[{"maxOffer":this.maxOffer2,"roomPluming":this.roomPluming,"mtsPluming":this.mtsPluming,"foto":this.foto,"moreInformation":this.moreInformation,
+          this.dataInformacion=[{"maxOffer":this.maxOffer,"roomPluming":this.roomPluming,"mtsPluming":this.mtsPluming,"foto":this.foto,"moreInformation":this.moreInformation,
          }];
           break;
         }
         case "Electrician":{
-          this.dataInformacion=[{"maxOffer":this.maxOffer2,"roomElec":this.roomElec,"mtsElect":this.mtsElect,"foto":this.foto,"moreInformation":this.moreInformation,
+          this.dataInformacion=[{"maxOffer":this.maxOffer,"roomElec":this.roomElec,"mtsElect":this.mtsElect,"foto":this.foto,"moreInformation":this.moreInformation,
          }];
           break;
         }
         case "Pool cleaning":{
-          this.dataInformacion=[{"maxOffer":this.maxOffer2,"typePool":this.typePool,"mtsPool":this.mtsPool,"foto":this.foto,"moreInformation":this.moreInformation,
+          this.dataInformacion=[{"maxOffer":this.maxOffer,"typePool":this.typePool,"mtsPool":this.mtsPool,"foto":this.foto,"moreInformation":this.moreInformation,
          }];
           break;
         }
         case "Luck smith":{
-          this.dataInformacion=[{"maxOffer":this.maxOffer,"lockLuck":this.lockLuck,"moreInformation":this.moreInformation,
+          this.dataInformacion=[{"maxOffer":this.maxOffer,"lockLuck":this.lockLuck,"foto":this.foto,"moreInformation":this.moreInformation,
          }];
           break;
         } 
@@ -150,8 +150,7 @@ export class ServicesJanotorialPage {
         ]; 
         // console.log(this.Jobs);
         this.ServiceJanotorial = this.formBuilder.group({
-          maxOffer: [''],
-          maxOffer2: ['', Validators.required],
+          maxOffer: ['', Validators.required],
           foto: [''],
           jobHand: ['', Validators.required],
           mtsHand: ['', Validators.required],
@@ -169,8 +168,7 @@ export class ServicesJanotorialPage {
       case "Pluming":{
         this.booleanPluming=true;
         this.ServiceJanotorial = this.formBuilder.group({
-          maxOffer: [''],
-          maxOffer2: ['', Validators.required],
+          maxOffer: ['', Validators.required],
           foto: [''],
           jobHand: [''],
           mtsHand: [''],
@@ -188,8 +186,7 @@ export class ServicesJanotorialPage {
       case "Electrician":{
         this.booleanElectrician=true;
         this.ServiceJanotorial = this.formBuilder.group({
-          maxOffer: [''],
-          maxOffer2: ['', Validators.required],
+          maxOffer: ['', Validators.required],
           foto: [''],
           jobHand: [''],
           mtsHand: [''],
@@ -207,8 +204,7 @@ export class ServicesJanotorialPage {
       case "Pool cleaning":{
         this.booleanPoolSleaning=true;
         this.ServiceJanotorial = this.formBuilder.group({
-          maxOffer: [''],
-          maxOffer2: ['', Validators.required],
+          maxOffer: ['', Validators.required],
           foto: [''],
           jobHand: [''],
           mtsHand: [''],
@@ -227,7 +223,6 @@ export class ServicesJanotorialPage {
         this.booleanLuckSmith=true;
         this.ServiceJanotorial = this.formBuilder.group({
           maxOffer: ['', Validators.required],
-          maxOffer2: [''],
           foto: [''],
           jobHand: [''],
           mtsHand: [''],

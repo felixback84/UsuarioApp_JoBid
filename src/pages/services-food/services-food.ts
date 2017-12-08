@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { storage } from 'firebase';
 
-import { OfferService } from '../../services/offer.service';
-
+//pages
 import { CleaningSalePage } from '../cleaning-sale/cleaning-sale';
+
+//services
+import { OfferService } from '../../services/offer.service';
 import { SaleService } from '../../services/sale.service';
 
 /**
@@ -21,49 +25,55 @@ import { SaleService } from '../../services/sale.service';
 export class ServicesFoodPage {
   dataService = [];
   
-    //form show
+  //form show
+  
+  booleanBartenders:boolean=false;
+  booleanWaitress:boolean=false;
+  booleanChef:boolean=false;
+  booleanRunners:boolean=false;
+  booleanValetParking:boolean=false;
+  booleanHostess:boolean=false;
+  //varibles
+  subCategory:string;
+  //pagetes de datos
+  dataInformacion:any;
+  //variables para formularios
+  FamiliaAsistence:any;
+  
+  
+  //datos del formulario
+  foto:any='';
+  maxOffer:any
+  typeBart:any
+  eventBart:any
+  tiemBart:any
+  eventWaiter:any
+  timeWaiter:any
+  eventChef:any
+  menuChef:any
+  dinersChef:any
+  eventRunners:any
+  tiemRunners:any
+  eventParking:any
+  placeParking:any
+  timeParking:any
+  eventHostess:any
+  placeHostess:any
+  timeHostess:any
+  moreInformation:any
 
-    booleanBartenders:boolean=false;
-    booleanWaitress:boolean=false;
-    booleanChef:boolean=false;
-    booleanRunners:boolean=false;
-    booleanValetParking:boolean=false;
-    booleanHostess:boolean=false;
-    //varibles
-    subCategory:string;
-    //pagetes de datos
-    dataInformacion:any;
-    //variables para formularios
-    FamiliaAsistence:any;
-
-
-    //datos del formulario
-    maxOffer:any
-    typeBart:any
-    eventBart:any
-    tiemBart:any
-    eventWaiter:any
-    timeWaiter:any
-    eventChef:any
-    menuChef:any
-    dinersChef:any
-    eventRunners:any
-    tiemRunners:any
-    eventParking:any
-    placeParking:any
-    timeParking:any
-    eventHostess:any
-    placeHostess:any
-    timeHostess:any
-    moreInformation:any
-
-    private ServiceFood : FormGroup;
-    constructor(public navCtrl: NavController, public navParams: NavParams,
-      private formBuilder: FormBuilder,
-      private offerService:OfferService,
-      private saleService:SaleService  
-) {
-this.dataService = this.navParams.get('datos');
+  //data
+  userActual:any;
+  keyOffer:any;
+  
+  private ServiceFood : FormGroup;
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private formBuilder: FormBuilder,
+    private offerService:OfferService,
+    private saleService:SaleService,
+    private camera : Camera,
+  ) {
+    this.dataService = this.navParams.get('datos');
 
 console.log(this.dataService);
 this.subCategory = this.dataService['Clasificacion']['categoria'];
@@ -80,27 +90,27 @@ this.getForm();
     switch(this.subCategory){
 
       case "Bartenders":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"typeBart":this.typeBart,"eventBart":this.eventBart,"tiemBart":this.tiemBart,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"typeBart":this.typeBart,"eventBart":this.eventBart,"tiemBart":this.tiemBart,"moreInformation":this.moreInformation}];
         break;
       }
       case "Waitress":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"eventWaiter":this.eventWaiter,"timeWaiter":this.timeWaiter,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"eventWaiter":this.eventWaiter,"timeWaiter":this.timeWaiter,"moreInformation":this.moreInformation}];
         break;
       }
       case "Chef":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"eventChef":this.eventChef,"menuChef":this.menuChef,"dinersChef":this.dinersChef,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"eventChef":this.eventChef,"menuChef":this.menuChef,"dinersChef":this.dinersChef,"moreInformation":this.moreInformation}];
         break;
       }
       case "Runners":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"eventRunners":this.eventRunners,"tiemRunners":this.tiemRunners,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"eventRunners":this.eventRunners,"tiemRunners":this.tiemRunners,"moreInformation":this.moreInformation}];
         break;
       }
       case "Valet parking":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"eventParking":this.eventParking,"placeParking":this.placeParking,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"eventParking":this.eventParking,"placeParking":this.placeParking,"moreInformation":this.moreInformation}];
         break;
       }
       case "Hostess":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"eventHostess":this.eventHostess,"placeHostess":this.placeHostess,"timeHostess":this.timeHostess,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"eventHostess":this.eventHostess,"placeHostess":this.placeHostess,"timeHostess":this.timeHostess,"moreInformation":this.moreInformation}];
         break;
       }
      
@@ -116,7 +126,7 @@ this.getForm();
     // let subCategory=this.dataService['Clasificacion']['categoria'];
     var d = new Date();
     let key = d.getTime();
-    var keyOffer = "offer_"+(key);
+    this.keyOffer = "offer_"+(key);
     console.log(this.dataService);
     
     //this.careProfessionS.newOffer(this.dataService,subCategory,keyOffer);
@@ -124,26 +134,26 @@ this.getForm();
     
     console.log(JSON.stringify(this.dataService));
     console.log('IniNewOffer');
-    this.offerService.newOffer(this.dataService,keyOffer);
-    console.log('finNewOffer');
-    console.log(localStorage);
-    console.log(JSON.stringify(localStorage));
-    console.log(keyOffer);
+    this.offerService.newOffer(this.dataService,this.keyOffer);
+    // console.log('finNewOffer');
+    // console.log(localStorage);
+    // console.log(JSON.stringify(localStorage));
+    // console.log(keyOffer);
     let maxOffer=datos['0']['maxOffer'];
     console.log(maxOffer);
-    let userLocal = localStorage.getItem('verificacion');
-    console.log(JSON.stringify(userLocal));
-    console.log(userLocal);
-    console.log('IniNewSale');
-    this.saleService.newSale(userLocal,keyOffer,maxOffer);
-    console.log('FinNewSale');
-    console.log(userLocal);
-    console.log(keyOffer);
-    console.log(maxOffer);
-    console.log(JSON.stringify(userLocal));
-    console.log(JSON.stringify(this.dataService));
-    console.log('preGData');
-     let DataService = {'datos':{"dataService":this.dataService,"offer":keyOffer}};
+    this.userActual = localStorage.getItem('verificacion');
+    // console.log(JSON.stringify(userLocal));
+    // console.log(userLocal);
+    // console.log('IniNewSale');
+    this.saleService.newSale(this.userActual,this.keyOffer,maxOffer);
+    // console.log('FinNewSale');
+    // console.log(userLocal);
+    // console.log(keyOffer);
+    // console.log(maxOffer);
+    // console.log(JSON.stringify(userLocal));
+    // console.log(JSON.stringify(this.dataService));
+    // console.log('preGData');
+     let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer}};
      console.log(DataService);
      this.navCtrl.setRoot(CleaningSalePage,DataService);
   }
@@ -153,6 +163,7 @@ this.getForm();
       case "Bartenders":{
         this.booleanBartenders=true;
         this.ServiceFood = this.formBuilder.group({
+          foto: [''],
           maxOffer: ['', Validators.required],
           typeBart: ['', Validators.required],
           eventBart: ['', Validators.required],
@@ -177,6 +188,7 @@ this.getForm();
       case "Waitress":{
         this.booleanWaitress=true;
         this.ServiceFood = this.formBuilder.group({
+          foto: [''],
           maxOffer: ['', Validators.required],
           typeBart: [''],
           eventBart: [''],
@@ -201,6 +213,7 @@ this.getForm();
       case "Chef":{
         this.booleanChef=true;
         this.ServiceFood = this.formBuilder.group({
+          foto: [''],
           maxOffer: ['', Validators.required],
           typeBart: [''],
           eventBart: [''],
@@ -225,6 +238,7 @@ this.getForm();
       case "Runners":{
         this.booleanRunners=true;
         this.ServiceFood = this.formBuilder.group({
+          foto: [''],
           maxOffer: ['', Validators.required],
           typeBart: [''],
           eventBart: [''],
@@ -249,6 +263,7 @@ this.getForm();
       case "Valet parking":{
         this.booleanValetParking=true;
         this.ServiceFood = this.formBuilder.group({
+          foto: [''],
           maxOffer: ['', Validators.required],
           typeBart: [''],
           eventBart: [''],
@@ -273,6 +288,7 @@ this.getForm();
       case "Hostess":{
         this.booleanHostess=true;
         this.ServiceFood = this.formBuilder.group({
+          foto: [''],
           maxOffer: ['', Validators.required],
           typeBart: [''],
           eventBart: [''],
@@ -298,4 +314,32 @@ this.getForm();
 	  }
   }
 
+  async  camaraFoto(){
+    let file = this.userActual+'/'+this.keyOffer+'/foto';
+    console.log('clickCamara');
+    try{
+      const options: CameraOptions = {
+        quality: 60,
+        // targetHeight: 100,
+        // targetWidth: 100,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+      }
+      const result = await this.camera.getPicture(options);
+      const image = 'data:image/jpeg;base64,' + result;
+      const picture = storage().ref(file);
+      let UploadTask = picture.putString(image,'data_url');
+      UploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+        (snapshot) =>  {
+          let url = UploadTask.snapshot.downloadURL;
+          console.log(url);
+          this.foto = url;
+        },
+        (error) => { console.log(error)  },
+        // () => { 
+        // }
+      );
+    } catch(e){ console.error(e);}
+  }
 }

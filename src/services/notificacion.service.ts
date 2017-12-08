@@ -15,7 +15,7 @@ export class NotificacionService{
       id: idNotification,
       text: mesage,
       sound: 'file://assets/notificacion.mp3',
-      icon : 'file://assets/icon.png',
     });
+    // icon : 'file://assets/icon.png',
   }
 }

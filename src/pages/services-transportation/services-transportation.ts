@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { storage } from 'firebase';
 
-import { OfferService } from '../../services/offer.service';
-
+//page
 import { CleaningSalePage } from '../cleaning-sale/cleaning-sale';
+
+//service
+import { OfferService } from '../../services/offer.service';
 import { SaleService } from '../../services/sale.service';
 /**
  * Generated class for the ServicesTransportationPage page.
@@ -20,49 +24,60 @@ import { SaleService } from '../../services/sale.service';
 export class ServicesTransportationPage {
   dataService = [];
   
-    //form show
+  //form show
+  
+  booleanDayVIPChofer:boolean=false;
+  booleanTaxi:boolean=false;
+  booleanCarPool:boolean=false;
+  booleanMovingServices:boolean=false;
+  booleanDelivery:boolean=false;
+  //varibles
+  subCategory:string;
+  //pagetes de datos
+  dataInformacion:any;
+  //variables para formularios
+  FamiliaAsistence:any;
+  
+  //datos del formulario
+  foto:any='';
+  maxOffer:any;
+  carVip:any;
+  timeVip:any;
+  distanceTaxi:any;
+  addressTaxi:any;
+  carPool:any;
+  passePool:any;
+  distancePool:any;
+  distanceMovil:any;
+  boxMovil:any;
+  furniMovil:any;
+  objDelivery:any;
+  addressDelivery:any;
+  moreInformation:any;
+  
+  //data
+  userActual:any;
+  keyOffer:any;
+  
+  //form
+  private ServiceTransportation : FormGroup;
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private formBuilder: FormBuilder,
+    private offerService:OfferService,
+    private saleService:SaleService,    
+    private camera : Camera,
+  ) {
+    this.dataService = this.navParams.get('datos');
 
-    booleanDayVIPChofer:boolean=false;
-    booleanTaxi:boolean=false;
-    booleanCarPool:boolean=false;
-    booleanMovingServices:boolean=false;
-    booleanDelivery:boolean=false;
-    //varibles
-    subCategory:string;
-    //pagetes de datos
-    dataInformacion:any;
-    //variables para formularios
-    FamiliaAsistence:any;
-
-    //datos del formulario
-    maxOffer:any;
-    carVip:any;
-    timeVip:any;
-    distanceTaxi:any;
-    addressTaxi:any;
-    carPool:any;
-    passePool:any;
-    distancePool:any;
-    distanceMovil:any;
-    boxMovil:any;
-    furniMovil:any;
-    objDelivery:any;
-    addressDelivery:any;
-    moreInformation:any;
-
-    private ServiceTransportation : FormGroup;
-    constructor(public navCtrl: NavController, public navParams: NavParams,
-      private formBuilder: FormBuilder,
-      private offerService:OfferService,
-      private saleService:SaleService    
-) {
-this.dataService = this.navParams.get('datos');
-
-console.log(this.dataService);
-this.subCategory = this.dataService['Clasificacion']['categoria'];
-//this.getForm(this.subCategory);
-this.getForm();
-}
+    console.log(this.dataService);
+    this.subCategory = this.dataService['Clasificacion']['categoria'];
+    //this.getForm(this.subCategory);
+    var d = new Date();
+    let key = d.getTime();
+    this.keyOffer = "offer_"+(key);
+    this.userActual = localStorage.getItem('verificacion');
+    this.getForm();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ServicesTransportationPage');
@@ -75,23 +90,23 @@ this.getForm();
     switch(this.subCategory){
 
       case "Day VIP chofer":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"carVip":this.carVip,"timeVip":this.timeVip,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"carVip":this.carVip,"timeVip":this.timeVip,"moreInformation":this.moreInformation}];
         break;
       }
       case "Taxi":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"distanceTaxi":this.distanceTaxi,"addressTaxi":this.addressTaxi,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"distanceTaxi":this.distanceTaxi,"addressTaxi":this.addressTaxi,"moreInformation":this.moreInformation}];
         break;
       }
       case "Car pool":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"carPool":this.carPool,"passePool":this.passePool,"distancePool":this.distancePool,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"carPool":this.carPool,"passePool":this.passePool,"distancePool":this.distancePool,"moreInformation":this.moreInformation}];
         break;
       }
       case "Moving services":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"distanceMovil":this.distanceMovil,"boxMovil":this.boxMovil,"furniMovil":this.furniMovil,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"distanceMovil":this.distanceMovil,"boxMovil":this.boxMovil,"furniMovil":this.furniMovil,"moreInformation":this.moreInformation}];
         break;
       }
       case "Delivery":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"objDelivery":this.objDelivery,"addressDelivery":this.addressDelivery,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"objDelivery":this.objDelivery,"addressDelivery":this.addressDelivery,"moreInformation":this.moreInformation}];
         break;
       }
     }
@@ -103,24 +118,24 @@ this.getForm();
     console.log(datos);
     console.log(this.dataService);
     this.dataService['Clasificacion']['informacion']=datos['0'];
-    var d = new Date();
-    let key = d.getTime();
-    var keyOffer = "offer_"+(key);
+    // var d = new Date();
+    // let key = d.getTime();
+    // var keyOffer = "offer_"+(key);
     console.log(this.dataService);
     
     // let subCategory=this.dataService['Clasificacion']['categoria'];
     //this.careProfessionS.newOffer(this.dataService,subCategory,keyOffer);
     //this.saleService.newSale();
     
-    this.offerService.newOffer(this.dataService,keyOffer);
+    this.offerService.newOffer(this.dataService,this.keyOffer);
      // console.log(localStorage);
      let maxOffer=datos['0']['maxOffer'];
-     let userLocal = localStorage.getItem('verificacion');
-     this.saleService.newSale(userLocal,keyOffer,maxOffer);
+    //  let userLocal = localStorage.getItem('verificacion');
+     this.saleService.newSale(this.userActual,this.keyOffer,maxOffer);
      // console.log(userLocal);
      // console.log(keyOffer);
      // console.log(maxOffer);
-     let DataService = {'datos':{"dataService":this.dataService,"offer":keyOffer}};
+     let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer}};
      console.log(DataService);
      this.navCtrl.setRoot(CleaningSalePage,DataService);
   }
@@ -130,6 +145,7 @@ this.getForm();
       case "Day VIP chofer":{
         this.booleanDayVIPChofer=true;
         this.ServiceTransportation = this.formBuilder.group({
+          foto: [''],
           maxOffer: ['', Validators.required],
           carVip: ['', Validators.required],
           timeVip: ['', Validators.required],
@@ -150,6 +166,7 @@ this.getForm();
       case "Taxi":{
         this.booleanTaxi=true;
         this.ServiceTransportation = this.formBuilder.group({
+          foto: [''],
           maxOffer: ['', Validators.required],
           carVip: [''],
           timeVip: [''],
@@ -170,6 +187,7 @@ this.getForm();
       case "Car pool":{
         this.booleanCarPool=true;
         this.ServiceTransportation = this.formBuilder.group({
+          foto: [''],
           maxOffer: ['', Validators.required],
           carVip: [''],
           timeVip: [''],
@@ -190,6 +208,7 @@ this.getForm();
       case "Moving services":{
         this.booleanMovingServices=true;
         this.ServiceTransportation = this.formBuilder.group({
+          foto: [''],
           maxOffer: ['', Validators.required],
           carVip: [''],
           timeVip: [''],
@@ -210,6 +229,7 @@ this.getForm();
       case "Delivery":{
         this.booleanDelivery=true;
         this.ServiceTransportation = this.formBuilder.group({
+          foto: [''],
           maxOffer: ['', Validators.required],
           carVip: [''],
           timeVip: [''],
@@ -230,4 +250,32 @@ this.getForm();
 	  }
   }
 
+  async  camaraFoto(){
+    let file = this.userActual+'/'+this.keyOffer+'/foto';
+    console.log('clickCamara');
+    try{
+      const options: CameraOptions = {
+        quality: 60,
+        // targetHeight: 100,
+        // targetWidth: 100,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+      }
+      const result = await this.camera.getPicture(options);
+      const image = 'data:image/jpeg;base64,' + result;
+      const picture = storage().ref(file);
+      let UploadTask = picture.putString(image,'data_url');
+      UploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+        (snapshot) =>  {
+          let url = UploadTask.snapshot.downloadURL;
+          console.log(url);
+          this.foto = url;
+        },
+        (error) => { console.log(error)  },
+        // () => { 
+        // }
+      );
+    } catch(e){ console.error(e);}
+  }
 }

@@ -10,7 +10,7 @@
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title>joBid</ion-title>
+      <ion-title>JoBid</ion-title>
     </ion-navbar>
   
   </ion-header>
@@ -20,7 +20,7 @@
     <div class="imgCenter">
      <ion-icon name="contact" [ngClass]="dataService.class"></ion-icon> 
       </div>
-    <div class="TituloRojo"><h4>{{dataService.name}}</h4></div>
+    <div class="TituloRojo"><h4>{{subCategory}}</h4></div>
     <h4>Service information</h4>
     <p padding>Describes what the professional requires</p>
   <form id="formPayinfo" class="list" [formGroup]="ServiceCleaning">
@@ -31,7 +31,7 @@
               <ion-list>
                 <ion-item>
                 <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer" formControlName="maxOffer" name="maxOffer"></ion-input>
-                <ion-icon name="camera" item-start></ion-icon>
+                <ion-icon name="logo-usd" item-start></ion-icon>
                 <input type="hidden" placeholder="Photography" [(ngModel)]="foto" formControlName="foto" name="foto" />
               </ion-item>
             </ion-list>

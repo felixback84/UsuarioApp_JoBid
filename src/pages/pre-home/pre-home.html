@@ -9,26 +9,30 @@
   	<button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>joBid</ion-title>
+    <ion-title>JoBid</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content class="card-background-page">
   <ion-card>
-    <img src="assets/img/LogoJoBid.png"/>
+    <img src="assets/img/JoBidUsuario.jpg"/>
     <div class="card-title"><h3>{{userName}}</h3></div>
     <div class="card-subtitle"><p>¿Where you want your service?</p></div>
 	</ion-card>
   <ion-grid class="btnAddress">
   	<ion-row>
-  		<ion-col col-6>
+  		<!-- <ion-col col-6> -->
+  		<ion-col>
 			<ion-list>
 				<button ion-item (click)="goLocation()" >
 					<ion-icon name="pin" item-start></ion-icon>
 					<ion-label>Current location</ion-label>
 				</button>
 			</ion-list>
-  		</ion-col>
-  		<ion-col col-6>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+  		<!-- <ion-col col-6> -->
+  		<ion-col>
   			<ion-list>
 	  			<button ion-item (click)="goNewAddress()">
   					<ion-icon name="add-circle" item-start></ion-icon>

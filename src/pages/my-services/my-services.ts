@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-
+//service
 import { SaleService } from '../../services/sale.service';
 import { OfferService } from '../../services/offer.service';
-
+//page
 import { MyserviceinfoPage } from '../myserviceinfo/myserviceinfo';
 /**
  * Generated class for the MyServicesPage page.
@@ -53,10 +53,10 @@ export class MyServicesPage {
           }else{
           // this.offerService.getOffer(key);
           // this.keyOffer.push(key);
-          console.log(key);
+          // console.log(key);
           OfferServiceGet = this.offerService.getOffer(key)
           .subscribe((datos) =>{
-            console.log(datos);
+            // console.log(datos);
             // if(datos['$value'] == null){
 
             // }else{

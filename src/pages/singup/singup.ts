@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 //import { NavController, NavParams } from 'ionic-angular';
 import { NavController ,NavParams, AlertController} from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 //import { Http , Response, Headers, RequestOptions} from '@angular/http';
 //import UsaStates from 'usa-states';
 import cities from 'cities';
@@ -47,7 +48,8 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
   codeAreaEstadoSelect: any = [];
   country:any;area:any;prefix:any;line:any;
   userData = {"username":"","password":"","email":"","name":"","zipcode":"","state":"","picture":"","verificacion":"","pais":"","direccion":"","tel":""};
-  
+  passwordB:any;
+
   ciudades: any =  [];
   ciudad: string =  undefined;
   stateZipcode: string = undefined;
@@ -56,6 +58,9 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
   user:any;
   userB:any;
 
+  //--form validator
+  private singupForm : FormGroup;
+  
   //-sub
   SubcribeUserexists:any;
 
@@ -65,6 +70,7 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
     public alertCtrl: AlertController,
     private userService : UserService,
     public afAuth: AngularFireAuth,
+    private formBuilder: FormBuilder,
     // public win:WindowService 
   ) {
     
@@ -81,6 +87,7 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
       //var UsaStates = require('usa-states').UsaStates;
       //alert(cities.findByState('NJ'));
       this.codeAreaDefi();
+      this.getForm();
   }
 
 
@@ -326,7 +333,12 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
     //console.log(data);
     //this.ciudad = data['city'];
     //this.ciudad = cities.zip_lookup(this.userData.zipcode);
-    this.DirecD = this.userData.state+' '+this.userData.zipcode;
+    //-- mostrar el zipCode
+    if(this.userData.state != undefined && this.userData.zipcode != undefined){
+      this.DirecD = this.userData.state+' '+this.userData.zipcode;
+    }else{
+      this.DirecD ='';
+    }
   }
 
   findCodeEstado( estado : string){
@@ -360,6 +372,26 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
     });
     alert.present();
   } 
+
+  //-- validacion de formulario
+getForm(){
+  this.singupForm = this.formBuilder.group({
+    name : ['', Validators.compose([Validators.pattern('[A-z]+(\ [A-z]+){0,1}'), Validators.required])],
+    pais : ['', Validators.required],
+    state : ['', Validators.required],
+    zipcode : ['', Validators.required],
+    DirecA : ['', Validators.required],
+    DirecB : ['', Validators.required],
+    DirecC : ['', Validators.required],
+    DirecD : ['', Validators.required],
+    email : ['', Validators.compose([Validators.pattern('[A-z0-9-_.]+@[A-z0-9]+\.(.{1}[A-z0-9]+){1,2}'), Validators.required])],
+    username : ['', Validators.required],
+    password : ['', Validators.required],
+    passwordB : ['', Validators.required],
+    telA : ['', Validators.required],
+    telB : ['', Validators.required],
+  });  
+}
 
   codeAreaDefi(){
 

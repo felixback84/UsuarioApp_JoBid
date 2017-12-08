@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>myserviceinfo</ion-title>
+    <ion-title>Service</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -24,6 +24,8 @@
     <p><span class="textRed">*Amount to be paid: </span>${{sale}}</p>
     <p><span class="textRed">Description:</span></p>
     <p>{{information}}</p>
+    <p><span class="textRed">Address service:</span></p>
+    <p>{{address}}</p>
     <div class="space"></div>
     <div *ngIf="booleanJob">
       <p><span class="textRed">Professional data</span></p>
@@ -43,7 +45,15 @@
         <ion-row>
           <ion-col>
             <h4>{{nameJobr}}</h4>
-            <img src="assets/img/Estrellas.png" alt="">
+            <p>{{idJobr}}</p>
+            <!-- <img src="assets/img/Estrellas.png" alt=""> -->
+            <p class="Calificacion Usuario {{starJobr}}">
+							<label for="radio1">&#9733;</label>
+							<label for="radio2">&#9733;</label>
+							<label for="radio3">&#9733;</label>
+							<label for="radio4">&#9733;</label>
+							<label for="radio5">&#9733;</label>
+						</p>
           </ion-col>
         </ion-row>	
         <ion-row>	

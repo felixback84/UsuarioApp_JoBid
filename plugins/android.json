@@ -59,6 +59,9 @@
     },
     "cordova-sms-plugin": {
       "PACKAGE_NAME": "com.Jobid.user"
+    },
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "com.Jobid.user"
     }
   }
 }

@@ -2,6 +2,7 @@ page-cleaning-info-service {
 	.imageFull{width: 100%; height: auto;}
 	h3,h5,h6,.textoCentrado{text-align: center;}
 	h6,h3{margin: 0;}
+	h4{margin: 0;}
 	.barraGris{ background: $Gray;
 		h4{padding:10px;color:white;margin: 0;text-align: center;}
 	}
@@ -25,8 +26,12 @@ page-cleaning-info-service {
 			background: orange;
 		}
 	}
+	ion-item.item-md ion-label.label, ion-item.item-ios ion-label.label{
+		margin: 0;
+	}
 	.Calificacion{
 		display: inline-block;
+		margin:0;
 		margin-left: 5px;
 		label{
 			display: inline-block;

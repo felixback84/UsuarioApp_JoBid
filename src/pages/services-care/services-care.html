@@ -10,7 +10,7 @@
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title>joBid</ion-title>
+      <ion-title>JoBid</ion-title>
     </ion-navbar>
   
   </ion-header>
@@ -20,28 +20,17 @@
     <div class="imgCenter">
      <ion-icon name="contact" [ngClass]="dataService.class"></ion-icon> 
       </div>
-    <div class="TituloRojo"><h4>{{dataService.name}}</h4></div>
+    <div class="TituloRojo"><h4>{{subCategory}}</h4></div>
     <h4>Service information</h4>
     <p padding>Describes what the professional requires</p>
   <form id="formPayinfo" class="list" [formGroup]="ServiceCare">
     <ion-grid>
-      <ion-row *ngIf="!booleamDogWalker">
-        <ion-col>
-          <ion-list>
-            <ion-item>
-              <ion-icon name="cash" item-start></ion-icon>
-              <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer" formControlName="maxOffer" name="maxOffer"></ion-input>
-            </ion-item>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-      <ion-row *ngIf="booleamDogWalker">
-        <!-- <ion-row > -->
+      <ion-row>
           <ion-col col-10>
             <ion-list>
               <ion-item>
-              <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer2" formControlName="maxOffer2" name="maxOffer2"></ion-input>
-              <ion-icon name="camera" item-start></ion-icon>
+              <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer" formControlName="maxOffer" name="maxOffer"></ion-input>
+              <ion-icon name="logo-usd" item-start></ion-icon>
               <input type="hidden" placeholder="Photography" [(ngModel)]="foto" formControlName="foto" name="foto" />
             </ion-item>
           </ion-list>
@@ -63,7 +52,7 @@
           <ion-list>
             <ion-item>
               <ion-input type="number" placeholder="Age" [(ngModel)]="ageChildren" formControlName="ageChildren" name="ageChildren"></ion-input>
-              <ion-input type="number" placeholder="Time" [(ngModel)]="timeChildren" formControlName="timeChildren" name="timeChildren"></ion-input>
+              <ion-input type="number" placeholder="Hours" [(ngModel)]="timeChildren" formControlName="timeChildren" name="timeChildren"></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -85,7 +74,7 @@
           <ion-list>
             <ion-item>
                 <ion-icon name="albums" item-start></ion-icon>
-                <ion-select [(ngModel)]="asistenceFamilia" formControlName="asistenceFamilia" name="asistenceFamilia" placeholder="Issues">
+                <ion-select [(ngModel)]="asistenceFamilia" formControlName="asistenceFamilia" name="asistenceFamilia" placeholder="Family Asistance">
                     <ion-option *ngFor="let asistence of FamiliaAsistence" value="{{asistence.value}}">{{asistence.label}}</ion-option>
                 </ion-select>
             </ion-item>
@@ -108,7 +97,7 @@
         <ion-col col-10>
           <ion-list>
             <ion-item>
-              <ion-icon name="camera" item-start></ion-icon>
+              <ion-icon name="logo-usd" item-start></ion-icon>
               <ion-input type="text" placeholder="Photography" [(ngModel)]="fotoDog" name="fotoDog"></ion-input>
             </ion-item>
           </ion-list>

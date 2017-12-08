@@ -42,7 +42,6 @@ export class ServicesCarePage {
 
   //datos del formulario
   maxOffer:any;
-  maxOffer2:any;
   numChildren:any;
   ageChildren:any;
   timeChildren:any;
@@ -85,23 +84,23 @@ export class ServicesCarePage {
   goCleaningSale(){
     switch(this.subCategory){
       case "Child care":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"numChildren":this.numChildren,"ageChildren":this.ageChildren,"timeChildren":this.timeChildren,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"numChildren":this.numChildren,"ageChildren":this.ageChildren,"timeChildren":this.timeChildren,"moreInformation":this.moreInformation}];
 				break;
 			}
 			case "Senior care":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"ageSenior":this.ageSenior,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"ageSenior":this.ageSenior,"moreInformation":this.moreInformation}];
 				break;
 			}
 			case "Family asistance":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"asistenceFamilia":this.asistenceFamilia,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"asistenceFamilia":this.asistenceFamilia,"moreInformation":this.moreInformation}];
 				break;
 			}
 			case "Dog walker":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer2,"raceDog":this.raceDog,"numDog":this.numDog,"foto":this.foto,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"raceDog":this.raceDog,"numDog":this.numDog,"moreInformation":this.moreInformation}];
 				break;
 			}
 			case "Personal shopper":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"purchaseShopper":this.purchaseShopper,"placeShopper":this.placeShopper,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"purchaseShopper":this.purchaseShopper,"placeShopper":this.placeShopper,"moreInformation":this.moreInformation}];
 				break;
       }
     }
@@ -137,7 +136,6 @@ export class ServicesCarePage {
         this.labelComments="Special cares";
         this.ServiceCare = this.formBuilder.group({
           maxOffer : ['', Validators.required],
-          maxOffer2: [''],
           foto: [''],
           numChildren: ['', Validators.required],
           ageChildren: ['', Validators.required],
@@ -154,10 +152,9 @@ export class ServicesCarePage {
 			}
 			case "Senior care":{
         this.booleamSeniorCare = true;
-        this.labelComments="Special cares";
+        this.labelComments="details of your service";
         this.ServiceCare = this.formBuilder.group({
           maxOffer : ['', Validators.required],
-          maxOffer2: [''],
           foto: [''],
           numChildren: [''],
           ageChildren: [''],
@@ -187,7 +184,6 @@ export class ServicesCarePage {
         console.log(this.FamiliaAsistence);
         this.ServiceCare = this.formBuilder.group({
           maxOffer : ['', Validators.required],
-          maxOffer2: [''],
           foto: [''],
           numChildren: [''],
           ageChildren: [''],
@@ -205,8 +201,7 @@ export class ServicesCarePage {
 			case "Dog walker":{
         this.booleamDogWalker = true;
         this.ServiceCare = this.formBuilder.group({
-          maxOffer : [''],
-          maxOffer2: ['', Validators.required],
+          maxOffer: ['', Validators.required],
           foto: [''],
           numChildren: [''],
           ageChildren: [''],
@@ -225,7 +220,6 @@ export class ServicesCarePage {
         this.booleamPersonalShopper = true;
         this.ServiceCare = this.formBuilder.group({
           maxOffer : ['', Validators.required],
-          maxOffer2: [''],
           foto: [''],
           numChildren: [''],
           ageChildren: [''],
