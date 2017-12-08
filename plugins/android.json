@@ -8,38 +8,56 @@
   },
   "installed_plugins": {
     "cordova-plugin-camera": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-geolocation": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-nativeaudio": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-nativegeocoder": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "ionic-plugin-keyboard": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.Jobid.user"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.Jobid.user"
     },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "io.ionic.starter"
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.Jobid.user"
     },
     "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.Jobid.user"
+    },
+    "cordova-plugin-nativeaudio": {
+      "PACKAGE_NAME": "com.Jobid.user"
+    },
+    "cordova-plugin-nativegeocoder": {
+      "PACKAGE_NAME": "com.Jobid.user"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.Jobid.user"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.Jobid.user"
     },
     "de.appplant.cordova.plugin.local-notification": {
+      "PACKAGE_NAME": "com.Jobid.user"
+    },
+    "ionic-plugin-keyboard": {
       "PACKAGE_NAME": "com.Jobid.user"
     }
   },
   "dependent_plugins": {
+    "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "com.Jobid.user"
+    },
     "cordova-plugin-app-event": {
+      "PACKAGE_NAME": "com.Jobid.user"
+    },
+    "cordova-plugin-console": {
+      "PACKAGE_NAME": "com.Jobid.user"
+    },
+    "cordova-plugin-email-composer": {
+      "PACKAGE_NAME": "com.Jobid.user"
+    },
+    "cordova-plugin-nativestorage": {
+      "PACKAGE_NAME": "com.Jobid.user"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.Jobid.user"
+    },
+    "cordova-sms-plugin": {
       "PACKAGE_NAME": "com.Jobid.user"
     }
   }

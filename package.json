@@ -33,7 +33,6 @@
     "braintree-web": "^3.25.0",
     "braintree-web-drop-in": "^1.8.1",
     "cities": "^1.1.2",
-    "cordova-android": "~6.3.0",
     "cordova-ios": "~4.5.3",
     "cordova-plugin-add-swift-support": "^1.7.0",
     "cordova-plugin-app-event": "^1.2.1",
@@ -55,7 +54,8 @@
     "rxjs": "5.4.3",
     "states-utils": "^1.0.8",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.18"
+    "zone.js": "0.8.18",
+    "cordova-android": "~6.3.0"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.0.1",
@@ -78,8 +78,8 @@
       "de.appplant.cordova.plugin.local-notification": {}
     },
     "platforms": [
-      "android",
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }
