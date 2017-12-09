@@ -31,11 +31,11 @@
         <ion-item>
             <ion-icon name="flag" item-start></ion-icon>
           <ion-select class="mitad" [(ngModel)]="userData.state" name="state" (ngModelChange)="setCity()" placeholder="State" formControlName="state">
-            <ion-option *ngFor="let state of estados" value="{{state.nameShort}}">{{state.name}}</ion-option>
+            <ion-option *ngFor="let state of estados | ordenar: 'estados' " value="{{state.nameShort}}">{{state.name}}</ion-option>
           </ion-select>
           <ion-select  class="mitad" [(ngModel)]="userData.zipcode" name="zipcode" (ngModelChange)="setZipCode()" placeholder="City" formControlName="zipcode">
             <ion-option selected>....</ion-option>
-            <ion-option *ngFor="let city of ciudades" value="{{city.zipcode}}">{{city.name}} - {{city.zipcode}}</ion-option>
+            <ion-option *ngFor="let city of ciudades | ordenar: 'ciudades' | remover " value="{{city.zipcode}}">{{city.name}} - {{city.zipcode}}</ion-option>
           </ion-select>
         </ion-item>
         <ion-item>
@@ -74,7 +74,7 @@
               <ion-item>
                 <ion-icon name="call" item-start></ion-icon>this.codeAreaEstadoSelect
                  <ion-select [(ngModel)]="telA" name="telA" placeholder="Area code" formControlName="telA">
-                  <ion-option *ngFor="let stateCod of codeAreaEstadoSelect" value="{{stateCod.code}}">{{stateCod.code}}</ion-option>
+                  <ion-option *ngFor="let stateCod of codeAreaEstadoSelect | ordenar: 'codeEstados'" value="{{stateCod.code}}">{{stateCod.code}}</ion-option>
                 </ion-select>
               </ion-item>
             </ion-col>

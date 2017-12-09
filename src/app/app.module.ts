@@ -69,6 +69,11 @@ import { CleaningProfessionsService } from '../services/cleaningProfessions.serv
 import { SaleService } from '../services/sale.service';
 import { NotificacionService } from '../services/notificacion.service';
 
+
+//pipe
+
+import { OrdenarPipe } from '../pipes/ordenar/ordenar';
+import { RemoverPipe } from '../pipes/remover/remover';
 export const firebaseConfig = {
   apiKey: "AIzaSyBmrc2CjBbIJD_Pu_kkCcV8qNXJfsEBaxo",
   authDomain: "usuarioappjobid.firebaseapp.com",
@@ -117,7 +122,9 @@ export const googleMapsKey = 'AIzaSyB8zF6lhZegDjsV_mrqxd9Fb3YFTw2__AA';
     ServicesLegalPage,
     ServicesBeautyPage,
     MyserviceinfoPage,
-    AddPaymentMethodPage,
+    AddPaymentMethodPage,    
+    OrdenarPipe,
+    RemoverPipe,
   ],
   imports: [
     BrowserModule, HttpModule,
