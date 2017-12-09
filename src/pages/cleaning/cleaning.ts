@@ -109,7 +109,7 @@ export class CleaningPage {
     console.log(this.dataService);
     switch(this.nameService){
       case "Care" :{
-       //this.dataCategoria = ["Child care","Senior care","Family asistance","Dog walker","Personal shopper"];
+       //this.dataCategoria = ["Child care/Nany","Senior care","Family asistance","Dog walker","Personal shopper"];
        this.navCtrl.push(ServicesCarePage,DataService);
        break;
       }
@@ -121,7 +121,7 @@ export class CleaningPage {
       }
       case "Janotorial" :{
         this.navCtrl.push(ServicesJanotorialPage,DataService);
-       //this.dataCategoria = ["Handyman","Pluming","Electrician","Pool cleaning ","Luck smith" ];
+       //this.dataCategoria = ["Handyman","Pluming","Electrician","Pool Cleaner ","Luck smith" ];
 
        break;
       }

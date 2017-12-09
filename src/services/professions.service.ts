@@ -22,7 +22,7 @@ export class ProfessionsService{
 		//console.log(nameService);
 	    switch(nameService){
 	       case "Care" :{
-	        this.dataCategoria = ["Child care","Senior care","Family asistance","Dog walker","Personal shopper"];
+	        this.dataCategoria = ["Child care/Nany","Senior care","Family asistance","Dog walker","Personal shopper"];
 	        break;
 	       }
 	       case "Cleaning" :{
@@ -30,7 +30,7 @@ export class ProfessionsService{
 	        break;
 	       }
 	       case "Janotorial" :{
-	        this.dataCategoria = ["Handyman","Pluming","Electrician","Pool cleaning","Luck smith" ];
+	        this.dataCategoria = ["Handyman","Pluming","Electrician","Pool Cleaner","Luck smith" ];
 	        break;
 	       }
 	       case "Transportation" :{

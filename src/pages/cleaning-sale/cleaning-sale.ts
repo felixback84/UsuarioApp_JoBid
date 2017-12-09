@@ -497,7 +497,7 @@ export class CleaningSalePage {
   showAlertFinOffer() {
     let alert = this.alertCtrl.create({
       title: 'Information',
-      subTitle: 'The sale ended',
+      subTitle: 'The bid ended',
       buttons: ['OK']
     });
     alert.present();

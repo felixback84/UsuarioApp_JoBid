@@ -45,18 +45,38 @@
               <ion-item>
                 <ion-icon name="car" item-start></ion-icon>
                 <ion-input type="text" placeholder="Car type" class="mitad"[(ngModel)]="carVip" formControlName="carVip" name="carVip"></ion-input>
-                <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="timeVip" formControlName="timeVip" name="timeVip"></ion-input>
+                <ion-input type="number" placeholder="Hours" class="mitad" [(ngModel)]="timeVip" formControlName="timeVip" name="timeVip"></ion-input>
             </ion-item>
             </ion-list>
           </ion-col>
         </ion-row>
-        <ion-row *ngIf="booleanTaxi">
+        <!-- <ion-row *ngIf="booleanTaxi">
           <ion-col>
             <ion-list>
               <ion-item>
                 <ion-icon name="car" item-start></ion-icon>
                 <ion-input type="text" placeholder="Distance" class="mitad"[(ngModel)]="distanceTaxi" formControlName="distanceTaxi" name="distanceTaxi"></ion-input>
                 <ion-input type="text" placeholder="Address" class="mitad" [(ngModel)]="addressTaxi" formControlName="addressTaxi" name="addressTaxi"></ion-input>
+            </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row> -->
+        <ion-row *ngIf="booleanTaxi">
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-icon name="pin" item-start></ion-icon>
+                <ion-input type="text" placeholder="Start address" class="mitad"[(ngModel)]="addressIniTaxi" formControlName="addressIniTaxi" name="addressIniTaxi"></ion-input>
+              </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="booleanTaxi">
+            <ion-col>
+              <ion-list>
+                <ion-item>
+                  <ion-icon name="pin" item-start></ion-icon>
+                  <ion-input type="text" placeholder="Destination address" class="mitad" [(ngModel)]="addressFinTaxi" formControlName="addressFinTaxi" name="addressFinTaxi"></ion-input>
             </ion-item>
             </ion-list>
           </ion-col>
@@ -78,6 +98,16 @@
                 <ion-icon name="car" item-start></ion-icon>
                 <ion-input type="text" placeholder="# Passengers" class="mitad"[(ngModel)]="passePool" formControlName="passePool" name="passePool"></ion-input>
                 <ion-input type="text" placeholder="Distance" class="mitad" [(ngModel)]="distancePool" formControlName="distancePool" name="distancePool"></ion-input>
+            </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="booleanMovingServices">
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-icon name="pin" item-start></ion-icon>
+                <ion-input type="text" placeholder="Delivery address" [(ngModel)]="deliveryAddressMovil" formControlName="deliveryAddressMovil" name="deliveryAddressMovil"></ion-input>
             </ion-item>
             </ion-list>
           </ion-col>

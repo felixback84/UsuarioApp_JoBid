@@ -43,11 +43,12 @@ export class ServicesTransportationPage {
   maxOffer:any;
   carVip:any;
   timeVip:any;
-  distanceTaxi:any;
-  addressTaxi:any;
+  addressIniTaxi:any;
+  addressFinTaxi:any;
   carPool:any;
   passePool:any;
   distancePool:any;
+  deliveryAddressMovil:any;
   distanceMovil:any;
   boxMovil:any;
   furniMovil:any;
@@ -94,7 +95,7 @@ export class ServicesTransportationPage {
         break;
       }
       case "Taxi":{
-        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"distanceTaxi":this.distanceTaxi,"addressTaxi":this.addressTaxi,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"addressIniTaxi":this.addressIniTaxi,"addressFinTaxi":this.addressFinTaxi,"moreInformation":this.moreInformation}];
         break;
       }
       case "Car pool":{
@@ -102,7 +103,7 @@ export class ServicesTransportationPage {
         break;
       }
       case "Moving services":{
-        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"distanceMovil":this.distanceMovil,"boxMovil":this.boxMovil,"furniMovil":this.furniMovil,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"deliveryAddressMovil":this.deliveryAddressMovil,"distanceMovil":this.distanceMovil,"boxMovil":this.boxMovil,"furniMovil":this.furniMovil,"moreInformation":this.moreInformation}];
         break;
       }
       case "Delivery":{
@@ -149,11 +150,12 @@ export class ServicesTransportationPage {
           maxOffer: ['', Validators.required],
           carVip: ['', Validators.required],
           timeVip: ['', Validators.required],
-          distanceTaxi: [''],
-          addressTaxi: [''],
+          addressIniTaxi: [''],
+          addressFinTaxi: [''],
           carPool: [''],
           passePool: [''],
           distancePool: [''],
+          deliveryAddressMovil: [''],
           distanceMovil: [''],
           boxMovil: [''],
           furniMovil: [''],
@@ -170,11 +172,12 @@ export class ServicesTransportationPage {
           maxOffer: ['', Validators.required],
           carVip: [''],
           timeVip: [''],
-          distanceTaxi: ['', Validators.required],
-          addressTaxi: ['', Validators.required],
+          addressIniTaxi: ['', Validators.required],
+          addressFinTaxi: ['', Validators.required],
           carPool: [''],
           passePool: [''],
           distancePool: [''],
+          deliveryAddressMovil: [''],
           distanceMovil: [''],
           boxMovil: [''],
           furniMovil: [''],
@@ -191,11 +194,12 @@ export class ServicesTransportationPage {
           maxOffer: ['', Validators.required],
           carVip: [''],
           timeVip: [''],
-          distanceTaxi: [''],
-          addressTaxi: [''],
+          addressIniTaxi: [''],
+          addressFinTaxi: [''],
           carPool: ['', Validators.required],
           passePool: ['', Validators.required],
           distancePool: ['', Validators.required],
+          deliveryAddressMovil: [''],
           distanceMovil: [''],
           boxMovil: [''],
           furniMovil: [''],
@@ -212,11 +216,12 @@ export class ServicesTransportationPage {
           maxOffer: ['', Validators.required],
           carVip: [''],
           timeVip: [''],
-          distanceTaxi: [''],
-          addressTaxi: [''],
+          addressIniTaxi: [''],
+          addressFinTaxi: [''],
           carPool: [''],
           passePool: [''],
           distancePool: [''],
+          deliveryAddressMovil: ['', Validators.required],
           distanceMovil: ['', Validators.required],
           boxMovil: ['', Validators.required],
           furniMovil: ['', Validators.required],
@@ -233,11 +238,12 @@ export class ServicesTransportationPage {
           maxOffer: ['', Validators.required],
           carVip: [''],
           timeVip: [''],
-          distanceTaxi: [''],
-          addressTaxi: [''],
+          addressIniTaxi: [''],
+          addressFinTaxi: [''],
           carPool: [''],
           passePool: [''],
           distancePool: [''],
+          deliveryAddressMovil: [''],
           distanceMovil: [''],
           boxMovil: [''],
           furniMovil: [''],

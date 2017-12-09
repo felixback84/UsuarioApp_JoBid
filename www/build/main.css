@@ -26015,6 +26015,80 @@ ion-item.imgUser.item-ios ion-thumbnail ion-img, ion-item.imgUser.item-ios ion-t
   text-align: center;
 }
 
+.Calificacion {
+  display: inline-block;
+  margin: 0;
+  margin-left: 5px;
+}
+
+.Calificacion label {
+  display: inline-block;
+}
+
+.Calificacion.cinco label:nth-child(5) {
+  color: #b20000;
+}
+
+.Calificacion.cinco label:nth-child(4) {
+  color: #b20000;
+}
+
+.Calificacion.cinco label:nth-child(3) {
+  color: #b20000;
+}
+
+.Calificacion.cinco label:nth-child(2) {
+  color: #b20000;
+}
+
+.Calificacion.cinco label:nth-child(1) {
+  color: #b20000;
+}
+
+.Calificacion.cuatro label:nth-child(4) {
+  color: #b20000;
+}
+
+.Calificacion.cuatro label:nth-child(3) {
+  color: #b20000;
+}
+
+.Calificacion.cuatro label:nth-child(2) {
+  color: #b20000;
+}
+
+.Calificacion.cuatro label:nth-child(1) {
+  color: #b20000;
+}
+
+.Calificacion.tres label:nth-child(3) {
+  color: #b20000;
+}
+
+.Calificacion.tres label:nth-child(2) {
+  color: #b20000;
+}
+
+.Calificacion.tres label:nth-child(1) {
+  color: #b20000;
+}
+
+.Calificacion.dos label:nth-child(2) {
+  color: #b20000;
+}
+
+.Calificacion.dos label:nth-child(1) {
+  color: #b20000;
+}
+
+.Calificacion.uno label:nth-child(1) {
+  color: #b20000;
+}
+
+.Calificacion.Usuario label {
+  font-size: 20px;
+}
+
 page-add-payment-method .barraRoja {
   background: #b20000;
 }

@@ -83,7 +83,7 @@ export class ServicesCarePage {
   }
   goCleaningSale(){
     switch(this.subCategory){
-      case "Child care":{
+      case "Child care/Nany":{
         this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"numChildren":this.numChildren,"ageChildren":this.ageChildren,"timeChildren":this.timeChildren,"moreInformation":this.moreInformation}];
 				break;
 			}
@@ -131,7 +131,7 @@ export class ServicesCarePage {
   
   getForm(){
     switch(this.subCategory){
-			case "Child care":{
+			case "Child care/Nany":{
         this.booleamChildCare = true;
         this.labelComments="Special cares";
         this.ServiceCare = this.formBuilder.group({
@@ -141,6 +141,7 @@ export class ServicesCarePage {
           ageChildren: ['', Validators.required],
           timeChildren: ['', Validators.required],
           ageSenior: [''],
+          timeSenior: [''],
           asistenceFamilia: [''],
           raceDog: [''],
           numDog : [''],
@@ -152,14 +153,15 @@ export class ServicesCarePage {
 			}
 			case "Senior care":{
         this.booleamSeniorCare = true;
-        this.labelComments="details of your service";
+        this.labelComments="Details of your service";
         this.ServiceCare = this.formBuilder.group({
           maxOffer : ['', Validators.required],
           foto: [''],
           numChildren: [''],
           ageChildren: [''],
           timeChildren: [''],
-          ageSenior: ['', Validators.required],
+          ageSenior: ['', Validators.required],   
+          timeSenior: ['', Validators.required],   
           asistenceFamilia: [''],
           raceDog: [''],
           numDog : [''],
@@ -189,6 +191,7 @@ export class ServicesCarePage {
           ageChildren: [''],
           timeChildren: [''],
           ageSenior: [''],
+          timeSenior: [''],
           asistenceFamilia: ['', Validators.required],
           raceDog: [''],
           numDog : [''],
@@ -207,6 +210,7 @@ export class ServicesCarePage {
           ageChildren: [''],
           timeChildren: [''],
           ageSenior: [''],
+          timeSenior: [''],
           asistenceFamilia: [''],
           raceDog: ['', Validators.required],
           numDog : ['', Validators.required],
@@ -225,6 +229,7 @@ export class ServicesCarePage {
           ageChildren: [''],
           timeChildren: [''],
           ageSenior: [''],
+          timeSenior: [''],
           asistenceFamilia: [''],
           raceDog: [''],
           numDog : [''],

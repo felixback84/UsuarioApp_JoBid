@@ -68,13 +68,24 @@
           </ion-list>
         </ion-col>
       </ion-row>
+      <ion-row *ngIf="booleamSeniorCare">
+      <!-- <ion-row> -->
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-icon name="clock" item-start></ion-icon>
+              <ion-input type="number" placeholder="Hours" [(ngModel)]="timeSenior" formControlName="timeSenior" name="timeSenior"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
       <ion-row *ngIf="booleamFamilyAsistance">
       <!-- <ion-row> -->
         <ion-col>
           <ion-list>
             <ion-item>
                 <ion-icon name="albums" item-start></ion-icon>
-                <ion-select [(ngModel)]="asistenceFamilia" formControlName="asistenceFamilia" name="asistenceFamilia" placeholder="Family Asistance">
+                <ion-select [(ngModel)]="asistenceFamilia" formControlName="asistenceFamilia" name="asistenceFamilia" placeholder="Issues">
                     <ion-option *ngFor="let asistence of FamiliaAsistence" value="{{asistence.value}}">{{asistence.label}}</ion-option>
                 </ion-select>
             </ion-item>

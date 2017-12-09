@@ -33,6 +33,7 @@ export class MyApp {
   userName: string = 'hola logeado';
   srcUser: string = 'assets/img/user.png';
   star:any = '3';
+  starUser:any;
    //rootPage: any = PreHomePage;
   // rootPage: any = CleaningSalePage;
   rootPage: any = HomePage;
@@ -131,6 +132,23 @@ export class MyApp {
     }
     if(user['user_star'] && user['user_star'] != '' && user['user_star'] != null && user['user_star'] != undefined){
       this.star= Math.round(user['user_star']);
+      let contenido='';
+      if(Math.round(this.star) == 5){
+        contenido +='cinco';
+      }
+      if(Math.round(this.star) == 4){
+        contenido +='cuatro';
+      }
+      if(Math.round(this.star) == 3){
+        contenido +='tres';
+      }
+      if(Math.round(this.star) == 2){
+        contenido +='dos';
+      }
+      if(Math.round(this.star) == 1){
+        contenido +='one';
+      }
+      this.starUser= contenido;
     }
   }
 

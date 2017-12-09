@@ -91,16 +91,18 @@ export class ServicesJanotorialPage {
           break;
         }
         case "Pluming":{
-          this.dataInformacion=[{"maxOffer":this.maxOffer,"roomPluming":this.roomPluming,"mtsPluming":this.mtsPluming,"foto":this.foto,"moreInformation":this.moreInformation,
+          // this.dataInformacion=[{"maxOffer":this.maxOffer,"roomPluming":this.roomPluming,"mtsPluming":this.mtsPluming,"foto":this.foto,"moreInformation":this.moreInformation,
+          this.dataInformacion=[{"maxOffer":this.maxOffer,"foto":this.foto,"moreInformation":this.moreInformation,
          }];
           break;
         }
         case "Electrician":{
-          this.dataInformacion=[{"maxOffer":this.maxOffer,"roomElec":this.roomElec,"mtsElect":this.mtsElect,"foto":this.foto,"moreInformation":this.moreInformation,
+          // this.dataInformacion=[{"maxOffer":this.maxOffer,"roomElec":this.roomElec,"mtsElect":this.mtsElect,"foto":this.foto,"moreInformation":this.moreInformation,
+          this.dataInformacion=[{"maxOffer":this.maxOffer,"foto":this.foto,"moreInformation":this.moreInformation,
          }];
           break;
         }
-        case "Pool cleaning":{
+        case "Pool Cleaner":{
           this.dataInformacion=[{"maxOffer":this.maxOffer,"typePool":this.typePool,"mtsPool":this.mtsPool,"foto":this.foto,"moreInformation":this.moreInformation,
          }];
           break;
@@ -154,12 +156,12 @@ export class ServicesJanotorialPage {
           foto: [''],
           jobHand: ['', Validators.required],
           mtsHand: ['', Validators.required],
-          roomPluming: [''],
-          mtsPluming: [''],
-          roomElec: [''],
-          mtsElect: [''],
-          typePool: [''],
-          mtsPool: [''],
+          // roomPluming: [''],
+          // mtsPluming: [''],
+          // roomElec: [''],
+          // mtsElect: [''],
+          // typePool: [''],
+          // mtsPool: [''],
           lockLuck: [''],
           moreInformation: ['', Validators.required],
         });
@@ -172,12 +174,12 @@ export class ServicesJanotorialPage {
           foto: [''],
           jobHand: [''],
           mtsHand: [''],
-          roomPluming: ['', Validators.required],
-          mtsPluming: ['', Validators.required],
-          roomElec: [''],
-          mtsElect: [''],
-          typePool: [''],
-          mtsPool: [''],
+          // roomPluming: ['', Validators.required],
+          // mtsPluming: ['', Validators.required],
+          // roomElec: [''],
+          // mtsElect: [''],
+          // typePool: [''],
+          // mtsPool: [''],
           lockLuck: [''],
           moreInformation: ['', Validators.required],
         });
@@ -190,30 +192,30 @@ export class ServicesJanotorialPage {
           foto: [''],
           jobHand: [''],
           mtsHand: [''],
-          roomPluming: [''],
-          mtsPluming: [''],
-          roomElec: ['', Validators.required],
-          mtsElect: ['', Validators.required],
-          typePool: [''],
-          mtsPool: [''],
+          // roomPluming: [''],
+          // mtsPluming: [''],
+          // roomElec: ['', Validators.required],
+          // mtsElect: ['', Validators.required],
+          // typePool: [''],
+          // mtsPool: [''],
           lockLuck: [''],
           moreInformation: ['', Validators.required],
         });
         break;
       }
-      case "Pool cleaning":{
+      case "Pool Cleaner":{
         this.booleanPoolSleaning=true;
         this.ServiceJanotorial = this.formBuilder.group({
           maxOffer: ['', Validators.required],
           foto: [''],
           jobHand: [''],
           mtsHand: [''],
-          roomPluming: [''],
-          mtsPluming: [''],
-          roomElec: [''],
-          mtsElect: [''],
-          typePool: ['', Validators.required],
-          mtsPool: ['', Validators.required],
+          // roomPluming: [''],
+          // mtsPluming: [''],
+          // roomElec: [''],
+          // mtsElect: [''],
+          // typePool: ['', Validators.required],
+          // mtsPool: ['', Validators.required],
           lockLuck: [''],
           moreInformation: ['', Validators.required],
         });
@@ -226,12 +228,12 @@ export class ServicesJanotorialPage {
           foto: [''],
           jobHand: [''],
           mtsHand: [''],
-          roomPluming: [''],
-          mtsPluming: [''],
-          roomElec: [''],
-          mtsElect: [''],
-          typePool: [''],
-          mtsPool: [''],
+          // roomPluming: [''],
+          // mtsPluming: [''],
+          // roomElec: [''],
+          // mtsElect: [''],
+          // typePool: [''],
+          // mtsPool: [''],
           lockLuck: ['', Validators.required],
           moreInformation: ['', Validators.required],
         });

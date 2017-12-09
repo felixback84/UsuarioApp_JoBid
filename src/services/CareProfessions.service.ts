@@ -17,7 +17,7 @@ export class CareProfessionsService{
 	public setCategoryBySubProfession(nameService = "",Data){
 		//console.log(nameService);
 	    switch(nameService){
-			case "Child care":{
+			case "Child care/Nany":{
 				break;
 			}
 			case "Senior care":{
@@ -62,7 +62,7 @@ export class CareProfessionsService{
 		// console.log(informacion);
 		// console.info('offer create2');
 		// switch(subCategory){
-		// 	case "Child care":{
+		// 	case "Child care/Nany":{
 		// 		//this.afDB.object('/offer/'+keyOffer+/care).set({});
 		// 		//this.dataInformacion=[{"m//axOffer":this.maxOffer,"numChildren":this.numChildren,"ageChildren":this.ageChildren,"timeChildren":this.timeChildren,"moreInformation":this.moreInformation}];
 		// 		console.info('offer create');

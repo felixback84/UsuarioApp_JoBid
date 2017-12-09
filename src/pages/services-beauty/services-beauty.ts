@@ -49,7 +49,7 @@ export class ServicesBeautyPage {
     exerciseTrainer:any;
     timeTrainer:any;
     peinadosCut:any;
-    typeCut:any;
+    timeCut:any;
     barbaCut:any;
     tipoMenicure:any;
     unaMenicure:any;
@@ -93,7 +93,7 @@ export class ServicesBeautyPage {
         break;
       }
       case "Hair cut and DIY":{
-        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"peinadosCut":this.peinadosCut,"typeCut":this.typeCut,"barbaCut":this.barbaCut,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"peinadosCut":this.peinadosCut,"timeCut":this.timeCut,"barbaCut":this.barbaCut,"moreInformation":this.moreInformation}];
         break;
       }
       case "Manicure and pedicure":{
@@ -146,7 +146,7 @@ export class ServicesBeautyPage {
           exerciseTrainer: ['', Validators.required],
           timeTrainer: ['', Validators.required],
           peinadosCut: [''],
-          typeCut: [''],
+          timeCut: [''],
           barbaCut: [''],
           tipoMenicure: [''],
           unaMenicure: [''],
@@ -175,7 +175,7 @@ export class ServicesBeautyPage {
           exerciseTrainer: [''],
           timeTrainer: [''],
           peinadosCut: ['', Validators.required],
-          typeCut: ['', Validators.required],
+          timeCut: ['', Validators.required],
           barbaCut: ['', Validators.required],
           tipoMenicure: [''],
           unaMenicure: [''],
@@ -207,7 +207,7 @@ export class ServicesBeautyPage {
           exerciseTrainer: [''],
           timeTrainer: [''],
           peinadosCut: [''],
-          typeCut: [''],
+          timeCut: [''],
           barbaCut: [''],
           tipoMenicure: ['', Validators.required],
           unaMenicure: ['', Validators.required],
@@ -219,10 +219,10 @@ export class ServicesBeautyPage {
         break;
       }
       case "Makeup":{
-        this.styleMekeup=[
-          {"value":"Basic","label":"Basic"},
-          {"value":"Masks","label":"Masks"}
-        ]; 
+        // this.styleMekeup=[
+        //   {"value":"Basic","label":"Basic"},
+        //   {"value":"Masks","label":"Masks"}
+        // ]; 
         this.booleanMekeup=true;
         this.beauty = this.formBuilder.group({
           foto: [''],
@@ -230,7 +230,7 @@ export class ServicesBeautyPage {
           exerciseTrainer: [''],
           timeTrainer: [''],
           peinadosCut: [''],
-          typeCut: [''],
+          timeCut: [''],
           barbaCut: [''],
           tipoMenicure: [''],
           unaMenicure: [''],
@@ -258,7 +258,7 @@ export class ServicesBeautyPage {
           exerciseTrainer: [''],
           timeTrainer: [''],
           peinadosCut: [''],
-          typeCut: [''],
+          timeCut: [''],
           barbaCut: [''],
           tipoMenicure: [''],
           unaMenicure: [''],
