@@ -180,20 +180,20 @@ starJobr:any;
         // console.log(infoService.serv_subService);
         this.certificateJobr= infoService.serv_detail['serv_certificate']; 
         this.insuranceJobr= infoService.serv_detail['serv_insurance']; 
-        this.presentationJobr= infoService.serv_detail['serv_moreInformation']; 
+        this.presentationJobr= infoService.serv_detail.serv_moreInformation;
 
         if(infoService.serv_detail.serv_gallery){
-          if(infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'] != ''){
-            this.galleryAJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'];
+          if(infoService.serv_detail.serv_gallery.prof_galleryA && infoService.serv_detail.serv_gallery.prof_galleryA != ''){
+            this.galleryAJobr = infoService.serv_detail.serv_gallery.prof_galleryA;
           }
-          if(infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'] != ''){
-            this.galleryBJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'];
+          if(infoService.serv_detail.serv_gallery.prof_galleryB && infoService.serv_detail.serv_gallery.prof_galleryB != ''){
+            this.galleryBJobr = infoService.serv_detail.serv_gallery.prof_galleryB;
           }
-          if(infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'] != ''){
-            this.galleryCJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'];
+          if(infoService.serv_detail.serv_gallery.prof_galleryC && infoService.serv_detail.serv_gallery.prof_galleryC != ''){
+            this.galleryCJobr = infoService.serv_detail.serv_gallery.prof_galleryC;
           }
-          if(infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'] != ''){
-            this.galleryDJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'];
+          if(infoService.serv_detail.serv_gallery.prof_galleryD && infoService.serv_detail.serv_gallery.prof_galleryD != ''){
+            this.galleryDJobr = infoService.serv_detail.serv_gallery.prof_galleryD;
           }
         }
         //-info comentarios

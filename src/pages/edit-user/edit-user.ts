@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-
-import cities from 'cities';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { AngularFireAuth } from 'angularfire2/auth';
 import STATE_UTILS from 'states-utils';
+import cities from 'cities';
+import { storage } from 'firebase';
+import * as firebase from 'firebase/app';
 
+//page
 import { PreHomePage } from '../pre-home/pre-home';
 
+//service
 import { UserService } from '../../services/user.service';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
-import { AngularFireAuth } from 'angularfire2/auth';
-// import * as firebase from 'firebase/app';
 /**
  * Generated class for the EditUserPage page.
  *
@@ -28,26 +32,39 @@ export class EditUserPage {
   responseData :any;
   responseDataUser :any;
   findNameEstado: string;
-
+  //list
   codeAreaList : any;
   codeAreaEstadoSelect: any = [];
+
+  //-data
   country:any;area:any;prefix:any;line:any;
   userData = {"username":"","password":"","email":"","name":"","zipcode":"","state":"","picture":"","verificacion":"","pais":"","direccion":"","tel":""};
-  
+  passwordB:any;
   ciudades: any =  [];
   ciudad: string =  undefined;
   stateZipcode: string = undefined;
   estados : any = [];
-
+  foto:any;
+  disImg:boolean=true;
+  userActual:any;
+  passwordActual:any;
+  emailActual:any;
+  
   windowRef: any;
   user:any;
-  userB:any;
+
+   //--form validator
+   private editUserForm : FormGroup;
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public authServiceProvider: AuthServiceProvider,
     public alertCtrl: AlertController,
     private userService : UserService,
-    public afAuth: AngularFireAuth,) {
+    public afAuth: AngularFireAuth,
+    private formBuilder: FormBuilder,
+    private camera : Camera,
+  ) {
       
     var stateName = STATE_UTILS.getStates();
     var stateNameShort = STATE_UTILS.getUSPSCodes();
@@ -56,30 +73,55 @@ export class EditUserPage {
       this.estados.push({'name':stateName[i],'nameShort':stateNameShort[i]});
     }
       this.codeAreaDefi();
+      this.getForm();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditUserPage');
     this.userData = JSON.parse(localStorage.getItem('userData'));
+    this.userActual = this.userData.verificacion;
     console.log(this.userData);
     this.telA =  this.userData.tel.substring(1,4);
-    this.telB =  this.userData.tel.substring(6);
+    this.telB =  this.userData.tel.substring(5);
+    this.passwordB = this.userData.password;
+    this.passwordActual =this.passwordB;
+    this.emailActual = this.userData.email;
+    console.log(this.passwordActual);
+    console.log(this.emailActual);
+    if(this.userData.picture != undefined  && this.userData.picture != ''){
+      this.foto = this.userData.picture;
+      this.disImg = false;
+    }
     let zipcodea = this.userData['zipcode'];
     console.log(zipcodea);
     this.ciudades.zipcode= this.userData['zipcode'];
     console.log(this.telA);
     console.log(this.telB);
-    this.setCity();
+    // this.setCity();
   }
 
   goPrehome(){
-    this.updateUserApp();
-    let Data = {'datos':this.userData};
-    this.navCtrl.setRoot(PreHomePage,Data);
+    //verificaque las contraseñas son iguales
+    if(this.userData.password == this.passwordB){
+      if(this.passwordActual != this.userData.password){
+        console.info('password changed');
+        this.afAuth.auth.currentUser.updatePassword(this.userData.password);
+      }
+      if(this.emailActual != this.userData.email){
+        console.info('password changed');
+        this.afAuth.auth.currentUser.updateEmail(this.userData.email);
+      }
+      this.updateUserApp();
+      let Data = {'datos':this.userData};
+      this.navCtrl.setRoot(PreHomePage,Data);
+    }else{
+      this.showAlertPwd();
+    }
   }
 
   updateUserApp(){
     this.userData.tel = '('+this.telA+')'+this.telB;
+    this.userData.picture = this.foto;
     console.log(this.userData);
     localStorage.setItem('userData', JSON.stringify(this.userData));
     this.userService.setUserDB(this.userData,this.userData['verificacion']);
@@ -96,7 +138,6 @@ export class EditUserPage {
          //console.log(entry['city']); // 1, "string", false
          this.ciudades.push({'name':entry['city'],'zipcode':entry['zipcode']});
       }
-      
     }
     this.findCodeEstado(STATE_UTILS.getStateName(this.userData.state));
   }
@@ -126,6 +167,7 @@ export class EditUserPage {
        
      }
  }
+ //alert
  showAlertSignUp() {
    let alert = this.alertCtrl.create({
      title: 'Update',
@@ -134,6 +176,65 @@ export class EditUserPage {
    });
    alert.present();
  } 
+ showAlertPwd() {
+  let alerteMail = this.alertCtrl.create({
+    title: 'Information',
+    subTitle: 'The passwords are not the same',
+    buttons: ['OK']
+  });
+  alerteMail.present();
+}
+
+//-- validacion de formulario
+getForm(){
+  this.editUserForm = this.formBuilder.group({
+    name : ['', Validators.compose([Validators.pattern('[A-z]+(\ [A-z]+){0,1}'), Validators.required])],
+    pais : ['', Validators.required],
+    state : ['', Validators.required],
+    zipcode : ['', Validators.required],
+    // DirecA : ['', Validators.required],
+    // DirecB : ['', Validators.required],
+    // DirecC : ['', Validators.required],
+    // DirecD : ['', Validators.required],
+    email : ['', Validators.compose([Validators.pattern('[A-z0-9-_.]+@[A-z0-9]+\.(.{1}[A-z0-9]+){1,2}'), Validators.required])],
+    username : ['', Validators.required],
+    foto : [''],
+    password : ['', Validators.required],
+    passwordB : ['', Validators.required],
+    telA : ['', Validators.required],
+    telB : ['', Validators.required],
+  });  
+}
+
+async  camaraFoto(){
+  let file = this.userActual+'/foto';
+  console.log('clickCamara');
+  try{
+    const options: CameraOptions = {
+      quality: 60,
+      // targetHeight: 100,
+      // targetWidth: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    const result = await this.camera.getPicture(options);
+    const image = 'data:image/jpeg;base64,' + result;
+    const picture = storage().ref(file);
+    let UploadTask = picture.putString(image,'data_url');
+    UploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+      (snapshot) =>  {
+        let url = UploadTask.snapshot.downloadURL;
+        console.log(url);
+        this.foto = url;
+        this.disImg = false;
+      },
+      (error) => { console.log(error)  },
+      // () => { 
+      // }
+    );
+  } catch(e){ console.error(e);}
+}
 
  codeAreaDefi(){
   

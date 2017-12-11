@@ -73,6 +73,8 @@ import { NotificacionService } from '../services/notificacion.service';
 //pipe
 
 import { OrdenarPipe } from '../pipes/ordenar/ordenar';
+// import { NewAddressPipe } from '../pipes/new-address/new-address';
+// import { UpdateUserPipe } from '../pipes/update-user/update-user';
 import { RemoverPipe } from '../pipes/remover/remover';
 export const firebaseConfig = {
   apiKey: "AIzaSyBmrc2CjBbIJD_Pu_kkCcV8qNXJfsEBaxo",
@@ -125,6 +127,8 @@ export const googleMapsKey = 'AIzaSyB8zF6lhZegDjsV_mrqxd9Fb3YFTw2__AA';
     AddPaymentMethodPage,    
     OrdenarPipe,
     RemoverPipe,
+    // NewAddressPipe,
+    // UpdateUserPipe,
   ],
   imports: [
     BrowserModule, HttpModule,

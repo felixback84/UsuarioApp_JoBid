@@ -26796,6 +26796,14 @@ page-cleaning-vote textarea.text-input.text-input-md, page-cleaning-vote textare
   height: 300px;
 }
 
+page-edit-user img {
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 page-edit-user h3 {
   text-align: center;
   font-weight: bold;
@@ -26832,6 +26840,16 @@ page-edit-user .grid {
 
 page-edit-user .grid [col-4], page-edit-user .grid [col-8] {
   padding: 0;
+}
+
+page-edit-user .button-outline-md-danger {
+  margin: 0;
+  height: 48px;
+  width: 100%;
+}
+
+page-edit-user .row .list-md, page-edit-user .row .list-ios {
+  margin: 0;
 }
 
 page-home img {
@@ -27515,6 +27533,22 @@ page-singup ion-list ion-grid.grid .col {
 
 page-singup ion-list ion-grid.grid .col:first-child {
   padding-right: 5px;
+}
+
+page-singup .button-outline-md-danger {
+  margin: 0;
+  height: 48px;
+  width: 100%;
+}
+
+page-singup .row .list-md, page-singup .row .list-ios {
+  margin: 0;
+}
+
+page-singup ion-item.item-md ion-label.label img, page-singup ion-item.item-ios ion-label.label img {
+  width: 100px;
+  height: 100px;
+  margin: 0;
 }
 
 page-verify-your-phone img {

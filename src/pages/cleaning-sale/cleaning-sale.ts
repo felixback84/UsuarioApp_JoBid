@@ -17,6 +17,7 @@ import { SaleService } from '../../services/sale.service';
 import { ProfessionalsService } from '../../services/professionals.service';
 import { NotificacionService } from '../../services/notificacion.service';
 import { GeocodeServiceProvider } from '../../providers/geocode-service';
+import { log } from 'util';
 
 /**
  * Generated class for the CleanigSalePage page.
@@ -90,27 +91,27 @@ export class CleaningSalePage {
     this.dataService = this.dataOffer['dataService'];
     this.keyOffer = this.dataOffer['offer']; 
     this.userActual = localStorage.getItem('verificacion');
-    
-    //-
-    // this.userActual = "user_1509139021478";
-    // localStorage.setItem('verificacion',this.userActual);
-    // this.dataService = {"name":"Janotorial","class":"orange","Clasificacion":{"categoria":"Electrician","certificacion":"true","seguro":"true","distancia":"3M","experiencia":"2Y","informacion":{"maxOffer":"179","roomElec":"5","mtsElect":"6","foto":"","moreInformation":"FADFASD"}},"status":"Published","User":"user_1509139021478","Address":{"label":"My Address","name":"134 azxc,cqe,CA 90001"},"Star":1};
-    // this.keyOffer = "offer_1509549987105"; 
-    //-
-
     this.maxOffer = this.dataService['Clasificacion']['informacion']['maxOffer'];
     this.SubServiceActual = localStorage.getItem('SubService');
     console.log(this.dataOffer);
     console.log(JSON.stringify(this.dataOffer));
-    
+        
     //--Fin-comentado para evitar mas creaciones
-    //--Ini-comentado para tener flujo normal
+    
+    //-
+    // this.userActual = "user_1509139021478";
+    // localStorage.setItem('verificacion',this.userActual);
+    // this.keyOffer = "offer_1512998956021"; 
+    // this.SubServiceActual = "Electrician";
+    // this.dataService = {"name":"Janotorial","class":"orange","img":"assets/img/services/Janitorial.png","Clasificacion":{"categoria":"Electrician","certificacion":"true","seguro":"true","distancia":"4M","experiencia":"2Y","informacion":{"maxOffer":"125","foto":"","moreInformation":"5info"}},"status":"Published","User":"user_1509139021478","Address":{"label":"My Address","name":"134 azxc,cqe,CA 90001","keyAddress":"addr_1509139021502"},"Star":1};
     // this.userActual = "user_1509139021478";
     // this.maxOffer = 189;
-    // this.SubServiceActual = "Electrician";
     // --Fin-comentado para tener flujo normal
 
     // this.getUserLocation();
+    console.log(this.dataService);
+    console.log(this.keyOffer);
+    
     this.getUserLocationGeolocation();
     this.getSale();
   
@@ -168,23 +169,26 @@ export class CleaningSalePage {
 
               let infoService = this.WorkersInfo[index].Service[service];
               // console.log(infoService);
+              // console.log(infoService.serv_detail.serv_moreInformation);
+              // console.log(infoService.serv_detail.serv_gallery.prof_galleryA);
+              presentationJobr = infoService.serv_detail.serv_moreInformation;
               // console.log(infoService.serv_subService);
               certificateJobr= (infoService.serv_detail['serv_certificate'] == 'true')?true:false;
               insuranceJobr= (infoService.serv_detail['serv_insurance'] == 'true')?true:false;
-              console.log(certificateJobr);
-              console.log(insuranceJobr);
+              // console.log(certificateJobr);
+              // console.log(insuranceJobr);
               if(infoService.serv_detail.serv_gallery){
-                if(infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'] != ''){
-                  galleryAJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryA'];
+                if(infoService.serv_detail.serv_gallery.prof_galleryA && infoService.serv_detail.serv_gallery.prof_galleryA != ''){
+                  galleryAJobr = infoService.serv_detail.serv_gallery.prof_galleryA;
                 }
-                if(infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'] != ''){
-                  galleryBJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryB'];
+                if(infoService.serv_detail.serv_gallery.prof_galleryB && infoService.serv_detail.serv_gallery.prof_galleryB != ''){
+                  galleryBJobr = infoService.serv_detail.serv_gallery.prof_galleryB;
                 }
-                if(infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'] != ''){
-                  galleryCJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryC'];
+                if(infoService.serv_detail.serv_gallery.prof_galleryC && infoService.serv_detail.serv_gallery.prof_galleryC != ''){
+                  galleryCJobr = infoService.serv_detail.serv_gallery.prof_galleryC;
                 }
-                if(infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'] && infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'] != ''){
-                  galleryDJobr = infoService.serv_detail.serv_gallery.prof_galleryA['prof_galleryD'];
+                if(infoService.serv_detail.serv_gallery.prof_galleryD && infoService.serv_detail.serv_gallery.prof_galleryD != ''){
+                  galleryDJobr = infoService.serv_detail.serv_gallery.prof_galleryD;
                 }
               }
             }
@@ -316,9 +320,9 @@ export class CleaningSalePage {
         this.notificacionSaleTimeOver();
         clearInterval(this.objNodeTimer);
         this.ganador();
-        this.audio();
+        // this.audio();
       }else{
-        this.audio();
+        // this.audio();
         this.notificacionProviderWaitTimeOver();
         this.ProviderInSale();
       }
@@ -521,10 +525,10 @@ export class CleaningSalePage {
   } 
   notificacionProviderWaitTimeOver(){
     console.info('Nota: Providers waiting time is over');
-    this.notificacionService.mostrar('Providers waiting time is over',2);
+    this.notificacionService.mostrarSale('Providers waiting time is over',2);
   } 
   notificacionSaleTimeOver(){
     console.info('Nota: The bid is over');
-    this.notificacionService.mostrar('The bid is over',3);
+    this.notificacionService.mostrarSale('The bid is over',3);
   } 
 }

@@ -9,4 +9,21 @@ page-singup {
 			&:first-child{ padding-right:5px; }
 		}
 	}
+	.button-outline-md-danger{
+		margin: 0;
+		height: 48px;
+		width: 100%;
+	}
+	.row{
+		.list-md, .list-ios{
+			margin:0;
+		}
+	}
+	ion-item.item-md ion-label.label, ion-item.item-ios ion-label.label{
+			img{
+				width: 100px;
+				height: 100px;
+				margin:0;
+			}
+	}
 }

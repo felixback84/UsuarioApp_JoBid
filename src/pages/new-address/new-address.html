@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>joBit</ion-title>
+    <ion-title>JoBid</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -23,13 +23,11 @@
 </ion-item>
 <ion-item>
  <ion-icon name="flag" item-start></ion-icon>
-  <ion-select class="mitad" [(ngModel)]="state" name="state" (ngModelChange)="setCity()"> 
-    <ion-option selected>State</ion-option>
-    <ion-option *ngFor="let states of estados" value="{{states.nameShort}}">{{states.name}}</ion-option>
+  <ion-select class="mitad" [(ngModel)]="state" name="state" (ngModelChange)="setCity()" placeholder="State" > 
+    <ion-option *ngFor="let states of estados | ordenar: 'estados'" value="{{states.nameShort}}">{{states.name}}</ion-option>
   </ion-select>
-  <ion-select  class="mitad" [(ngModel)]="zipcode" name="zipcode" (ngModelChange)="setZipCode()"> <!--[(ngModel)]="gaming"-->
-    <ion-option selected>....</ion-option>
-    <ion-option *ngFor="let city of ciudades" value="{{city.zipcode}}">{{city.name}} - {{city.zipcode}}</ion-option>
+  <ion-select  class="mitad" [(ngModel)]="zipcode" name="zipcode" (ngModelChange)="setZipCode()" placeholder="City"> <!--[(ngModel)]="gaming"-->
+    <ion-option *ngFor="let city of ciudades | ordenar: 'ciudades'" value="{{city.zipcode}}">{{city.name}} - {{city.zipcode}}</ion-option>
   </ion-select>
 </ion-item>
 <ion-item>

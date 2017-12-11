@@ -1,26 +1,27 @@
 import { Component } from '@angular/core';
-//import { NavController, NavParams } from 'ionic-angular';
 import { NavController ,NavParams, AlertController} from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-//import { Http , Response, Headers, RequestOptions} from '@angular/http';
-//import UsaStates from 'usa-states';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import cities from 'cities';
 import STATE_UTILS from 'states-utils';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { storage } from 'firebase';
+import * as firebase from 'firebase/app';
+//import { Http , Response, Headers, RequestOptions} from '@angular/http';
+//import UsaStates from 'usa-states';
+//import firebase from 'firebase';
 
-
+//page
+import { PaymentMethodsPage } from '../payment-methods/payment-methods';
 //import { VerifyYourPhonePage } from '../verify-your-phone/verify-your-phone';
 
+//services
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { UserService } from '../../services/user.service';
 //import { EncriptyService } from '../../services/encripty.service';
 //import { StorageService } from '../../services/storage.service';
-import { UserService } from '../../services/user.service';
-import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 // import { WindowService } from '../../services/window.service';
 
-import { PaymentMethodsPage } from '../payment-methods/payment-methods';
-
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
-//import firebase from 'firebase';
 /**
  * Generated class for the SingupPage page.
  *
@@ -49,15 +50,16 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
   country:any;area:any;prefix:any;line:any;
   userData = {"username":"","password":"","email":"","name":"","zipcode":"","state":"","picture":"","verificacion":"","pais":"","direccion":"","tel":""};
   passwordB:any;
-
   ciudades: any =  [];
   ciudad: string =  undefined;
   stateZipcode: string = undefined;
   estados : any = [];
-
+  foto:any;
+  disImg:boolean= true;
   user:any;
-  userB:any;
-
+  userActual:any;
+  //correo enviado
+  correoEnviado:boolean = false;
   //--form validator
   private singupForm : FormGroup;
   
@@ -71,6 +73,7 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
     private userService : UserService,
     public afAuth: AngularFireAuth,
     private formBuilder: FormBuilder,
+    private camera : Camera,
     // public win:WindowService 
   ) {
     
@@ -88,6 +91,10 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
       //alert(cities.findByState('NJ'));
       this.codeAreaDefi();
       this.getForm();
+      var d = new Date();
+      var key = d.getTime();
+      this.userActual = "user_"+(key);
+      console.log(this.userActual);
   }
 
 
@@ -96,8 +103,8 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
       
       let userA:any = firebase.auth().currentUser;
       console.log(userA);
-      this.userB=this.afAuth.auth.currentUser;
-      console.log(this.userB);
+      this.user=this.afAuth.auth.currentUser;
+      console.log(this.user);
       // let user:any = firebase.auth().currentUser;
       // console.log(user);
       // if (user.isEmailVerified()) {
@@ -149,6 +156,10 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
               this.userData['name']=this.userData['username']= user.providerData["0"].displayName;
               this.userData['email']=  user.providerData["0"].email;
               this.userData['picture']=  user.providerData["0"].photoURL;
+              if(user.providerData["0"].photoUR != undefined  && user.providerData["0"].photoUR != ''){
+                this.foto = user.providerData["0"].photoUR;
+                this.disImg = false;
+              }
               console.log(this.userData);
             }
           }
@@ -176,9 +187,11 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
 
   goPhoneV(){
     let estoyLogueado:boolean = false;
+    //verificaque las contraseñas son iguales
+    if(this.userData.password == this.passwordB){
     // let userDB:any;
     //let finEvent:boolean;
-
+    
     // console.log(this.userData["username"]);
     // console.log(this.userData["email"]);
       let Userexists= this.userService.getUserEmailPerfil(this.userData["email"]);
@@ -209,12 +222,16 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
         console.log('SubcribeUserexists-US singup');
         this.SubcribeUserexists.unsubscribe();
       });
+    }else{
+      this.showAlertPwd();
+    }
   }
   
   enviarCorreo(){
     //alert('code:'+this.userData.verificacion);
     this.userData.direccion = this.DirecA+' '+this.DirecB+','+this.DirecC+','+this.DirecD ;
     this.userData.tel = '('+this.telA+')'+this.telB;
+    this.userData.picture = this.foto;
     //this.userData.verificacion = ''+Math.floor((Math.random() * 99999) + 11111);
     console.log('code:'+this.userData.verificacion);
     this.goNextPagePhoneV();
@@ -260,22 +277,8 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
               (success) => {
                 console.info("please verify your email - account correo");
                 console.log(result);
-                
-                  // console.log(JSON.stringify(this.userData));
-                  // let Data = {'datos':this.userData};
-                  // this.navCtrl.push(VerifyYourPhonePage, Data);
-        
-                  console.log(this.userData);
-                  //this.traerPost();
-                  var d = new Date();
-                  var key = d.getTime();
-                  var keyUser = "user_"+(key);
-                  console.log(keyUser);
-                  this.userData['verificacion'] = keyUser;
-                  console.log(this.userData);
-                  this.userService.newUser(this.userData,keyUser);
-                  let Data = {'datos':this.userData};
-                  this.navCtrl.push(PaymentMethodsPage,Data);
+                this.crearUserBD();   
+                this.correoEnviado = true;               
               }).catch(
               (err) => {
                 console.error('error envio correo - account correo');
@@ -287,12 +290,32 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
             (err) => {
               console.error('error user create');
               console.error(err);
-              this.showAlertSignUp();
+              // this.showAlertSignUp();
+              this.crearUserBD();
             });
         
         
       }catch(e){ console.error(e);} 
     }
+
+ crearUserBD(){
+  // console.log(JSON.stringify(this.userData));
+  // let Data = {'datos':this.userData};
+  // this.navCtrl.push(VerifyYourPhonePage, Data);
+
+  console.log(this.userData);
+  //this.traerPost();
+  
+  this.userData['verificacion'] = this.userActual;
+  console.log(this.userData);
+  this.userService.newUser(this.userData,this.userActual);
+  if(this.correoEnviado){
+    this.showAlertEmail();
+  }
+  let Data = {'datos':this.userData};
+  this.navCtrl.push(PaymentMethodsPage,Data);
+ }
+
   setCity(){
     //console.log(this.userData.state);
     this.userData.zipcode = undefined;
@@ -364,6 +387,8 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
       // }
       //console.log(this.codeAreaEstadoSelect);
   }
+
+  //alerts
   showAlertSignUp() {
     let alert = this.alertCtrl.create({
       title: 'Sign up failed',
@@ -372,7 +397,23 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
     });
     alert.present();
   } 
+  showAlertPwd() {
+    let alerteMail = this.alertCtrl.create({
+      title: 'Information',
+      subTitle: 'The passwords are not the same',
+      buttons: ['OK']
+    });
+    alerteMail.present();
+  }
 
+  showAlertEmail() {
+    let alerteMail = this.alertCtrl.create({
+      title: 'Information',
+      subTitle: 'An email has been sent to verify your acount',
+      buttons: ['OK']
+    });
+    alerteMail.present();
+  }
   //-- validacion de formulario
 getForm(){
   this.singupForm = this.formBuilder.group({
@@ -386,11 +427,42 @@ getForm(){
     DirecD : ['', Validators.required],
     email : ['', Validators.compose([Validators.pattern('[A-z0-9-_.]+@[A-z0-9]+\.(.{1}[A-z0-9]+){1,2}'), Validators.required])],
     username : ['', Validators.required],
+    foto : [''],
     password : ['', Validators.required],
     passwordB : ['', Validators.required],
     telA : ['', Validators.required],
     telB : ['', Validators.required],
   });  
+}
+
+async  camaraFoto(){
+  let file = this.userActual+'/foto';
+  console.log('clickCamara');
+  try{
+    const options: CameraOptions = {
+      quality: 60,
+      // targetHeight: 100,
+      // targetWidth: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    const result = await this.camera.getPicture(options);
+    const image = 'data:image/jpeg;base64,' + result;
+    const picture = storage().ref(file);
+    let UploadTask = picture.putString(image,'data_url');
+    UploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+      (snapshot) =>  {
+        let url = UploadTask.snapshot.downloadURL;
+        console.log(url);
+        this.foto = url;
+        this.disImg = false;
+      },
+      (error) => { console.log(error)  },
+      // () => { 
+      // }
+    );
+  } catch(e){ console.error(e);}
 }
 
   codeAreaDefi(){

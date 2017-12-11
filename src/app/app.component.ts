@@ -7,20 +7,20 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 //--page
 import { HomePage } from '../pages/home/home';
+import { ShowPage } from '../pages/show/show';
+import { JobWithUsPage } from '../pages/job-with-us/job-with-us';
+import { PoliciesPage } from '../pages/policies/policies';
+import { PreHomePage } from '../pages/pre-home/pre-home';
+import { AddPaymentMethodPage } from '../pages/add-payment-method/add-payment-method';
+import { EditUserPage } from '../pages/edit-user/edit-user';
+import { MyServicesPage } from '../pages/my-services/my-services';
 //import { CleaningContractorPage } from '../pages/cleaning-contractor/cleaning-contractor';
 //import { CleaningPage } from '../pages/cleaning/cleaning';
 //import { PreHomePage } from '../pages/pre-home/pre-home';
 //import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
 //import { PaymentMethodsPage } from '../pages/payment-methods/payment-methods';
-// import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
-import { ShowPage } from '../pages/show/show';
-import { JobWithUsPage } from '../pages/job-with-us/job-with-us';
-import { PoliciesPage } from '../pages/policies/policies';
-import { PreHomePage } from '../pages/pre-home/pre-home';
 //import { PaymentsPage } from '../pages/payments/payments';
-import { AddPaymentMethodPage } from '../pages/add-payment-method/add-payment-method';
-import { EditUserPage } from '../pages/edit-user/edit-user';
-import { MyServicesPage } from '../pages/my-services/my-services';
+// import { CleaningSalePage } from '../pages/cleaning-sale/cleaning-sale';
 
 //-service
 import { UserService } from '../services/user.service';
