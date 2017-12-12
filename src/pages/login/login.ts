@@ -1,22 +1,20 @@
 import { Component } from '@angular/core';
-//import { NavController, NavParams } from 'ionic-angular';
 import { NavController, AlertController, NavParams} from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-
-//import { ShowPage } from '../show/show';
-//import { HomePage } from '../home/home';
-import { PreHomePage } from '../pre-home/pre-home';
-
-import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-
-
-//import { EncriptyService } from '../../services/encripty.service';
-//import { StorageService } from '../../services/storage.service';
-import { UserService } from '../../services/user.service';
-
+import { Facebook } from '@ionic-native/facebook';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+//page
+import { PreHomePage } from '../pre-home/pre-home';
+//import { ShowPage } from '../show/show';
+//import { HomePage } from '../home/home';
+//service
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { UserService } from '../../services/user.service';
+//import { EncriptyService } from '../../services/encripty.service';
+//import { StorageService } from '../../services/storage.service';
 //import { ListPage } from '../list/list';
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -45,6 +43,7 @@ export class LoginPage {
       private userService : UserService,
       public afAuth: AngularFireAuth,
       private formBuilder: FormBuilder,
+      private fb: Facebook,
     ) {
       this.pass ="mi clave";
       this.todo = this.formBuilder.group({
@@ -174,40 +173,95 @@ export class LoginPage {
   facebookir(){
     let goPagePrehome:boolean = false;
     let userDB:any;
-    firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
-      .then(res => {
-        //console.log(res.user.email);
-        console.log(res);
-        console.info(JSON.stringify(res));
-        //console.log(res);
-        this.userService.getUsers()
-        .forEach((users) => {
-          //console.log(users);
-          users.forEach((user) =>{
-            //console.log(user);
-            // if(user['user_email'] == res.user.email){
-            //     // console.log('res.user.email');
-            //     // console.log(user);
-            //     userDB = user;
-            //     goPagePrehome= true;
-            // }
-            //dentro de res.user -> hay otros datos de usuario -> email?
-            //if(user.providerData["0"].providerId == "facebook.com"){
-                if(user['user_email'] == res.additionalUserInfo.profile.email){
-                  // console.log('res.additionalUserInfo.profile.email');
-                  // console.log(user);
-                  userDB = user;
-                  goPagePrehome= true;
-                }
-            //}
-          });
-          //console.log(userDB);
-          console.log(goPagePrehome);
-          if(goPagePrehome){
-            this.goNextPagePrehomeFace(userDB);
+    // firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
+    //   .then(res => {
+    //     //console.log(res.user.email);
+    //     console.log(res);
+    //     console.info(JSON.stringify(res));
+    //     //console.log(res);
+    //     this.userService.getUsers()
+    //     .forEach((users) => {
+    //       //console.log(users);
+    //       users.forEach((user) =>{
+    //         //console.log(user);
+    //         // if(user['user_email'] == res.user.email){
+    //         //     // console.log('res.user.email');
+    //         //     // console.log(user);
+    //         //     userDB = user;
+    //         //     goPagePrehome= true;
+    //         // }
+    //         //dentro de res.user -> hay otros datos de usuario -> email?
+    //         //if(user.providerData["0"].providerId == "facebook.com"){
+    //             if(user['user_email'] == res.additionalUserInfo.profile.email){
+    //               // console.log('res.additionalUserInfo.profile.email');
+    //               // console.log(user);
+    //               userDB = user;
+    //               goPagePrehome= true;
+    //             }
+    //         //}
+    //       });
+    //       //console.log(userDB);
+    //       console.log(goPagePrehome);
+    //       if(goPagePrehome){
+    //         this.goNextPagePrehomeFace(userDB);
+    //       }
+    //     });
+    //   });
+    this.fb.login(['email'])
+    .then((res) => {
+      console.log('Logged into Facebook!', res);
+      // alert(JSON.stringify(res));
+      let credencial = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
+      firebase.auth().signInWithCredential(credencial).then(
+        (info)=>{
+          // alert(JSON.stringify(info));
+          // alert(JSON.stringify(info.providerData['0']['email']));
+          // alert(JSON.stringify(info.providerData));
+          // console.log(info);
+          // console.log(info.providerData.email);
+          // console.log(info.providerData);
+          if(info.providerData['0']['email'] != undefined){
+            // this.userService.getUserEmailPerfil(info.providerData['0']['email']).subscribe(
+            //   (emailBD)=>{
+            //     alert(JSON.stringify(emailBD));
+            //     if(emailBD == info.providerData.email){
+            //     }
+            //   });
+            this.userService.getUsers()
+            .forEach((users) => {
+              //console.log(users);
+              users.forEach((user) =>{
+                //console.log(user);
+                // if(user['user_email'] == res.user.email){
+                //     // console.log('res.user.email');
+                //     // console.log(user);
+                //     userDB = user;
+                //     goPagePrehome= true;
+                // }
+                //dentro de res.user -> hay otros datos de usuario -> email?
+                //if(user.providerData["0"].providerId == "facebook.com"){
+                    if(user['user_email'] == info.providerData['0']['email']){
+                      // console.log('res.additionalUserInfo.profile.email');
+                      // console.log(user);
+                      userDB = user;
+                      goPagePrehome= true;
+                    }
+                //}
+              });
+              //console.log(userDB);
+              console.log(goPagePrehome);
+              if(goPagePrehome){
+                this.goNextPagePrehomeFace(userDB);
+              }
+            });
           }
-        });
-      });
+        }
+      ).catch();
+    })
+    .catch(e => {
+      console.log('Error logging into Facebook', e)
+      alert(JSON.stringify(e));
+    });
   }
   goNextPagePrehomeFace(datos:any){
     //console.log(datos);

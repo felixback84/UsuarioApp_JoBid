@@ -256,6 +256,7 @@ dependencies {
     releaseCompile(project(path: "CordovaLib", configuration: "release"))
     compile "com.android.support:support-v4:24.1.1+"
     compile "com.android.support:support-v4:+"
+    compile "com.facebook.android:facebook-android-sdk:4.+"
     // SUB-PROJECT DEPENDENCIES END
 }
 

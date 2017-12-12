@@ -63,6 +63,34 @@
             {
               "xml": "<feature name=\"Badge\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.badge.Badge\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"FacebookConnectPlugin\"><param name=\"android-package\" value=\"org.apache.cordova.facebook.ConnectPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<access origin=\"https://m.facebook.com\" />",
+              "count": 1
+            },
+            {
+              "xml": "<access origin=\"https://graph.facebook.com\" />",
+              "count": 1
+            },
+            {
+              "xml": "<access origin=\"https://api.facebook.com\" />",
+              "count": 1
+            },
+            {
+              "xml": "<access origin=\"https://*.fbcdn.net\" />",
+              "count": 1
+            },
+            {
+              "xml": "<access origin=\"https://*.akamaihd.net\" />",
+              "count": 1
+            },
+            {
+              "xml": "<preference name=\"android-minSdkVersion\" value=\"15\" />",
+              "count": 1
             }
           ]
         }
@@ -102,6 +130,18 @@
           "application": [
             {
               "xml": "<provider android:authorities=\"${applicationId}.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"android.support.v4.content.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/provider_paths\" /></provider>",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"com.facebook.sdk.ApplicationId\" android:value=\"@string/fb_app_id\" />",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"com.facebook.sdk.ApplicationName\" android:value=\"@string/fb_app_name\" />",
+              "count": 1
+            },
+            {
+              "xml": "<activity android:configChanges=\"keyboard|keyboardHidden|screenLayout|screenSize|orientation\" android:label=\"@string/fb_app_name\" android:name=\"com.facebook.FacebookActivity\" />",
               "count": 1
             }
           ],
@@ -162,6 +202,20 @@
             }
           ]
         }
+      },
+      "res/values/facebookconnect.xml": {
+        "parents": {
+          "/*": [
+            {
+              "xml": "<string name=\"fb_app_id\">539258269738575</string>",
+              "count": 1
+            },
+            {
+              "xml": "<string name=\"fb_app_name\">JoBid Usuario</string>",
+              "count": 1
+            }
+          ]
+        }
       }
     }
   },
@@ -218,6 +272,11 @@
       "PACKAGE_NAME": "com.Jobid.user"
     },
     "cordova-plugin-badge": {
+      "PACKAGE_NAME": "com.Jobid.user"
+    },
+    "cordova-plugin-facebook4": {
+      "APP_ID": "539258269738575",
+      "APP_NAME": "JoBid Usuario",
       "PACKAGE_NAME": "com.Jobid.user"
     }
   },
@@ -387,6 +446,14 @@
       "clobbers": [
         "cordova.plugins.notification.badge"
       ]
+    },
+    {
+      "id": "cordova-plugin-facebook4.FacebookConnectPlugin",
+      "file": "plugins/cordova-plugin-facebook4/www/facebook-native.js",
+      "pluginId": "cordova-plugin-facebook4",
+      "clobbers": [
+        "facebookConnectPlugin"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -407,6 +474,7 @@
     "cordova-sms-plugin": "0.1.11",
     "de.appplant.cordova.plugin.local-notification": "0.8.5",
     "ionic-plugin-keyboard": "2.2.1",
-    "cordova-plugin-badge": "0.8.5"
+    "cordova-plugin-badge": "0.8.5",
+    "cordova-plugin-facebook4": "1.9.1"
   }
 }

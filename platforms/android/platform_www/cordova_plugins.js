@@ -164,6 +164,14 @@ module.exports = [
     "clobbers": [
       "cordova.plugins.notification.badge"
     ]
+  },
+  {
+    "id": "cordova-plugin-facebook4.FacebookConnectPlugin",
+    "file": "plugins/cordova-plugin-facebook4/www/facebook-native.js",
+    "pluginId": "cordova-plugin-facebook4",
+    "clobbers": [
+      "facebookConnectPlugin"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -186,7 +194,8 @@ module.exports.metadata =
   "cordova-sms-plugin": "0.1.11",
   "de.appplant.cordova.plugin.local-notification": "0.8.5",
   "ionic-plugin-keyboard": "2.2.1",
-  "cordova-plugin-badge": "0.8.5"
+  "cordova-plugin-badge": "0.8.5",
+  "cordova-plugin-facebook4": "1.9.1"
 };
 // BOTTOM OF METADATA
 });

@@ -77,9 +77,10 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-  <ion-item [hidden]="disImg">
-    <img src="{{foto}}"  [hidden]="disImg" >
-  </ion-item>
+      <ion-item [hidden]="disImg">
+        <ion-icon name="home" item-start style="background:transparent; color:transparent;"></ion-icon>
+        <img src="{{foto}}"  [hidden]="disImg" >
+      </ion-item>
       <ion-item>
         <ion-icon name="lock" item-start></ion-icon>
         <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password" name="password" formControlName="password"></ion-input>

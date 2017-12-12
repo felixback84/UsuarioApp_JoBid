@@ -126,6 +126,7 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
       // firebase.auth().onAuthStateChanged(function(user) {
       //   console.log('find user facebook 3');
       //   console.log(user);
+      //   alert(JSON.stringify(user));
       //   user.sendEmailVerification().then( 
       //     (success) => {
       //       console.info("please verify your email - account correo");
@@ -146,9 +147,13 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
       //     }
       //   )  
       // });
+
+      firebase.auth().currentUser
       this.afAuth.authState.subscribe( user => {
         console.log('find user facebook 2');
         console.log(user);
+        // alert(JSON.stringify(user));
+
         if (user){
           if(user.providerData["0"].providerId == "facebook.com"){
             if(this.userData['picture'] == '' || this.userData['picture'] ==  undefined || this.userData['picture']== null){ 
@@ -156,8 +161,8 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
               this.userData['name']=this.userData['username']= user.providerData["0"].displayName;
               this.userData['email']=  user.providerData["0"].email;
               this.userData['picture']=  user.providerData["0"].photoURL;
-              if(user.providerData["0"].photoUR != undefined  && user.providerData["0"].photoUR != ''){
-                this.foto = user.providerData["0"].photoUR;
+              if(user.providerData["0"].photoURL != undefined  && user.providerData["0"].photoURL != ''){
+                this.foto = user.providerData["0"].photoURL;
                 this.disImg = false;
               }
               console.log(this.userData);

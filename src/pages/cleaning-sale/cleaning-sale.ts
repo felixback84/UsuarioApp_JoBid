@@ -17,7 +17,7 @@ import { SaleService } from '../../services/sale.service';
 import { ProfessionalsService } from '../../services/professionals.service';
 import { NotificacionService } from '../../services/notificacion.service';
 import { GeocodeServiceProvider } from '../../providers/geocode-service';
-import { log } from 'util';
+// import { log } from 'util';
 
 /**
  * Generated class for the CleanigSalePage page.

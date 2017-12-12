@@ -36,6 +36,11 @@
     },
     "ionic-plugin-keyboard": {
       "PACKAGE_NAME": "com.Jobid.user"
+    },
+    "cordova-plugin-facebook4": {
+      "APP_ID": "539258269738575",
+      "APP_NAME": "JoBid Usuario",
+      "PACKAGE_NAME": "com.Jobid.user"
     }
   },
   "dependent_plugins": {

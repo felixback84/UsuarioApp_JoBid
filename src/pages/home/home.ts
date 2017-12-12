@@ -1,4 +1,4 @@
-//import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { Facebook } from '@ionic-native/facebook';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -24,9 +24,9 @@ providerFaceBook:any;
 userDataUpdate:any;
   constructor(
     public navCtrl: NavController, 
-    //private facebook:  Facebook,
+    private fb: Facebook,
     private userService : UserService,
-    public afAuth: AngularFireAuth  
+    public afAuth: AngularFireAuth, 
   ) {
     //-identifica y redirecciona usuario logeado.
     this.usuarioLogeado();
@@ -82,45 +82,106 @@ ionViewDidLoad() {
   facebookir(){
     let goPagePrehome:boolean = false;
     let userDB:any;
-    var provider = new firebase.auth.FacebookAuthProvider();
-    provider.addScope('email');
-    firebase.auth().signInWithPopup(provider)
-      .then(res => {
-        //console.log(res.user.email);
-        console.log(res);
-        console.info(JSON.stringify(res));
-        //console.log(res);
-        this.userService.getUsers()
-        .forEach((users) => {
-          //console.log(users);
-          users.forEach((user) =>{
-            //console.log(user);
-            // if(user['user_email'] == res.user.email){
-            //     // console.log('res.user.email');
-            //     // console.log(user);
-            //     userDB = user;
-            //     goPagePrehome= true;
-            // }
-            //dentro de res.user -> hay otros datos de usuario -> email?
-            //if(user.providerData["0"].providerId == "facebook.com"){
-                if(user['user_email'] == res.additionalUserInfo.profile.email){
-                  // console.log('res.additionalUserInfo.profile.email');
-                  // console.log(user);
-                  userDB = user;
-                  goPagePrehome= true;
+    this.fb.login(['email'])
+    .then((res) => {
+      console.log('Logged into Facebook!', res);
+      // alert(JSON.stringify(res));
+      let credencial = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
+      firebase.auth().signInWithCredential(credencial).then(
+        (info)=>{
+          // alert(JSON.stringify(info));
+          // alert(JSON.stringify(info.providerData['0']['email']));
+          // alert(JSON.stringify(info.providerData));
+          // console.log(info);
+          // console.log(info.providerData.email);
+          // console.log(info.providerData);
+          if(info.providerData['0']['email'] != undefined){
+            // this.userService.getUserEmailPerfil(info.providerData['0']['email']).subscribe(
+            //   (emailBD)=>{
+            //     alert(JSON.stringify(emailBD));
+            //     if(emailBD == info.providerData.email){
+            //     }
+            //   });
+            this.userService.getUsers()
+            .forEach((users) => {
+              //console.log(users);
+              users.forEach((user) =>{
+                //console.log(user);
+                // if(user['user_email'] == res.user.email){
+                //     // console.log('res.user.email');
+                //     // console.log(user);
+                //     userDB = user;
+                //     goPagePrehome= true;
+                // }
+                //dentro de res.user -> hay otros datos de usuario -> email?
+                //if(user.providerData["0"].providerId == "facebook.com"){
+                    if(user['user_email'] == info.providerData['0']['email']){
+                      // console.log('res.additionalUserInfo.profile.email');
+                      // console.log(user);
+                      userDB = user;
+                      goPagePrehome= true;
+                    }
+                //}
+              });
+              //console.log(userDB);
+              if(!goPagePrehome){
+                //   this.goNextPagePrehome(userDB);
+                // }else{
+                  this.singup();
                 }
-            //}
-          });
-          //console.log(userDB);
-          //console.log(goPagePrehome);
-          if(!goPagePrehome){
-          //   this.goNextPagePrehome(userDB);
-          // }else{
-            this.singup();
+            });
           }
-        });
-      });
+        }
+      ).catch();
+    })
+    .catch(e => {
+      console.log('Error zing into Facebook', e)
+      alert(JSON.stringify(e));
+    });
   }
+
+  // facebookir(){
+  //   let goPagePrehome:boolean = false;
+  //   let userDB:any;
+  //   var provider = new firebase.auth.FacebookAuthProvider();
+  //   provider.addScope('email');
+  //   firebase.auth().signInWithPopup(provider)
+  //     .then(res => {
+  //       //console.log(res.user.email);
+  //       console.log(res);
+  //       console.info(JSON.stringify(res));
+  //       //console.log(res);
+  //       this.userService.getUsers()
+  //       .forEach((users) => {
+  //         //console.log(users);
+  //         users.forEach((user) =>{
+  //           //console.log(user);
+  //           // if(user['user_email'] == res.user.email){
+  //           //     // console.log('res.user.email');
+  //           //     // console.log(user);
+  //           //     userDB = user;
+  //           //     goPagePrehome= true;
+  //           // }
+  //           //dentro de res.user -> hay otros datos de usuario -> email?
+  //           //if(user.providerData["0"].providerId == "facebook.com"){
+  //               if(user['user_email'] == res.additionalUserInfo.profile.email){
+  //                 // console.log('res.additionalUserInfo.profile.email');
+  //                 // console.log(user);
+  //                 userDB = user;
+  //                 goPagePrehome= true;
+  //               }
+  //           //}
+  //         });
+  //         //console.log(userDB);
+  //         //console.log(goPagePrehome);
+  //         if(!goPagePrehome){
+  //         //   this.goNextPagePrehome(userDB);
+  //         // }else{
+  //           this.singup();
+  //         }
+  //       });
+  //     });
+  // }
   goNextPagePrehome(datos:any){
     //console.log(datos);
     //console.log(datos['$key']);

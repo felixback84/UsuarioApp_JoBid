@@ -16,7 +16,7 @@ import { AgmCoreModule } from '@agm/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
 import { LocalNotifications } from '@ionic-native/local-notifications';
-// import { Facebook } from '@ionic-native/facebook';
+import { Facebook } from '@ionic-native/facebook';
 //import firebase from 'firebase';
 //import { EmailComposer } from '@ionic-native/email-composer';
 
@@ -54,7 +54,6 @@ import { ServicesBeautyPage } from '../pages/services-beauty/services-beauty';
 import { MyServicesPage } from '../pages/my-services/my-services';
 import { MyserviceinfoPage } from '../pages/myserviceinfo/myserviceinfo';
 import { AddPaymentMethodPage } from '../pages/add-payment-method/add-payment-method';
-
 //import { ProfessionPage } from '../pages/profession/profession';
 
 //---services
@@ -197,7 +196,7 @@ export const googleMapsKey = 'AIzaSyB8zF6lhZegDjsV_mrqxd9Fb3YFTw2__AA';
     EncriptyService,
     Geolocation,
     NativeGeocoder,
-    // Facebook,
+    Facebook,
     // Media,
     NativeAudio,
     Camera,
