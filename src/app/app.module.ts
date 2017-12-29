@@ -72,9 +72,9 @@ import { NotificacionService } from '../services/notificacion.service';
 //pipe
 
 import { OrdenarPipe } from '../pipes/ordenar/ordenar';
+import { RemoverPipe } from '../pipes/remover/remover';
 // import { NewAddressPipe } from '../pipes/new-address/new-address';
 // import { UpdateUserPipe } from '../pipes/update-user/update-user';
-import { RemoverPipe } from '../pipes/remover/remover';
 export const firebaseConfig = {
   apiKey: "AIzaSyBmrc2CjBbIJD_Pu_kkCcV8qNXJfsEBaxo",
   authDomain: "usuarioappjobid.firebaseapp.com",

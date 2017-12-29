@@ -80,8 +80,8 @@ ionViewDidLoad() {
   }
 
   facebookir(){
-    let goPagePrehome:boolean = false;
-    let userDB:any;
+    // let goPagePrehome:boolean = false;
+    // let userDB:any;
     this.fb.login(['email'])
     .then((res) => {
       console.log('Logged into Facebook!', res);
@@ -102,34 +102,35 @@ ionViewDidLoad() {
             //     if(emailBD == info.providerData.email){
             //     }
             //   });
-            this.userService.getUsers()
-            .forEach((users) => {
-              //console.log(users);
-              users.forEach((user) =>{
-                //console.log(user);
-                // if(user['user_email'] == res.user.email){
-                //     // console.log('res.user.email');
-                //     // console.log(user);
-                //     userDB = user;
-                //     goPagePrehome= true;
-                // }
-                //dentro de res.user -> hay otros datos de usuario -> email?
-                //if(user.providerData["0"].providerId == "facebook.com"){
-                    if(user['user_email'] == info.providerData['0']['email']){
-                      // console.log('res.additionalUserInfo.profile.email');
-                      // console.log(user);
-                      userDB = user;
-                      goPagePrehome= true;
-                    }
-                //}
-              });
-              //console.log(userDB);
-              if(!goPagePrehome){
-                //   this.goNextPagePrehome(userDB);
-                // }else{
-                  this.singup();
-                }
-            });
+            // this.userService.getUsers()
+            // .forEach((users) => {
+            //   //console.log(users);
+            //   users.forEach((user) =>{
+            //     //console.log(user);
+            //     // if(user['user_email'] == res.user.email){
+            //     //     // console.log('res.user.email');
+            //     //     // console.log(user);
+            //     //     userDB = user;
+            //     //     goPagePrehome= true;
+            //     // }
+            //     //dentro de res.user -> hay otros datos de usuario -> email?
+            //     //if(user.providerData["0"].providerId == "facebook.com"){
+            //         if(user['user_email'] == info.providerData['0']['email']){
+            //           // console.log('res.additionalUserInfo.profile.email');
+            //           // console.log(user);
+            //           userDB = user;
+            //           goPagePrehome= true;
+            //         }
+            //     //}
+            //   });
+            //   //console.log(userDB);
+            //   if(!goPagePrehome){
+            //     //   this.goNextPagePrehome(userDB);
+            //     // }else{
+            //       this.singup();
+            //     }
+            // });
+            this.singup();
           }
         }
       ).catch();

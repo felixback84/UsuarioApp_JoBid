@@ -3909,7 +3909,7 @@ ion-item.item-md ion-icon[item-start], ion-item.item-ios ion-icon[item-start] {
   padding: 10px;
   color: white;
   margin: 0px;
-  height: 48px;
+  height: 57px;
 }
 
 ion-item.item-md ion-input, ion-item.item-md ion-select, ion-item.item-ios ion-input, ion-item.item-ios ion-select {
@@ -3940,12 +3940,20 @@ ion-item.item-md ion-select div.select-icon, ion-item.item-ios ion-select div.se
   margin-top: 7px;
 }
 
-ion-item.item-md ion-select.mitad, ion-item.item-md ion-input.mitad, ion-item.item-ios ion-select.mitad, ion-item.item-ios ion-input.mitad {
+ion-item.item-md.mitad, ion-item.item-md.mitad, ion-item.item-md ion-select.mitad, ion-item.item-md ion-input.mitad, ion-item.item-ios.mitad, ion-item.item-ios.mitad, ion-item.item-ios ion-select.mitad, ion-item.item-ios ion-input.mitad {
   width: 49%;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
 }
 
-ion-item.item-md ion-select.mitad:first-child, ion-item.item-md ion-input.mitad:first-child, ion-item.item-ios ion-select.mitad:first-child, ion-item.item-ios ion-input.mitad:first-child {
+ion-item.item-md.mitad:first-child, ion-item.item-md.mitad:first-child, ion-item.item-md ion-select.mitad:first-child, ion-item.item-md ion-input.mitad:first-child, ion-item.item-ios.mitad:first-child, ion-item.item-ios.mitad:first-child, ion-item.item-ios ion-select.mitad:first-child, ion-item.item-ios ion-input.mitad:first-child {
   margin-right: 2%;
+}
+
+ion-item.item-md.mitad.mitadEspacio, ion-item.item-md.mitad.mitadEspacio, ion-item.item-md ion-select.mitad.mitadEspacio, ion-item.item-md ion-input.mitad.mitadEspacio, ion-item.item-ios.mitad.mitadEspacio, ion-item.item-ios.mitad.mitadEspacio, ion-item.item-ios ion-select.mitad.mitadEspacio, ion-item.item-ios ion-input.mitad.mitadEspacio {
+  margin-right: 0.5%;
 }
 
 ion-item.item-md.item-radio-checked.item-md ion-label, ion-item.item-md .item-radio-checked.item-ios ion-label, ion-item.item-ios.item-radio-checked.item-md ion-label, ion-item.item-ios .item-radio-checked.item-ios ion-label {
@@ -26285,6 +26293,10 @@ page-cleaning-contractor .Calificacion.Usuario label {
   font-size: 28px;
 }
 
+page-cleaning-contractor .list-md > .item-block:last-child ion-label, page-cleaning-contractor .list-md > .item-block:last-child .item-inner, page-cleaning-contractor .list-md > .item-wrapper:last-child ion-label, page-cleaning-contractor .list-md > .item-wrapper:last-child .item-inner {
+  padding: 0;
+}
+
 page-cleaning-info ion-col#btn-camera {
   padding-top: 0px;
 }
@@ -26375,6 +26387,10 @@ page-cleaning-info-service .mapa agm-map {
   width: 100%;
   height: 300px;
   background: orange;
+}
+
+page-cleaning-info-service ion-grid .col .label {
+  padding: 0;
 }
 
 page-cleaning-info-service ion-item.item-md ion-label.label, page-cleaning-info-service ion-item.item-ios ion-label.label {
@@ -26800,8 +26816,6 @@ page-edit-user img {
   display: block;
   width: 100px;
   height: 100px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 page-edit-user h3 {
@@ -26820,6 +26834,11 @@ page-edit-user #signup-heading2 {
 
 page-edit-user .force-back-button .back-button {
   display: inline-block;
+}
+
+page-edit-user ion-label.label {
+  background: transparent !important;
+  padding: 0;
 }
 
 page-edit-user ion-list ion-grid.grid {
@@ -27543,6 +27562,11 @@ page-singup .button-outline-md-danger {
 
 page-singup .row .list-md, page-singup .row .list-ios {
   margin: 0;
+}
+
+page-singup ion-label.label {
+  background: transparent !important;
+  padding: 0;
 }
 
 page-singup ion-item.item-md ion-label.label img, page-singup ion-item.item-ios ion-label.label img {

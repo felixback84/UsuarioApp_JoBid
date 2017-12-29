@@ -19,6 +19,7 @@ page-singup {
 			margin:0;
 		}
 	}
+	ion-label.label{background: transparent !important; padding: 0;}
 	ion-item.item-md ion-label.label, ion-item.item-ios ion-label.label{
 			img{
 				width: 100px;

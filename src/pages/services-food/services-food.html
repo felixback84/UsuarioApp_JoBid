@@ -51,10 +51,12 @@
       <ion-row *ngIf="booleanBartenders">
         <ion-col>
           <ion-list>
-            <ion-item>
+            <ion-item class="mitad mitadEspacio">
               <ion-icon name="beaker" item-start></ion-icon>
-              <ion-input type="text" placeholder="Event" class="mitad"[(ngModel)]="eventBart" formControlName="eventBart" name="eventBart"></ion-input>
-              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="tiemBart" formControlName="tiemBart" name="tiemBart"></ion-input>
+              <ion-input type="text" placeholder="Event" [(ngModel)]="eventBart" formControlName="eventBart" name="eventBart"></ion-input>
+            </ion-item>
+            <ion-item class="mitad">
+              <ion-input type="number" placeholder="Time"  [(ngModel)]="tiemBart" formControlName="tiemBart" name="tiemBart"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -62,10 +64,12 @@
       <ion-row *ngIf="booleanWaitress">
         <ion-col>
           <ion-list>
-            <ion-item>
+            <ion-item class="mitad mitadEspacio">
               <ion-icon name="beaker" item-start></ion-icon>
-              <ion-input type="text" placeholder="Event" class="mitad"[(ngModel)]="eventWaiter" formControlName="eventWaiter" name="eventWaiter"></ion-input>
-              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="timeWaiter" formControlName="timeWaiter" name="timeWaiter"></ion-input>
+              <ion-input type="text" placeholder="Event" [(ngModel)]="eventWaiter" formControlName="eventWaiter" name="eventWaiter"></ion-input>
+            </ion-item>
+            <ion-item class="mitad">
+              <ion-input type="number" placeholder="Time"  [(ngModel)]="timeWaiter" formControlName="timeWaiter" name="timeWaiter"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -83,10 +87,12 @@
       <ion-row *ngIf="booleanChef">
         <ion-col>
           <ion-list>
-            <ion-item>
+            <ion-item class="mitad mitadEspacio">
               <ion-icon name="beaker" item-start></ion-icon>
-              <ion-input type="text" placeholder="Menu" class="mitad"[(ngModel)]="menuChef" formControlName="menuChef" name="menuChef"></ion-input>
-              <ion-input type="number" placeholder="Diners" class="mitad" [(ngModel)]="dinersChef" formControlName="dinersChef" name="dinersChef"></ion-input>
+              <ion-input type="text" placeholder="Menu" [(ngModel)]="menuChef" formControlName="menuChef" name="menuChef"></ion-input>
+            </ion-item>
+            <ion-item class="mitad">
+              <ion-input type="number" placeholder="Diners"  [(ngModel)]="dinersChef" formControlName="dinersChef" name="dinersChef"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -94,10 +100,12 @@
       <ion-row *ngIf="booleanRunners">
         <ion-col>
           <ion-list>
-            <ion-item>
+            <ion-item class="mitad mitadEspacio">
               <ion-icon name="beaker" item-start></ion-icon>
-              <ion-input type="text" placeholder="Event" class="mitad"[(ngModel)]="eventRunners" formControlName="eventRunners" name="eventRunners"></ion-input>
-              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="tiemRunners" formControlName="tiemRunners" name="tiemRunners"></ion-input>
+              <ion-input type="text" placeholder="Event" [(ngModel)]="eventRunners" formControlName="eventRunners" name="eventRunners"></ion-input>
+            </ion-item>
+            <ion-item class="mitad">
+              <ion-input type="number" placeholder="Time"  [(ngModel)]="tiemRunners" formControlName="tiemRunners" name="tiemRunners"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -115,10 +123,12 @@
       <ion-row *ngIf="booleanValetParking">
         <ion-col>
           <ion-list>
-            <ion-item>
+            <ion-item class="mitad mitadEspacio">
               <ion-icon name="beaker" item-start></ion-icon>
-              <ion-input type="text" placeholder="Place" class="mitad"[(ngModel)]="placeParking" formControlName="placeParking" name="placeParking"></ion-input>
-              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="timeParking" formControlName="timeParking" name="timeParking"></ion-input>
+              <ion-input type="text" placeholder="Place" [(ngModel)]="placeParking" formControlName="placeParking" name="placeParking"></ion-input>
+            </ion-item>
+            <ion-item class="mitad">
+              <ion-input type="number" placeholder="Time"  [(ngModel)]="timeParking" formControlName="timeParking" name="timeParking"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -136,10 +146,12 @@
       <ion-row *ngIf="booleanHostess">
         <ion-col>
           <ion-list>
-            <ion-item>
+            <ion-item class="mitad mitadEspacio">
               <ion-icon name="beaker" item-start></ion-icon>
-              <ion-input type="text" placeholder="Place" class="mitad"[(ngModel)]="placeHostess" formControlName="placeHostess" name="placeHostess"></ion-input>
-              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="timeHostess" formControlName="timeHostess" name="timeHostess"></ion-input>
+              <ion-input type="text" placeholder="Place" [(ngModel)]="placeHostess" formControlName="placeHostess" name="placeHostess"></ion-input>
+            </ion-item>
+            <ion-item class="mitad">
+              <ion-input type="number" placeholder="Time"  [(ngModel)]="timeHostess" formControlName="timeHostess" name="timeHostess"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>

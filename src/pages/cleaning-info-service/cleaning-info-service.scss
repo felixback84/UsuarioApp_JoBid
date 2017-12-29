@@ -26,6 +26,11 @@ page-cleaning-info-service {
 			background: orange;
 		}
 	}
+	ion-grid .col{
+		.label {
+			padding: 0;
+		}
+	}
 	ion-item.item-md ion-label.label, ion-item.item-ios ion-label.label{
 		margin: 0;
 	}

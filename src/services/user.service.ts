@@ -170,7 +170,10 @@ export class UserService{
 		let name = userData["name"];
 		let zipcode = userData["zipcode"];
 		let state = userData["state"];
-		let picture = userData["picture"];
+		let picture = '';
+		if(userData['picture'] != undefined){
+			picture = userData['picture'];
+		}
 		//let verificacion = userData["verificacion"];
 		let pais = userData["pais"];
 		let direccion = userData["direccion"];
@@ -199,7 +202,10 @@ export class UserService{
 		let name = userData["name"];
 		let zipcode = userData["zipcode"];
 		let state = userData["state"];
-		let picture = userData["picture"];
+		let picture = '';
+		if(userData['picture'] != undefined){
+			picture = userData['picture'];
+		}
 		//let verificacion = userData["verificacion"];
 		let pais = userData["pais"];
 		//let direccion = userData["direccion"];

@@ -55,9 +55,11 @@
       <!-- <ion-row> -->
         <ion-col>
           <ion-list>
-            <ion-item>
+            <ion-item class="mitad mitadEspacio">
               <ion-icon name="shirt" item-start></ion-icon>
-              <ion-input type="number" placeholder="# Rooms" class="mitad" [(ngModel)]="roomMaid" formControlName="roomMaid" name="roomMaid"></ion-input>
+              <ion-input type="number" placeholder="# Rooms" [(ngModel)]="roomMaid" formControlName="roomMaid" name="roomMaid"></ion-input>
+            </ion-item>
+            <ion-item class="mitad">
               <ion-input type="number" placeholder="# bathrooms" value="" class="batMaid" [(ngModel)]="batMaid" formControlName="batMaid" name="batMaid"></ion-input>
           </ion-item>
           </ion-list>
@@ -67,10 +69,12 @@
       <!-- <ion-row> -->
         <ion-col>
           <ion-list>
-            <ion-item>
+            <ion-item class="mitad mitadEspacio">
               <ion-icon name="car" item-start></ion-icon>
-              <ion-input type="text" placeholder="Type of car" class="mitad" [(ngModel)]="typeCar" formControlName="typeCar" name="typeCar"></ion-input>
-              <ion-input type="text" placeholder="Brand" class="mitad"  [(ngModel)]="brandCar" formControlName="brandCar" name="brandCar"></ion-input>
+              <ion-input type="text" placeholder="Type of car" [(ngModel)]="typeCar" formControlName="typeCar" name="typeCar"></ion-input>
+            </ion-item>
+            <ion-item class="mitad">
+              <ion-input type="text" placeholder="Brand"  [(ngModel)]="brandCar" formControlName="brandCar" name="brandCar"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -78,10 +82,12 @@
       <ion-row *ngIf="booleanPressureCleaning">
         <ion-col>
           <ion-list>
-            <ion-item>
+            <ion-item class="mitad mitadEspacio">
               <ion-icon name="shirt" item-start></ion-icon>
-              <ion-input type="text" placeholder="What to clean" class="mitad"[(ngModel)]="placeClean" formControlName="placeClean" name="placeClean"></ion-input>
-              <ion-input type="number" placeholder="Mts" class="mitad" [(ngModel)]="mtsClean" formControlName="mtsClean" name="mtsClean"></ion-input>
+              <ion-input type="text" placeholder="What to clean" [(ngModel)]="placeClean" formControlName="placeClean" name="placeClean"></ion-input>
+            </ion-item>
+            <ion-item class="mitad">
+              <ion-input type="number" placeholder="Mts"  [(ngModel)]="mtsClean" formControlName="mtsClean" name="mtsClean"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>
@@ -89,10 +95,12 @@
       <ion-row *ngIf="booleanCarpetCleaning">
         <ion-col>
           <ion-list>
-            <ion-item>
+            <ion-item class="mitad mitadEspacio">
               <ion-icon name="shirt" item-start></ion-icon>
-              <ion-input type="text" placeholder="Type of carpet" class="mitad"[(ngModel)]="typeCarpet" formControlName="typeCarpet" name="typeCarpet"></ion-input>
-              <ion-input type="number" placeholder="Mts" class="mitad" [(ngModel)]="mtsCarpet" formControlName="mtsCarpet" name="mtsCarpet"></ion-input>
+              <ion-input type="text" placeholder="Type of carpet" [(ngModel)]="typeCarpet" formControlName="typeCarpet" name="typeCarpet"></ion-input>
+            </ion-item>
+            <ion-item class="mitad ">
+              <ion-input type="number" placeholder="Mts"  [(ngModel)]="mtsCarpet" formControlName="mtsCarpet" name="mtsCarpet"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>

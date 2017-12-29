@@ -24,7 +24,9 @@ import { UserService } from '../../services/user.service';
 export class CleaningContractorPage {
   //- default parametros
   imgJobDefault ="assets/img/professions/cleaning.png";
-  galleryJobDefault ="assets/img/gallery.png";
+  // galleryJobDefault ="assets/img/gallery.png";
+  galleryJobDefault ="";
+  disGallery:boolean = true;
   //-datos traidos de anterior page
   datasService:any;
   dataService:any;
@@ -39,6 +41,10 @@ galleryAJobr:any;
 galleryBJobr:any;
 galleryCJobr:any;
 galleryDJobr:any;
+disableGalleryAJobr:boolean= true;
+disableGalleryBJobr:boolean= true;
+disableGalleryCJobr:boolean= true;
+disableGalleryDJobr:boolean= true;
 nameJobr:any;
 certificateJobr:any;
 insuranceJobr:any;
@@ -183,16 +189,21 @@ starJobr:any;
         this.presentationJobr= infoService.serv_detail.serv_moreInformation;
 
         if(infoService.serv_detail.serv_gallery){
+          this.disGallery = false;
           if(infoService.serv_detail.serv_gallery.prof_galleryA && infoService.serv_detail.serv_gallery.prof_galleryA != ''){
+            this.disableGalleryAJobr = false;
             this.galleryAJobr = infoService.serv_detail.serv_gallery.prof_galleryA;
           }
           if(infoService.serv_detail.serv_gallery.prof_galleryB && infoService.serv_detail.serv_gallery.prof_galleryB != ''){
+            this.disableGalleryBJobr = false;
             this.galleryBJobr = infoService.serv_detail.serv_gallery.prof_galleryB;
           }
           if(infoService.serv_detail.serv_gallery.prof_galleryC && infoService.serv_detail.serv_gallery.prof_galleryC != ''){
+            this.disableGalleryCJobr = false;
             this.galleryCJobr = infoService.serv_detail.serv_gallery.prof_galleryC;
           }
           if(infoService.serv_detail.serv_gallery.prof_galleryD && infoService.serv_detail.serv_gallery.prof_galleryD != ''){
+            this.disableGalleryDJobr = false;
             this.galleryDJobr = infoService.serv_detail.serv_gallery.prof_galleryD;
           }
         }

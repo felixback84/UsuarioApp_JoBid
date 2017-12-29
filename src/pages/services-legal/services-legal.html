@@ -41,10 +41,12 @@
       <ion-row *ngIf="booleanNotary">
         <ion-col>
           <ion-list>
-            <ion-item>
+            <ion-item class="mitad mitadEspacio">
               <ion-icon name="people" item-start></ion-icon>
-              <ion-input type="text" placeholder="Type of document" class="mitad"[(ngModel)]="documentNotary" formControlName="documentNotary" name="documentNotary"></ion-input>
-              <ion-input type="text" placeholder="Event" class="mitad" [(ngModel)]="eventNotary" formControlName="eventNotary" name="eventNotary"></ion-input>
+              <ion-input type="text" placeholder="Type of document" [(ngModel)]="documentNotary" formControlName="documentNotary" name="documentNotary"></ion-input>
+            </ion-item>
+            <ion-item class="mitad">
+              <ion-input type="text" placeholder="Event"  [(ngModel)]="eventNotary" formControlName="eventNotary" name="eventNotary"></ion-input>
           </ion-item>
           </ion-list>
         </ion-col>

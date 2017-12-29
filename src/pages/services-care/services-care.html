@@ -96,10 +96,12 @@
       <!-- <ion-row> -->
         <ion-col>
           <ion-list>
-            <ion-item>
+            <ion-item class="mitad mitadEspacio">
                 <ion-icon name="clipboard" item-start></ion-icon>
-                <ion-input type="text" placeholder="Race" class="mitad" [(ngModel)]="raceDog" formControlName="raceDog" name="raceDog"></ion-input>
-                <ion-input type="number" placeholder="# Dogs" class="mitad" [(ngModel)]="numDog" formControlName="numDog" name="numDog"></ion-input>
+                <ion-input type="text" placeholder="Race" [(ngModel)]="raceDog" formControlName="raceDog" name="raceDog"></ion-input>
+            </ion-item>
+            <ion-item class="mitad">
+                <ion-input type="number" placeholder="# Dogs"  [(ngModel)]="numDog" formControlName="numDog" name="numDog"></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -121,10 +123,12 @@
       <!-- <ion-row> -->
         <ion-col>
           <ion-list>
-            <ion-item>
+            <ion-item class="mitad mitadEspacio">
               <ion-icon name="basket" item-start></ion-icon>
-              <ion-input type="text" placeholder="Type of purchase." class="mitad" [(ngModel)]="purchaseShopper" formControlName="purchaseShopper" name="purchaseShopper"></ion-input>
-              <ion-input type="text" placeholder="Type of place"  class="mitad" [(ngModel)]="placeShopper" formControlName="placeShopper" name="placeShopper"></ion-input>
+              <ion-input type="text" placeholder="Type of purchase." [(ngModel)]="purchaseShopper" formControlName="purchaseShopper" name="purchaseShopper"></ion-input>
+            </ion-item>
+            <ion-item class="mitad">
+              <ion-input type="text" placeholder="Type of place"  [(ngModel)]="placeShopper" formControlName="placeShopper" name="placeShopper"></ion-input>
           </ion-item>
         </ion-list>
       </ion-col>

@@ -42,10 +42,12 @@
         <ion-row *ngIf="booleanDayVIPChofer">
           <ion-col>
             <ion-list>
-              <ion-item>
+              <ion-item class="mitad mitadEspacio">
                 <ion-icon name="car" item-start></ion-icon>
-                <ion-input type="text" placeholder="Car type" class="mitad"[(ngModel)]="carVip" formControlName="carVip" name="carVip"></ion-input>
-                <ion-input type="number" placeholder="Hours" class="mitad" [(ngModel)]="timeVip" formControlName="timeVip" name="timeVip"></ion-input>
+                <ion-input type="text" placeholder="Car type" [(ngModel)]="carVip" formControlName="carVip" name="carVip"></ion-input>
+              </ion-item>
+              <ion-item class="mitad">
+                <ion-input type="number" placeholder="Hours"  [(ngModel)]="timeVip" formControlName="timeVip" name="timeVip"></ion-input>
             </ion-item>
             </ion-list>
           </ion-col>
@@ -66,7 +68,7 @@
             <ion-list>
               <ion-item>
                 <ion-icon name="pin" item-start></ion-icon>
-                <ion-input type="text" placeholder="Start address" class="mitad"[(ngModel)]="addressIniTaxi" formControlName="addressIniTaxi" name="addressIniTaxi"></ion-input>
+                <ion-input type="text" placeholder="Start address" [(ngModel)]="addressIniTaxi" formControlName="addressIniTaxi" name="addressIniTaxi"></ion-input>
               </ion-item>
               </ion-list>
             </ion-col>
@@ -76,7 +78,7 @@
               <ion-list>
                 <ion-item>
                   <ion-icon name="pin" item-start></ion-icon>
-                  <ion-input type="text" placeholder="Destination address" class="mitad" [(ngModel)]="addressFinTaxi" formControlName="addressFinTaxi" name="addressFinTaxi"></ion-input>
+                  <ion-input type="text" placeholder="Destination address"  [(ngModel)]="addressFinTaxi" formControlName="addressFinTaxi" name="addressFinTaxi"></ion-input>
             </ion-item>
             </ion-list>
           </ion-col>
@@ -94,10 +96,12 @@
         <ion-row *ngIf="booleanCarPool">
           <ion-col>
             <ion-list>
-              <ion-item>
+              <ion-item class="mitad mitadEspacio">
                 <ion-icon name="car" item-start></ion-icon>
-                <ion-input type="text" placeholder="# Passengers" class="mitad"[(ngModel)]="passePool" formControlName="passePool" name="passePool"></ion-input>
-                <ion-input type="text" placeholder="Distance" class="mitad" [(ngModel)]="distancePool" formControlName="distancePool" name="distancePool"></ion-input>
+                <ion-input type="text" placeholder="# Passengers" [(ngModel)]="passePool" formControlName="passePool" name="passePool"></ion-input>
+              </ion-item>
+              <ion-item class="mitad">
+                <ion-input type="text" placeholder="Distance"  [(ngModel)]="distancePool" formControlName="distancePool" name="distancePool"></ion-input>
             </ion-item>
             </ion-list>
           </ion-col>
@@ -125,10 +129,12 @@
         <ion-row *ngIf="booleanMovingServices">
           <ion-col>
             <ion-list>
-              <ion-item>
+              <ion-item class="mitad mitadEspacio">
                 <ion-icon name="cube" item-start></ion-icon>
-                <ion-input type="number" placeholder="# boxes" class="mitad"[(ngModel)]="boxMovil" formControlName="boxMovil" name="boxMovil"></ion-input>
-                <ion-input type="number" placeholder="# furniture" class="mitad" [(ngModel)]="furniMovil" formControlName="furniMovil" name="furniMovil"></ion-input>
+                <ion-input type="number" placeholder="# boxes" [(ngModel)]="boxMovil" formControlName="boxMovil" name="boxMovil"></ion-input>
+              </ion-item>
+              <ion-item class="mitad">
+                <ion-input type="number" placeholder="# furniture"  [(ngModel)]="furniMovil" formControlName="furniMovil" name="furniMovil"></ion-input>
             </ion-item>
             </ion-list>
           </ion-col>
@@ -136,10 +142,12 @@
         <ion-row *ngIf="booleanDelivery">
           <ion-col>
             <ion-list>
-              <ion-item>
+              <ion-item class="mitad mitadEspacio">
                 <ion-icon name="build" item-start></ion-icon>
-                <ion-input type="text" placeholder="Object that is sent" class="mitad"[(ngModel)]="objDelivery" formControlName="objDelivery" name="objDelivery"></ion-input>
-                <ion-input type="text" placeholder="Shipping Address" class="mitad" [(ngModel)]="addressDelivery" formControlName="addressDelivery" name="addressDelivery"></ion-input>
+                <ion-input type="text" placeholder="Object that is sent" [(ngModel)]="objDelivery" formControlName="objDelivery" name="objDelivery"></ion-input>
+              </ion-item>
+              <ion-item class="mitad">
+                <ion-input type="text" placeholder="Shipping Address"  [(ngModel)]="addressDelivery" formControlName="addressDelivery" name="addressDelivery"></ion-input>
             </ion-item>
             </ion-list>
           </ion-col>

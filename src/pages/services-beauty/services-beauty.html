@@ -39,11 +39,13 @@
       <ion-row *ngIf="booleanPersonaTrainer">
         <ion-col>
           <ion-list>
-            <ion-item>
+            <ion-item class="mitad mitadEspacio">
               <ion-icon name="person" item-start></ion-icon>
-              <ion-input type="text" placeholder="Exercise" class="mitad"[(ngModel)]="exerciseTrainer" formControlName="exerciseTrainer" name="exerciseTrainer"></ion-input>
-              <ion-input type="number" placeholder="Time" class="mitad" [(ngModel)]="timeTrainer" formControlName="timeTrainer" name="timeTrainer"></ion-input>
-          </ion-item>
+              <ion-input type="text" placeholder="Exercise" [(ngModel)]="exerciseTrainer" formControlName="exerciseTrainer" name="exerciseTrainer"></ion-input>
+            </ion-item>
+            <ion-item class="mitad">
+              <ion-input type="number" placeholder="Time"  [(ngModel)]="timeTrainer" formControlName="timeTrainer" name="timeTrainer"></ion-input>
+            </ion-item>
           </ion-list>
         </ion-col>
       </ion-row>

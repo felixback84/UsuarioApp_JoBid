@@ -34,7 +34,8 @@ export class CleaningSalePage {
 
   //--valiables por defecto
   imgJobDefault ="assets/img/professions/cleaning.png";
-  galleryJobDefault ="assets/img/gallery.png";
+  // galleryJobDefault ="assets/img/gallery.png";
+  galleryJobDefault ="";
   MenosPrecio:any;
   //--sale
   dataOffer:any;
@@ -45,6 +46,7 @@ export class CleaningSalePage {
   WorkersMap:any=[];
   dataService:any;
   arrayIdProveder:any=[];
+  contWorkWin:number= 0;
   //--datas
   userActual:any;
   SubServiceActual:any;
@@ -148,9 +150,14 @@ export class CleaningSalePage {
     let galleryBJobr = this.galleryJobDefault;
     let galleryCJobr = this.galleryJobDefault;
     let galleryDJobr = this.galleryJobDefault;
+    let galleryAJobrShow = false;
+    let galleryBJobrShow = false;
+    let galleryCJobrShow = false;
+    let galleryDJobrShow = false;
     let presentationJobr='';
     let certificateJobr = true;
     let insuranceJobr = true;
+    let galleryShow = false;
 
     for(index in this.WorkersInfo){
         if(this.WorkersInfo[index]['$key'] == id){
@@ -178,17 +185,22 @@ export class CleaningSalePage {
               // console.log(certificateJobr);
               // console.log(insuranceJobr);
               if(infoService.serv_detail.serv_gallery){
+                galleryShow = true;
                 if(infoService.serv_detail.serv_gallery.prof_galleryA && infoService.serv_detail.serv_gallery.prof_galleryA != ''){
                   galleryAJobr = infoService.serv_detail.serv_gallery.prof_galleryA;
+                  galleryAJobrShow = true;
                 }
                 if(infoService.serv_detail.serv_gallery.prof_galleryB && infoService.serv_detail.serv_gallery.prof_galleryB != ''){
                   galleryBJobr = infoService.serv_detail.serv_gallery.prof_galleryB;
+                  galleryBJobrShow = true;
                 }
                 if(infoService.serv_detail.serv_gallery.prof_galleryC && infoService.serv_detail.serv_gallery.prof_galleryC != ''){
                   galleryCJobr = infoService.serv_detail.serv_gallery.prof_galleryC;
+                  galleryCJobrShow = true;
                 }
                 if(infoService.serv_detail.serv_gallery.prof_galleryD && infoService.serv_detail.serv_gallery.prof_galleryD != ''){
                   galleryDJobr = infoService.serv_detail.serv_gallery.prof_galleryD;
+                  galleryDJobrShow = true;
                 }
               }
             }
@@ -229,12 +241,21 @@ export class CleaningSalePage {
           contenido +='</p></div>';
           contenido += "<h5>Presentation</h5><p>"+presentationJobr+"</p>";
           // contenido += id+'';
-          contenido +='<h5>Gallery</h5>';
-          contenido +='<img src="'+galleryAJobr+'" alt="" class="imagen50">';
-          contenido +='<img src="'+galleryBJobr+'" alt="" class="imagen50">';
-          contenido +='<img src="'+galleryCJobr+'" alt="" class="imagen50">';
-          contenido +='<img src="'+galleryDJobr+'" alt="" class="imagen50">';
-          
+          if(galleryShow == true){
+            contenido +='<h5>Gallery</h5>';
+            if (galleryAJobrShow == true){
+              contenido +='<img src="'+galleryAJobr+'" alt="" class="imagen50">';
+            }
+            if (galleryBJobrShow == true){
+              contenido +='<img src="'+galleryBJobr+'" alt="" class="imagen50">';
+            }
+            if (galleryCJobrShow == true){
+              contenido +='<img src="'+galleryCJobr+'" alt="" class="imagen50">';
+            }
+            if (galleryDJobrShow == true){
+              contenido +='<img src="'+galleryDJobr+'" alt="" class="imagen50">';
+            }
+          }
           // console.log('commentsJobr');
           // console.log(commentsJobr);
           let cont=0;
@@ -405,7 +426,21 @@ export class CleaningSalePage {
             // console.log(error);
             console.info('experando localizacion user');
           }
-          this.Workers.push({"id":trabajador,"offer":trabajadores[trabajador]['offer'],"img":img,"name":user.prof_name});
+          // this.Workers.push({"id":trabajador,"offer":trabajadores[trabajador]['offer'],"img":img,"name":user.prof_name});
+          console.log(this.Workers);
+          let ListaWorkers = this.Workers;
+          console.log(ListaWorkers);
+          let idKeyWorker = ListaWorkers.findIndex( keysWorkers =>
+            keysWorkers.id == trabajador);
+          console.log(idKeyWorker);
+          if(idKeyWorker >=  0){
+            console.log('if 1');
+            this.Workers[idKeyWorker]= ({"id":trabajador,"offer":trabajadores[trabajador]['offer'],"img":img,"name":user.prof_name});
+          }else{
+            console.log('if -1');
+            this.Workers.push({"id":trabajador,"offer":trabajadores[trabajador]['offer'],"img":img,"name":user.prof_name});
+          }
+          console.log(this.Workers);
           userSubs.unsubscribe();
         });
     }
@@ -417,27 +452,32 @@ export class CleaningSalePage {
 
   ganador(){
     console.info('ganador');
-    let contWorkWin = 0;
+    this.contWorkWin = 0;
+    let contWorkInSale = 0;
     // console.log(this.Workers.length);
     // console.log('this.Workers.length');
     if(this.Workers.length != 0){
       for(let index in this.Workers){
+        contWorkInSale = contWorkInSale +1;
         // console.log(index);
         console.log(this.MenosPrecio);
         console.log(this.Workers[index]);
         if(this.MenosPrecio == Number(this.Workers[index]['offer']) ){
-          contWorkWin = 1;
+          this.contWorkWin = 1;
           this.goCleaningContractor(this.Workers[index]);
           this.saleService.setStatus(this.userActual,this.keyOffer,'Evaluation');
           this.offerService.setStatus(this.keyOffer,'Evaluation');
           this.offerService.dropTimer(this.keyOffer);
           this.showAlertFinOffer();
           console.info('provider with offer');
+        }else{
+          console.log(contWorkInSale);
+          console.log(this.Workers.length);
+          if( this.contWorkWin == 0 && contWorkInSale == this.Workers.length){
+            console.info('providers without offers');
+            this.goServiceSinOff();
+          }
         }
-      }
-      if( contWorkWin == 0 ){
-        console.info('providers without offers');
-        this.goServiceSinOff();
       }
     }else{
       console.info('Without providers');

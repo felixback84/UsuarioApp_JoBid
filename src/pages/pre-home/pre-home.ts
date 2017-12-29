@@ -8,6 +8,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 //-pages
 import { NewAddressPage } from '../new-address/new-address';
+// import { PreHomePage } from '../pre-home/pre-home';
 import { ShowPage } from '../show/show';
 
 //-service
@@ -89,6 +90,9 @@ export class PreHomePage {
   DropAddress(item :any){
     console.log(item);
     this.userService.dropAddress(this.userActual,item.keyAddress);
+    // this.getAddressUser(this.userActual);
+    let Data = {'datos':this.userData}
+    this.navCtrl.setRoot(PreHomePage,Data);
   }
 
   goLocation(){
@@ -142,8 +146,8 @@ export class PreHomePage {
     //console.log(datosUsuario);
     let cont:number= 1;
       for(let usuario in datosUsuario){
-        //console.log(usuario);
-        //console.log(datosUsuario[usuario]);
+        // console.log(usuario);
+        console.log(datosUsuario[usuario]);
         
         this.address.push({"label":datosUsuario[usuario]['addr_label'],"name":datosUsuario[usuario]['addr_info'],"keyAddress":usuario});
         if(cont == 1){

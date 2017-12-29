@@ -96,5 +96,5 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="8000" />
-    <preference name="loadUrlTimeoutValue" value="700000" />
+    <preference name="loadUrlTimeoutValue" value="1000000" />
 </widget>

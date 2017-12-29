@@ -37,15 +37,19 @@
             <ion-option *ngFor="let city of ciudades | ordenar: 'ciudades' " value="{{city.zipcode}}">{{city.name}} - {{city.zipcode}}</ion-option>
           </ion-select>
         </ion-item>
-        <ion-item>
+        <ion-item class="mitad mitadEspacio">
           <ion-icon name="home" item-start></ion-icon>
-          <ion-input type="number" placeholder="1234" class="mitad" [(ngModel)]="DirecA" name="DirecA"  formControlName="DirecA"></ion-input>
-          <ion-input type="text" placeholder="Avenue" value="" class="mitad" [(ngModel)]="DirecB" name="DirecB"  formControlName="DirecB"></ion-input>
+          <ion-input type="number" placeholder="1234" [(ngModel)]="DirecA" name="DirecA"  formControlName="DirecA"></ion-input>
         </ion-item>
-        <ion-item>
-            <ion-icon name="home" item-start style="background:transparent; color:transparent;"></ion-icon>
-          <ion-input type="text" placeholder="City" class="mitad" [(ngModel)]="DirecC" name="DirecC"  formControlName="DirecC"></ion-input>
-          <ion-input type="text" placeholder="NJ 0000" class="mitad" [(ngModel)]="DirecD" name="DirecD"  formControlName="DirecD"></ion-input>
+        <ion-item class="mitad">
+          <ion-input type="text" placeholder="Avenue" value=""  [(ngModel)]="DirecB" name="DirecB"  formControlName="DirecB"></ion-input>
+        </ion-item>
+        <ion-item class="mitad mitadEspacio">
+          <ion-icon name="home" item-start style="background:transparent; color:transparent;"></ion-icon>
+          <ion-input type="text" placeholder="City"  [(ngModel)]="DirecC" name="DirecC"  formControlName="DirecC"></ion-input>
+        </ion-item>
+        <ion-item class="mitad">
+          <ion-input type="text" placeholder="NJ 0000"  [(ngModel)]="DirecD" name="DirecD"  formControlName="DirecD"></ion-input>
         </ion-item>
         <ion-item>
           <ion-icon name="mail" item-start></ion-icon>

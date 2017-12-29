@@ -97,10 +97,10 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
       console.log(this.userActual);
   }
 
-
   ionViewDidLoad() {
       console.log('ionViewDidLoad SingupPage');
-      
+      this.foto = "assets/img/user.png";
+      this.disImg = false;
       let userA:any = firebase.auth().currentUser;
       console.log(userA);
       this.user=this.afAuth.auth.currentUser;
@@ -446,8 +446,8 @@ async  camaraFoto(){
   try{
     const options: CameraOptions = {
       quality: 60,
-      // targetHeight: 100,
-      // targetWidth: 100,
+      targetHeight: 100,
+      targetWidth: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE

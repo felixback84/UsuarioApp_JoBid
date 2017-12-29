@@ -103,7 +103,8 @@ export class ServicesJanotorialPage {
           break;
         }
         case "Pool Cleaner":{
-          this.dataInformacion=[{"maxOffer":this.maxOffer,"typePool":this.typePool,"mtsPool":this.mtsPool,"foto":this.foto,"moreInformation":this.moreInformation,
+          // this.dataInformacion=[{"maxOffer":this.maxOffer,"typePool":this.typePool,"mtsPool":this.mtsPool,"foto":this.foto,"moreInformation":this.moreInformation,
+          this.dataInformacion=[{"maxOffer":this.maxOffer,"foto":this.foto,"moreInformation":this.moreInformation,
          }];
           break;
         }
@@ -208,8 +209,8 @@ export class ServicesJanotorialPage {
         this.ServiceJanotorial = this.formBuilder.group({
           maxOffer: ['', Validators.required],
           foto: [''],
-          jobHand: [''],
-          mtsHand: [''],
+          // jobHand: [''],
+          // mtsHand: [''],
           // roomPluming: [''],
           // mtsPluming: [''],
           // roomElec: [''],
@@ -249,8 +250,8 @@ export class ServicesJanotorialPage {
     try{
       const options: CameraOptions = {
         quality: 60,
-        // targetHeight: 100,
-        // targetWidth: 100,
+        targetHeight: 500,
+        targetWidth: 500,
         destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE

@@ -91,6 +91,9 @@ export class EditUserPage {
     if(this.userData.picture != undefined  && this.userData.picture != ''){
       this.foto = this.userData.picture;
       this.disImg = false;
+    }else{
+      this.foto = "assets/img/user.png";
+      this.disImg = false;
     }
     let zipcodea = this.userData['zipcode'];
     console.log(zipcodea);
@@ -212,8 +215,8 @@ async  camaraFoto(){
   try{
     const options: CameraOptions = {
       quality: 60,
-      // targetHeight: 100,
-      // targetWidth: 100,
+      targetHeight: 100,
+      targetWidth: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
