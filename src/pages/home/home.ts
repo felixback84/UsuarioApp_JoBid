@@ -95,7 +95,7 @@ ionViewDidLoad() {
           // console.log(info);
           // console.log(info.providerData.email);
           // console.log(info.providerData);
-          if(info.providerData['0']['email'] != undefined){
+          // if(info.providerData['0']['email'] != undefined){
             // this.userService.getUserEmailPerfil(info.providerData['0']['email']).subscribe(
             //   (emailBD)=>{
             //     alert(JSON.stringify(emailBD));
@@ -131,7 +131,7 @@ ionViewDidLoad() {
             //     }
             // });
             this.singup();
-          }
+          // }
         }
       ).catch();
     })
@@ -207,17 +207,36 @@ ionViewDidLoad() {
     //let homeStatus=this.afAuth.authState.subscribe( userAuth => {
       if (userAuth){
             console.info('find user home login');
-            let email=  userAuth.providerData["0"].email;
-            let Userexists= this.userService.getUserEmailPerfil(email).subscribe( (User) => {
-              console.log('User Logueado');
-              console.log(User);
-              if(Userexists != undefined){
+            if(userAuth.providerData["0"].providerId == 'password'){
+              let email =  userAuth.providerData["0"].email;
+              console.log(email);
+  
+              let Userexists= this.userService.getUserEmailPerfil(email).subscribe( (User) => {
+                console.log('User Logueado');
+                console.log(User);
+                console.log(Userexists);
                 if(User['0']){
                   this.goNextPagePrehomeFace(User['0']);
+                  if(Userexists != undefined){
+                    Userexists.unsubscribe();
+                  }
                 }
-              }
-              Userexists.unsubscribe();
-            });
+              });
+            }else{
+              let faceUid =  userAuth.uid;
+              console.log(faceUid);
+              let Userexists= this.userService.getUserUidFace(faceUid).subscribe( (User) => {
+                console.log('User Logueado');
+                console.log(Userexists);
+                console.log(User);
+                if(User['0']){
+                  this.goNextPagePrehomeFace(User['0']);
+                  if(Userexists != undefined){
+                    Userexists.unsubscribe();
+                  }
+                }
+              });
+            }
             // let Userexists= this.userService.getUserEmailPerfil(email);
             // Userexists.forEach((users) => {
             //   users.forEach((user) =>{

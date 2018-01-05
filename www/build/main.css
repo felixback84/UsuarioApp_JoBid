@@ -3909,7 +3909,7 @@ ion-item.item-md ion-icon[item-start], ion-item.item-ios ion-icon[item-start] {
   padding: 10px;
   color: white;
   margin: 0px;
-  height: 57px;
+  height: 48px;
 }
 
 ion-item.item-md ion-input, ion-item.item-md ion-select, ion-item.item-ios ion-input, ion-item.item-ios ion-select {
@@ -26297,15 +26297,6 @@ page-cleaning-contractor .list-md > .item-block:last-child ion-label, page-clean
   padding: 0;
 }
 
-page-cleaning-info ion-col#btn-camera {
-  padding-top: 0px;
-}
-
-page-cleaning-info ion-col#btn-camera button {
-  height: 48px;
-  width: 100%;
-}
-
 page-cleaning-info .imgCenter ion-icon {
   width: 90px;
   display: block;
@@ -27081,15 +27072,6 @@ page-payinfo #payinfo2 {
   text-align: center;
 }
 
-page-payinfo ion-col#btn-camera {
-  padding-top: 0px;
-}
-
-page-payinfo ion-col#btn-camera button {
-  height: 48px;
-  width: 100%;
-}
-
 page-payinfo ion-col.col {
   height: 60px;
 }
@@ -27224,15 +27206,6 @@ page-pre-home .row .item-md ion-icon[item-left], page-pre-home .row .item-md ion
   margin-bottom: 10px;
 }
 
-page-services-beauty ion-col#btn-camera {
-  padding-top: 0px;
-}
-
-page-services-beauty ion-col#btn-camera button {
-  height: 48px;
-  width: 100%;
-}
-
 page-services-beauty .imgCenter ion-icon {
   width: 90px;
   display: block;
@@ -27258,15 +27231,6 @@ page-services-beauty .grid .row {
 
 page-services-beauty .grid .rowArea.row {
   height: 90px;
-}
-
-page-services-care ion-col#btn-camera {
-  padding-top: 0px;
-}
-
-page-services-care ion-col#btn-camera button {
-  height: 48px;
-  width: 100%;
 }
 
 page-services-care .imgCenter ion-icon {
@@ -27296,15 +27260,6 @@ page-services-care .btnBottom {
   margin-top: 30px;
 }
 
-page-services-cleaning ion-col#btn-camera {
-  padding-top: 0px;
-}
-
-page-services-cleaning ion-col#btn-camera button {
-  height: 48px;
-  width: 100%;
-}
-
 page-services-cleaning .imgCenter ion-icon {
   width: 90px;
   display: block;
@@ -27330,15 +27285,6 @@ page-services-cleaning .grid .row {
 
 page-services-cleaning .grid .rowArea.row {
   height: 90px;
-}
-
-page-services-food ion-col#btn-camera {
-  padding-top: 0px;
-}
-
-page-services-food ion-col#btn-camera button {
-  height: 48px;
-  width: 100%;
 }
 
 page-services-food .imgCenter ion-icon {
@@ -27368,15 +27314,6 @@ page-services-food .grid .rowArea.row {
   height: 90px;
 }
 
-page-services-janotorial ion-col#btn-camera {
-  padding-top: 0px;
-}
-
-page-services-janotorial ion-col#btn-camera button {
-  height: 48px;
-  width: 100%;
-}
-
 page-services-janotorial .imgCenter ion-icon {
   width: 90px;
   display: block;
@@ -27404,15 +27341,6 @@ page-services-janotorial .grid .rowArea.row {
   height: 90px;
 }
 
-page-services-legal ion-col#btn-camera {
-  padding-top: 0px;
-}
-
-page-services-legal ion-col#btn-camera button {
-  height: 48px;
-  width: 100%;
-}
-
 page-services-legal .imgCenter ion-icon {
   width: 90px;
   display: block;
@@ -27438,15 +27366,6 @@ page-services-legal .grid .row {
 
 page-services-legal .grid .rowArea.row {
   height: 90px;
-}
-
-page-services-transportation ion-col#btn-camera {
-  padding-top: 0px;
-}
-
-page-services-transportation ion-col#btn-camera button {
-  height: 48px;
-  width: 100%;
 }
 
 page-services-transportation .imgCenter ion-icon {

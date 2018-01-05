@@ -55,6 +55,7 @@ export class ServicesBeautyPage {
     unaMenicure:any;
     estiloMenicure:any;
     estiloMeke:any;
+    timeMassage:any;
     estiloMassage:any;
     moreInformation:any;
 
@@ -62,7 +63,7 @@ export class ServicesBeautyPage {
     userActual:any;
     keyOffer:any;
 
-    private beauty : FormGroup;
+    private beautyForm : FormGroup;
     constructor(public navCtrl: NavController, public navParams: NavParams,
       private formBuilder: FormBuilder,
       private offerService:OfferService,
@@ -105,7 +106,7 @@ export class ServicesBeautyPage {
         break;
       }
       case "Massage":{
-        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"estiloMassage":this.estiloMassage,"moreInformation":this.moreInformation}];
+        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"estiloMassage":this.estiloMassage,"timeMassage":this.timeMassage,"moreInformation":this.moreInformation}];
         break;
       }
      
@@ -140,7 +141,7 @@ export class ServicesBeautyPage {
     switch(this.subCategory){
       case "Personal trainer":{
         this.booleanPersonaTrainer=true;
-        this.beauty = this.formBuilder.group({
+        this.beautyForm = this.formBuilder.group({
           foto: [''],
           maxOffer: ['', Validators.required],
           exerciseTrainer: ['', Validators.required],
@@ -169,7 +170,7 @@ export class ServicesBeautyPage {
           {"value":"Moustache","label":"Moustache"},
           {"value":"beardAndMoustache","label":"Beard and Moustache"}
         ]; 
-        this.beauty = this.formBuilder.group({
+        this.beautyForm = this.formBuilder.group({
           foto: [''],
           maxOffer: ['', Validators.required],
           exerciseTrainer: [''],
@@ -201,7 +202,7 @@ export class ServicesBeautyPage {
           {"value":"Si","label":"With style"},
           {"value":"No","label":"Without style"}
         ]; 
-        this.beauty = this.formBuilder.group({
+        this.beautyForm = this.formBuilder.group({
           foto: [''],
           maxOffer: ['', Validators.required],
           exerciseTrainer: [''],
@@ -224,7 +225,7 @@ export class ServicesBeautyPage {
         //   {"value":"Masks","label":"Masks"}
         // ]; 
         this.booleanMekeup=true;
-        this.beauty = this.formBuilder.group({
+        this.beautyForm = this.formBuilder.group({
           foto: [''],
           maxOffer: ['', Validators.required],
           exerciseTrainer: [''],
@@ -252,7 +253,7 @@ export class ServicesBeautyPage {
           {"value":"Leg","label":"Leg"},
           {"value":"feet","label":"feet"}
         ];
-        this.beauty = this.formBuilder.group({
+        this.beautyForm = this.formBuilder.group({
           foto: [''],
           maxOffer: ['', Validators.required],
           exerciseTrainer: [''],
@@ -279,8 +280,8 @@ export class ServicesBeautyPage {
     try{
       const options: CameraOptions = {
         quality: 60,
-        targetHeight: 500,
-        targetWidth: 500,
+        targetHeight: 300,
+        targetWidth: 300,
         destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE

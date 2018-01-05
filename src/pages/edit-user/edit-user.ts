@@ -38,7 +38,7 @@ export class EditUserPage {
 
   //-data
   country:any;area:any;prefix:any;line:any;
-  userData = {"username":"","password":"","email":"","name":"","zipcode":"","state":"","picture":"","verificacion":"","pais":"","direccion":"","tel":""};
+  userData = {"username":"","password":"","email":"","name":"","zipcode":"","state":"","picture":"","verificacion":"","pais":"","direccion":"","tel":"","uidFace":""};
   passwordB:any;
   ciudades: any =  [];
   ciudad: string =  undefined;
@@ -191,7 +191,7 @@ export class EditUserPage {
 //-- validacion de formulario
 getForm(){
   this.editUserForm = this.formBuilder.group({
-    name : ['', Validators.compose([Validators.pattern('[A-z]+(\ [A-z]+){0,1}'), Validators.required])],
+    name : ['', Validators.compose([Validators.pattern('[A-z]+(\ [A-z]+){0,3}'), Validators.required])],
     pais : ['', Validators.required],
     state : ['', Validators.required],
     zipcode : ['', Validators.required],

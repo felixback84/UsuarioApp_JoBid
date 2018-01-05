@@ -78,19 +78,35 @@ export class MyApp {
       //console.log('find user menu');
       //console.log(userAuth);
       if (userAuth){
-        //if(user.providerData["0"].providerId == "facebook.com"){
-            console.info('find user menu');
-            let email=  userAuth.providerData["0"].email;
+          // let email=  userAuth.providerData["0"].email;
+          if(userAuth.providerData["0"].providerId == 'password'){
+            let email =  userAuth.providerData["0"].email;
+            console.log(email);
+
             let Userexists= this.userService.getUserEmailPerfil(email).subscribe( (User) => {
               console.log('User Logueado');
               console.log(User);
-              if(Userexists != undefined){
-                if(User['0']){
-                  this.loadViewUser(User['0']);
+              if(User['0']){
+                this.loadViewUser(User['0']);
+                if(Userexists != undefined){
+                  Userexists.unsubscribe();
                 }
               }
-              // Userexists.unsubscribe();
             });
+          }else{
+            let faceUid =  userAuth.uid;
+            console.log(faceUid);
+            let Userexists= this.userService.getUserUidFace(faceUid).subscribe( (User) => {
+              console.log('User Logueado');
+              console.log(User);
+              if(User['0']){
+                this.loadViewUser(User['0']);
+                if(Userexists != undefined){
+                  Userexists.unsubscribe();
+                }
+              }
+            });
+          }
             //console.log(email);
             // let Userexists= this.userService.getUserEmailPerfil(email);
             // Userexists.forEach((users) => {

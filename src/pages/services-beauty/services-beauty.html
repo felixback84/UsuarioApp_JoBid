@@ -20,7 +20,7 @@
     <div class="TituloRojo"><h4>{{subCategory}}</h4></div>
     <h4>Service information</h4>
     <p padding>Describes what the professional requires</p>
-  <form id="formPayinfo" class="list" [formGroup]="beauty">
+  <form id="formPayinfo" class="list" [formGroup]="beautyForm">
     <ion-grid>
       <ion-row>
         <ion-col col-10>
@@ -140,7 +140,7 @@
       <ion-row>
         <ion-col> 
           <div class="btnBottom">
-            <button ion-button color="danger" block icon-left (click)="goCleaningSale()" [disabled]="!beauty.valid">
+            <button ion-button color="danger" block icon-left (click)="goCleaningSale()" [disabled]="!beautyForm.valid">
               Go to the bid<ion-icon name="arrow-dropright"></ion-icon>
             </button>
           </div>

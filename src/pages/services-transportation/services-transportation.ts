@@ -262,8 +262,8 @@ export class ServicesTransportationPage {
     try{
       const options: CameraOptions = {
         quality: 60,
-        targetHeight: 500,
-        targetWidth: 500,
+        targetHeight: 300,
+        targetWidth: 300,
         destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE

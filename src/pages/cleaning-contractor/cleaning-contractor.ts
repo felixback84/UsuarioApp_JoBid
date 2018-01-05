@@ -57,6 +57,9 @@ starJobr:any;
   profeSuns:any;
   userNameSubs:any;
 
+  //-sub
+  statusSub:any;
+
   constructor(
     public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
     public professionalsService : ProfessionalsService,
@@ -75,6 +78,7 @@ starJobr:any;
     this.SubServiceActual = localStorage.getItem('SubService');
     this.sale=this.worker['offer'];
     console.log(this.datasService);
+    this.getStatusService();
     // console.log(this.dataService);
     // console.log(this.keyOffer);
     // console.log(this.worker);
@@ -105,7 +109,19 @@ starJobr:any;
   // goIndex(){
   // 	this.navCtrl.setRoot(ShowPage);
   // }
-
+  getStatusService(){
+    this.statusSub = this.saleService.getStatus(this.userActual,this.keyOffer).subscribe(
+      (status) =>{
+        console.log('statusSub-S service-win');
+        console.log(status);
+        if(status['$value']){
+          if(status['$value'] == 'CancelledProvider'){
+            this.navCtrl.setRoot(ShowPage);
+            this.statusSub.unsubscribe();
+          }
+        }
+      });
+  }
    goIndex() {
     let confirm = this.alertCtrl.create({
       title: 'You want to cancel the service?',

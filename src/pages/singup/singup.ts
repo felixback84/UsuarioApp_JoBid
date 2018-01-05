@@ -48,7 +48,7 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
   codeAreaList : any;
   codeAreaEstadoSelect: any = [];
   country:any;area:any;prefix:any;line:any;
-  userData = {"username":"","password":"","email":"","name":"","zipcode":"","state":"","picture":"","verificacion":"","pais":"","direccion":"","tel":""};
+  userData = {"username":"","password":"","email":"","name":"","zipcode":"","state":"","picture":"","verificacion":"","pais":"","direccion":"","tel":"","uidFace":""};
   passwordB:any;
   ciudades: any =  [];
   ciudad: string =  undefined;
@@ -58,6 +58,7 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
   disImg:boolean= true;
   user:any;
   userActual:any;
+  userA:firebase.User;
   //correo enviado
   correoEnviado:boolean = false;
   //--form validator
@@ -101,8 +102,8 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
       console.log('ionViewDidLoad SingupPage');
       this.foto = "assets/img/user.png";
       this.disImg = false;
-      let userA:any = firebase.auth().currentUser;
-      console.log(userA);
+      this.userA = firebase.auth().currentUser;
+      console.log(this.userA);
       this.user=this.afAuth.auth.currentUser;
       console.log(this.user);
       // let user:any = firebase.auth().currentUser;
@@ -149,7 +150,7 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
       // });
 
       firebase.auth().currentUser
-      this.afAuth.authState.subscribe( user => {
+      let aftSbus=this.afAuth.authState.subscribe( user => {
         console.log('find user facebook 2');
         console.log(user);
         // alert(JSON.stringify(user));
@@ -160,6 +161,7 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
               console.info('find user facebook 2 - si');
               this.userData['name']=this.userData['username']= user.providerData["0"].displayName;
               this.userData['email']=  user.providerData["0"].email;
+              this.userData['uidFace']=  user.uid;
               this.userData['picture']=  user.providerData["0"].photoURL;
               if(user.providerData["0"].photoURL != undefined  && user.providerData["0"].photoURL != ''){
                 this.foto = user.providerData["0"].photoURL;
@@ -168,10 +170,13 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
               console.log(this.userData);
             }
           }
-          
+          console.log('aftSbus-US singup');
+          aftSbus.unsubscribe();
           //this.envioCorreoFacebook();
         } else {
           console.info('find user facebook 2 - no');
+          console.log('aftSbus-US singup');
+          aftSbus.unsubscribe();
         }
       });
   }
@@ -310,7 +315,15 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
 
   console.log(this.userData);
   //this.traerPost();
-  
+  if(this.userA != null){
+      this.userA.updateEmail('facebook-'+this.userData.email).then( (userUpdateEmailFirebase)=>{
+        // alert('correo ligado a cuenta de facebook');
+      }
+    ).catch( (infoC)=>{
+      // alert(JSON.stringify(infoC));
+      // alert('infoC update email');
+    });
+  }
   this.userData['verificacion'] = this.userActual;
   console.log(this.userData);
   this.userService.newUser(this.userData,this.userActual);
@@ -422,7 +435,7 @@ DirecA: any;DirecB: any;DirecC: any;DirecD: any;telA: any;telB: any;
   //-- validacion de formulario
 getForm(){
   this.singupForm = this.formBuilder.group({
-    name : ['', Validators.compose([Validators.pattern('[A-z]+(\ [A-z]+){0,1}'), Validators.required])],
+    name : ['', Validators.compose([Validators.pattern('[A-z]+(\ [A-z]+){0,3}'), Validators.required])],
     pais : ['', Validators.required],
     state : ['', Validators.required],
     zipcode : ['', Validators.required],

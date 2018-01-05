@@ -220,41 +220,60 @@ export class LoginPage {
           // console.log(info);
           // console.log(info.providerData.email);
           // console.log(info.providerData);
-          if(info.providerData['0']['email'] != undefined){
+          // if(info.providerData['0']['email'] != undefined){
             // this.userService.getUserEmailPerfil(info.providerData['0']['email']).subscribe(
             //   (emailBD)=>{
             //     alert(JSON.stringify(emailBD));
             //     if(emailBD == info.providerData.email){
             //     }
             //   });
-            this.userService.getUsers()
-            .forEach((users) => {
-              //console.log(users);
-              users.forEach((user) =>{
-                //console.log(user);
-                // if(user['user_email'] == res.user.email){
-                //     // console.log('res.user.email');
-                //     // console.log(user);
-                //     userDB = user;
-                //     goPagePrehome= true;
-                // }
-                //dentro de res.user -> hay otros datos de usuario -> email?
-                //if(user.providerData["0"].providerId == "facebook.com"){
-                    if(user['user_email'] == info.providerData['0']['email']){
-                      // console.log('res.additionalUserInfo.profile.email');
-                      // console.log(user);
-                      userDB = user;
-                      goPagePrehome= true;
+            // this.userService.getUsers()
+            // .forEach((users) => {
+            //   //console.log(users);
+            //   users.forEach((user) =>{
+            //     //console.log(user);
+            //     // if(user['user_email'] == res.user.email){
+            //     //     // console.log('res.user.email');
+            //     //     // console.log(user);
+            //     //     userDB = user;
+            //     //     goPagePrehome= true;
+            //     // }
+            //     //dentro de res.user -> hay otros datos de usuario -> email?
+            //     //if(user.providerData["0"].providerId == "facebook.com"){
+            //         if(user['user_email'] == info.providerData['0']['email']){
+            //           // console.log('res.additionalUserInfo.profile.email');
+            //           // console.log(user);
+            //           userDB = user;
+            //           goPagePrehome= true;
+            //         }
+            //     //}
+            //   });
+            //   //console.log(userDB);
+            //   console.log(goPagePrehome);
+            //   if(goPagePrehome){
+            //     this.goNextPagePrehomeFace(userDB);
+            //   }
+            // });
+          // }
+          if(info.uid){
+            let userBD =this.userService.getUserUidFace(info.uid).subscribe(
+                  (value)=>{
+                    console.info(JSON.stringify(value));
+                    // alert(JSON.stringify(value));
+                    console.log('userService-S login');
+                    for(let key in value){
+                      // console.log(value[key]);
+                      if(value[key]){
+                        console.log(value[key]);
+                        console.info(JSON.stringify(value[key]));
+                        this.goNextPagePrehomeFace(value[key]);
+                      }
                     }
-                //}
-              });
-              //console.log(userDB);
-              console.log(goPagePrehome);
-              if(goPagePrehome){
-                this.goNextPagePrehomeFace(userDB);
+                    console.log('userService-US login');
+                    userBD.unsubscribe();
+                  }
+                );
               }
-            });
-          }
         }
       ).catch();
     })

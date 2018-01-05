@@ -30,19 +30,34 @@
     <ion-option *ngFor="let city of ciudades | ordenar: 'ciudades'" value="{{city.zipcode}}">{{city.name}} - {{city.zipcode}}</ion-option>
   </ion-select>
 </ion-item>
-<ion-item class="mitad mitadEspacio">
-  <ion-icon name="home" item-start></ion-icon>
-  <ion-input type="number" placeholder="1234" [(ngModel)]="DirecA" name="DirecA"></ion-input>
-</ion-item>
-<ion-item class="mitad">
-  <ion-input type="text" placeholder="avenue" value="" [(ngModel)]="DirecB" name="DirecB"></ion-input>
-</ion-item>
-<ion-item class="mitad mitadEspacio">
-  <ion-input type="text" placeholder="City" class="mitad spaceIcons" [(ngModel)]="DirecC" name="DirecC" ></ion-input>
-</ion-item>
-<ion-item class="mitad">
-  <ion-input type="text" placeholder="NJ 0000" value="{{DirecD}}" [(ngModel)]="DirecD" name="DirecD"></ion-input>
-</ion-item>
+<ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-icon name="home" item-start></ion-icon>
+          <ion-input type="number" placeholder="1234" [(ngModel)]="DirecA" name="DirecA"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-input type="text" placeholder="avenue" value="" [(ngModel)]="DirecB" name="DirecB"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-icon name="home" item-start style="background:transparent; color:transparent;"></ion-icon>
+          <ion-input type="text" placeholder="City" class="mitad spaceIcons" [(ngModel)]="DirecC" name="DirecC" ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-input type="text" placeholder="NJ 0000" value="{{DirecD}}" [(ngModel)]="DirecD" name="DirecD"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 	<!-- <div class="btnBottom">
 	   <button  ion-button block color="danger" (click)="goPreHome()" >Add address<ion-icon name="arrow-dropright"></ion-icon></button> 
     </div> -->

@@ -146,6 +146,14 @@ export class UserService{
 		return listBD;
 	}
 	
+	public getUserUidFace( uid: any ){
+		return this.afDB.list('/user',{
+			query: {
+			  orderByChild: 'user_uidFace',
+			  equalTo: uid
+			}
+		});
+	}
 
 
 	public newUser(userData : any = [],keyNew?:any ){
@@ -178,12 +186,13 @@ export class UserService{
 		let pais = userData["pais"];
 		let direccion = userData["direccion"];
 		let tel = userData["tel"];
+		let uidFace = userData["uidFace"];
 		
 
 		//console.log(userData);
 		if( (userData['username']) && (userData['password']) && (userData['email']) ){
 			if( (userData['username'] != undefined) && (userData['username'] != null) && (userData['password'] != undefined) && (userData['password'] != null) && (userData['email'] != undefined) && (userData['email'] != null) ){
-				this.afDB.object('/user/'+keyUser).set({"user_username":username,"user_password":password,"user_email":email,"user_name":name,"user_zipcode":zipcode,"user_state":state,"user_picture":picture,"user_pais":pais,"user_tel":tel,"user_star":star});
+				this.afDB.object('/user/'+keyUser).set({"user_username":username,"user_password":password,"user_email":email,"user_name":name,"user_zipcode":zipcode,"user_state":state,"user_picture":picture,"user_pais":pais,"user_tel":tel,"user_uidFace":uidFace,"user_star":star});
 				ObjAddress.push({"label":'My Address',"name":direccion});
 				this.newAddress(keyUser,ObjAddress);
 				console.info('user create');
@@ -210,6 +219,7 @@ export class UserService{
 		let pais = userData["pais"];
 		//let direccion = userData["direccion"];
 		let tel = userData["tel"];
+		let uidFace = userData["uidFace"];
 		
 
 		//console.log(userData);
@@ -224,6 +234,7 @@ export class UserService{
 				this.afDB.object('/user/'+keyUser+'/user_picture').set(picture);
 				this.afDB.object('/user/'+keyUser+'/user_pais').set(pais);
 				this.afDB.object('/user/'+keyUser+'/user_tel').set(tel);
+				this.afDB.object('/user/'+keyUser+'/user_uidFace').set(uidFace);
 				console.log(userData);
 				console.info('user update');
 			}
