@@ -7,64 +7,43 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-camera": {
+    "cordova-plugin-nativeaudio": {
       "PACKAGE_NAME": "com.Jobid.user"
     },
-    "cordova-plugin-device": {
+    "cordova-plugin-camera": {
       "PACKAGE_NAME": "com.Jobid.user"
     },
     "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "com.Jobid.user"
     },
-    "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "com.Jobid.user"
-    },
-    "cordova-plugin-nativeaudio": {
-      "PACKAGE_NAME": "com.Jobid.user"
-    },
     "cordova-plugin-nativegeocoder": {
       "PACKAGE_NAME": "com.Jobid.user"
     },
-    "cordova-plugin-splashscreen": {
+    "ionic-plugin-keyboard": {
       "PACKAGE_NAME": "com.Jobid.user"
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.Jobid.user"
     },
-    "de.appplant.cordova.plugin.local-notification": {
+    "cordova-plugin-device": {
       "PACKAGE_NAME": "com.Jobid.user"
     },
-    "ionic-plugin-keyboard": {
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.Jobid.user"
+    },
+    "cordova-plugin-ionic-webview": {
       "PACKAGE_NAME": "com.Jobid.user"
     },
     "cordova-plugin-facebook4": {
       "APP_ID": "539258269738575",
       "APP_NAME": "JoBid Usuario",
       "PACKAGE_NAME": "com.Jobid.user"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "com.Jobid.user"
     }
   },
   "dependent_plugins": {
-    "cordova-plugin-add-swift-support": {
-      "PACKAGE_NAME": "com.Jobid.user"
-    },
-    "cordova-plugin-app-event": {
-      "PACKAGE_NAME": "com.Jobid.user"
-    },
-    "cordova-plugin-console": {
-      "PACKAGE_NAME": "com.Jobid.user"
-    },
-    "cordova-plugin-email-composer": {
-      "PACKAGE_NAME": "com.Jobid.user"
-    },
-    "cordova-plugin-nativestorage": {
-      "PACKAGE_NAME": "com.Jobid.user"
-    },
-    "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "com.Jobid.user"
-    },
-    "cordova-sms-plugin": {
-      "PACKAGE_NAME": "com.Jobid.user"
-    },
     "cordova-plugin-badge": {
       "PACKAGE_NAME": "com.Jobid.user"
     }
