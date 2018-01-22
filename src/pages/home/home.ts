@@ -243,9 +243,7 @@ export class HomePage {
                 // console.log(User);
                 if (User['0']) {
                   if (User['0']['login'] != undefined) {
-                    this.correoVerificado = User['0']['login'];
-                  } else {
-                    this.correoVerificado = false;
+                    this.correoVerificado = true;
                   }
                   this.goNextPagePrehome(User['0']);
                   // if(this.Userexists != undefined){

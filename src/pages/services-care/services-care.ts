@@ -3,7 +3,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { CleaningSalePage } from '../cleaning-sale/cleaning-sale';
-// import { CareProfessionsService } from '../../services/careProfessions.service';
 import { OfferService } from '../../services/offer.service';
 import { SaleService } from '../../services/sale.service';
 
@@ -62,7 +61,6 @@ export class ServicesCarePage {
   keyOffer:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private formBuilder: FormBuilder,
-    // private careProfessionS: CareProfessionsService,
     private offerService: OfferService,
     private saleService:SaleService,
     private camera : Camera,

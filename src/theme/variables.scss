@@ -191,6 +191,7 @@ ion-item.item-ios {
     ion-select {
         max-width: 100%;
         width: 100%;
+        font-size: 16px;
         div.select-text {
             padding-top: 7px;
         }
@@ -382,4 +383,8 @@ form{
 .alert-md .alert-wrapper {
     width: 98%;
     max-width: 98%;
+}
+
+ion-item.item-md .text-input-ios, ion-item.item-md .text-input-md, ion-item.item-ios .text-input-ios, ion-item.item-ios .text-input-md{
+    font-size: 15px;
 }

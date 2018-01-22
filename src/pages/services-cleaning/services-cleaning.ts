@@ -4,7 +4,6 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { CleaningSalePage } from '../cleaning-sale/cleaning-sale';
 
-// import { CleaningProfessionsService } from '../../services/cleaningProfessions.service';
 
 import { OfferService } from '../../services/offer.service';
 import { SaleService } from '../../services/sale.service';
@@ -60,7 +59,6 @@ export class ServicesCleaningPage {
   userActual:any;
   keyOffer:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    // private cleanProfessionS: CleaningProfessionsService,
     private formBuilder: FormBuilder,
     private offerService: OfferService,
     private saleService:SaleService,

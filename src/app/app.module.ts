@@ -63,8 +63,6 @@ import { ProfessionalsService } from '../services/professionals.service';
 import { ProfessionsService } from '../services/professions.service';
 import { UserService } from '../services/user.service';
 import { EncriptyService } from '../services/encripty.service';
-import { CareProfessionsService } from '../services/careProfessions.service';
-import { CleaningProfessionsService } from '../services/cleaningProfessions.service';
 import { SaleService } from '../services/sale.service';
 import { NotificacionService } from '../services/notificacion.service';
 
@@ -73,8 +71,8 @@ import { NotificacionService } from '../services/notificacion.service';
 
 import { OrdenarPipe } from '../pipes/ordenar/ordenar';
 import { RemoverPipe } from '../pipes/remover/remover';
-// import { NewAddressPipe } from '../pipes/new-address/new-address';
-// import { UpdateUserPipe } from '../pipes/update-user/update-user';
+import { NewAddressPipe } from '../pipes/new-address/new-address';
+import { UpdateUserPipe } from '../pipes/update-user/update-user';
 export const firebaseConfig = {
   apiKey: "AIzaSyBmrc2CjBbIJD_Pu_kkCcV8qNXJfsEBaxo",
   authDomain: "usuarioappjobid.firebaseapp.com",
@@ -126,8 +124,8 @@ export const googleMapsKey = 'AIzaSyB8zF6lhZegDjsV_mrqxd9Fb3YFTw2__AA';
     AddPaymentMethodPage,    
     OrdenarPipe,
     RemoverPipe,
-    // NewAddressPipe,
-    // UpdateUserPipe,
+    NewAddressPipe,
+    UpdateUserPipe,
   ],
   imports: [
     BrowserModule, HttpModule,
@@ -189,8 +187,6 @@ export const googleMapsKey = 'AIzaSyB8zF6lhZegDjsV_mrqxd9Fb3YFTw2__AA';
     ProfessionalsService,
     OfferService,
     ProfessionsService,
-    CareProfessionsService,
-    CleaningProfessionsService,
     SaleService,
     UserService,
     EncriptyService,
