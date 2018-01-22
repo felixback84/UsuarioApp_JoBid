@@ -5,30 +5,32 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  
-    <ion-navbar>
+
+  <ion-navbar>
     <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>JoBid</ion-title>
-    </ion-navbar>
-  
-  </ion-header>
-  
-  
-  <ion-content>
-    <div class="imgCenter">
-     <ion-icon name="contact" [ngClass]="dataService.class"></ion-icon> 
-      </div>
-    <div class="TituloRojo"><h4>{{subCategory}}</h4></div>
-    <h4>Service information</h4>
-    <p padding>Describes what the professional requires</p>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>JoBid</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="imgCenter">
+    <ion-icon name="contact" [ngClass]="dataService.class"></ion-icon>
+  </div>
+  <div class="TituloRojo">
+    <h4>{{subCategory}}</h4>
+  </div>
+  <h4>Service information</h4>
+  <p padding>Describes what the professional requires</p>
   <form id="formPayinfo" class="list" [formGroup]="ServiceCare">
     <ion-grid>
       <ion-row>
-          <ion-col col-10>
-            <ion-list>
-              <ion-item>
+        <ion-col col-10>
+          <ion-list>
+            <ion-item>
               <ion-input type="number" placeholder="Maximum offer value" [(ngModel)]="maxOffer" formControlName="maxOffer" name="maxOffer"></ion-input>
               <ion-icon name="logo-usd" item-start></ion-icon>
               <input type="hidden" placeholder="Photography" [(ngModel)]="foto" formControlName="foto" name="foto" />
@@ -36,7 +38,9 @@
           </ion-list>
         </ion-col>
         <ion-col col-2 id="btn-camera">
-            <button ion-button color="danger" outline (click)="camaraFoto()"><ion-icon name="camera"></ion-icon></button>
+          <button ion-button color="danger" outline (click)="camaraFoto()">
+            <ion-icon name="camera"></ion-icon>
+          </button>
         </ion-col>
       </ion-row>
       <ion-row *ngIf="booleamChildCare">
@@ -58,7 +62,7 @@
         </ion-col>
       </ion-row>
       <ion-row *ngIf="booleamSeniorCare">
-      <!-- <ion-row> -->
+        <!-- <ion-row> -->
         <ion-col>
           <ion-list>
             <ion-item>
@@ -69,7 +73,7 @@
         </ion-col>
       </ion-row>
       <ion-row *ngIf="booleamSeniorCare">
-      <!-- <ion-row> -->
+        <!-- <ion-row> -->
         <ion-col>
           <ion-list>
             <ion-item>
@@ -80,28 +84,32 @@
         </ion-col>
       </ion-row>
       <ion-row *ngIf="booleamFamilyAsistance">
-      <!-- <ion-row> -->
+        <!-- <ion-row> -->
         <ion-col>
           <ion-list>
             <ion-item>
-                <ion-icon name="albums" item-start></ion-icon>
-                <ion-select [(ngModel)]="asistenceFamilia" formControlName="asistenceFamilia" name="asistenceFamilia" placeholder="Issues">
-                    <ion-option *ngFor="let asistence of FamiliaAsistence" value="{{asistence.value}}">{{asistence.label}}</ion-option>
-                </ion-select>
+              <ion-icon name="albums" item-start></ion-icon>
+              <ion-select [(ngModel)]="asistenceFamilia" formControlName="asistenceFamilia" name="asistenceFamilia" placeholder="Issues">
+                <ion-option *ngFor="let asistence of FamiliaAsistence" value="{{asistence.value}}">{{asistence.label}}</ion-option>
+              </ion-select>
             </ion-item>
           </ion-list>
         </ion-col>
       </ion-row>
       <ion-row *ngIf="booleamDogWalker">
-      <!-- <ion-row> -->
+        <!-- <ion-row> -->
         <ion-col>
           <ion-list>
-            <ion-item class="mitad mitadEspacio">
-                <ion-icon name="clipboard" item-start></ion-icon>
-                <ion-input type="text" placeholder="Race" [(ngModel)]="raceDog" formControlName="raceDog" name="raceDog"></ion-input>
+            <ion-item>
+              <ion-icon name="clipboard" item-start></ion-icon>
+              <ion-input type="text" placeholder="Race" [(ngModel)]="raceDog" formControlName="raceDog" name="raceDog"></ion-input>
             </ion-item>
-            <ion-item class="mitad">
-                <ion-input type="number" placeholder="# Dogs"  [(ngModel)]="numDog" formControlName="numDog" name="numDog"></ion-input>
+          </ion-list>
+        </ion-col>
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-input type="number" placeholder="# Dogs" [(ngModel)]="numDog" formControlName="numDog" name="numDog"></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -120,36 +128,44 @@
         </ion-col>
       </ion-row> -->
       <ion-row *ngIf="booleamPersonalShopper">
-      <!-- <ion-row> -->
+        <!-- <ion-row> -->
         <ion-col>
           <ion-list>
-            <ion-item class="mitad mitadEspacio">
+            <ion-item>
               <ion-icon name="basket" item-start></ion-icon>
               <ion-input type="text" placeholder="Type of purchase." [(ngModel)]="purchaseShopper" formControlName="purchaseShopper" name="purchaseShopper"></ion-input>
             </ion-item>
-            <ion-item class="mitad">
-              <ion-input type="text" placeholder="Type of place"  [(ngModel)]="placeShopper" formControlName="placeShopper" name="placeShopper"></ion-input>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-      <ion-row> 
+          </ion-list>
+        </ion-col>
         <ion-col>
-          <ion-list><ion-item>
-            <ion-icon name="paper" item-start></ion-icon>
-            <ion-textarea type="text" placeholder="{{labelComments}}" [(ngModel)]="moreInformation" formControlName="moreInformation" name="moreInformation"></ion-textarea>
-          </ion-item></ion-list>
+          <ion-list>
+            <ion-item>
+              <ion-input type="text" placeholder="Type of place" [(ngModel)]="placeShopper" formControlName="placeShopper" name="placeShopper"></ion-input>
+            </ion-item>
+          </ion-list>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col> 
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-icon name="paper" item-start></ion-icon>
+              <ion-textarea type="text" placeholder="{{labelComments}}" [(ngModel)]="moreInformation" formControlName="moreInformation"
+                name="moreInformation"></ion-textarea>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
           <div class="btnBottom">
             <button ion-button color="danger" block icon-left (click)="goCleaningSale()" [disabled]="!ServiceCare.valid">
-              Go to the bid<ion-icon name="arrow-dropright"></ion-icon>
+              Go to the bid
+              <ion-icon name="arrow-dropright"></ion-icon>
             </button>
           </div>
         </ion-col>
       </ion-row>
     </ion-grid>
   </form>
-  </ion-content>
+</ion-content>

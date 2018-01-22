@@ -5,129 +5,129 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar  class="force-back-button">
+  <ion-navbar class="force-back-button">
     <ion-title>singup</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
-    <img src="assets/img/JoBidUsuario.jpg">
-    <h5 id="signup-heading2" style="">Fill out the form </h5>
-    <form id="signup-form3" class="list" padding [formGroup]="singupForm" >
-      <ion-list id="signup-list3">
-        <ion-item>
-          <ion-icon name="person" item-start></ion-icon>
-          <ion-input type="text" placeholder="Name" [(ngModel)]="userData.name"  name="name"  formControlName="name"></ion-input>
-        </ion-item>
-        <ion-item *ngIf="singupForm.get('name').errors && singupForm.get('name').dirty">
-            <p color="danger" style="text-align: center;" ion-text *ngIf="singupForm.get('name').hasError('required')">Field is required</p>
-            <p color="danger" style="text-align: center;" ion-text *ngIf="singupForm.get('name').hasError('pattern')">Name is not valid</p>
-          </ion-item>
-        <ion-item>
-          <ion-icon name="pin" item-start></ion-icon>
-          <ion-select [(ngModel)]="userData.pais" name="pais" placeholder="Country"  formControlName="pais">
-            <ion-option value="USA" selected>U.S.A</ion-option>
-          </ion-select>
-         </ion-item>
-        <ion-item>
-            <ion-icon name="flag" item-start></ion-icon>
-          <ion-select class="mitad" [(ngModel)]="userData.state" name="state" (ngModelChange)="setCity()" placeholder="State" formControlName="state">
-            <ion-option *ngFor="let state of estados | ordenar: 'estados' " value="{{state.nameShort}}">{{state.name}}</ion-option>
-          </ion-select>
-          <ion-select  class="mitad" [(ngModel)]="userData.zipcode" name="zipcode" (ngModelChange)="setZipCode()" placeholder="City" formControlName="zipcode">
-            <ion-option *ngFor="let city of ciudades | ordenar: 'ciudades' " value="{{city.zipcode}}">{{city.name}} - {{city.zipcode}}</ion-option>
-          </ion-select>
-        </ion-item>
-        <ion-grid>
-          <ion-row>
-            <ion-col col-6>
+  <img src="assets/img/JoBidUsuario.jpg">
+  <h5 id="signup-heading2" style="">Fill out the form </h5>
+  <form id="signup-form3" class="list" padding [formGroup]="singupForm">
+    <ion-list id="signup-list3">
+      <ion-item>
+        <ion-icon name="person" item-start></ion-icon>
+        <ion-input type="text" placeholder="Name" [(ngModel)]="userData.name" name="name" formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="singupForm.get('name').errors && singupForm.get('name').dirty">
+        <p color="danger" style="text-align: center;" ion-text *ngIf="singupForm.get('name').hasError('required')">Field is required</p>
+        <p color="danger" style="text-align: center;" ion-text *ngIf="singupForm.get('name').hasError('pattern')">Name is not valid</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="pin" item-start></ion-icon>
+        <ion-select [(ngModel)]="userData.pais" name="pais" placeholder="Country" formControlName="pais">
+          <ion-option value="USA" selected>U.S.A</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="flag" item-start></ion-icon>
+        <ion-input type="text" placeholder="State" [(ngModel)]="userData.state" name="state" formControlName="state"></ion-input>
+      </ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <ion-item>
+              <ion-icon name="home" item-start></ion-icon>
+              <ion-input type="number" placeholder="1234" [(ngModel)]="DirecA" name="DirecA" formControlName="DirecA"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-input type="text" placeholder="Avenue" value="" [(ngModel)]="DirecB" name="DirecB" formControlName="DirecB"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6>
+            <ion-item>
+              <ion-icon name="home" item-start style="background:transparent; color:transparent;"></ion-icon>
+              <ion-input type="text" placeholder="City" [(ngModel)]="DirecC" name="DirecC" formControlName="DirecC"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-input type="text" placeholder="NJ 0000" [(ngModel)]="DirecD" name="DirecD" formControlName="DirecD"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-item>
+        <ion-icon name="mail" item-start></ion-icon>
+        <ion-input type="email" placeholder="Mail" [(ngModel)]="userData.email" name="email" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="singupForm.get('email').errors && singupForm.get('email').dirty">
+        <p color="danger" style="text-align: center;" ion-text *ngIf="singupForm.get('email').hasError('required')">Field is required</p>
+        <p color="danger" style="text-align: center;" ion-text *ngIf="singupForm.get('email').hasError('pattern')">Email is not valid</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="contact" item-start></ion-icon>
+        <ion-input type="text" placeholder="User" [(ngModel)]="userData.username" name="username" formControlName="username"></ion-input>
+        <input type="hidden" placeholder="Photography" [(ngModel)]="foto" formControlName="foto" name="foto" />
+      </ion-item>
+      <!-- <ion-grid>
+        <ion-row>
+          <ion-col col-10>
+            <ion-list>
               <ion-item>
-                <!-- <ion-item class="mitad mitadEspacio"> -->
-                <ion-icon name="home" item-start></ion-icon>
-                <ion-input type="number" placeholder="1234" [(ngModel)]="DirecA" name="DirecA"  formControlName="DirecA"></ion-input>
+                <ion-icon name="contact" item-start></ion-icon>
+                <ion-input type="text" placeholder="User" [(ngModel)]="userData.username" name="username" formControlName="username"></ion-input>
+                <input type="hidden" placeholder="Photography" [(ngModel)]="foto" formControlName="foto" name="foto" />
               </ion-item>
-            </ion-col>
-            <ion-col col-6>
-              <ion-item>
-                <!-- <ion-item class="mitad"> -->
-                <ion-input type="text" placeholder="Avenue" value=""  [(ngModel)]="DirecB" name="DirecB"  formControlName="DirecB"></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-6>
-              <ion-item>
-              <!-- <ion-item class="mitad mitadEspacio"> -->
-                <ion-icon name="home" item-start style="background:transparent; color:transparent;"></ion-icon>
-                <ion-input type="text" placeholder="City"  [(ngModel)]="DirecC" name="DirecC"  formControlName="DirecC"></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col col-6>
-              <ion-item>
-                <!-- <ion-item class="mitad"> -->
-                <ion-input type="text" placeholder="NJ 0000"  [(ngModel)]="DirecD" name="DirecD"  formControlName="DirecD"></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-        <ion-item>
-          <ion-icon name="mail" item-start></ion-icon>
-          <ion-input type="email" placeholder="Mail" [(ngModel)]="userData.email" name="email"  formControlName="email"></ion-input>
-         </ion-item>
-         <ion-item *ngIf="singupForm.get('email').errors && singupForm.get('email').dirty">
-            <p color="danger" style="text-align: center;" ion-text *ngIf="singupForm.get('email').hasError('required')">Field is required</p>
-            <p color="danger"  style="text-align: center;" ion-text *ngIf="singupForm.get('email').hasError('pattern')">Email is not valid</p>
-          </ion-item>
-          <ion-grid>
-            <ion-row>
-              <ion-col col-10>
-                <ion-list>
-                  <ion-item>
-                    <ion-icon name="contact" item-start></ion-icon>
-                    <ion-input type="text" placeholder="User" [(ngModel)]="userData.username"  name="username" formControlName="username"></ion-input>
-                    <input type="hidden" placeholder="Photography" [(ngModel)]="foto" formControlName="foto" name="foto" />
-                  </ion-item>
-                </ion-list>
-              </ion-col>
-              <ion-col col-2 id="btn-camera">
-                <button ion-button color="danger" outline (click)="camaraFoto()"><ion-icon name="camera"></ion-icon></button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        <ion-item [hidden]="disImg">
-          <ion-icon name="home" item-start style="background:transparent; color:transparent;"></ion-icon>
-          <img src="{{foto}}"  [hidden]="disImg" >
-        </ion-item>
-        <ion-item>
-          <ion-icon name="lock" item-start></ion-icon>
-          <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password" name="password" formControlName="password"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-icon name="lock" item-start></ion-icon>
-          <ion-input type="password" placeholder="Password" [(ngModel)]="passwordB" name="passwordB" formControlName="passwordB"></ion-input>
-        </ion-item>
-        <ion-grid>
-          <ion-row>
-            <ion-col col-6>
-              <ion-item>
-                <ion-icon name="call" item-start></ion-icon>
-                 <ion-select [(ngModel)]="telA" name="telA" placeholder="Area code" formControlName="telA">
-                  <ion-option *ngFor="let stateCod of codeAreaEstadoSelect | ordenar: 'codeEstados'" value="{{stateCod.code}}">{{stateCod.code}}</ion-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-            <ion-col col-6>
-              <ion-item>
-                <ion-input type="tel" placeholder="Phone #" [(ngModel)]="telB" name="telB" formControlName="telB"></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-        
-        <div class="btnBottom">
-          <button ion-button color="danger" block (click)="goPhoneV()" id="sign-in-button" [disabled]="!singupForm.valid">
-            Continue 
-          <ion-icon name="arrow-dropright"></ion-icon></button>
-        </div>
-      </ion-list>
-    </form>
+            </ion-list>
+          </ion-col>
+          <ion-col col-2 id="btn-camera">
+            <button ion-button color="danger" outline (click)="camaraFoto()">
+              <ion-icon name="camera"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid> -->
+      <!-- <ion-item [hidden]="disImg">
+        <ion-icon name="home" item-start style="background:transparent; color:transparent;"></ion-icon>
+        <img src="{{foto}}" [hidden]="disImg">
+      </ion-item> -->
+      <ion-item>
+        <ion-icon name="lock" item-start></ion-icon>
+        <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password" name="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="lock" item-start></ion-icon>
+        <ion-input type="password" placeholder="Password" [(ngModel)]="passwordB" name="passwordB" formControlName="passwordB"></ion-input>
+      </ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <ion-item>
+              <ion-icon name="call" item-start></ion-icon>
+              <!-- <ion-select [(ngModel)]="telA" name="telA" placeholder="Area code" formControlName="telA">
+                <ion-option *ngFor="let stateCod of codeAreaEstadoSelect | ordenar: 'codeEstados'" value="{{stateCod.code}}">{{stateCod.code}}</ion-option>
+              </ion-select> -->
+              <ion-input type="number" placeholder="Area code" [(ngModel)]="telA" name="telA" formControlName="telA"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-input type="number" placeholder="Phone #" [(ngModel)]="telB" name="telB" formControlName="telB"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div class="btnBottom">
+        <button ion-button color="danger" block (click)="goPhoneV()" id="sign-in-button" [disabled]="!singupForm.valid">
+          Continue
+          <ion-icon name="arrow-dropright"></ion-icon>
+        </button>
+      </div>
+    </ion-list>
+  </form>
 </ion-content>

@@ -17,85 +17,93 @@ import { UserService } from '../../services/user.service';
   templateUrl: 'home.html'
 })
 export class HomePage {
-userData = null;
-mensage :string = '';
-displayName;  
-providerFaceBook:any;
-userDataUpdate:any;
+  userData = null;
+  mensage: string = '';
+  displayName;
+  providerFaceBook: any;
+  userDataUpdate: any;
+  correoVerificado: any;
+
+  //sub
+  userLogeadoSub: any;
+  Userexists: any;
+
+  //contador
+  consultaFirebaseLogin: number = 1;
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     private fb: Facebook,
-    private userService : UserService,
-    public afAuth: AngularFireAuth, 
+    private userService: UserService,
+    public afAuth: AngularFireAuth,
   ) {
     //-identifica y redirecciona usuario logeado.
     this.usuarioLogeado();
-    
+
   }
-ionViewDidLoad() {
-  // let userDBLoad:any;
-  // let goPagePrehomeLoad = false;
+  ionViewDidLoad() {
+    // let userDBLoad:any;
+    // let goPagePrehomeLoad = false;
     console.log('ionViewDidLoad homePage');
-      // this.afAuth.authState.forEach ( data => {
-      //   console.info('find User facebook');
-      //   this.userService.getUsers()
-      //   .forEach((users) => {
-      //     users.forEach((user) =>{
-      //       if(data.providerData["0"].providerId == "facebook.com"){
-      //           if(user['user_email'] == data.providerData["0"].email){
-      //           console.log(data.providerData["0"].email);
-      //             console.log(user);
-      //             console.log('user existen');
-      //             userDBLoad = user;
-      //             goPagePrehomeLoad= true;
-      //           }
-      //       }
-      //     });
-      //     //console.log(userDB);
-      //     // console.log(goPagePrehome);
-      //     if(goPagePrehomeLoad){
-      //       this.goNextPagePrehomeFace(userDBLoad);
-      //     }
-      //   });
-      //   //---
+    // this.afAuth.authState.forEach ( data => {
+    //   console.info('find User facebook');
+    //   this.userService.getUsers()
+    //   .forEach((users) => {
+    //     users.forEach((user) =>{
+    //       if(data.providerData["0"].providerId == "facebook.com"){
+    //           if(user['user_email'] == data.providerData["0"].email){
+    //           console.log(data.providerData["0"].email);
+    //             console.log(user);
+    //             console.log('user existen');
+    //             userDBLoad = user;
+    //             goPagePrehomeLoad= true;
+    //           }
+    //       }
+    //     });
+    //     //console.log(userDB);
+    //     // console.log(goPagePrehome);
+    //     if(goPagePrehomeLoad){
+    //       this.goNextPagePrehomeFace(userDBLoad);
+    //     }
+    //   });
+    //   //---
 
-      // });
-      // let currentUserAuth = this.afAuth.auth.currentUser;
-      // console.log(currentUserAuth);
-      
-      // if(this.afAuth.auth){
-      //    console.log('user logeadoCurren')
-      // }
-      // console.dir(this.afAuth.auth);
-      // console.dirxml(this.afAuth.auth);
-      // let statusAuth= this.afAuth.auth;
-      // console.dir(statusAuth.currentUser);
-      //this.afAuth.auth.signOut();
+    // });
+    // let currentUserAuth = this.afAuth.auth.currentUser;
+    // console.log(currentUserAuth);
+
+    // if(this.afAuth.auth){
+    //    console.log('user logeadoCurren')
+    // }
+    // console.dir(this.afAuth.auth);
+    // console.dirxml(this.afAuth.auth);
+    // let statusAuth= this.afAuth.auth;
+    // console.dir(statusAuth.currentUser);
+    //this.afAuth.auth.signOut();
   }
 
-  googleir(){
-    this.navCtrl.setRoot(PreHomePage);
-    //this.navCtrl.pop();
-    //this.navCtrl.push(PreHomePage); 
-  }
+  // googleir() {
+  //   this.navCtrl.setRoot(PreHomePage);
+  //   //this.navCtrl.pop();
+  //   //this.navCtrl.push(PreHomePage); 
+  // }
 
-  facebookir(){
+  facebookir() {
     // let goPagePrehome:boolean = false;
     // let userDB:any;
     this.fb.login(['email'])
-    .then((res) => {
-      console.log('Logged into Facebook!', res);
-      // alert(JSON.stringify(res));
-      let credencial = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
-      firebase.auth().signInWithCredential(credencial).then(
-        (info)=>{
-          // alert(JSON.stringify(info));
-          // alert(JSON.stringify(info.providerData['0']['email']));
-          // alert(JSON.stringify(info.providerData));
-          // console.log(info);
-          // console.log(info.providerData.email);
-          // console.log(info.providerData);
-          // if(info.providerData['0']['email'] != undefined){
+      .then((res) => {
+        console.log('Logged into Facebook!', res);
+        // alert(JSON.stringify(res));
+        let credencial = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
+        firebase.auth().signInWithCredential(credencial).then(
+          (info) => {
+            // alert(JSON.stringify(info));
+            // alert(JSON.stringify(info.providerData['0']['email']));
+            // alert(JSON.stringify(info.providerData));
+            // console.log(info);
+            // console.log(info.providerData.email);
+            // console.log(info.providerData);
+            // if(info.providerData['0']['email'] != undefined){
             // this.userService.getUserEmailPerfil(info.providerData['0']['email']).subscribe(
             //   (emailBD)=>{
             //     alert(JSON.stringify(emailBD));
@@ -131,14 +139,14 @@ ionViewDidLoad() {
             //     }
             // });
             this.singup();
-          // }
-        }
-      ).catch();
-    })
-    .catch(e => {
-      console.log('Error zing into Facebook', e)
-      alert(JSON.stringify(e));
-    });
+            // }
+          }
+        ).catch();
+      })
+      .catch(e => {
+        console.log('Error zing into Facebook', e)
+        alert(JSON.stringify(e));
+      });
   }
 
   // facebookir(){
@@ -183,83 +191,129 @@ ionViewDidLoad() {
   //       });
   //     });
   // }
-  goNextPagePrehome(datos:any){
-    //console.log(datos);
-    //console.log(datos['$key']);
-    this.userDataUpdate ={ "email":datos['user_email'],"name":datos['user_name'],"pais":datos['user_pais'],"password":datos['user_password'],"picture":datos['user_picture'],"state":datos['user_state'],"tel":datos['user_tel'],"username":datos['user_username'],"verificacion":datos['$key'],"zipcode":datos['user_zipcode']};
-    //console.log(this.userDataUpdate);
-    let Data = {'datos':this.userDataUpdate}
-    this.navCtrl.setRoot(PreHomePage,Data);
+
+  login() {
+    this.navCtrl.push(LoginPage);
+    this.desSubcribir();
+  }
+  singup(UserDB?: any) {
+    this.navCtrl.push(SingupPage);
+    this.desSubcribir();
   }
 
- 	login(){
- 		this.navCtrl.push(LoginPage);
- 	}
- 	singup(UserDB?:any){
- 		this.navCtrl.push(SingupPage);
-   }
 
-   
-  usuarioLogeado(){
-    console.log('userLogeado');
-    //let goPagePrehomeLoad = false;
-    this.afAuth.authState.subscribe( userAuth => {
-    //let homeStatus=this.afAuth.authState.subscribe( userAuth => {
-      if (userAuth){
+  usuarioLogeado() {
+    if (this.consultaFirebaseLogin == 1) {
+      this.consultaFirebaseLogin = 2;
+      console.log('contadorLoging' + this.consultaFirebaseLogin);
+      this.userLogeadoSub = this.afAuth.authState.subscribe(userAuth => {
+        //let homeStatus=this.afAuth.authState.subscribe( userAuth => {
+        console.log('userLogeado');
+        if (userAuth) {
+          if (userAuth != null) {
             console.info('find user home login');
-            if(userAuth.providerData["0"].providerId == 'password'){
-              let email =  userAuth.providerData["0"].email;
+            if (userAuth.providerData["0"].providerId == 'password') {
+              let email = userAuth.providerData["0"].email;
               console.log(email);
-  
-              let Userexists= this.userService.getUserEmailPerfil(email).subscribe( (User) => {
+
+              this.Userexists = this.userService.getUserEmailPerfil(email).subscribe((User) => {
                 console.log('User Logueado');
-                console.log(User);
-                console.log(Userexists);
-                if(User['0']){
-                  this.goNextPagePrehomeFace(User['0']);
-                  if(Userexists != undefined){
-                    Userexists.unsubscribe();
+                // console.log(User);
+                // console.log(this.Userexists);
+                if (User['0']) {
+                  if (User['0']['login'] != undefined) {
+                    this.correoVerificado = User['0']['login'];
+                  } else {
+                    this.correoVerificado = false;
                   }
+                  this.goNextPagePrehome(User['0']);
+                  // if(this.Userexists != undefined){
+                  this.userLogeadoSub.unsubscribe();
+                  this.Userexists.unsubscribe();
+                  console.log('unsubscribe');
+                  // }
                 }
               });
-            }else{
-              let faceUid =  userAuth.uid;
+            } else {
+              let faceUid = userAuth.uid;
               console.log(faceUid);
-              let Userexists= this.userService.getUserUidFace(faceUid).subscribe( (User) => {
+              this.Userexists = this.userService.getUserUidFace(faceUid).subscribe((User) => {
                 console.log('User Logueado');
-                console.log(Userexists);
-                console.log(User);
-                if(User['0']){
-                  this.goNextPagePrehomeFace(User['0']);
-                  if(Userexists != undefined){
-                    Userexists.unsubscribe();
+                // console.log(this.Userexists);
+                // console.log(User);
+                if (User['0']) {
+                  if (User['0']['login'] != undefined) {
+                    this.correoVerificado = User['0']['login'];
+                  } else {
+                    this.correoVerificado = false;
                   }
+                  this.goNextPagePrehome(User['0']);
+                  // if(this.Userexists != undefined){
+                  this.userLogeadoSub.unsubscribe();
+                  this.Userexists.unsubscribe();
+                  console.log('unsubscribe');
+                  // }
                 }
               });
             }
-            // let Userexists= this.userService.getUserEmailPerfil(email);
-            // Userexists.forEach((users) => {
-            //   users.forEach((user) =>{
-            //     if(user != undefined && user != null){
-            //         userDBLoad = user;
-            //         goPagePrehomeLoad= true;
-            //         console.log(goPagePrehomeLoad);
-            //         if(goPagePrehomeLoad){
-            //           this.goNextPagePrehomeFace(userDBLoad);
-            //         }
-            //     }
-            //   });
-            // });
-      } else {
-        console.info('find user home login - no');
-      }
-    });
-    // homeStatus.unsubscribe();
+          } else {
+            this.userLogeadoSub.unsubscribe();
+            console.log('unsubscribe');
+          }
+        } else {
+          this.userLogeadoSub.unsubscribe();
+          console.log('unsubscribe');
+          console.info('find user home login - no');
+        }
+      });
+      // homeStatus.unsubscribe();
+    }
   }
 
-  goNextPagePrehomeFace(datos:any){
-    this.userDataUpdate ={ "email":datos['user_email'],"name":datos['user_name'],"pais":datos['user_pais'],"password":datos['user_password'],"picture":datos['user_picture'],"state":datos['user_state'],"tel":datos['user_tel'],"username":datos['user_username'],"verificacion":datos['$key'],"zipcode":datos['user_zipcode']};
-    let Data = {'datos':this.userDataUpdate};
-    this.navCtrl.setRoot(PreHomePage,Data);
-  } 
+  goNextPagePrehome(datos: any) {
+    console.log(this.userDataUpdate);
+    console.log(this.afAuth.auth.currentUser.emailVerified);
+    console.log(this.afAuth.auth.currentUser);
+    console.log(this.correoVerificado);
+
+    this.userDataUpdate = { "email": datos['user_email'], "name": datos['user_name'], "pais": datos['user_pais'], "password": datos['user_password'], "picture": datos['user_picture'], "state": datos['user_state'], "tel": datos['user_tel'], "username": datos['user_username'], "verificacion": datos['$key'], "zipcode": datos['user_zipcode'] };
+    if (this.correoVerificado == false) {
+      if (this.afAuth.auth.currentUser != null) {
+
+        if (this.afAuth.auth.currentUser.emailVerified != false) {
+          console.info('cambio estado login base de datos');
+
+          this.userService.setLogin(datos['$key'], true);
+          localStorage.setItem('verificacion', datos['$key']);
+          let Data = { 'datos': this.userDataUpdate };
+          this.navCtrl.setRoot(PreHomePage, Data);
+
+        } else {
+          // this.showAlertCorreoNoVerificado();
+          this.cerrarSeccion();
+        }
+      }
+    } else {
+      localStorage.setItem('verificacion', datos['$key']);
+      let Data = { 'datos': this.userDataUpdate };
+      this.navCtrl.setRoot(PreHomePage, Data);
+    }
+
+    // localStorage.setItem('verificacion', datos['$key']);
+    // let Data = { 'datos': this.userDataUpdate };
+    // this.navCtrl.setRoot(PreHomePage, Data);
+    this.desSubcribir();
+  }
+
+  desSubcribir() {
+    if (this.userLogeadoSub != undefined) { this.userLogeadoSub.unsubscribe(); }
+    if (this.Userexists != undefined) { this.Userexists.unsubscribe(); }
+  }
+
+  cerrarSeccion() {
+    this.afAuth.auth.signOut().then((value) => {
+      console.log(value);
+    }).catch((error) => console.info(error));
+    localStorage.removeItem('verificacion');
+  }
 }

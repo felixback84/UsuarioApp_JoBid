@@ -38,6 +38,7 @@ export class PreHomePage {
   zom: number = 17;
   //-data
   ObjAddress:any =[];
+
   constructor(  
       public navCtrl: NavController, 
       public navParams: NavParams, 
@@ -140,20 +141,19 @@ export class PreHomePage {
     }
 
   getAddressUser(userId: string ){
-    this.userService.getAddress(userId)
-    //.forEach( datosUsuario =>{
-    .subscribe( datosUsuario =>{
+    this.userService.getAddress(userId).subscribe( datosUsuario =>{
     //console.log(datosUsuario);
     let cont:number= 1;
       for(let usuario in datosUsuario){
         // console.log(usuario);
-        console.log(datosUsuario[usuario]);
-        
-        this.address.push({"label":datosUsuario[usuario]['addr_label'],"name":datosUsuario[usuario]['addr_info'],"keyAddress":usuario});
-        if(cont == 1){
-          if(!localStorage.getItem('address')){
-            localStorage.setItem('address', JSON.stringify({"label":datosUsuario[usuario]['addr_label'],"name":datosUsuario[usuario]['addr_info']}));
-            cont += 1;
+        if(datosUsuario[usuario] != undefined){
+          console.log(datosUsuario[usuario]);
+          this.address.push({"label":datosUsuario[usuario]['addr_label'],"name":datosUsuario[usuario]['addr_info'],"keyAddress":usuario});
+          if(cont == 1){
+            if(!localStorage.getItem('address')){
+              localStorage.setItem('address', JSON.stringify({"label":datosUsuario[usuario]['addr_label'],"name":datosUsuario[usuario]['addr_info']}));
+              cont += 1;
+            }
           }
         }
         //console.log(this.address);
@@ -163,26 +163,6 @@ export class PreHomePage {
     // console.info(localStorage);
   }
 
-  getUrlDataAddres(){
-     // this.authServiceProvider.postData(this.userData,'userAddres').then((result) => {
-      
-    //  //console.log(result);
-    //  //console.log(result['userAddres']['0']);
-    //  //this.address.push(result['userAddres']['0']);
-    //  this.address.push({"label":result['userAddres']['0']['dic_name'],"name":result['userAddres']['0']['dic_direccion']});
-    //  }, (err) => {
-    //     // Error log
-    //     //console.log('error '.err);
-    //     alert('error userAddres');
-    //   });
-    // this.userService.getUser()
-    // .subscribe( datosUsuario =>{
-    //   for(let usuario of datosUsuario){
-    //     console.log(usuario);
-    //   }
-    // });
-  }
-  
   // private getUserLocation() {
   //   /// locate the user
   //   // console.info('get User location2');

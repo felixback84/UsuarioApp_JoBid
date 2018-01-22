@@ -66,4 +66,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f76d54', end
 	.list-md > .item-block:last-child ion-label, .list-md > .item-block:last-child .item-inner, .list-md > .item-wrapper:last-child ion-label, .list-md > .item-wrapper:last-child .item-inner{
 		padding: 0;
 	}
+	.list-md > .item-block:last-child .item-inner, .list-ios > .item-block:last-child .item-inner{
+		margin: 10px 0;
+	}
 }

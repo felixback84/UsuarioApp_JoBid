@@ -271,17 +271,16 @@ export class ServicesTransportationPage {
       const result = await this.camera.getPicture(options);
       const image = 'data:image/jpeg;base64,' + result;
       const picture = storage().ref(file);
-      let UploadTask = picture.putString(image,'data_url');
-      UploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-        (snapshot) =>  {
-          let url = UploadTask.snapshot.downloadURL;
-          console.log(url);
-          this.foto = url;
+      picture.putString(image,'data_url').then(
+        ( snapshot:storage.UploadTaskSnapshot) => {
+          this.foto = snapshot.downloadURL;
+          // alert(this.foto);
         },
         (error) => { console.log(error)  },
-        // () => { 
-        // }
-      );
+      ).catch( (errorUploadTask)=>{ 
+        // alert('errorUploadTask');
+        // alert(JSON.stringify(errorUploadTask));
+      });
     } catch(e){ console.error(e);}
   }
 }

@@ -22,7 +22,7 @@
 
 <ion-list>
   <button ion-item *ngFor="let p of OffersList" (click)="goInfoService(p)" class="btnItem">
-    <p><strong>Services Code: </strong>{{p['$key']}}</p>
+    <p><strong>Services: </strong>{{p['$key']}}</p>
     <p> <strong>{{p.name}}</strong>: {{p.Clasificacion.categoria}}</p>
     <!-- <p>professional:</p> -->
     <p><strong>Status</strong>:{{p.status}}</p>

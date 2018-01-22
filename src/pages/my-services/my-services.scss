@@ -3,5 +3,13 @@ page-my-services {
     h4{font-weight: bold;}
     .btnItem{
         border-bottom: 1px solid $Gray;
+        padding: 0;
+    }
+    strong{color:$Red;}
+    .list-md .item-block .item-inner,.list-ios .item-block .item-inner{
+        padding: 0;
+    }
+    .label.label-md, .label.label-ios{
+        padding: 5px 0;
     }
 }

@@ -4,7 +4,7 @@ import { NavController, NavParams , AlertController, LoadingController} from 'io
 import * as dropin from 'braintree-web-drop-in';
 
 //--pages
-import { PreHomePage } from '../pre-home/pre-home';
+import { HomePage } from '../home/home';
 
 //--services
 import { BraintreeService } from '../../services/braintree.service';
@@ -54,7 +54,6 @@ export class PaymentMethodsPage {
       
       console.log(this.UserActual);
       this.crearCustomer();
-      this.showAlert();
       this.presentLoading();
       // this.dropin();
       //this.newGateWay();
@@ -137,6 +136,7 @@ export class PaymentMethodsPage {
     if(this.segundos == 1){ 
         clearInterval(this.objNodeTimer);
         this.goPrehome();
+        this.showAlertEmail();
     }else{
       if(--this.segundos< 0){}
     }
@@ -180,17 +180,9 @@ export class PaymentMethodsPage {
 
   goPrehome(){
     let Data = {'datos':this.userData};
-    this.navCtrl.setRoot(PreHomePage,Data);
+    this.navCtrl.setRoot(HomePage,Data);
   } 
   //-show alert
-  showAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Information',
-      subTitle: 'An email has been sent to verify your acount',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
   showAlertPay() {
     let alert = this.alertCtrl.create({
       title: 'Information',
@@ -206,5 +198,14 @@ export class PaymentMethodsPage {
       duration: 5000
     });
     loader.present();
+  }
+
+  showAlertEmail() {
+    let alerteMail = this.alertCtrl.create({
+      title: 'Information',
+      subTitle: 'An email has been sent to verify your acount',
+      buttons: ['OK']
+    });
+    alerteMail.present();
   }
 }

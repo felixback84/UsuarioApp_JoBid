@@ -1,48 +1,46 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/v2/theming/
-
 // Font path is used to include ionicons,
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
-
-
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
 // http://ionicframework.com/docs/theming/rtl-support/
 $app-direction: ltr;
-
-ion-navbar .toolbar-content{
-	margin-left: -200px; 
-	z-index: -1;
-	.toolbar-title{
-		/*margin-left:-25px*/
-	/*margin-left: 35%;*/
-		text-align: center;
-	
-	}
+ion-navbar .toolbar-content {
+    margin-left: -200px;
+    z-index: -1;
+    .toolbar-title {
+        /*margin-left:-25px*/
+        /*margin-left: 35%;*/
+        text-align: center;
+    }
 }
 
 @import "ionic.globals";
-
-
 // Shared Variables
 // --------------------------------------------------
 // To customize the look and feel of this app, you can override
 // the Sass variables found in Ionic's source scss files.
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
-
-body{
-	font-family: Helvetica;
+body {
+    font-family: Helvetica;
 }
-$Red : #b20000;
-$Gray : #666666;
-$GrayText: #444;
-$Green : #2b8300;
 
-p,h1,h2,h3,h4,h5,h6{
-	color: $GrayText;
-	font-family: Helvetica;
+$Red: #b20000;
+$Gray: #666666;
+$GrayText: #444;
+$Green: #2b8300;
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $GrayText;
+    font-family: Helvetica;
 }
 
 // Named Color Variables
@@ -52,174 +50,193 @@ p,h1,h2,h3,h4,h5,h6{
 // to match your app's branding. Ionic uses a Sass map of
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
-
-$colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
-);
-
-
+$colors: ( primary : #488aff, secondary : #32db64, danger : #f53d3d, light : #f4f4f4, dark : #222);
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-
-
-
-
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
-
-
-
-
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
-
-
-
-
 // App Theme
 // --------------------------------------------------
 // Ionic apps can have different themes applied, which can
 // then be future customized. This import comes last
 // so that the above variables are used and Ionic's
 // default are overridden.
-
 @import "ionic.theme.default";
-
-
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:
 // http://ionicframework.com/docs/v2/ionicons/
-
 @import "ionic.ionicons";
-
-
 // Fonts
 // --------------------------------------------------
-
 @import "roboto";
 @import "noto-sans";
-
 //Custom theme
 //-----------------------------
-ion-content .list-ios > .item-block:first-child{
-	border-top: none;
+ion-content .list-ios>.item-block:first-child {
+    border-top: none;
 }
-.text-input-md, .text-input-ios{
-	box-shadow: none;
-	font-size: 14px;
+
+.text-input-md,
+.text-input-ios {
+    box-shadow: none;
+    font-size: 14px;
 }
-[type=color]:focus, [type=date]:focus, [type=datetime-local]:focus, [type=datetime]:focus, [type=email]:focus, [type=month]:focus, [type=number]:focus, [type=password]:focus, [type=search]:focus, [type=tel]:focus, [type=text]:focus, [type=time]:focus, [type=url]:focus, [type=week]:focus, textarea:focus{
-	border: none;
-	box-shadow: none;
+
+[type=color]:focus,
+[type=date]:focus,
+[type=datetime-local]:focus,
+[type=datetime]:focus,
+[type=email]:focus,
+[type=month]:focus,
+[type=number]:focus,
+[type=password]:focus,
+[type=search]:focus,
+[type=tel]:focus,
+[type=text]:focus,
+[type=time]:focus,
+[type=url]:focus,
+[type=week]:focus,
+textarea:focus {
+    border: none;
+    box-shadow: none;
 }
-.grid .row{
-	max-width: 100%;
-	margin-left: 0;
-	margin-right: 0;
+
+.grid .row {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
 }
-.list-md > .item-block:last-child ion-label, .list-md > .item-block:last-child .item-inner, .list-md > .item-wrapper:last-child ion-label, .list-md > .item-wrapper:last-child .item-inner,
-.list-ios > .item-block:last-child ion-label, .list-ios > .item-block:last-child .item-inner, .list-ios > .item-wrapper:last-child ion-label, .list-ios > .item-wrapper:last-child .item-inner{
-	background: transparent;
-	color:$GrayText;
-	font-size: 14px;
-}
-.label.label-md, .label.label-ios, .label.primary{
-	background: transparent;
+
+.list-md>.item-block:last-child ion-label,
+.list-md>.item-block:last-child .item-inner,
+.list-md>.item-wrapper:last-child ion-label,
+.list-md>.item-wrapper:last-child .item-inner,
+.list-ios>.item-block:last-child ion-label,
+.list-ios>.item-block:last-child .item-inner,
+.list-ios>.item-wrapper:last-child ion-label,
+.list-ios>.item-wrapper:last-child .item-inner {
+    background: transparent;
     color: $GrayText;
     font-size: 14px;
 }
-ion-item.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
-ion-item.item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-ios.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
-     border-bottom-color: transparent;
+
+.label.label-md,
+.label.label-ios,
+.label.primary {
+    background: transparent;
+    color: $GrayText;
+    font-size: 14px;
+}
+
+ion-item.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+ion-item.item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+.item-ios.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+    border-bottom-color: transparent;
     -webkit-box-shadow: none;
     box-shadow: none;
-	}
-.list-md .item-input:last-child,.list-ios .item-input:last-child{
-	border-bottom: none !important;
 }
-ion-item.item-md ,ion-item.item-ios {
-	padding:0;
-	margin-bottom: 5px;
-	&>ion-icon[item-start] + .item-inner{
-		padding: 0;
-		margin-left: 15px;
-	}
-	&.item-block .item-inner{
-		padding-right: 0;
-		border-bottom: none;
-	}
-	&.iconJunto>ion-icon[item-start]+ .item-inner{margin-left: 0;}
-	ion-icon[item-start]{
-		min-width: 45px;
-	    background: $Red;
-	    margin-left: 0;
-		margin-top: 10px;
-		margin-bottom: 10px;
-		padding: 10px;
-	    color: white;    
-	    margin: 0px;
-	    height: 48px;
-	}
-	ion-input,ion-select{
-		border:1px solid #ddd;
-		height: 48px;
-		color:$GrayText;
-		padding:5px;
-		margin: 0;
-	}
-	ion-textarea{
-		border:1px solid #ddd;
-		color:$GrayText;
-		padding:5px;
-		min-height: 80px;
-	}
-	ion-select{
-		max-width: 100%;
-		width: 100%;
-		div.select-text{
-			padding-top: 7px;
-		}
-		div.select-icon{
-			margin-top: 7px;
-		}
-	}
-	&.mitad, &.mitad, ion-select.mitad,ion-input.mitad{
-		width: 49%;
-		// background: red;
-		display: inline-flex;
-		&:first-child{
-			margin-right:2%;
-		}
-		&.mitadEspacio{
-			margin-right: 0.5%;
-		}
-	}
-	&.item-radio-checked.item-md ion-label,.item-radio-checked.item-ios ion-label{
-		color:$GrayText;
-	}
-	ion-label.label{background: transparent !important;}
-	.radio-md,.radio-ios{
-				
-		.radio-icon{
-			border-color:$GrayText;
-			.radio-inner{background: $GrayText;}
-		}
-	}
-	.spaceIcons{
-		margin-left: 60px;
-	}
-	.text-input-ios, .text-input-md {
-		margin: 7px 8px 11px 0;
-	}
+
+.list-md .item-input:last-child,
+.list-ios .item-input:last-child {
+    border-bottom: none !important;
 }
+
+ion-item.item-md,
+ion-item.item-ios {
+    padding: 0;
+    margin-bottom: 5px;
+    &>ion-icon[item-start]+.item-inner {
+        padding: 0;
+        margin-left: 15px;
+    }
+    &.item-block .item-inner {
+        padding-right: 0;
+        border-bottom: none;
+    }
+    &.iconJunto>ion-icon[item-start]+.item-inner {
+        margin-left: 0;
+    }
+    ion-icon[item-start] {
+        min-width: 45px;
+        background: $Red;
+        margin-left: 0;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+        color: white;
+        margin: 0px;
+        height: 48px;
+    }
+    ion-input,
+    ion-select {
+        border: 1px solid #ddd;
+        height: 48px;
+        color: $GrayText;
+        padding: 5px;
+        margin: 0;
+    }
+    ion-textarea {
+        border: 1px solid #ddd;
+        color: $GrayText;
+        padding: 5px;
+        min-height: 80px;
+    }
+    ion-select {
+        max-width: 100%;
+        width: 100%;
+        div.select-text {
+            padding-top: 7px;
+        }
+        div.select-icon {
+            margin-top: 7px;
+        }
+    }
+    &.mitad,
+    &.mitad,
+    ion-select.mitad,
+    ion-input.mitad {
+        width: 49%; // background: red;
+        display: inline-flex;
+        &:first-child {
+            margin-right: 2%;
+        }
+        &.mitadEspacio {
+            margin-right: 0.5%;
+        }
+    }
+    &.item-radio-checked.item-md ion-label,
+    .item-radio-checked.item-ios ion-label {
+        color: $GrayText;
+    }
+    ion-label.label {
+        background: transparent !important;
+    }
+    .radio-md,
+    .radio-ios {
+        .radio-icon {
+            border-color: $GrayText;
+            .radio-inner {
+                background: $GrayText;
+            }
+        }
+    }
+    .spaceIcons {
+        margin-left: 60px;
+    }
+    .text-input-ios,
+    .text-input-md {
+        margin: 7px 8px 11px 0;
+    }
+}
+
+
 /*
 form{
 	ion-grid>ion-row>ion-col{
@@ -238,77 +255,123 @@ form{
 	}
 		
 }*/
-.tabMenu{
-	border-top: 1px solid #eee;
-	background-color: #f4f4f4;
-	position: fixed;
-	bottom: 0;
-	.row>p{
-		margin:0;
-		padding:0;
-		width: 100%;
-		text-align: center;
-	}
-	.button-md-light,.button-ios-light{
-		box-shadow: none;
-		background: transparent;
-		height: 4em;
-	}
-	ion-icon{
-		display: block;
-		margin:0 auto;
-		font-size: 2em;
-	}
-}
-.button-md,.button-ios{
-	text-transform: capitalize !important;
-}
-.button-md-danger,.button-ios-danger{
-	background: $Red !important;
-}
-.btnBottom{ position: relative;
-	.button-md,.button-ios{font-size: 20px;text-transform: capitalize; height: 48px;
-		ion-icon{ position: absolute; right: 10px; }
-		span{
-			text-transform: none;
-			font-size: 20px;
-		}
-	}
+
+.tabMenu {
+    border-top: 1px solid #eee;
+    background-color: #f4f4f4;
+    position: fixed;
+    bottom: 0;
+    .row>p {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+    }
+    .button-md-light,
+    .button-ios-light {
+        box-shadow: none;
+        background: transparent;
+        height: 4em;
+    }
+    ion-icon {
+        display: block;
+        margin: 0 auto;
+        font-size: 2em;
+    }
 }
 
-.barraRoja{background: $Red;
-		h4{color:white; text-align: center;padding: 10px; margin:0;} 
-	}
-
-.clasificacion{
-	direction: rtl;/* right to left */
-	unicode-bidi: bidi-override;/* bidi de bidireccional */
-	width: 100%;
-	text-align: center;
-	
-	label{
-		color:black;
-		font-size: 25px;
-		text-align: center;
-		&:hover, &:hover ~ label{
-			color:$Red;
-		}
-	}
-
-	input[type="radio"]{display: none;}
-	input[type="radio"]:checked ~ label {
-		color: $Red;
-		}
+.button-md,
+.button-ios {
+    text-transform: capitalize !important;
 }
+
+.button-md-danger,
+.button-ios-danger {
+    background: $Red !important;
+}
+
+.btnBottom {
+    position: relative;
+    .button-md,
+    .button-ios {
+        font-size: 20px;
+        text-transform: capitalize;
+        height: 48px;
+        ion-icon {
+            position: absolute;
+            right: 10px;
+        }
+        span {
+            text-transform: none;
+            font-size: 20px;
+        }
+    }
+}
+
+.barraRoja {
+    background: $Red;
+    h4 {
+        color: white;
+        text-align: center;
+        padding: 10px;
+        margin: 0;
+    }
+}
+
+.clasificacion {
+    direction: rtl;
+    /* right to left */
+    unicode-bidi: bidi-override;
+    /* bidi de bidireccional */
+    width: 100%;
+    text-align: center;
+    label {
+        color: black;
+        font-size: 25px;
+        text-align: center;
+        &:hover,
+        &:hover~label {
+            color: $Red;
+        }
+    }
+    input[type="radio"] {
+        display: none;
+    }
+    input[type="radio"]:checked~label {
+        color: $Red;
+    }
+}
+
 
 /*color professions*/
-.red{color:red;}
-.orange{color:orange;}
-.yellow{color:yellow;}
-.green{color:green;}
-.purple{color:purple;}
-.blue{color:blue;}
-.pink{color:pink;}
+
+.red {
+    color: red;
+}
+
+.orange {
+    color: orange;
+}
+
+.yellow {
+    color: yellow;
+}
+
+.green {
+    color: green;
+}
+
+.purple {
+    color: purple;
+}
+
+.blue {
+    color: blue;
+}
+
+.pink {
+    color: pink;
+}
 
 // .ng-valid{
 // 	border: 1px solid $Red;
@@ -316,3 +379,7 @@ form{
 // .ng-invalid{
 // 	border: 1px solid green;
 // }
+.alert-md .alert-wrapper {
+    width: 98%;
+    max-width: 98%;
+}

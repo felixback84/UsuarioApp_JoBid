@@ -32,21 +32,22 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   userName: string = 'hola logeado';
   srcUser: string = 'assets/img/user.png';
-  star:any = '3';
-  starUser:any;
-   //rootPage: any = PreHomePage;
+  star: any = '3';
+  starUser: any;
+
+  //rootPage: any = PreHomePage;
   // rootPage: any = CleaningSalePage;
   rootPage: any = HomePage;
   // rootPage: any = PaymentMethodsPage;
-  
-  userMenu:any;
-  pages: Array<{title: string, component: any}>;
-  menu_is_enabled:boolean=true;
-  userDataUpdate:any;
-  constructor(  public platform: Platform,  public statusBar: StatusBar, 
-                public splashScreen: SplashScreen, private afAuth :  AngularFireAuth,
-                private userService : UserService,
-              ) {
+
+  userMenu: any;
+  pages: Array<{ title: string, component: any }>;
+  menu_is_enabled: boolean = true;
+  userDataUpdate: any;
+  constructor(public platform: Platform, public statusBar: StatusBar,
+    public splashScreen: SplashScreen, private afAuth: AngularFireAuth,
+    private userService: UserService,
+  ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -68,123 +69,132 @@ export class MyApp {
       this.splashScreen.hide();
       this.usuarioLogeado();
     });
-   
+
   }
 
-  usuarioLogeado(){
+  usuarioLogeado() {
     //let userDBLoad:any;
     //let goPagePrehomeLoad = false;
-    this.afAuth.authState.subscribe( userAuth => {
+    this.afAuth.authState.subscribe(userAuth => {
       //console.log('find user menu');
       //console.log(userAuth);
-      if (userAuth){
-          // let email=  userAuth.providerData["0"].email;
-          if(userAuth.providerData["0"].providerId == 'password'){
-            let email =  userAuth.providerData["0"].email;
-            console.log(email);
+      if (userAuth) {
+        // let email=  userAuth.providerData["0"].email;
+        if (userAuth.providerData["0"].providerId == 'password') {
+          let email = userAuth.providerData["0"].email;
+          console.log(email);
 
-            let Userexists= this.userService.getUserEmailPerfil(email).subscribe( (User) => {
-              console.log('User Logueado');
-              console.log(User);
-              if(User['0']){
-                this.loadViewUser(User['0']);
-                if(Userexists != undefined){
-                  Userexists.unsubscribe();
-                }
+          let Userexists = this.userService.getUserEmailPerfil(email).subscribe((User) => {
+            console.log('User Logueado');
+            console.log(User);
+            if (User['0']) {
+              this.loadViewUser(User['0']);
+              if (Userexists != undefined) {
+                Userexists.unsubscribe();
               }
-            });
-          }else{
-            let faceUid =  userAuth.uid;
-            console.log(faceUid);
-            let Userexists= this.userService.getUserUidFace(faceUid).subscribe( (User) => {
-              console.log('User Logueado');
-              console.log(User);
-              if(User['0']){
-                this.loadViewUser(User['0']);
-                if(Userexists != undefined){
-                  Userexists.unsubscribe();
-                }
+            }
+          });
+        } else {
+          let faceUid = userAuth.uid;
+          console.log(faceUid);
+          let Userexists = this.userService.getUserUidFace(faceUid).subscribe((User) => {
+            console.log('User Logueado');
+            console.log(User);
+            if (User['0']) {
+              this.loadViewUser(User['0']);
+              if (Userexists != undefined) {
+                Userexists.unsubscribe();
               }
-            });
-          }
-            //console.log(email);
-            // let Userexists= this.userService.getUserEmailPerfil(email);
-            // Userexists.forEach((users) => {
-            //   //console.log('user1');
-            //   //console.log(users);
-            //   users.forEach((user) =>{
-            //     if(user != undefined && user != null){
-            //         //console.log('usuario load data');
-            //         //console.log(user);
-            //         // userDBLoad = user;
-            //         this.userMenu = { "email":user['user_email'],"name":user['user_name'],"pais":user['user_pais'],"password":user['user_password'],"picture":user['user_picture'],"state":user['user_state'],"tel":user['user_tel'],"username":user['user_username'],"verificacion":user['$key'],"zipcode":user['user_zipcode']};
-            //         this.userName= user['user_username'];
-            //         if(user['user_picture'] && user['user_picture'] != '' && user['user_picture'] != null && user['user_picture'] != undefined){
-            //           this.srcUser= user['user_picture'];
-            //         }
-            //         if(user['user_star'] && user['user_star'] != '' && user['user_star'] != null && user['user_star'] != undefined){
-            //           this.star= Math.round(user['user_star']);
-            //         }
+            }
+          });
+        }
+        //console.log(email);
+        // let Userexists= this.userService.getUserEmailPerfil(email);
+        // Userexists.forEach((users) => {
+        //   //console.log('user1');
+        //   //console.log(users);
+        //   users.forEach((user) =>{
+        //     if(user != undefined && user != null){
+        //         //console.log('usuario load data');
+        //         //console.log(user);
+        //         // userDBLoad = user;
+        //         this.userMenu = { "email":user['user_email'],"name":user['user_name'],"pais":user['user_pais'],"password":user['user_password'],"picture":user['user_picture'],"state":user['user_state'],"tel":user['user_tel'],"username":user['user_username'],"verificacion":user['$key'],"zipcode":user['user_zipcode']};
+        //         this.userName= user['user_username'];
+        //         if(user['user_picture'] && user['user_picture'] != '' && user['user_picture'] != null && user['user_picture'] != undefined){
+        //           this.srcUser= user['user_picture'];
+        //         }
+        //         if(user['user_star'] && user['user_star'] != '' && user['user_star'] != null && user['user_star'] != undefined){
+        //           this.star= Math.round(user['user_star']);
+        //         }
 
-            //         // goPagePrehomeLoad= true;
-            //         // console.log(goPagePrehomeLoad);
-            //         // if(goPagePrehomeLoad){
-            //         //   ---this.goNextPagePrehomeFace(userDBLoad);
-            //         // }
-            //     }
-            //   });
-            // });
+        //         // goPagePrehomeLoad= true;
+        //         // console.log(goPagePrehomeLoad);
+        //         // if(goPagePrehomeLoad){
+        //         //   ---this.goNextPagePrehomeFace(userDBLoad);
+        //         // }
+        //     }
+        //   });
+        // });
       } else {
         console.info('find user menu - no');
       }
     });
   }
 
-  loadViewUser(user){
-    this.userMenu = { "email":user['user_email'],"name":user['user_name'],"pais":user['user_pais'],"password":user['user_password'],"picture":user['user_picture'],"state":user['user_state'],"tel":user['user_tel'],"username":user['user_username'],"verificacion":user['$key'],"zipcode":user['user_zipcode']};
-    this.userName= user['user_username'];
-    if(user['user_picture'] && user['user_picture'] != '' && user['user_picture'] != null && user['user_picture'] != undefined){
-      this.srcUser= user['user_picture'];
-    }
-    if(user['user_star'] && user['user_star'] != '' && user['user_star'] != null && user['user_star'] != undefined){
-      this.star= Math.round(user['user_star']);
-      let contenido='';
-      if(Math.round(this.star) == 5){
-        contenido +='cinco';
+  loadViewUser(user) {
+    if (user != undefined) {
+      this.userMenu = { "email": user['user_email'], "name": user['user_name'], "pais": user['user_pais'], "password": user['user_password'], "picture": user['user_picture'], "state": user['user_state'], "tel": user['user_tel'], "username": user['user_username'], "verificacion": user['$key'], "zipcode": user['user_zipcode'] };
+      this.userName = user['user_username'];
+      if (user['user_picture'] && user['user_picture'] != '' && user['user_picture'] != null && user['user_picture'] != undefined) {
+        this.srcUser = user['user_picture'];
       }
-      if(Math.round(this.star) == 4){
-        contenido +='cuatro';
+      if (user['user_star'] && user['user_star'] != '' && user['user_star'] != null && user['user_star'] != undefined) {
+        this.star = Math.round(user['user_star']);
+        let contenido = '';
+        if (Math.round(this.star) == 5) {
+          contenido += 'cinco';
+        }
+        if (Math.round(this.star) == 4) {
+          contenido += 'cuatro';
+        }
+        if (Math.round(this.star) == 3) {
+          contenido += 'tres';
+        }
+        if (Math.round(this.star) == 2) {
+          contenido += 'dos';
+        }
+        if (Math.round(this.star) == 1) {
+          contenido += 'one';
+        }
+        this.starUser = contenido;
       }
-      if(Math.round(this.star) == 3){
-        contenido +='tres';
-      }
-      if(Math.round(this.star) == 2){
-        contenido +='dos';
-      }
-      if(Math.round(this.star) == 1){
-        contenido +='one';
-      }
-      this.starUser= contenido;
+    } else {
+      this.userName = 'hola logeado';
+      this.srcUser = 'assets/img/user.png';
+      this.star = '1';
+      this.starUser = 'one';
     }
   }
 
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    if(this.userMenu && this.userMenu != undefined){
-      let Data = {'datos':this.userMenu};
-      this.nav.setRoot(page.component,Data);
-    }else{
+    if (this.userMenu && this.userMenu != undefined) {
+      let Data = { 'datos': this.userMenu };
+      this.nav.setRoot(page.component, Data);
+    } else {
       this.nav.setRoot(page.component);
     }
-    
+
   }
 
-  cerrarSeccion(){
-    this.afAuth.auth.signOut().then((value)=>{
+  cerrarSeccion() {
+    this.afAuth.auth.signOut().then((value) => {
       console.log(value);
       this.nav.setRoot(HomePage);
     }).catch((error) => console.info(error));
+    localStorage.removeItem('verificacion');
+    this.loadViewUser(undefined);
     // this.statusBar.styleDefault();
     // this.splashScreen.hide();
     //antiguo facebook native
@@ -208,15 +218,15 @@ export class MyApp {
     //     console.log('Error logging into Facebook', e);
     //     alert('error if login');
     //     });
-    
+
   }
-  goJobWithUs(){
+  goJobWithUs() {
     this.nav.push(JobWithUsPage);
   }
-  goPolicies(){
+  goPolicies() {
     this.nav.push(PoliciesPage);
   }
 
-  
-  
+
+
 }

@@ -76,15 +76,16 @@ export class ServicesLegalPage {
       }
      
     }
-    console.log(this.dataInformacion);
+    // console.log(this.dataInformacion);
+    // alert(JSON.stringify(this.dataInformacion));
     this.guardarServicio(this.dataInformacion);
   }
   
   guardarServicio(datos){
-    console.log(datos);
-    console.log(this.dataService);
+    // console.log(datos);
+    // console.log(this.dataService);
     this.dataService['Clasificacion']['informacion']=datos['0'];
-    console.log(this.dataService);
+    // console.log(this.dataService);
     
     // let subCategory=this.dataService['Clasificacion']['categoria'];
     //this.careProfessionS.newOffer(this.dataService,subCategory,keyOffer);
@@ -98,7 +99,7 @@ export class ServicesLegalPage {
      // console.log(keyOffer);
      // console.log(maxOffer);
      let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer}};
-     console.log(DataService);
+    //  console.log(DataService);
      this.navCtrl.setRoot(CleaningSalePage,DataService);
   }
 
@@ -134,17 +135,17 @@ getForm(){
       const result = await this.camera.getPicture(options);
       const image = 'data:image/jpeg;base64,' + result;
       const picture = storage().ref(file);
-      let UploadTask = picture.putString(image,'data_url');
-      UploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-        (snapshot) =>  {
-          let url = UploadTask.snapshot.downloadURL;
-          console.log(url);
-          this.foto = url;
+      picture.putString(image,'data_url').then(
+        ( snapshot:storage.UploadTaskSnapshot) => {
+          this.foto = snapshot.downloadURL;
+          // alert(this.foto);
         },
         (error) => { console.log(error)  },
-        // () => { 
-        // }
-      );
+      ).catch( (errorUploadTask)=>{ 
+        // alert('errorUploadTask');
+        // alert(JSON.stringify(errorUploadTask));
+      });
+        
     } catch(e){ console.error(e);}
   }
 }

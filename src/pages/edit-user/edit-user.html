@@ -8,7 +8,7 @@
 
   <ion-navbar>
     <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>JoBid</ion-title>
   </ion-navbar>
@@ -17,12 +17,12 @@
 
 
 <ion-content>
-<h3>My profile</h3>
-<form id="signup-form3" class="list" padding [formGroup]="editUserForm">
+  <h3>My profile</h3>
+  <form id="signup-form3" class="list" padding [formGroup]="editUserForm">
     <ion-list id="signup-list3">
       <ion-item>
         <ion-icon name="person" item-start></ion-icon>
-        <ion-input type="text" placeholder="Name" [(ngModel)]="userData.name"  name="name" formControlName="name"></ion-input>
+        <ion-input type="text" placeholder="Name" [(ngModel)]="userData.name" name="name" formControlName="name"></ion-input>
       </ion-item>
       <ion-item *ngIf="editUserForm.get('name').errors && editUserForm.get('name').dirty">
         <p color="danger" style="text-align: center;" ion-text *ngIf="editUserForm.get('name').hasError('required')">Field is required</p>
@@ -33,53 +33,40 @@
         <ion-select [(ngModel)]="userData.pais" name="pais" formControlName="pais">
           <ion-option value="USA" selected>U.S.A</ion-option>
         </ion-select>
-       </ion-item>
-      <ion-item>
-          <ion-icon name="flag" item-start></ion-icon>
-        <ion-select class="mitad" [(ngModel)]="userData.state" name="state" (ngModelChange)="setCity()" placeholder="State" formControlName="state"> 
-          <ion-option *ngFor="let state of estados | ordenar: 'estados'" value="{{state.nameShort}}">{{state.name}}</ion-option>
-        </ion-select>
-        <ion-select  class="mitad" [(ngModel)]="userData.zipcode" name="zipcode" placeholder="City" formControlName="zipcode"> <!--[(ngModel)]="gaming"-->
-          <ion-option *ngFor="let city of ciudades | ordenar: 'ciudades' | remover" value="{{city.zipcode}}">{{city.name}}</ion-option>
-        </ion-select>
-      </ion-item>
-      <!-- <ion-item>
-        <ion-icon name="home" item-start></ion-icon>
-        <ion-input type="number" placeholder="1234" class="mitad" [(ngModel)]="DirecA" name="DirecA"></ion-input>
-        <ion-input type="text" placeholder="avenue" value="" class="mitad" [(ngModel)]="DirecB" name="DirecB"></ion-input>
       </ion-item>
       <ion-item>
-          <ion-icon name="home" item-start style="background:transparent; color:transparent;"></ion-icon>
-        <ion-input type="text" placeholder="City" class="mitad" [(ngModel)]="DirecC" name="DirecC" ></ion-input>
-        <ion-input type="text" placeholder="NJ 0000" value="{{DirecD}}" class="mitad" [(ngModel)]="DirecD" name="DirecD"></ion-input>
-      </ion-item> -->
+        <ion-icon name="home" item-start style="background:transparent; color:transparent;"></ion-icon>
+        <ion-input type="text" placeholder="State" [(ngModel)]="userData.state" name="state" formControlName="state"></ion-input>
+      </ion-item>
       <ion-item>
         <ion-icon name="mail" item-start></ion-icon>
         <ion-input type="email" placeholder="Mail" [(ngModel)]="userData.email" name="email" formControlName="email"></ion-input>
-       </ion-item>
-       <ion-item *ngIf="editUserForm.get('email').errors && editUserForm.get('email').dirty">
-          <p color="danger" style="text-align: center;" ion-text *ngIf="editUserForm.get('email').hasError('required')">Field is required</p>
-          <p color="danger"  style="text-align: center;" ion-text *ngIf="editUserForm.get('email').hasError('pattern')">Email is not valid</p>
-        </ion-item>
+      </ion-item>
+      <ion-item *ngIf="editUserForm.get('email').errors && editUserForm.get('email').dirty">
+        <p color="danger" style="text-align: center;" ion-text *ngIf="editUserForm.get('email').hasError('required')">Field is required</p>
+        <p color="danger" style="text-align: center;" ion-text *ngIf="editUserForm.get('email').hasError('pattern')">Email is not valid</p>
+      </ion-item>
       <ion-grid>
         <ion-row>
           <ion-col col-10>
             <ion-list>
               <ion-item>
                 <ion-icon name="contact" item-start></ion-icon>
-                <ion-input type="text" placeholder="User" [(ngModel)]="userData.username"  name="username" formControlName="username"></ion-input>
+                <ion-input type="text" placeholder="User" [(ngModel)]="userData.username" name="username" formControlName="username"></ion-input>
                 <input type="hidden" placeholder="Photography" [(ngModel)]="foto" formControlName="foto" name="foto" />
               </ion-item>
             </ion-list>
           </ion-col>
           <ion-col col-2 id="btn-camera">
-            <button ion-button color="danger" outline (click)="camaraFoto()"><ion-icon name="camera"></ion-icon></button>
+            <button ion-button color="danger" outline (click)="camaraFoto()">
+              <ion-icon name="camera"></ion-icon>
+            </button>
           </ion-col>
         </ion-row>
       </ion-grid>
       <ion-item [hidden]="disImg">
         <ion-icon name="home" item-start style="background:transparent; color:transparent;"></ion-icon>
-        <img src="{{foto}}"  [hidden]="disImg" >
+        <img src="{{foto}}" [hidden]="disImg">
       </ion-item>
       <ion-item>
         <ion-icon name="lock" item-start></ion-icon>
@@ -93,10 +80,11 @@
         <ion-row>
           <ion-col col-5>
             <ion-item>
-              <ion-icon name="call" item-start></ion-icon>this.codeAreaEstadoSelect
-               <ion-select [(ngModel)]="telA" name="telA" formControlName="telA">
+              <ion-icon name="call" item-start></ion-icon>
+              <!-- <ion-select [(ngModel)]="telA" name="telA" formControlName="telA">
                 <ion-option *ngFor="let stateCod of codeAreaEstadoSelect | ordenar: 'codeEstados'" value="{{stateCod.code}}">{{stateCod.code}}</ion-option>
-              </ion-select>
+              </ion-select> -->
+              <ion-input type="tel" placeholder="Area code" [(ngModel)]="telA" name="telA" formControlName="telA"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col col-7>
@@ -106,7 +94,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      
+
       <!-- <div class="btnBottom">
         <button ion-button color="danger" block (click)="goPrehome()" id="sign-in-button">Save <ion-icon name="arrow-dropright"></ion-icon></button>
       </div> -->
@@ -114,11 +102,11 @@
   </form>
 </ion-content>
 <ion-footer>
-    <ion-toolbar>
-        <div class="btnBottom">
-          <button ion-button color="danger" block (click)="goPrehome()" [disabled]="!editUserForm.valid">
-              Save
-          </button> 
-        </div>
-    </ion-toolbar>
-  </ion-footer>
+  <ion-toolbar>
+    <div class="btnBottom">
+      <button ion-button color="danger" block (click)="goPrehome()" [disabled]="!editUserForm.valid">
+        Save
+      </button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

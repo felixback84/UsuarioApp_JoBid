@@ -113,16 +113,6 @@ export class UserService{
 
 
 	public getUserEmailPerfil(email:string  ) {
-		// return this.afDB.list('/user')
-	 	// .map((users) => {
-		// 	 //console.log(users);
-		// 	 return users.map(user =>{
-		// 		if(user['user_email'] == email){
-		// 			//console.log(user);
-		// 			return user;
-		// 		}
-		// 	});
-		//  });
 		 return this.afDB.list('/user',{
 			query: {
 			  orderByChild: 'user_email',
@@ -186,7 +176,10 @@ export class UserService{
 		let pais = userData["pais"];
 		let direccion = userData["direccion"];
 		let tel = userData["tel"];
-		let uidFace = userData["uidFace"];
+		let uidFace = '';
+		if(userData["uidFace"] != undefined){
+			uidFace = userData["uidFace"];
+		}
 		
 
 		//console.log(userData);
@@ -219,7 +212,10 @@ export class UserService{
 		let pais = userData["pais"];
 		//let direccion = userData["direccion"];
 		let tel = userData["tel"];
-		let uidFace = userData["uidFace"];
+		let uidFace = '';
+		if(userData["uidFace"] != undefined){
+			uidFace = userData["uidFace"];
+		}
 		
 
 		//console.log(userData);
@@ -241,7 +237,11 @@ export class UserService{
 		}
 	}
 
-
+	public setLogin(keyUser,valor :boolean){
+		// console.log(keyUser);
+		// console.log(valor);
+		this.afDB.object('/user/'+keyUser+'/login').set(valor);
+	}
 	/*  ----------------user - address ----------------------*/
 	public getAddress(userId: string =""){
 		//return this.afDB.list('/user/'+userId);

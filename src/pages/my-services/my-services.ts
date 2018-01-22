@@ -17,11 +17,16 @@ import { MyserviceinfoPage } from '../myserviceinfo/myserviceinfo';
   templateUrl: 'my-services.html',
 })
 export class MyServicesPage {
-  userActual:any;
-  keyOffer:any=[];
-  OffersList:any=[];
+  userActual: any;
+  keyOffer: any = [];
+  OffersList: any = [];
+
+  //sub
+  OfferServiceGetSub: any;
+  SaleServiceGetSub: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private saleService: SaleService,  
+    private saleService: SaleService,
     private offerService: OfferService,
     private alertCtrl: AlertController
   ) {
@@ -33,58 +38,57 @@ export class MyServicesPage {
     console.log(this.userActual);
     this.getOffer();
   }
-  getOffer(){
-    console.info('get offer');
-    let OfferServiceGet:any;
-    let SaleServiceGet=this.saleService.getSales(this.userActual)
-    .subscribe((value)=>{
-      this.OffersList=[];
-      // console.log('saleServiceGet');
-      // console.log(value);
-      // console.log('get saleKey');
-      // value.forEach((data) =>{
-        //   console.log(data);
-        // });
-        for(let key in value){
-          // console.log(key);
-          if('$value' == key){  
-          //   //alert('User does not have services');
-            this.showAlertNoServices();
-          }else{
-          // this.offerService.getOffer(key);
-          // this.keyOffer.push(key);
-          // console.log(key);
-          OfferServiceGet = this.offerService.getOffer(key)
-          .subscribe((datos) =>{
-            // console.log(datos);
-            // if(datos['$value'] == null){
 
-            // }else{
-              // console.info('get offerKey');
-              if(datos.sale == null || datos.sale == undefined){
-                datos['sale'] = datos.Clasificacion.informacion.maxOffer
-              }
-              this.OffersList.push(datos);
-            // }
-          });
+  getOffer() {
+    console.info('get offer');
+    this.SaleServiceGetSub = this.saleService.getSales(this.userActual)
+      .subscribe((value) => {
+        this.OffersList = [];
+        // console.log('saleServiceGet');
+        console.log(value);
+        for (let key in value) {
+          // console.log(key);
+          if ('$value' == key) {
+            //alert('User does not have services');
+            this.showAlertNoServices();
+            console.log('professionalsService-US my-services');
+            this.SaleServiceGetSub.unsubscribe();
+          } else {
+            // this.offerService.getOffer(key);
+            // this.keyOffer.push(key);
+            // console.log(key);
+            this.OfferServiceGetSub = this.offerService.getOffer(key)
+              .subscribe((datos) => {
+                // console.log(datos);
+                if (datos) {
+                  if (datos != undefined) {
+                    if (datos.sale == null || datos.sale == undefined) {
+                      datos['sale'] = datos.Clasificacion.informacion.maxOffer
+                    }
+                    this.OffersList.push(datos);
+                  } else {
+                    this.OfferServiceGetSub.unsubscribe();
+                    this.SaleServiceGetSub.unsubscribe();
+                  }
+                } else {
+                  this.OfferServiceGetSub.unsubscribe();
+                  this.SaleServiceGetSub.unsubscribe();
+                }
+                // console.info('get offerKey');
+                // }
+              });
+          }
         }
-      }
-      // OfferServiceGet.unsubscribe();
-      SaleServiceGet.unsubscribe();
-    });
-    
-    // console.log(this.OffersList);
-    // for(let valueOffer of this.keyOffer){
-    //   console.log('this.keyOffer');
-    //   console.log(this.keyOffer);
-    //   console.log(valueOffer);
-    // }
+        // OfferServiceGet.unsubscribe();
+        this.SaleServiceGetSub.unsubscribe();
+      });
   }
-  goInfoService(obj){
+
+  goInfoService(obj) {
     console.log(obj);
-    let DataService = {'datos':obj};
+    let DataService = { 'datos': obj };
     console.log(DataService);
-    this.navCtrl.push(MyserviceinfoPage,DataService);
+    this.navCtrl.push(MyserviceinfoPage, DataService);
   }
 
   showAlertNoServices() {

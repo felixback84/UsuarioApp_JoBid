@@ -140,7 +140,8 @@ page-cleaning-sale {
 
 .alert-md .alert-wrapper,.alert-ios .alert-wrapper{
 	border-radius: 10px;
-	max-width: 90%;
+	max-width: 98%;
+	width: 98%;
 	h5{color:$Red;}
 	.col-50{
 		width: 48%;
@@ -153,6 +154,8 @@ page-cleaning-sale {
 		img{
 			vertical-align: initial;
 			border-radius: 50%;
+			height: 70px;
+			width: 70px;
 		}
 	}
 	.col-60{
@@ -230,6 +233,5 @@ page-cleaning-sale {
 	// 		}
 	// 	}
 	// }
-
 
 }
