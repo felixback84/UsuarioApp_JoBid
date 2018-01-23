@@ -36,6 +36,8 @@ export class PaymentMethodsPage {
   //--timer
   objNodeTimer:any;
   segundos:number = 5;
+  contadorTimer:number = 1;
+
   constructor(
     public alertCtrl: AlertController,
     public navCtrl: NavController, public navParams: NavParams,
@@ -134,9 +136,12 @@ export class PaymentMethodsPage {
 
   private timer(){
     if(this.segundos == 1){ 
+      if(this.contadorTimer == 1){
+        this.contadorTimer = 2;
         clearInterval(this.objNodeTimer);
         this.goPrehome();
         this.showAlertEmail();
+      }
     }else{
       if(--this.segundos< 0){}
     }
