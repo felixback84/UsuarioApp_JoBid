@@ -174,9 +174,9 @@ export class LoginPage {
                       console.log(value[key]);
                       console.info(JSON.stringify(value[key]));
                       console.info(value[key]['login']);
-                      if (value[key]['login'] != undefined) {
+                      // if (value[key]['login'] != undefined) {
                         this.correoVerificado = true;
-                      }
+                      // }
                       this.goNextPagePrehomeFace(value[key]);
                     }
                   }
@@ -202,10 +202,10 @@ export class LoginPage {
     console.log(this.afAuth.auth.currentUser.emailVerified);
     console.log(this.correoVerificado);
     
-    if (this.correoVerificado == true) {
+    // if (this.correoVerificado == true) {
       let Data = { 'datos': this.userDataUpdate };
       this.navCtrl.setRoot(PreHomePage, Data);
-    }
+    // }
 
     // let Data = { 'datos': this.userDataUpdate }
     // this.navCtrl.setRoot(PreHomePage, Data);
