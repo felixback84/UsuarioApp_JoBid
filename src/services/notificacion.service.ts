@@ -3,12 +3,12 @@ import { Injectable } from "@angular/core";
 import { LocalNotifications } from '@ionic-native/local-notifications';
 
 @Injectable()
-export class NotificacionService{ 
-    constructor( private localNotifications: LocalNotifications){}
+export class NotificacionService {
+  constructor(private localNotifications: LocalNotifications) { }
 
-  mostrar(mesage:string,id ?){
-    let idNotification: number =1;
-    if(id ==null || id == undefined){
+  mostrar(mesage: string, id?) {
+    let idNotification: number = 1;
+    if (id == null || id == undefined) {
       idNotification = new Date().getTime();
     }
     this.localNotifications.schedule({
@@ -17,9 +17,9 @@ export class NotificacionService{
       sound: 'file://assets/notificacion.mp3',
     });
   }
-  mostrarSale(mesage:string,id ?){
-    let idNotification: number =1;
-    if(id ==null || id == undefined){
+  mostrarSale(mesage: string, id?) {
+    let idNotification: number = 1;
+    if (id == null || id == undefined) {
       idNotification = new Date().getTime();
     }
     this.localNotifications.schedule({

@@ -26,43 +26,43 @@ import { storage } from 'firebase';
 })
 export class ServicesCleaningPage {
   dataService = [];
-  
-    //form show
-    booleanMaids:boolean=false;
-    booleanCarWashers:boolean=false;
-    booleanPressureCleaning:boolean=false;
-    booleanCarpetCleaning:boolean=false;
 
-    //varibles
-    subCategory:string;
-    //pagetes de datos
-    dataInformacion:any;
-    //variables para formularios
-    FamiliaAsistence:any;
+  //form show
+  booleanMaids: boolean = false;
+  booleanCarWashers: boolean = false;
+  booleanPressureCleaning: boolean = false;
+  booleanCarpetCleaning: boolean = false;
 
-    //datos del formulario
-    maxOffer:any;
-    placeMaid:any;
-    roomMaid:any;
-    batMaid:any;
-    typeCar:any;
-    brandCar:any;
-    placeClean:any;
-    mtsClean:any;
-    typeCarpet:any;
-    mtsCarpet:any;
-    foto:any='';
-    moreInformation:any;
-  
-     //-form
-  private ServiceCleaning : FormGroup;
-  userActual:any;
-  keyOffer:any;
+  //varibles
+  subCategory: string;
+  //pagetes de datos
+  dataInformacion: any;
+  //variables para formularios
+  FamiliaAsistence: any;
+
+  //datos del formulario
+  maxOffer: any;
+  placeMaid: any;
+  roomMaid: any;
+  batMaid: any;
+  typeCar: any;
+  brandCar: any;
+  placeClean: any;
+  mtsClean: any;
+  typeCarpet: any;
+  mtsCarpet: any;
+  foto: any = '';
+  moreInformation: any;
+
+  //-form
+  private ServiceCleaning: FormGroup;
+  userActual: any;
+  keyOffer: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private formBuilder: FormBuilder,
     private offerService: OfferService,
-    private saleService:SaleService,
-    private camera:Camera,
+    private saleService: SaleService,
+    private camera: Camera,
   ) {
     this.dataService = this.navParams.get('datos');
     this.subCategory = this.dataService['Clasificacion']['categoria'];
@@ -70,7 +70,7 @@ export class ServicesCleaningPage {
     this.userActual = localStorage.getItem('verificacion');
     var d = new Date();
     let key = d.getTime();
-    this.keyOffer = "offer_"+(key);
+    this.keyOffer = "offer_" + (key);
     this.getForm();
 
   }
@@ -78,31 +78,31 @@ export class ServicesCleaningPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ServicesCleaningPage');
   }
-  goCleaningSale(){
-    switch(this.subCategory){
-      case "Maids":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"placeMaid":this.placeMaid,"roomMaid":this.roomMaid,"batMaid":this.batMaid,"foto":this.foto,"moreInformation":this.moreInformation}];
+  goCleaningSale() {
+    switch (this.subCategory) {
+      case "Maids": {
+        this.dataInformacion = [{ "maxOffer": this.maxOffer, "placeMaid": this.placeMaid, "roomMaid": this.roomMaid, "batMaid": this.batMaid, "foto": this.foto, "moreInformation": this.moreInformation }];
         break;
       }
-      case "Car washers":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"typeCar":this.typeCar,"brandCar":this.brandCar,"foto":this.foto,"moreInformation":this.moreInformation}];
+      case "Car washers": {
+        this.dataInformacion = [{ "maxOffer": this.maxOffer, "typeCar": this.typeCar, "brandCar": this.brandCar, "foto": this.foto, "moreInformation": this.moreInformation }];
         break;
       }
-      case "Pressure cleaning":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"placeClean":this.placeClean,"mtsClean":this.mtsClean,"foto":this.foto,"moreInformation":this.moreInformation}];
+      case "Pressure cleaning": {
+        this.dataInformacion = [{ "maxOffer": this.maxOffer, "placeClean": this.placeClean, "mtsClean": this.mtsClean, "foto": this.foto, "moreInformation": this.moreInformation }];
         break;
       }
-      case "Carpet & upholstery cleaning":{
-        this.dataInformacion=[{"maxOffer":this.maxOffer,"typeCarpet":this.typeCarpet,"mtsCarpet":this.mtsCarpet,"foto":this.foto,"moreInformation":this.moreInformation}];
+      case "Carpet & upholstery cleaning": {
+        this.dataInformacion = [{ "maxOffer": this.maxOffer, "typeCarpet": this.typeCarpet, "mtsCarpet": this.mtsCarpet, "foto": this.foto, "moreInformation": this.moreInformation }];
         break;
-      }	
+      }
     }
     this.guardarServicio(this.dataInformacion);
   }
-  
-  guardarServicio(datos){
+
+  guardarServicio(datos) {
     // console.log(datos);
-    this.dataService['Clasificacion']['informacion']=datos['0'];
+    this.dataService['Clasificacion']['informacion'] = datos['0'];
     // var d = new Date();
     // let key = d.getTime();
     // var keyOffer = "offer_"+(key);
@@ -110,24 +110,24 @@ export class ServicesCleaningPage {
     // let subCategory=this.dataService['Clasificacion']['categoria'];
     //this.careProfessionS.newOffer(this.dataService,subCategory,keyOffer);
     // this.cleanProfessionS.newOffer(this.dataService,keyOffer);
-    this.offerService.newOffer(this.dataService,this.keyOffer);
+    this.offerService.newOffer(this.dataService, this.keyOffer);
     // console.log(localStorage);
-    let maxOffer=datos['0']['maxOffer'];
+    let maxOffer = datos['0']['maxOffer'];
     // let userLocal = localStorage.getItem('verificacion');
-    this.saleService.newSale(this.userActual,this.keyOffer,maxOffer);
+    this.saleService.newSale(this.userActual, this.keyOffer, maxOffer);
     // console.log(userLocal);
     // console.log(keyOffer);
     // console.log(maxOffer);
-    
-    let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer}};
+
+    let DataService = { 'datos': { "dataService": this.dataService, "offer": this.keyOffer } };
     console.log(DataService);
-    this.navCtrl.setRoot(CleaningSalePage,DataService);
+    this.navCtrl.setRoot(CleaningSalePage, DataService);
   }
-  
-  getForm(){
-    switch(this.subCategory){
-      case "Maids":{
-        this.booleanMaids=true;
+
+  getForm() {
+    switch (this.subCategory) {
+      case "Maids": {
+        this.booleanMaids = true;
         this.ServiceCleaning = this.formBuilder.group({
           maxOffer: ['', Validators.required],
           foto: [''],
@@ -144,8 +144,8 @@ export class ServicesCleaningPage {
         });
         break;
       }
-      case "Car washers":{
-        this.booleanCarWashers=true;
+      case "Car washers": {
+        this.booleanCarWashers = true;
         this.ServiceCleaning = this.formBuilder.group({
           maxOffer: ['', Validators.required],
           foto: [''],
@@ -162,8 +162,8 @@ export class ServicesCleaningPage {
         });
         break;
       }
-      case "Pressure cleaning":{
-        this.booleanPressureCleaning=true;
+      case "Pressure cleaning": {
+        this.booleanPressureCleaning = true;
         this.ServiceCleaning = this.formBuilder.group({
           maxOffer: ['', Validators.required],
           foto: [''],
@@ -180,8 +180,8 @@ export class ServicesCleaningPage {
         });
         break;
       }
-      case "Carpet & upholstery cleaning":{
-        this.booleanCarpetCleaning=true;
+      case "Carpet & upholstery cleaning": {
+        this.booleanCarpetCleaning = true;
         this.ServiceCleaning = this.formBuilder.group({
           maxOffer: ['', Validators.required],
           foto: [''],
@@ -198,13 +198,13 @@ export class ServicesCleaningPage {
         });
         break;
       }
-	  }
+    }
   }
 
-  async  camaraFoto(){
-    let file = this.userActual+'/'+this.keyOffer+'/foto';
+  async  camaraFoto() {
+    let file = this.userActual + '/' + this.keyOffer + '/foto';
     console.log('clickCamara');
-    try{
+    try {
       const options: CameraOptions = {
         quality: 60,
         targetHeight: 300,
@@ -216,17 +216,17 @@ export class ServicesCleaningPage {
       const result = await this.camera.getPicture(options);
       const image = 'data:image/jpeg;base64,' + result;
       const picture = storage().ref(file);
-      picture.putString(image,'data_url').then(
-        ( snapshot:storage.UploadTaskSnapshot) => {
+      picture.putString(image, 'data_url').then(
+        (snapshot: storage.UploadTaskSnapshot) => {
           this.foto = snapshot.downloadURL;
           // alert(this.foto);
         },
-        (error) => { console.log(error)  },
-      ).catch( (errorUploadTask)=>{ 
+        (error) => { console.log(error) },
+      ).catch((errorUploadTask) => {
         // alert('errorUploadTask');
         // alert(JSON.stringify(errorUploadTask));
       });
-    } catch(e){ console.error(e);}
+    } catch (e) { console.error(e); }
   }
 
 }

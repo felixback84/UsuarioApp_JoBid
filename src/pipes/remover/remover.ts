@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import * as _ from 'lodash'; 
+import * as _ from 'lodash';
 
 /**
  * Generated class for the RemoverPipe pipe.
@@ -13,10 +13,10 @@ export class RemoverPipe implements PipeTransform {
   /**
    * Takes a value and makes it lowercase.
    */
-  transform(value: any): any{
-    if(value!== undefined && value!== null){
-        return _.uniqBy(value, 'name');
+  transform(value: any): any {
+    if (value !== undefined && value !== null) {
+      return _.uniqBy(value, 'name');
     }
     return value;
-}
+  }
 }

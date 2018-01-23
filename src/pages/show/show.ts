@@ -21,10 +21,10 @@ import { ProfessionsService } from '../../services/professions.service';
 })
 export class ShowPage {
   direccion: any = [];
-  professions: any = [] ;
+  professions: any = [];
 
   constructor(
-    public navCtrl: NavController, public navParams: NavParams, public professionsService : ProfessionsService,
+    public navCtrl: NavController, public navParams: NavParams, public professionsService: ProfessionsService,
   ) {
     this.showProfessionals();
   }
@@ -35,23 +35,23 @@ export class ShowPage {
     this.direccion = JSON.parse(localStorage.getItem('address'));
   }
 
-  onSuccess(){
+  onSuccess() {
     console.log(' success');
   }
-  onError(){
+  onError() {
     console.log('error');
   }
 
-  Cleaning(item : any){
+  Cleaning(item: any) {
     // console.log(item);
-    let DataService = {'datos':item};
-    this.navCtrl.push(CleaningPage,DataService);
+    let DataService = { 'datos': item };
+    this.navCtrl.push(CleaningPage, DataService);
   }
 
-  showProfessionals(){
+  showProfessionals() {
     this.professions = this.professionsService.getProfessions();
     console.log(this.professions);
   }
-  
+
 
 }

@@ -28,75 +28,75 @@ import { GeocodeServiceProvider } from '../../providers/geocode-service';
 })
 export class PreHomePage {
   //userData = {"username":"Angel","password":"12345","email":"angellg1990@gmail.com","name":"Angel","zipcode":"90003","state":"CA","picture":"","verificacion":"20","pais":"USA","direccion":"1234 ave,bogota,CA 90003","tel":"(408)1234567"};
-	address : any = [];
-  userData: any  = [];
+  address: any = [];
+  userData: any = [];
   userActual = "user_1";
   userName = '';
   //-- geoLocation
-  lat: number= 37.09024;
-  lng: number= -95.71289100000001;
+  lat: number = 37.09024;
+  lng: number = -95.71289100000001;
   zom: number = 17;
   //-data
-  ObjAddress:any =[];
+  ObjAddress: any = [];
 
-  constructor(  
-      public navCtrl: NavController, 
-      public navParams: NavParams, 
-      //public authServiceProvider: AuthServiceProvider,
-      private userService: UserService,
-      private geo: Geolocation, private platform: Platform,
-      public afAuth: AngularFireAuth,
-      // private nativeGeocoder: NativeGeocoder,
-      private geocodeServiceProvider: GeocodeServiceProvider,
-    ) {
-  	// this.address =[
-  	// 	{"label":"casa","name":"direccion1"},
-		 //  {"label":"apartamento","name":"direcccion2"},
-  	// ];
-    
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    //public authServiceProvider: AuthServiceProvider,
+    private userService: UserService,
+    private geo: Geolocation, private platform: Platform,
+    public afAuth: AngularFireAuth,
+    // private nativeGeocoder: NativeGeocoder,
+    private geocodeServiceProvider: GeocodeServiceProvider,
+  ) {
+    // this.address =[
+    // 	{"label":"casa","name":"direccion1"},
+    //  {"label":"apartamento","name":"direcccion2"},
+    // ];
+
     // this.userService.getUser(this.userActual)
     // .forEach( datosUsuario =>{
-      //   console.log(datosUsuario);
-      // });
-      //console.log(this.userService.getAddress('angellg1990@gmail.com'));
-    }
-    
-    ionViewDidLoad() {
-      console.log('ionViewDidLoad PreHomePage');
-      this.userData = this.navParams.get('datos');
-      this.userActual = this.userData['verificacion'];
-      this.userName = this.userData['username'];
-      localStorage.setItem('userData', JSON.stringify(this.userData));
-      localStorage.setItem('verificacion', this.userData['verificacion']);
-      //console.log(this.userName);
-      // console.log(this.userData);
-      console.log(this.userActual);
-      //this.getUrlDataAddres(); 
-      this.getAddressUser(this.userActual);
+    //   console.log(datosUsuario);
+    // });
+    //console.log(this.userService.getAddress('angellg1990@gmail.com'));
   }
 
-  goShow(item : any){
-  	//console.log(item);
-    let DataItem = {'datos':item};
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad PreHomePage');
+    this.userData = this.navParams.get('datos');
+    this.userActual = this.userData['verificacion'];
+    this.userName = this.userData['username'];
+    localStorage.setItem('userData', JSON.stringify(this.userData));
+    localStorage.setItem('verificacion', this.userData['verificacion']);
+    //console.log(this.userName);
+    // console.log(this.userData);
+    console.log(this.userActual);
+    //this.getUrlDataAddres(); 
+    this.getAddressUser(this.userActual);
+  }
+
+  goShow(item: any) {
+    //console.log(item);
+    let DataItem = { 'datos': item };
     localStorage.setItem('address', JSON.stringify(item));
     //console.log(DataItem);  
-    this.navCtrl.setRoot(ShowPage,DataItem);
+    this.navCtrl.setRoot(ShowPage, DataItem);
   }
 
-  goNewAddress(){
-    let DataItem = {'datos':this.userData};
-    this.navCtrl.push(NewAddressPage,DataItem);
+  goNewAddress() {
+    let DataItem = { 'datos': this.userData };
+    this.navCtrl.push(NewAddressPage, DataItem);
   }
 
-  DropAddress(item :any){
+  DropAddress(item: any) {
     console.log(item);
-    this.userService.dropAddress(this.userActual,item.keyAddress);
+    this.userService.dropAddress(this.userActual, item.keyAddress);
     // this.getAddressUser(this.userActual);
-    let Data = {'datos':this.userData}
-    this.navCtrl.setRoot(PreHomePage,Data);
+    let Data = { 'datos': this.userData }
+    this.navCtrl.setRoot(PreHomePage, Data);
   }
 
-  goLocation(){
+  goLocation() {
     // this.getUserLocation();
     this.getUserLocationGeolocation();
     // this.getNames();
@@ -115,13 +115,13 @@ export class PreHomePage {
   //         console.log(err);
   //         return;
   //       }
-        
+
   //       console.log("Result: " + JSON.stringify(result));
   //       console.log('result findNearBy');
   //       console.log(result);
   //     },'en');
   //   }
-    
+
   //   getNamesDireccion(){
 
   //     //no disponible para browser
@@ -129,29 +129,29 @@ export class PreHomePage {
   //     .then((result: NativeGeocoderReverseResult) => console.log(JSON.stringify(result)))
   //     .catch((error: any) => console.log(error));
   //   }
-    
-    getNameAddress(){
-      this.geocodeServiceProvider.GeoCodificationInversa(this.lat,this.lng)
+
+  getNameAddress() {
+    this.geocodeServiceProvider.GeoCodificationInversa(this.lat, this.lng)
       // this.geocodeServiceProvider.GeoCodificationInversa('4.5510497999999995','-74.0984553')
-      .then( (result) => {
+      .then((result) => {
         // console.log(result);
         this.guardarDireccionGeo(result);
       })
-      .catch( (error) => { console.log(error); console.log('error geoCdoficiacion'); });
-    }
+      .catch((error) => { console.log(error); console.log('error geoCdoficiacion'); });
+  }
 
-  getAddressUser(userId: string ){
-    this.userService.getAddress(userId).subscribe( datosUsuario =>{
-    //console.log(datosUsuario);
-    let cont:number= 1;
-      for(let usuario in datosUsuario){
+  getAddressUser(userId: string) {
+    this.userService.getAddress(userId).subscribe(datosUsuario => {
+      //console.log(datosUsuario);
+      let cont: number = 1;
+      for (let usuario in datosUsuario) {
         // console.log(usuario);
-        if(datosUsuario[usuario] != undefined){
+        if (datosUsuario[usuario] != undefined) {
           console.log(datosUsuario[usuario]);
-          this.address.push({"label":datosUsuario[usuario]['addr_label'],"name":datosUsuario[usuario]['addr_info'],"keyAddress":usuario});
-          if(cont == 1){
-            if(!localStorage.getItem('address')){
-              localStorage.setItem('address', JSON.stringify({"label":datosUsuario[usuario]['addr_label'],"name":datosUsuario[usuario]['addr_info']}));
+          this.address.push({ "label": datosUsuario[usuario]['addr_label'], "name": datosUsuario[usuario]['addr_info'], "keyAddress": usuario });
+          if (cont == 1) {
+            if (!localStorage.getItem('address')) {
+              localStorage.setItem('address', JSON.stringify({ "label": datosUsuario[usuario]['addr_label'], "name": datosUsuario[usuario]['addr_info'] }));
               cont += 1;
             }
           }
@@ -183,7 +183,7 @@ export class PreHomePage {
   //   }
   // }
 
-  private getUserLocationGeolocation(){
+  private getUserLocationGeolocation() {
     this.platform.ready().then(() => {
       var options = {
         timeout: 5000
@@ -238,26 +238,26 @@ export class PreHomePage {
     }
   }
 
-  guardarDireccionGeo(geoDireccion){
-    let booleanGuardarDireccion :boolean = true;
+  guardarDireccionGeo(geoDireccion) {
+    let booleanGuardarDireccion: boolean = true;
     let label = 'My Address';
-    this.ObjAddress.push({"label":label,"name":geoDireccion});
+    this.ObjAddress.push({ "label": label, "name": geoDireccion });
     //console.log(DataItem);  
     // console.log(this.ObjAddress);
     // console.log(this.ObjAddress['0']);
-    for(let key in this.address){
+    for (let key in this.address) {
       // console.log(this.address[key]['name']);
-      if(this.address[key]['name'] ==  geoDireccion){
-        booleanGuardarDireccion=false;
+      if (this.address[key]['name'] == geoDireccion) {
+        booleanGuardarDireccion = false;
       }
     }
-    if(booleanGuardarDireccion != false){
+    if (booleanGuardarDireccion != false) {
       // console.log(JSON.stringify(this.ObjAddress['0']));
-      this.userService.newAddress(this.userActual,this.ObjAddress);
-      localStorage.setItem('address',JSON.stringify({"label":label,"name":geoDireccion}));
+      this.userService.newAddress(this.userActual, this.ObjAddress);
+      localStorage.setItem('address', JSON.stringify({ "label": label, "name": geoDireccion }));
       this.navCtrl.setRoot(ShowPage);
-    }else{
-      localStorage.setItem('address',JSON.stringify({"label":label,"name":geoDireccion}));
+    } else {
+      localStorage.setItem('address', JSON.stringify({ "label": label, "name": geoDireccion }));
       this.navCtrl.setRoot(ShowPage);
     }
     // console.info(localStorage);

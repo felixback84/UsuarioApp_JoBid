@@ -1,12 +1,33 @@
 page-payment-methods {
-	img{display: block; width: 100%; height: 250px; margin-left: auto; margin-right: auto;}
-	#paymentMethods-heading4{color:#5F5959;text-align:center;}
-	#paymentMethods-heading5{color:#000000;text-align:center;}
-	#paymentMethods-heading6{color:#000000;text-align:center;}
-	#paymentMethods-heading7{color:#000000;text-align:center;}
-	.spacer{width: 300px; height: 10px;}
-	.InfoAlert{
-		color: red;
-		text-align: center;
-	}
+    img {
+        display: block;
+        width: 100%;
+        height: 250px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #paymentMethods-heading4 {
+        color: #5F5959;
+        text-align: center;
+    }
+    #paymentMethods-heading5 {
+        color: #000000;
+        text-align: center;
+    }
+    #paymentMethods-heading6 {
+        color: #000000;
+        text-align: center;
+    }
+    #paymentMethods-heading7 {
+        color: #000000;
+        text-align: center;
+    }
+    .spacer {
+        width: 300px;
+        height: 10px;
+    }
+    .InfoAlert {
+        color: red;
+        text-align: center;
+    }
 }

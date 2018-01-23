@@ -4209,7 +4209,10 @@ form{
   max-width: 98%;
 }
 
-ion-item.item-md .text-input-ios, ion-item.item-md .text-input-md, ion-item.item-ios .text-input-ios, ion-item.item-ios .text-input-md {
+ion-item.item-md .text-input-ios,
+ion-item.item-md .text-input-md,
+ion-item.item-ios .text-input-ios,
+ion-item.item-ios .text-input-md {
   font-size: 15px;
 }
 
@@ -26232,7 +26235,8 @@ page-cleaning .imgCenter ion-icon {
   font-size: 8em;
 }
 
-page-cleaning h4, page-cleaning p {
+page-cleaning h4,
+page-cleaning p {
   text-align: center;
 }
 
@@ -26272,7 +26276,8 @@ page-cleaning-contractor .saleBox h1 {
   border-radius: 0 0 10px 10px;
 }
 
-page-cleaning-contractor .item-md ion-avatar > img, page-cleaning-contractor .item-ios ion-avatar > img {
+page-cleaning-contractor .item-md ion-avatar > img,
+page-cleaning-contractor .item-ios ion-avatar > img {
   margin: 0;
   width: 80px;
   height: 80px;
@@ -26288,7 +26293,8 @@ page-cleaning-contractor h5 {
   color: #b20000;
 }
 
-page-cleaning-contractor ion-toolbar button.button-md-light, page-cleaning-contractor ion-toolbar button.button-ios-light {
+page-cleaning-contractor ion-toolbar button.button-md-light,
+page-cleaning-contractor ion-toolbar button.button-ios-light {
   -webkit-box-shadow: none;
   box-shadow: none;
   color: white;
@@ -26296,13 +26302,15 @@ page-cleaning-contractor ion-toolbar button.button-md-light, page-cleaning-contr
   text-transform: capitalize;
 }
 
-page-cleaning-contractor ion-toolbar button.button-md-light#btnContractor, page-cleaning-contractor ion-toolbar button.button-ios-light#btnContractor {
+page-cleaning-contractor ion-toolbar button.button-md-light#btnContractor,
+page-cleaning-contractor ion-toolbar button.button-ios-light#btnContractor {
   background: #2b8300;
   height: 48px;
   font-size: 20px;
 }
 
-page-cleaning-contractor ion-toolbar button.button-md-light#btnCancel, page-cleaning-contractor ion-toolbar button.button-ios-light#btnCancel {
+page-cleaning-contractor ion-toolbar button.button-md-light#btnCancel,
+page-cleaning-contractor ion-toolbar button.button-ios-light#btnCancel {
   background: #666666;
   height: 48px;
   font-size: 20px;
@@ -26386,11 +26394,15 @@ page-cleaning-contractor .Calificacion.Usuario label {
   font-size: 28px;
 }
 
-page-cleaning-contractor .list-md > .item-block:last-child ion-label, page-cleaning-contractor .list-md > .item-block:last-child .item-inner, page-cleaning-contractor .list-md > .item-wrapper:last-child ion-label, page-cleaning-contractor .list-md > .item-wrapper:last-child .item-inner {
+page-cleaning-contractor .list-md > .item-block:last-child ion-label,
+page-cleaning-contractor .list-md > .item-block:last-child .item-inner,
+page-cleaning-contractor .list-md > .item-wrapper:last-child ion-label,
+page-cleaning-contractor .list-md > .item-wrapper:last-child .item-inner {
   padding: 0;
 }
 
-page-cleaning-contractor .list-md > .item-block:last-child .item-inner, page-cleaning-contractor .list-ios > .item-block:last-child .item-inner {
+page-cleaning-contractor .list-md > .item-block:last-child .item-inner,
+page-cleaning-contractor .list-ios > .item-block:last-child .item-inner {
   margin: 10px 0;
 }
 
@@ -26401,7 +26413,8 @@ page-cleaning-info .imgCenter ion-icon {
   font-size: 8em;
 }
 
-page-cleaning-info h4, page-cleaning-info p {
+page-cleaning-info h4,
+page-cleaning-info p {
   text-align: center;
 }
 
@@ -26418,11 +26431,15 @@ page-cleaning-info-service .imageFull {
   height: auto;
 }
 
-page-cleaning-info-service h3, page-cleaning-info-service h5, page-cleaning-info-service h6, page-cleaning-info-service .textoCentrado {
+page-cleaning-info-service h3,
+page-cleaning-info-service h5,
+page-cleaning-info-service h6,
+page-cleaning-info-service .textoCentrado {
   text-align: center;
 }
 
-page-cleaning-info-service h6, page-cleaning-info-service h3 {
+page-cleaning-info-service h6,
+page-cleaning-info-service h3 {
   margin: 0;
 }
 
@@ -26441,7 +26458,8 @@ page-cleaning-info-service .barraGris h4 {
   text-align: center;
 }
 
-page-cleaning-info-service .item-md ion-avatar > img, page-cleaning-info-service .item-ios ion-avatar > img {
+page-cleaning-info-service .item-md ion-avatar > img,
+page-cleaning-info-service .item-ios ion-avatar > img {
   margin: 0;
   width: 80px;
   height: 80px;
@@ -26481,7 +26499,8 @@ page-cleaning-info-service ion-grid .col .label {
   padding: 0;
 }
 
-page-cleaning-info-service ion-item.item-md ion-label.label, page-cleaning-info-service ion-item.item-ios ion-label.label {
+page-cleaning-info-service ion-item.item-md ion-label.label,
+page-cleaning-info-service ion-item.item-ios ion-label.label {
   margin: 0;
 }
 
@@ -26603,7 +26622,8 @@ page-cleaning-sale ion-icon[name=timer] span {
   color: orange;
 }
 
-page-cleaning-sale h4, page-cleaning-sale h5 {
+page-cleaning-sale h4,
+page-cleaning-sale h5 {
   font-weight: bold;
 }
 
@@ -26623,7 +26643,8 @@ page-cleaning-sale .contador > .contenido {
   text-align: center;
 }
 
-page-cleaning-sale .contador > .contenido p, page-cleaning-sale .contador > .contenido h3 {
+page-cleaning-sale .contador > .contenido p,
+page-cleaning-sale .contador > .contenido h3 {
   margin: 0px;
   color: white;
 }
@@ -26643,12 +26664,14 @@ page-cleaning-sale .contador > .contenido2 {
   text-align: center;
 }
 
-page-cleaning-sale .contador > .contenido2 p, page-cleaning-sale .contador > .contenido2 h3 {
+page-cleaning-sale .contador > .contenido2 p,
+page-cleaning-sale .contador > .contenido2 h3 {
   margin-top: 1.6rem;
   color: white;
 }
 
-page-cleaning-sale ion-item.item-md, page-cleaning-sale ion-item.item-ios {
+page-cleaning-sale ion-item.item-md,
+page-cleaning-sale ion-item.item-ios {
   padding-bottom: 0;
 }
 
@@ -26661,7 +26684,8 @@ page-cleaning-sale ion-footer ion-toolbar.toolbar {
   padding-bottom: 0;
 }
 
-page-cleaning-sale ion-footer ion-toolbar .toolbar-background-md, page-cleaning-sale ion-footer ion-toolbar .toolbar-background-ios {
+page-cleaning-sale ion-footer ion-toolbar .toolbar-background-md,
+page-cleaning-sale ion-footer ion-toolbar .toolbar-background-ios {
   color: #b20000;
   /*background: $Red;*/
 }
@@ -26697,7 +26721,8 @@ page-cleaning-sale ion-content ion-grid.body ion-row.row {
   height: 60px;
 }
 
-page-cleaning-sale ion-content ion-grid.body ion-row.row .col, page-cleaning-sale ion-content ion-grid.body ion-row.row [col-6] {
+page-cleaning-sale ion-content ion-grid.body ion-row.row .col,
+page-cleaning-sale ion-content ion-grid.body ion-row.row [col-6] {
   padding: 0;
 }
 
@@ -26750,143 +26775,175 @@ page-cleaning-sale .mapa agm-map {
   background: orange;
 }
 
-.alert-md .alert-wrapper, .alert-ios .alert-wrapper {
+.alert-md .alert-wrapper,
+.alert-ios .alert-wrapper {
   border-radius: 10px;
   max-width: 98%;
   width: 98%;
 }
 
-.alert-md .alert-wrapper h5, .alert-ios .alert-wrapper h5 {
+.alert-md .alert-wrapper h5,
+.alert-ios .alert-wrapper h5 {
   color: #b20000;
 }
 
-.alert-md .alert-wrapper .col-50, .alert-ios .alert-wrapper .col-50 {
+.alert-md .alert-wrapper .col-50,
+.alert-ios .alert-wrapper .col-50 {
   width: 48%;
   display: inline-block;
 }
 
-.alert-md .alert-wrapper .col-40, .alert-ios .alert-wrapper .col-40 {
+.alert-md .alert-wrapper .col-40,
+.alert-ios .alert-wrapper .col-40 {
   width: 37%;
   margin-right: 3%;
   display: inline-block;
 }
 
-.alert-md .alert-wrapper .col-40 img, .alert-ios .alert-wrapper .col-40 img {
+.alert-md .alert-wrapper .col-40 img,
+.alert-ios .alert-wrapper .col-40 img {
   vertical-align: initial;
   border-radius: 50%;
   height: 70px;
   width: 70px;
 }
 
-.alert-md .alert-wrapper .col-60, .alert-ios .alert-wrapper .col-60 {
+.alert-md .alert-wrapper .col-60,
+.alert-ios .alert-wrapper .col-60 {
   width: 58%;
   display: inline-block;
 }
 
-.alert-md .alert-wrapper .col-60 h4, .alert-ios .alert-wrapper .col-60 h4 {
+.alert-md .alert-wrapper .col-60 h4,
+.alert-ios .alert-wrapper .col-60 h4 {
   margin: 0;
 }
 
-.alert-md .alert-wrapper .col-60 span.ItemPService, .alert-ios .alert-wrapper .col-60 span.ItemPService {
+.alert-md .alert-wrapper .col-60 span.ItemPService,
+.alert-ios .alert-wrapper .col-60 span.ItemPService {
   display: block;
   margin-bottom: 5px;
 }
 
-.alert-md .alert-wrapper .col-60 span.ItemPService span, .alert-ios .alert-wrapper .col-60 span.ItemPService span {
+.alert-md .alert-wrapper .col-60 span.ItemPService span,
+.alert-ios .alert-wrapper .col-60 span.ItemPService span {
   padding: 5px 0;
 }
 
-.alert-md .alert-wrapper .ItemPService span, .alert-ios .alert-wrapper .ItemPService span {
+.alert-md .alert-wrapper .ItemPService span,
+.alert-ios .alert-wrapper .ItemPService span {
   margin-bottom: 5px;
 }
 
-.alert-md .alert-wrapper .imagen50, .alert-ios .alert-wrapper .imagen50 {
+.alert-md .alert-wrapper .imagen50,
+.alert-ios .alert-wrapper .imagen50 {
   width: 50%;
 }
 
-.alert-md .alert-wrapper p, .alert-ios .alert-wrapper p {
+.alert-md .alert-wrapper p,
+.alert-ios .alert-wrapper p {
   text-align: initial;
 }
 
-.alert-md .alert-wrapper .nameUser, .alert-ios .alert-wrapper .nameUser {
+.alert-md .alert-wrapper .nameUser,
+.alert-ios .alert-wrapper .nameUser {
   display: inline-block;
 }
 
-.alert-md .alert-wrapper .Calificacion, .alert-ios .alert-wrapper .Calificacion {
+.alert-md .alert-wrapper .Calificacion,
+.alert-ios .alert-wrapper .Calificacion {
   display: inline-block;
   margin-left: 5px;
 }
 
-.alert-md .alert-wrapper .Calificacion label, .alert-ios .alert-wrapper .Calificacion label {
+.alert-md .alert-wrapper .Calificacion label,
+.alert-ios .alert-wrapper .Calificacion label {
   display: inline-block;
   font-size: 20px;
 }
 
-.alert-md .alert-wrapper .Calificacion.cinco label:nth-child(5), .alert-ios .alert-wrapper .Calificacion.cinco label:nth-child(5) {
+.alert-md .alert-wrapper .Calificacion.cinco label:nth-child(5),
+.alert-ios .alert-wrapper .Calificacion.cinco label:nth-child(5) {
   color: #b20000;
 }
 
-.alert-md .alert-wrapper .Calificacion.cinco label:nth-child(4), .alert-ios .alert-wrapper .Calificacion.cinco label:nth-child(4) {
+.alert-md .alert-wrapper .Calificacion.cinco label:nth-child(4),
+.alert-ios .alert-wrapper .Calificacion.cinco label:nth-child(4) {
   color: #b20000;
 }
 
-.alert-md .alert-wrapper .Calificacion.cinco label:nth-child(3), .alert-ios .alert-wrapper .Calificacion.cinco label:nth-child(3) {
+.alert-md .alert-wrapper .Calificacion.cinco label:nth-child(3),
+.alert-ios .alert-wrapper .Calificacion.cinco label:nth-child(3) {
   color: #b20000;
 }
 
-.alert-md .alert-wrapper .Calificacion.cinco label:nth-child(2), .alert-ios .alert-wrapper .Calificacion.cinco label:nth-child(2) {
+.alert-md .alert-wrapper .Calificacion.cinco label:nth-child(2),
+.alert-ios .alert-wrapper .Calificacion.cinco label:nth-child(2) {
   color: #b20000;
 }
 
-.alert-md .alert-wrapper .Calificacion.cinco label:nth-child(1), .alert-ios .alert-wrapper .Calificacion.cinco label:nth-child(1) {
+.alert-md .alert-wrapper .Calificacion.cinco label:nth-child(1),
+.alert-ios .alert-wrapper .Calificacion.cinco label:nth-child(1) {
   color: #b20000;
 }
 
-.alert-md .alert-wrapper .Calificacion.cuatro label:nth-child(4), .alert-ios .alert-wrapper .Calificacion.cuatro label:nth-child(4) {
+.alert-md .alert-wrapper .Calificacion.cuatro label:nth-child(4),
+.alert-ios .alert-wrapper .Calificacion.cuatro label:nth-child(4) {
   color: #b20000;
 }
 
-.alert-md .alert-wrapper .Calificacion.cuatro label:nth-child(3), .alert-ios .alert-wrapper .Calificacion.cuatro label:nth-child(3) {
+.alert-md .alert-wrapper .Calificacion.cuatro label:nth-child(3),
+.alert-ios .alert-wrapper .Calificacion.cuatro label:nth-child(3) {
   color: #b20000;
 }
 
-.alert-md .alert-wrapper .Calificacion.cuatro label:nth-child(2), .alert-ios .alert-wrapper .Calificacion.cuatro label:nth-child(2) {
+.alert-md .alert-wrapper .Calificacion.cuatro label:nth-child(2),
+.alert-ios .alert-wrapper .Calificacion.cuatro label:nth-child(2) {
   color: #b20000;
 }
 
-.alert-md .alert-wrapper .Calificacion.cuatro label:nth-child(1), .alert-ios .alert-wrapper .Calificacion.cuatro label:nth-child(1) {
+.alert-md .alert-wrapper .Calificacion.cuatro label:nth-child(1),
+.alert-ios .alert-wrapper .Calificacion.cuatro label:nth-child(1) {
   color: #b20000;
 }
 
-.alert-md .alert-wrapper .Calificacion.tres label:nth-child(3), .alert-ios .alert-wrapper .Calificacion.tres label:nth-child(3) {
+.alert-md .alert-wrapper .Calificacion.tres label:nth-child(3),
+.alert-ios .alert-wrapper .Calificacion.tres label:nth-child(3) {
   color: #b20000;
 }
 
-.alert-md .alert-wrapper .Calificacion.tres label:nth-child(2), .alert-ios .alert-wrapper .Calificacion.tres label:nth-child(2) {
+.alert-md .alert-wrapper .Calificacion.tres label:nth-child(2),
+.alert-ios .alert-wrapper .Calificacion.tres label:nth-child(2) {
   color: #b20000;
 }
 
-.alert-md .alert-wrapper .Calificacion.tres label:nth-child(1), .alert-ios .alert-wrapper .Calificacion.tres label:nth-child(1) {
+.alert-md .alert-wrapper .Calificacion.tres label:nth-child(1),
+.alert-ios .alert-wrapper .Calificacion.tres label:nth-child(1) {
   color: #b20000;
 }
 
-.alert-md .alert-wrapper .Calificacion.dos label:nth-child(2), .alert-ios .alert-wrapper .Calificacion.dos label:nth-child(2) {
+.alert-md .alert-wrapper .Calificacion.dos label:nth-child(2),
+.alert-ios .alert-wrapper .Calificacion.dos label:nth-child(2) {
   color: #b20000;
 }
 
-.alert-md .alert-wrapper .Calificacion.dos label:nth-child(1), .alert-ios .alert-wrapper .Calificacion.dos label:nth-child(1) {
+.alert-md .alert-wrapper .Calificacion.dos label:nth-child(1),
+.alert-ios .alert-wrapper .Calificacion.dos label:nth-child(1) {
   color: #b20000;
 }
 
-.alert-md .alert-wrapper .Calificacion.uno label:nth-child(1), .alert-ios .alert-wrapper .Calificacion.uno label:nth-child(1) {
+.alert-md .alert-wrapper .Calificacion.uno label:nth-child(1),
+.alert-ios .alert-wrapper .Calificacion.uno label:nth-child(1) {
   color: #b20000;
 }
 
-.alert-md .alert-wrapper .col-60 .Calificacion, .alert-ios .alert-wrapper .col-60 .Calificacion {
+.alert-md .alert-wrapper .col-60 .Calificacion,
+.alert-ios .alert-wrapper .col-60 .Calificacion {
   margin-left: 0;
 }
 
-.alert-md .alert-wrapper .col-60 .Calificacion label, .alert-ios .alert-wrapper .col-60 .Calificacion label {
+.alert-md .alert-wrapper .col-60 .Calificacion label,
+.alert-ios .alert-wrapper .col-60 .Calificacion label {
   font-size: 26px;
 }
 
@@ -26899,7 +26956,8 @@ page-cleaning-vote h4 {
   text-align: center;
 }
 
-page-cleaning-vote textarea.text-input.text-input-md, page-cleaning-vote textarea.text-input.text-input-ios {
+page-cleaning-vote textarea.text-input.text-input-md,
+page-cleaning-vote textarea.text-input.text-input-ios {
   height: 300px;
 }
 
@@ -26948,7 +27006,8 @@ page-edit-user .grid {
   padding: 0;
 }
 
-page-edit-user .grid [col-4], page-edit-user .grid [col-8] {
+page-edit-user .grid [col-4],
+page-edit-user .grid [col-8] {
   padding: 0;
 }
 
@@ -26958,7 +27017,8 @@ page-edit-user .button-outline-md-danger {
   width: 100%;
 }
 
-page-edit-user .row .list-md, page-edit-user .row .list-ios {
+page-edit-user .row .list-md,
+page-edit-user .row .list-ios {
   margin: 0;
 }
 
@@ -27006,19 +27066,25 @@ page-my-services strong {
   color: #b20000;
 }
 
-page-my-services .list-md .item-block .item-inner, page-my-services .list-ios .item-block .item-inner {
+page-my-services .list-md .item-block .item-inner,
+page-my-services .list-ios .item-block .item-inner {
   padding: 0;
 }
 
-page-my-services .label.label-md, page-my-services .label.label-ios {
+page-my-services .label.label-md,
+page-my-services .label.label-ios {
   padding: 5px 0;
 }
 
-page-myserviceinfo h3, page-myserviceinfo h5, page-myserviceinfo h6, page-myserviceinfo .textoCentrado {
+page-myserviceinfo h3,
+page-myserviceinfo h5,
+page-myserviceinfo h6,
+page-myserviceinfo .textoCentrado {
   text-align: center;
 }
 
-page-myserviceinfo h6, page-myserviceinfo h3 {
+page-myserviceinfo h6,
+page-myserviceinfo h3 {
   margin: 0;
 }
 
@@ -27041,7 +27107,8 @@ page-myserviceinfo .barraRoja {
   background: #b20000;
 }
 
-page-myserviceinfo .item-md ion-avatar > img, page-myserviceinfo .item-ios ion-avatar > img {
+page-myserviceinfo .item-md ion-avatar > img,
+page-myserviceinfo .item-ios ion-avatar > img {
   margin: 0;
   width: 80px;
   height: 80px;
@@ -27071,7 +27138,8 @@ page-myserviceinfo .textoCentrado {
   margin: 0;
 }
 
-page-myserviceinfo ion-item.item-md ion-label.label, page-myserviceinfo ion-item.item-ios ion-label.label {
+page-myserviceinfo ion-item.item-md ion-label.label,
+page-myserviceinfo ion-item.item-ios ion-label.label {
   margin: 0;
 }
 
@@ -27305,16 +27373,18 @@ page-pre-home .card-background-page .card-subtitle > p {
 }
 
 page-pre-home .btnAddress {
-  margin: 20px 0  0 0;
+  margin: 20px 0 0 0;
 }
 
-page-pre-home .btnAddress ion-list button.item-md, page-pre-home .btnAddress ion-list button.item-ios {
+page-pre-home .btnAddress ion-list button.item-md,
+page-pre-home .btnAddress ion-list button.item-ios {
   color: #b20000;
   border: 1px solid #666666;
   border-radius: 5px;
 }
 
-page-pre-home ion-list button.item-md h3, page-pre-home ion-list button.item-ios h3 {
+page-pre-home ion-list button.item-md h3,
+page-pre-home ion-list button.item-ios h3 {
   color: black;
   text-transform: capitalize;
   font-weight: bold;
@@ -27330,7 +27400,10 @@ page-pre-home .grid .button-md {
   margin-top: 20px;
 }
 
-page-pre-home .row .item-md ion-icon[item-left], page-pre-home .row .item-md ion-icon[item-right], page-pre-home .row .item-md ion-icon[item-start], page-pre-home .row .item-md ion-icon[item-end] {
+page-pre-home .row .item-md ion-icon[item-left],
+page-pre-home .row .item-md ion-icon[item-right],
+page-pre-home .row .item-md ion-icon[item-start],
+page-pre-home .row .item-md ion-icon[item-end] {
   margin-left: 0;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -27343,7 +27416,8 @@ page-services-beauty .imgCenter ion-icon {
   font-size: 8em;
 }
 
-page-services-beauty h4, page-services-beauty p {
+page-services-beauty h4,
+page-services-beauty p {
   text-align: center;
 }
 
@@ -27370,7 +27444,8 @@ page-services-care .imgCenter ion-icon {
   font-size: 8em;
 }
 
-page-services-care h4, page-services-care p {
+page-services-care h4,
+page-services-care p {
   text-align: center;
 }
 
@@ -27397,7 +27472,8 @@ page-services-cleaning .imgCenter ion-icon {
   font-size: 8em;
 }
 
-page-services-cleaning h4, page-services-cleaning p {
+page-services-cleaning h4,
+page-services-cleaning p {
   text-align: center;
 }
 
@@ -27424,7 +27500,8 @@ page-services-food .imgCenter ion-icon {
   font-size: 8em;
 }
 
-page-services-food h4, page-services-food p {
+page-services-food h4,
+page-services-food p {
   text-align: center;
 }
 
@@ -27451,7 +27528,8 @@ page-services-janotorial .imgCenter ion-icon {
   font-size: 8em;
 }
 
-page-services-janotorial h4, page-services-janotorial p {
+page-services-janotorial h4,
+page-services-janotorial p {
   text-align: center;
 }
 
@@ -27478,7 +27556,8 @@ page-services-legal .imgCenter ion-icon {
   font-size: 8em;
 }
 
-page-services-legal h4, page-services-legal p {
+page-services-legal h4,
+page-services-legal p {
   text-align: center;
 }
 
@@ -27505,7 +27584,8 @@ page-services-transportation .imgCenter ion-icon {
   font-size: 8em;
 }
 
-page-services-transportation h4, page-services-transportation p {
+page-services-transportation h4,
+page-services-transportation p {
   text-align: center;
 }
 
@@ -27539,7 +27619,8 @@ page-show .gridProfession .row > p {
   height: 30px;
 }
 
-page-show .gridProfession .button-md-light, page-show .gridProfession .button-ios-light {
+page-show .gridProfession .button-md-light,
+page-show .gridProfession .button-ios-light {
   -webkit-box-shadow: none;
   box-shadow: none;
   margin: 0;
@@ -27548,11 +27629,13 @@ page-show .gridProfession .button-md-light, page-show .gridProfession .button-io
   padding: 0;
 }
 
-page-show .gridProfession .button-md-light .grid, page-show .gridProfession .button-ios-light .grid {
+page-show .gridProfession .button-md-light .grid,
+page-show .gridProfession .button-ios-light .grid {
   padding: 0;
 }
 
-page-show .gridProfession .button-md-light .grid img, page-show .gridProfession .button-ios-light .grid img {
+page-show .gridProfession .button-md-light .grid img,
+page-show .gridProfession .button-ios-light .grid img {
   max-width: 100%;
   height: 90px;
   border: 0;
@@ -27566,11 +27649,13 @@ page-show .gridProfession ion-icon {
   font-size: 100px;
 }
 
-page-show h3, page-show p {
+page-show h3,
+page-show p {
   text-align: center;
 }
 
-page-show h3, page-show strong {
+page-show h3,
+page-show strong {
   font-weight: bold;
 }
 
@@ -27609,7 +27694,8 @@ page-singup .button-outline-md-danger {
   width: 100%;
 }
 
-page-singup .row .list-md, page-singup .row .list-ios {
+page-singup .row .list-md,
+page-singup .row .list-ios {
   margin: 0;
 }
 
@@ -27618,7 +27704,8 @@ page-singup ion-label.label {
   padding: 0;
 }
 
-page-singup ion-item.item-md ion-label.label img, page-singup ion-item.item-ios ion-label.label img {
+page-singup ion-item.item-md ion-label.label img,
+page-singup ion-item.item-ios ion-label.label img {
   width: 100px;
   height: 100px;
   margin: 0;

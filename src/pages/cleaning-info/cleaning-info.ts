@@ -22,8 +22,8 @@ export class CleaningInfoPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CleaningInfoPage');
   }
-  goCleaningSale(){
-  	this.navCtrl.setRoot(CleaningSalePage);
+  goCleaningSale() {
+    this.navCtrl.setRoot(CleaningSalePage);
   }
 
 }

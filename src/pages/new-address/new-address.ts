@@ -23,18 +23,18 @@ import { PreHomePage } from '../pre-home/pre-home';
 })
 export class NewAddressPage {
 
-DirecA: any; DirecB: any; DirecC: any; DirecD: any; state: any; zipcode:any; 
-label:any;
-estados: any = []; ciudades:any = [];
-ObjAddress: any = [];
-userData:any;
-userActual:any;
+  DirecA: any; DirecB: any; DirecC: any; DirecD: any; state: any; zipcode: any;
+  label: any;
+  estados: any = []; ciudades: any = [];
+  ObjAddress: any = [];
+  userData: any;
+  userActual: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private userService: UserService) {
-  	var stateName = STATE_UTILS.getStates();
+    var stateName = STATE_UTILS.getStates();
     var stateNameShort = STATE_UTILS.getUSPSCodes();
     for (var i = 0; stateName.length > i; i++) {
-      this.estados.push({'name':stateName[i],'nameShort':stateNameShort[i]});
+      this.estados.push({ 'name': stateName[i], 'nameShort': stateNameShort[i] });
     }
     this.userData = this.navParams.get('datos');
     this.userActual = this.userData['verificacion'];
@@ -44,34 +44,34 @@ userActual:any;
     console.log('ionViewDidLoad NewAddressPage');
   }
 
-  goPreHome(){
-  	var direccion = this.DirecA+' '+this.DirecB+','+this.DirecC+','+this.DirecD ;
-  	console.log(direccion);
-    this.ObjAddress.push({"label":this.label,"name":direccion});
+  goPreHome() {
+    var direccion = this.DirecA + ' ' + this.DirecB + ',' + this.DirecC + ',' + this.DirecD;
+    console.log(direccion);
+    this.ObjAddress.push({ "label": this.label, "name": direccion });
     console.log(this.ObjAddress);
-    this.userService.newAddress(this.userActual,this.ObjAddress);
+    this.userService.newAddress(this.userActual, this.ObjAddress);
 
-    let DataItem = {'datos':this.userData};
-    this.navCtrl.setRoot(PreHomePage,DataItem);
+    let DataItem = { 'datos': this.userData };
+    this.navCtrl.setRoot(PreHomePage, DataItem);
   }
 
-   setCity(){
+  setCity() {
     this.zipcode = undefined;
     var someArray = undefined;
-    this.ciudades =  [];
+    this.ciudades = [];
     someArray = cities.findByState(this.state);
     for (let entry of someArray) {
       //var city= entry['city'];
       if (typeof entry['city'] !== 'undefined' && entry['city'] !== null && entry['city'] !== '') {
-         //console.log(entry['city']); // 1, "string", false
-         this.ciudades.push({'name':entry['city'],'zipcode':entry['zipcode']});
+        //console.log(entry['city']); // 1, "string", false
+        this.ciudades.push({ 'name': entry['city'], 'zipcode': entry['zipcode'] });
       }
-      
+
     }
   }
-  
-  setZipCode(){
-    this.DirecD = this.state+' '+this.zipcode;
+
+  setZipCode() {
+    this.DirecD = this.state + ' ' + this.zipcode;
   }
 
 }

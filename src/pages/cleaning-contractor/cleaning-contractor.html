@@ -6,100 +6,106 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-  <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>JoBid</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>JoBid</ion-title>
+	</ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-<div class="barraRoja">
-	<h4>Bid winner</h4>
-</div>
-<div class="saleBox">
-	<h1>${{sale}}</h1>
-</div>
-<ion-grid>
-	<ion-row>
-		<ion-col col-5>
-			<ion-list>
-				<ion-item>
-					<ion-avatar>
-						<img src="{{ImgJobr}}">
-			    </ion-avatar>
-		  	</ion-item>
-			</ion-list>
-	  </ion-col>
-	  <ion-col col-7>
-			<ion-row>
-				<ion-col>
-					<h4>{{nameJobr}}</h4>
-					<!-- <img src="assets/img/Estrellas.png" alt=""> -->
-					
-				<p class="Calificacion Usuario {{starJobr}}">
-					<label for="radio1">&#9733;</label>
-					<label for="radio2">&#9733;</label>
-					<label for="radio3">&#9733;</label>
-					<label for="radio4">&#9733;</label>
-					<label for="radio5">&#9733;</label>
-				</p>
-	  		</ion-col>
-	  	</ion-row>	
-	  	<ion-row>	
-				<ion-col col-6 class="col-height"  *ngIf="certificateJobr" >
-					<ion-list><ion-item>
-						<ion-label>Certificate</ion-label>
-						<ion-radio checked="true" value="Certificate"></ion-radio>
-					</ion-item></ion-list>
-			  </ion-col>
-			  <ion-col col-6 class="col-height"  *ngIf="insuranceJobr">
-					<ion-list>
-						<ion-item>
-							<ion-label>Insurance</ion-label>
-							<ion-radio checked="true" value="Insurance"></ion-radio>
-				  	</ion-item>
-					</ion-list>
-			  </ion-col>
-	  	</ion-row>	
-	  </ion-col>
-	</ion-row>
-</ion-grid>
-<div  class="divScroll" padding>
-	<h5>Presentation</h5>
-	<p>{{presentationJobr}}</p>
-	<h5 [hidden]="disGallery">Gallery</h5>
-	<ion-grid [hidden]="disGallery">
+	<div class="barraRoja">
+		<h4>Bid winner</h4>
+	</div>
+	<div class="saleBox">
+		<h1>${{sale}}</h1>
+	</div>
+	<ion-grid>
 		<ion-row>
-			<ion-col col-6 [hidden] ="disableGalleryAJobr">
-				<img src="{{galleryAJobr}}" alt="">
+			<ion-col col-5>
+				<ion-list>
+					<ion-item>
+						<ion-avatar>
+							<img src="{{ImgJobr}}">
+						</ion-avatar>
+					</ion-item>
+				</ion-list>
 			</ion-col>
-			<ion-col col-6 [hidden] ="disableGalleryBJobr">
-				<img src="{{galleryBJobr}}" alt="">
-			</ion-col>
-		<!-- </ion-row>
-		<ion-row> -->
-			<ion-col col-6 [hidden] ="disableGalleryCJobr">
-				<img src="{{galleryCJobr}}" alt="">
-			</ion-col>
-			<ion-col col-6 [hidden] ="disableGalleryDJobr">
-				<img src="{{galleryDJobr}}" alt="">
+			<ion-col col-7>
+				<ion-row>
+					<ion-col>
+						<h4>{{nameJobr}}</h4>
+						<!-- <img src="assets/img/Estrellas.png" alt=""> -->
+
+						<p class="Calificacion Usuario {{starJobr}}">
+							<label for="radio1">&#9733;</label>
+							<label for="radio2">&#9733;</label>
+							<label for="radio3">&#9733;</label>
+							<label for="radio4">&#9733;</label>
+							<label for="radio5">&#9733;</label>
+						</p>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col col-6 class="col-height" *ngIf="certificateJobr">
+						<ion-list>
+							<ion-item>
+								<ion-label>Certificate</ion-label>
+								<ion-radio checked="true" value="Certificate"></ion-radio>
+							</ion-item>
+						</ion-list>
+					</ion-col>
+					<ion-col col-6 class="col-height" *ngIf="insuranceJobr">
+						<ion-list>
+							<ion-item>
+								<ion-label>Insurance</ion-label>
+								<ion-radio checked="true" value="Insurance"></ion-radio>
+							</ion-item>
+						</ion-list>
+					</ion-col>
+				</ion-row>
 			</ion-col>
 		</ion-row>
 	</ion-grid>
-	<h5>Comments</h5>
-<div class="comments" *ngFor="let value of commentsJobr" >
-	{{value.user}}
-	<!-- {{value.star}} -->
-	<p class="Calificacion {{value.star}}">
-		<label for="radio1">&#9733;</label><label for="radio2">&#9733;</label><label for="radio3">&#9733;</label><label for="radio4">&#9733;</label><label for="radio5">&#9733;</label>
-	</p>
-	<p>{{value.description}}</p>
-</div>
-<!-- <div class="comments">
+	<div class="divScroll" padding>
+		<h5>Presentation</h5>
+		<p>{{presentationJobr}}</p>
+		<h5 [hidden]="disGallery">Gallery</h5>
+		<ion-grid [hidden]="disGallery">
+			<ion-row>
+				<ion-col col-6 [hidden]="disableGalleryAJobr">
+					<img src="{{galleryAJobr}}" alt="">
+				</ion-col>
+				<ion-col col-6 [hidden]="disableGalleryBJobr">
+					<img src="{{galleryBJobr}}" alt="">
+				</ion-col>
+				<!-- </ion-row>
+		<ion-row> -->
+				<ion-col col-6 [hidden]="disableGalleryCJobr">
+					<img src="{{galleryCJobr}}" alt="">
+				</ion-col>
+				<ion-col col-6 [hidden]="disableGalleryDJobr">
+					<img src="{{galleryDJobr}}" alt="">
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+		<h5>Comments</h5>
+		<div class="comments" *ngFor="let value of commentsJobr">
+			{{value.user}}
+			<!-- {{value.star}} -->
+			<p class="Calificacion {{value.star}}">
+				<label for="radio1">&#9733;</label>
+				<label for="radio2">&#9733;</label>
+				<label for="radio3">&#9733;</label>
+				<label for="radio4">&#9733;</label>
+				<label for="radio5">&#9733;</label>
+			</p>
+			<p>{{value.description}}</p>
+		</div>
+		<!-- <div class="comments">
 	<h6>Luis Lorem <img src="assets/img/Estrellas.png" alt=""></h6>
 	 <p>Odit, cupiditate. Quibusdam ducimus minus incidunt voluptas consequatur odit, adipisci eveniet laborum obcaecati labore! Sapiente repellat ipsum in autem fuga sint enim recusandae incidunt tenetur corporis neque totam, quam sequi placeat cupiditate, inventore! Alias repudiandae ducimus laudantium nemo quisquam, quod sint et quam, id ipsum magnam veniam amet sit a voluptatibus, similique ipsa voluptatem voluptates velit quo. Quidem odio a nemo sit illum. </p>
 </div>
@@ -108,22 +114,22 @@
 	 <p>Odit, cupiditate. Quibusdam ducimus minus incidunt voluptas consequatur odit, adipisci eveniet laborum obcaecati labore! Sapiente repellat ipsum in autem fuga sint enim recusandae incidunt tenetur corporis neque totam, quam sequi placeat cupiditate, inventore! Alias repudiandae ducimus laudantium nemo quisquam, quod sint et quam, id ipsum magnam veniam amet sit a voluptatibus, similique ipsa voluptatem voluptates velit quo. Quidem odio a nemo sit illum. </p>
 </div> -->
 
-</div>
+	</div>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
-    <ion-grid>
-     <ion-row>
-      <ion-col>
-        <button id="btnContractor" ion-button block color="light" (click)="goCleaningInfoService()">Hire
-        </button>
-      </ion-col>
-      <ion-col>
-        <button id="btnCancel" ion-button block color="light"(click)="goIndex()">Cancel service
-        </button>
-      </ion-col>
-     </ion-row>
-    </ion-grid>  
-  </ion-toolbar>
+	<ion-toolbar>
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<button id="btnContractor" ion-button block color="light" (click)="goCleaningInfoService()">Hire
+					</button>
+				</ion-col>
+				<ion-col>
+					<button id="btnCancel" ion-button block color="light" (click)="goIndex()">Cancel service
+					</button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-toolbar>
 </ion-footer>

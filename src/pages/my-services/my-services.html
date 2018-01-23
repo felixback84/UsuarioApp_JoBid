@@ -8,7 +8,7 @@
 
   <ion-navbar>
     <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>JoBid</ion-title>
   </ion-navbar>
@@ -17,18 +17,22 @@
 
 
 <ion-content padding>
-<h3>My services</h3>
-<h4>List:</h4>
+  <h3>My services</h3>
+  <h4>List:</h4>
 
-<ion-list>
-  <button ion-item *ngFor="let p of OffersList" (click)="goInfoService(p)" class="btnItem">
-    <p><strong>Services: </strong>{{p['$key']}}</p>
-    <p> <strong>{{p.name}}</strong>: {{p.Clasificacion.categoria}}</p>
-    <!-- <p>professional:</p> -->
-    <p><strong>Status</strong>:{{p.status}}</p>
-    <!-- <p *ngIf="p.status != 'Cancelled' "><strong>Sale</strong>:{{p.sale}}</p> -->
-    <p><strong>Sale</strong>:{{p.sale}}</p>
-  </button>
-</ion-list>
-<!-- (click)="openPage(p) -->
+  <ion-list>
+    <button ion-item *ngFor="let p of OffersList" (click)="goInfoService(p)" class="btnItem">
+      <p>
+        <strong>Services: </strong>{{p['$key']}}</p>
+      <p>
+        <strong>{{p.name}}</strong>: {{p.Clasificacion.categoria}}</p>
+      <!-- <p>professional:</p> -->
+      <p>
+        <strong>Status</strong>:{{p.status}}</p>
+      <!-- <p *ngIf="p.status != 'Cancelled' "><strong>Sale</strong>:{{p.sale}}</p> -->
+      <p>
+        <strong>Sale</strong>:{{p.sale}}</p>
+    </button>
+  </ion-list>
+  <!-- (click)="openPage(p) -->
 </ion-content>

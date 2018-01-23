@@ -14,55 +14,55 @@
 
 
 <ion-content>
-<img src="assets/img/JoBidUsuario.jpg">
-<h3 class="tittle">New Address</h3>
-<form id="signup-form3" class="list" padding>
-<ion-item>
-  <ion-icon name="document" item-start></ion-icon>
-  <ion-input type="text" placeholder="My Address" [(ngModel)]="label" name="label"></ion-input>
-</ion-item>
-<ion-item>
-    <ion-icon name="flag" item-start></ion-icon>
-    <ion-input type="text" placeholder="State" [(ngModel)]="userData.state" name="state"></ion-input>
-  </ion-item>
-<ion-grid>
-    <ion-row>
-      <ion-col col-6>
-        <ion-item>
-          <ion-icon name="home" item-start></ion-icon>
-          <ion-input type="number" placeholder="1234" [(ngModel)]="DirecA" name="DirecA"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-6>
-        <ion-item>
-          <ion-input type="text" placeholder="avenue"  [(ngModel)]="DirecB" name="DirecB"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-6>
-        <ion-item>
-          <ion-input type="text" placeholder="City" class="spaceIcons" [(ngModel)]="DirecC" name="DirecC" ></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-6>
-        <ion-item>
-          <ion-input type="text" placeholder="NJ 0000" value="{{DirecD}}" [(ngModel)]="DirecD" name="DirecD"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-	<!-- <div class="btnBottom">
+  <img src="assets/img/JoBidUsuario.jpg">
+  <h3 class="tittle">New Address</h3>
+  <form id="signup-form3" class="list" padding>
+    <ion-item>
+      <ion-icon name="document" item-start></ion-icon>
+      <ion-input type="text" placeholder="My Address" [(ngModel)]="label" name="label"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="flag" item-start></ion-icon>
+      <ion-input type="text" placeholder="State" [(ngModel)]="userData.state" name="state"></ion-input>
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-icon name="home" item-start></ion-icon>
+            <ion-input type="number" placeholder="1234" [(ngModel)]="DirecA" name="DirecA"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-input type="text" placeholder="avenue" [(ngModel)]="DirecB" name="DirecB"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-input type="text" placeholder="City" class="spaceIcons" [(ngModel)]="DirecC" name="DirecC"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-input type="text" placeholder="NJ 0000" value="{{DirecD}}" [(ngModel)]="DirecD" name="DirecD"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <!-- <div class="btnBottom">
 	   <button  ion-button block color="danger" (click)="goPreHome()" >Add address<ion-icon name="arrow-dropright"></ion-icon></button> 
     </div> -->
-</form>
+  </form>
 </ion-content>
 <ion-footer>
-    <ion-toolbar>
-        <div class="btnBottom">
-          <button ion-button color="danger" block (click)="goPreHome()">
-              Add address
-          </button> 
-        </div>
-    </ion-toolbar>
-  </ion-footer>
+  <ion-toolbar>
+    <div class="btnBottom">
+      <button ion-button color="danger" block (click)="goPreHome()">
+        Add address
+      </button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

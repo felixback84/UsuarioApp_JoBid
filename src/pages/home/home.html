@@ -8,53 +8,53 @@
 </ion-header> -->
 
 <ion-content>
- <!--  <h3>Ionic Menu Starter</h3>
+  <!--  <h3>Ionic Menu Starter</h3>
 
   <p>
     If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
   </p>
   <button ion-button secondary menuToggle>Toggle Menu</button> -->
- 
-  <ion-card *ngIf="userData" >
+
+  <ion-card *ngIf="userData">
     <ion-card-header> {{userData.username}} </ion-card-header>
-    <img [src]= "userData.picture">
+    <img [src]="userData.picture">
     <ion-card-content>
       <p>Email: {{ userData.email}}</p>
       <p>Name: {{ userData.name}}</p>
     </ion-card-content>
   </ion-card>
-  <img src="assets/img/JoBidUsuario.jpg" >
-    <h5 id="home-heading1" style="">Sing up or Log in</h5>
-    <div padding>
-      <!-- <button ion-button block color="danger" (click)="googleir()">Log in with Google</button> -->
-      <button ion-button block (click)="facebookir()">Sing in with Facebook</button>
-    </div>
-    <ion-grid class="tabMenu">
-     <ion-row>
+  <img src="assets/img/JoBidUsuario.jpg">
+  <h5 id="home-heading1" style="">Sign up or Log in</h5>
+  <div padding>
+    <!-- <button ion-button block color="danger" (click)="googleir()">Log in with Google</button> -->
+    <button ion-button block (click)="facebookir()">Sign in with Facebook</button>
+  </div>
+  <ion-grid class="tabMenu">
+    <ion-row>
       <ion-col>
         <button ion-button block color="light" (click)="singup()">
           <ion-grid>
             <ion-row>
               <ion-icon name="contact"></ion-icon>
-            </ion-row>  
-            <ion-row> 
-             <p>sing up</p>
             </ion-row>
-          </ion-grid> 
+            <ion-row>
+              <p>sign up</p>
+            </ion-row>
+          </ion-grid>
         </button>
       </ion-col>
       <ion-col>
-        <button ion-button block color="light"(click)="login()">
-        <ion-grid>
+        <button ion-button block color="light" (click)="login()">
+          <ion-grid>
             <ion-row>
               <ion-icon name="lock"></ion-icon>
-            </ion-row>  
-            <ion-row> 
-             <p>login</p>
             </ion-row>
-          </ion-grid> 
+            <ion-row>
+              <p>login</p>
+            </ion-row>
+          </ion-grid>
         </button>
       </ion-col>
-     </ion-row>
-    </ion-grid>  
+    </ion-row>
+  </ion-grid>
 </ion-content>

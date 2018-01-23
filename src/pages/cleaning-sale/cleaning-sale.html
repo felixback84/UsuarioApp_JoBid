@@ -7,37 +7,35 @@
 <ion-header>
 
   <ion-navbar>
-  <button ion-button menuToggle>
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>JoBid</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
-<div class="mapa">
-  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zom">
-    <!-- <agm-marker [latitude]="lat" [longitude]="lng">
+  <div class="mapa">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zom">
+      <!-- <agm-marker [latitude]="lat" [longitude]="lng">
       <agm-info-window>
         <h3><strong>Howdy!</strong></h3>
         <p>You are here!</p>
       </agm-info-window>
     </agm-marker> -->
-    <agm-marker *ngFor="let marker of WorkersMap" style="z-index:9;"
-      [latitude]="marker.latitud"
-      [longitude]="marker.longitud" >
-    </agm-marker>
-    <!-- <agm-marker *ngFor="let marker of WorkersMap" style="z-index:9;"
+      <agm-marker *ngFor="let marker of WorkersMap" style="z-index:9;" [latitude]="marker.latitud" [longitude]="marker.longitud">
+      </agm-marker>
+      <!-- <agm-marker *ngFor="let marker of WorkersMap" style="z-index:9;"
     [latitude]="marker.latitud"
     [longitude]="marker.longitud"
     [iconUrl]="marker.imagen"
     
     >
   </agm-marker> -->
-  </agm-map>
-</div>
+    </agm-map>
+  </div>
 
-<!-- <div *ngIf="lat && lng"> -->
-    <!-- <agm-map [latitude]="lat" [longitude]="lng">
+  <!-- <div *ngIf="lat && lng"> -->
+  <!-- <agm-map [latitude]="lat" [longitude]="lng">
       <agm-marker [latitude]="lat" [longitude]="lng">
         <agm-info-window>
           <h3><strong>Howdy!</strong></h3>
@@ -46,42 +44,43 @@
       </agm-marker>
     </agm-map> -->
   <!-- <div> -->
-<div class="contador" *ngIf="showContador" >
-  <div class="contenido" *ngIf="StaringLabel" >
-    <h3><p>Start</p>{{contador}}</h3>
+  <div class="contador" *ngIf="showContador">
+    <div class="contenido" *ngIf="StaringLabel">
+      <h3>
+        <p>Start</p>{{contador}}</h3>
+    </div>
+    <div class="contenido2" *ngIf="!StaringLabel">
+      <h3>{{contador}}</h3>
+    </div>
   </div>
-  <div class="contenido2" *ngIf="!StaringLabel">
-    <h3>{{contador}}</h3>
+  <div class="barraRoja">
+    <h4>Offers received</h4>
   </div>
-</div>
-<div class="barraRoja">
-  <h4>Offers received</h4>
-</div>
-<ion-grid class="body">
-  <ion-row *ngFor="let item of Workers">
-    <ion-col col-2>
-      <ion-icon name="trophy" *ngIf="item.offer == MenosPrecio"></ion-icon>
-      <!-- <ion-icon name="trophy" *ngIf="{{item.icon}}"></ion-icon> -->
-    </ion-col>
-    <ion-col col-6>
-     <ion-item>
-      <ion-avatar item-start>
-        <img src="{{item.img}}">
-      </ion-avatar>
-      <p>{{item.name}}</p>
-     </ion-item>
-    </ion-col>
-    <ion-col col-2>
-      <h5>{{item.offer}}</h5>
-    </ion-col>
-    <ion-col col-2>
-      <button ion-button icon-only round color="light" (click)="showInfoCleaning(item.id)">
-        <ion-icon name="search"></ion-icon>
-      </button>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-<!-- <div class="btnBottom">
+  <ion-grid class="body">
+    <ion-row *ngFor="let item of Workers">
+      <ion-col col-2>
+        <ion-icon name="trophy" *ngIf="item.offer == MenosPrecio"></ion-icon>
+        <!-- <ion-icon name="trophy" *ngIf="{{item.icon}}"></ion-icon> -->
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="{{item.img}}">
+          </ion-avatar>
+          <p>{{item.name}}</p>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2>
+        <h5>{{item.offer}}</h5>
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button icon-only round color="light" (click)="showInfoCleaning(item.id)">
+          <ion-icon name="search"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- <div class="btnBottom">
           <button ion-button color="danger" block icon-left (click)="goCleaningContractor()">Continue<ion-icon name="arrow-dropright"></ion-icon></button>
         </div> -->
 </ion-content>
@@ -89,18 +88,18 @@
 <ion-footer>
   <ion-toolbar>
     <ion-grid>
-     <ion-row>
-      <ion-col col-8>
-        <div class="price">
-          <p>Initial value: ${{maxOffer}}</p>
-          <!-- <p>${{maxOffer}}</p> -->
-        </div>
-      </ion-col>
-      <ion-col col-4>
-        <button id="btnCancel" ion-button block color="light"(click)="goIndex()">Cancel
-        </button>
-      </ion-col>
-     </ion-row>
-    </ion-grid>  
+      <ion-row>
+        <ion-col col-8>
+          <div class="price">
+            <p>Initial value: ${{maxOffer}}</p>
+            <!-- <p>${{maxOffer}}</p> -->
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <button id="btnCancel" ion-button block color="light" (click)="goIndex()">Cancel
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-footer>

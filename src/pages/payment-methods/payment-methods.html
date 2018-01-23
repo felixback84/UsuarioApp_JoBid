@@ -14,26 +14,28 @@
 
 
 <ion-content>
-	<img src="assets/img/JoBidUsuario.jpg">
-    <h5 id="paymentMethods-heading4">Welcome </h5>
-    <h5 id="paymentMethods-heading5">User </h5>
-    <div class="spacer"></div>
-    <h4 id="paymentMethods-heading6">Payment Method</h4>
-    <h5 id="paymentMethods-heading7">Select your paymenth method </h5>
-    <p class="InfoAlert">Wait until the paypal frame shows up</p>
-    <form id="paymentMethods-form5" class="list" padding>
-        <div id="dropin-container"></div>
-        <!-- <button id="submit-button" ion-button color="danger">Request payment method</button> -->
+  <img src="assets/img/JoBidUsuario.jpg">
+  <h5 id="paymentMethods-heading4">Welcome </h5>
+  <h5 id="paymentMethods-heading5">User </h5>
+  <div class="spacer"></div>
+  <h4 id="paymentMethods-heading6">Payment Method</h4>
+  <h5 id="paymentMethods-heading7">Select your paymenth method </h5>
+  <p class="InfoAlert">Wait until the paypal frame shows up</p>
+  <form id="paymentMethods-form5" class="list" padding>
+    <div id="dropin-container"></div>
+    <!-- <button id="submit-button" ion-button color="danger">Request payment method</button> -->
     <ion-list>
-        <!-- <ion-item>
+      <!-- <ion-item>
           <ion-checkbox id="paymentMethods-checkbox2">Credit Card</ion-checkbox>
         </ion-item>
         <ion-item>
           <ion-checkbox id="paymentMethods-checkbox3">Pay</ion-checkbox>
         </ion-item> -->
-        <div class="btnBottom">
-          <button ion-button color="danger" block (click)="goPayInfo()">Continue<ion-icon name="arrow-dropright"></ion-icon></button>
-        </div>
+      <div class="btnBottom">
+        <button ion-button color="danger" block (click)="goPayInfo()">Continue
+          <ion-icon name="arrow-dropright"></ion-icon>
+        </button>
+      </div>
     </ion-list>
-    </form>
+  </form>
 </ion-content>

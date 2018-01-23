@@ -28,28 +28,28 @@ import { ServicesBeautyPage } from '../services-beauty/services-beauty';
 export class CleaningPage {
 
   //-vista
-  estrellas:any;
+  estrellas: any;
 
   dataService = [];
   dataCategoria = [];
-  nameService:any;
-  case:any;
+  nameService: any;
+  case: any;
   //fil form
   // categoria:any;
-  certificacion:any="";
-  seguro:any="";
+  certificacion: any = "";
+  seguro: any = "";
   // distancia:any;
   // experiencia:any;
-  dataClasificaion = {"categoria":"","certificacion":"","seguro":"","distancia":"","experiencia":""};
+  dataClasificaion = { "categoria": "", "certificacion": "", "seguro": "", "distancia": "", "experiencia": "" };
 
-  private service : FormGroup;
+  private service: FormGroup;
   constructor(
-    public navCtrl: NavController, public navParams: NavParams, 
-    private professionsService:ProfessionsService, private formBuilder: FormBuilder,
+    public navCtrl: NavController, public navParams: NavParams,
+    private professionsService: ProfessionsService, private formBuilder: FormBuilder,
   ) {
-     this.dataService = this.navParams.get('datos');
+    this.dataService = this.navParams.get('datos');
     //  console.log(this.dataService['name']);
-     this.categoryByProfession(this.dataService['name']);
+    this.categoryByProfession(this.dataService['name']);
     //  console.log(localStorage);
     this.service = this.formBuilder.group({
       categoria: ['', Validators.required],
@@ -60,97 +60,97 @@ export class CleaningPage {
       estrellas: [''],
     });
   }
- 
-  categoryByProfession(nameService = ""){
-    this.nameService=nameService;
-    this.dataCategoria=this.professionsService.getCategoryByProfession(nameService);
+
+  categoryByProfession(nameService = "") {
+    this.nameService = nameService;
+    this.dataCategoria = this.professionsService.getCategoryByProfession(nameService);
     // console.log(this.dataCategoria);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CleaningPage');
   }
-  cleaningInfo(){
+  cleaningInfo() {
     // this.dataService['subCategoria']=this.categoria;
-    localStorage.setItem('SubService',this.dataClasificaion['categoria']);
+    localStorage.setItem('SubService', this.dataClasificaion['categoria']);
 
-    if(this.certificacion != ""){
-      this.dataClasificaion['certificacion']="true";
-    }else{
-      this.dataClasificaion['certificacion']="false";
+    if (this.certificacion != "") {
+      this.dataClasificaion['certificacion'] = "true";
+    } else {
+      this.dataClasificaion['certificacion'] = "false";
     }
-    if(this.seguro != ""){
-      this.dataClasificaion['seguro']="true";
-    }else{
-      this.dataClasificaion['seguro']="false";
+    if (this.seguro != "") {
+      this.dataClasificaion['seguro'] = "true";
+    } else {
+      this.dataClasificaion['seguro'] = "false";
     }
 
-    if(this.estrellas == undefined || this.estrellas == null || this.estrellas == ""){
+    if (this.estrellas == undefined || this.estrellas == null || this.estrellas == "") {
       this.estrellas = 1;
     }
 
-    if( this.dataClasificaion['distancia'] == undefined || this.dataClasificaion['distancia'] == null || this.dataClasificaion['distancia'] == ""){
+    if (this.dataClasificaion['distancia'] == undefined || this.dataClasificaion['distancia'] == null || this.dataClasificaion['distancia'] == "") {
       this.dataClasificaion['distancia'] = '3M';
     }
     // this.dataService['distancia']=this.distancia;
     // this.dataService['experiencia']=this.experiencia;
-    this.dataService['Clasificacion']=this.dataClasificaion;
-    this.dataService['status']='Published';
+    this.dataService['Clasificacion'] = this.dataClasificaion;
+    this.dataService['status'] = 'Published';
     let userLocal = localStorage.getItem('verificacion');
-    this.dataService['User']=userLocal;
-    let userLocalAddress =JSON.parse(localStorage.getItem('address'));
+    this.dataService['User'] = userLocal;
+    let userLocalAddress = JSON.parse(localStorage.getItem('address'));
     // console.log(userLocalAddress);
-    this.dataService['Address']=userLocalAddress;
+    this.dataService['Address'] = userLocalAddress;
     // console.log(this.dataService);
-    let DataService = {'datos':this.dataService};
+    let DataService = { 'datos': this.dataService };
     //this.navCtrl.push(CleaningInfoPage,DataService);
     // console.log(this.estrellas);
-    this.dataService['Star']=this.estrellas;
+    this.dataService['Star'] = this.estrellas;
     console.log(this.dataService);
-    switch(this.nameService){
-      case "Care" :{
-       //this.dataCategoria = ["Child care/Nany","Senior care","Family asistance","Dog walker","Personal shopper"];
-       this.navCtrl.push(ServicesCarePage,DataService);
-       break;
+    switch (this.nameService) {
+      case "Care": {
+        //this.dataCategoria = ["Child care/Nany","Senior care","Family assistance","Dog walker","Personal shopper"];
+        this.navCtrl.push(ServicesCarePage, DataService);
+        break;
       }
-      case "Cleaning" :{
-        this.navCtrl.push(ServicesCleaningPage,DataService);
-       //this.dataCategoria = ["Maids","Car washers","Pressure cleaning","Carpet & upholstery cleaning"];
+      case "Cleaning": {
+        this.navCtrl.push(ServicesCleaningPage, DataService);
+        //this.dataCategoria = ["Maids","Car washers","Pressure cleaning","Carpet & upholstery cleaning"];
 
-       break;
+        break;
       }
-      case "Janotorial" :{
-        this.navCtrl.push(ServicesJanotorialPage,DataService);
-       //this.dataCategoria = ["Handyman","Pluming","Electrician","Pool Cleaner ","Luck smith" ];
+      case "Janotorial": {
+        this.navCtrl.push(ServicesJanotorialPage, DataService);
+        //this.dataCategoria = ["Handyman","Plumbing","Electrician","Pool Cleaner ","Luck smith" ];
 
-       break;
+        break;
       }
-      case "Transportation" :{
-        this.navCtrl.push(ServicesTransportationPage,DataService);
-       //this.dataCategoria = ["Day VIP chofer","Taxi","Car pool","Moving services","Delivery" ];
+      case "Transportation": {
+        this.navCtrl.push(ServicesTransportationPage, DataService);
+        //this.dataCategoria = ["Day Vip chauffeur","Taxi","Car pool","Moving services","Delivery" ];
 
-       break;
+        break;
       }
-      case "Food & Beverage" :{
-        this.navCtrl.push(ServicesFoodPage,DataService);
-       //this.dataCategoria = ["Bartenders","Waitress","Chef","Runners","Valet parking","Hostess"];
+      case "Food & Beverage": {
+        this.navCtrl.push(ServicesFoodPage, DataService);
+        //this.dataCategoria = ["Bartenders","Waitress","Chef","Runners","Valet parking","Hostess"];
 
-       break;
+        break;
       }
-      case "Legal services" :{
-        this.navCtrl.push(ServicesLegalPage,DataService);
-       //this.dataCategoria = ["Notary"];
+      case "Legal services": {
+        this.navCtrl.push(ServicesLegalPage, DataService);
+        //this.dataCategoria = ["Notary"];
 
-       break;
+        break;
       }
-      case "Beauty" :{
-        this.navCtrl.push(ServicesBeautyPage,DataService);
-        //this.dataCategoria = ["Persona trainer","Hair cut and DIY","Menicure and pedicure","Mekeup","Massage"];
-       break;
+      case "Beauty": {
+        this.navCtrl.push(ServicesBeautyPage, DataService);
+        //this.dataCategoria = ["Persona trainer","Haircut and DIY","Menicure and pedicure","Mekeup","Massage"];
+        break;
       }
-      default: { 
-         console.log("Invalid choice"); 
-         break;              
+      default: {
+        console.log("Invalid choice");
+        break;
       }
     }
   }

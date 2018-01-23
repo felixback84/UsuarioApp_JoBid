@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-  <button ion-button menuToggle>
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>JoBid</ion-title>
@@ -15,25 +15,27 @@
 
 
 <ion-content>
-<!-- <button ion-button block color="light"(click)="profession()">login</button> -->
-<h3>Address: </h3>
-<p><strong>{{direccion.label}}</strong></p>
-<p>{{direccion.name}}</p>
-<ion-grid class="gridProfession">
-     <ion-row wrap>
-      <ion-col *ngFor="let item of professions"  (click)="Cleaning(item)" col-4 >
+  <!-- <button ion-button block color="light"(click)="profession()">login</button> -->
+  <h3>Address: </h3>
+  <p>
+    <strong>{{direccion.label}}</strong>
+  </p>
+  <p>{{direccion.name}}</p>
+  <ion-grid class="gridProfession">
+    <ion-row wrap>
+      <ion-col *ngFor="let item of professions" (click)="Cleaning(item)" col-4>
         <button ion-button block color="light">
           <ion-grid>
             <ion-row>
               <!-- <ion-icon name="contact" [ngClass]="item.class"></ion-icon> -->
-              <img src="{{item.img}}" >
-            </ion-row>  
-            <ion-row>
-             <p>{{item.name}}</p>
+              <img src="{{item.img}}">
             </ion-row>
-          </ion-grid> 
+            <ion-row>
+              <p>{{item.name}}</p>
+            </ion-row>
+          </ion-grid>
         </button>
       </ion-col>
-     </ion-row>
-    </ion-grid>  
+    </ion-row>
+  </ion-grid>
 </ion-content>

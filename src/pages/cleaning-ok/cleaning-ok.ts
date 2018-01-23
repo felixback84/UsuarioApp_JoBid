@@ -20,18 +20,18 @@ import { BraintreeService } from '../../services/braintree.service';
 export class CleaningOkPage {
 
   //-data
-  datasService:any;
-  keyOffer:any;
-  worker:any;
-  userActual:any;
-  dataService:any;
+  datasService: any;
+  keyOffer: any;
+  worker: any;
+  userActual: any;
+  dataService: any;
 
   //-vista
-  offer:any;
+  offer: any;
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
-    private braintreeService:BraintreeService,
+    private braintreeService: BraintreeService,
   ) {
     this.loadData();
     this.pagar();
@@ -40,15 +40,15 @@ export class CleaningOkPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CleaningOkPage');
   }
-  goIndex(){
- 		this.navCtrl.setRoot(ShowPage);
+  goIndex() {
+    this.navCtrl.setRoot(ShowPage);
   }
-   
-  loadData(){
+
+  loadData() {
     this.datasService = this.navParams.get('datos');
     this.dataService = this.datasService['dataService'];
-    this.keyOffer = this.datasService['offer']; 
-    this.worker = this.datasService['win']; 
+    this.keyOffer = this.datasService['offer'];
+    this.worker = this.datasService['win'];
     this.offer = this.worker['offer'];
     this.userActual = localStorage.getItem('verificacion');
     console.log(this.datasService);
@@ -56,11 +56,11 @@ export class CleaningOkPage {
     console.log(this.keyOffer);
     console.log(this.worker);
     console.log(this.userActual);
-    
+
   }
 
-  pagar(){
+  pagar() {
     console.log('service pagado');
-    this.braintreeService.CrearSaleCustomer(this.userActual,this.offer,this.worker['id'],this.keyOffer,this.dataService.Clasificacion.categoria);
+    this.braintreeService.CrearSaleCustomer(this.userActual, this.offer, this.worker['id'], this.keyOffer, this.dataService.Clasificacion.categoria);
   }
 }

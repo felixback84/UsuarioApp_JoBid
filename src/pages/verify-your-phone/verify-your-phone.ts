@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams , AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { PaymentMethodsPage } from '../payment-methods/payment-methods';
 
@@ -23,18 +23,18 @@ import { UserService } from '../../services/user.service';
   templateUrl: 'verify-your-phone.html',
 })
 export class VerifyYourPhonePage {
-  responseData :any;
+  responseData: any;
   userData = [];
   verificacion: any;
   codVerificacion: any;
   //constructor(public navCtrl: NavController, public navParams: NavParams, private emailComposer: EmailComposer) {
-  constructor(public navCtrl: NavController, 
-    public navParams: NavParams, 
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
     public authServiceProvider: AuthServiceProvider,
     public alertCtrl: AlertController,
     //private encriptyService : EncriptyService,
     //private storageService : StorageService,
-    private userService : UserService,
+    private userService: UserService,
   ) {
     //alert(this.navParams.get('username'));
     this.userData = this.navParams.get('datos');
@@ -44,7 +44,7 @@ export class VerifyYourPhonePage {
     this.verificacion = this.userData['verificacion'];
     console.log(this.verificacion);
     this.showAlert();
-    
+
   }
 
 
@@ -53,17 +53,17 @@ export class VerifyYourPhonePage {
     //this.CorreoVerificacion();
 
   }
-   
-  goPayMethod(){
-    if(this.verificacion == this.codVerificacion){
+
+  goPayMethod() {
+    if (this.verificacion == this.codVerificacion) {
 
       console.log(this.userData);
       //this.traerPost();
-     
+
       this.userService.newUser(this.userData);
       this.navCtrl.push(PaymentMethodsPage);
 
-    }else{
+    } else {
       alert('codigo no es el mismo');
     }
   }
@@ -88,7 +88,7 @@ export class VerifyYourPhonePage {
   //   });
   // }
 
-   showAlert() {
+  showAlert() {
     let alert = this.alertCtrl.create({
       title: 'Información',
       subTitle: 'Se a enviado un correo con un codigo de verificacion',
@@ -97,21 +97,21 @@ export class VerifyYourPhonePage {
     alert.present();
   }
 
-  CorreoVerificacion(){
+  CorreoVerificacion() {
     // this.emailComposer.isAvailable().then((available: boolean) =>{
     //  if(available) {
-      //   alert('correo enviado');
-      //   let email = {
-      //   to: 'angellg1990@gmail.com',
-      //   subject: 'Correo de verificacion',
-      //   body: 'How are you? Nice greetings from Leipzig',
-      //   isHtml: true
-      // };
-      // this.emailComposer.open(email);
-     // }else{
-     //  alert('correo no enviado');
-     // }
+    //   alert('correo enviado');
+    //   let email = {
+    //   to: 'angellg1990@gmail.com',
+    //   subject: 'Correo de verificacion',
+    //   body: 'How are you? Nice greetings from Leipzig',
+    //   isHtml: true
+    // };
+    // this.emailComposer.open(email);
+    // }else{
+    //  alert('correo no enviado');
+    // }
     // });
   }
-  
+
 }

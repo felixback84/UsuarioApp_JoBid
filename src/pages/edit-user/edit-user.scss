@@ -1,33 +1,52 @@
 page-edit-user {
-		img{display: block; 
-			width: 100px; height: 100px; 
-			// margin-left: auto; margin-right: auto;
-		}
-    h3{text-align: center; font-weight: bold;}
-    h4{font-weight: bold;}
-    #signup-heading2{color:#000000;text-align:center;}
-	.force-back-button .back-button {
-	  display: inline-block;
-	}
-	ion-label.label{background: transparent !important; padding: 0;}
-	ion-list ion-grid.grid{ padding:0; 
-		.col{padding:0;
-			&:first-child{ padding-right:5px; }
-		}
+    img {
+        display: block;
+        width: 100px;
+        height: 100px; // margin-left: auto; margin-right: auto;
     }
-    
-	.grid{
-		padding: 0;
-		[col-4],[col-8]{padding: 0;}
-	}
-	.button-outline-md-danger{
-		margin: 0;
-		height: 48px;
-		width: 100%;
-	}
-	.row{
-		.list-md, .list-ios{
-			margin:0;
-		}
-	}
+    h3 {
+        text-align: center;
+        font-weight: bold;
+    }
+    h4 {
+        font-weight: bold;
+    }
+    #signup-heading2 {
+        color: #000000;
+        text-align: center;
+    }
+    .force-back-button .back-button {
+        display: inline-block;
+    }
+    ion-label.label {
+        background: transparent !important;
+        padding: 0;
+    }
+    ion-list ion-grid.grid {
+        padding: 0;
+        .col {
+            padding: 0;
+            &:first-child {
+                padding-right: 5px;
+            }
+        }
+    }
+    .grid {
+        padding: 0;
+        [col-4],
+        [col-8] {
+            padding: 0;
+        }
+    }
+    .button-outline-md-danger {
+        margin: 0;
+        height: 48px;
+        width: 100%;
+    }
+    .row {
+        .list-md,
+        .list-ios {
+            margin: 0;
+        }
+    }
 }

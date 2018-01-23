@@ -1,15 +1,24 @@
 page-my-services {
-    h3{text-align: center; font-weight: bold;}
-    h4{font-weight: bold;}
-    .btnItem{
+    h3 {
+        text-align: center;
+        font-weight: bold;
+    }
+    h4 {
+        font-weight: bold;
+    }
+    .btnItem {
         border-bottom: 1px solid $Gray;
         padding: 0;
     }
-    strong{color:$Red;}
-    .list-md .item-block .item-inner,.list-ios .item-block .item-inner{
+    strong {
+        color: $Red;
+    }
+    .list-md .item-block .item-inner,
+    .list-ios .item-block .item-inner {
         padding: 0;
     }
-    .label.label-md, .label.label-ios{
+    .label.label-md,
+    .label.label-ios {
         padding: 5px 0;
     }
 }

@@ -23,34 +23,34 @@ import { SaleService } from '../../services/sale.service';
 })
 export class ServicesLegalPage {
   dataService = [];
-  
+
   //form show
-  booleanNotary:boolean=false;
+  booleanNotary: boolean = false;
   //varibles
-  subCategory:string;
+  subCategory: string;
   //pagetes de datos
-  dataInformacion:any;
+  dataInformacion: any;
   //variables para formularios
-  FamiliaAsistence:any;
-  
+  FamiliaAsistence: any;
+
   //datos del formulario
-  foto:any='';
-  maxOffer:any;
-  documentNotary:any;
-  eventNotary:any;
-  moreInformation:any;
-  
+  foto: any = '';
+  maxOffer: any;
+  documentNotary: any;
+  eventNotary: any;
+  moreInformation: any;
+
   //data
-  userActual:any;
-  keyOffer:any;
-  
+  userActual: any;
+  keyOffer: any;
+
   //form
-  private ServiceLegal : FormGroup;
+  private ServiceLegal: FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private formBuilder: FormBuilder,
-    private offerService:OfferService,
-    private saleService:SaleService,
-    private camera : Camera,
+    private offerService: OfferService,
+    private saleService: SaleService,
+    private camera: Camera,
   ) {
     this.dataService = this.navParams.get('datos');
     console.log(this.dataService);
@@ -58,56 +58,56 @@ export class ServicesLegalPage {
     //this.getForm(this.subCategory);
     var d = new Date();
     let key = d.getTime();
-    this.keyOffer = "offer_"+(key);
+    this.keyOffer = "offer_" + (key);
     this.userActual = localStorage.getItem('verificacion');
     this.getForm();
-}
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ServicesLegalPage');
   }
 
-  goCleaningSale(){
+  goCleaningSale() {
     console.log(this.subCategory);
-    switch(this.subCategory){
-      case "Notary":{
-        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"documentNotary":this.documentNotary,"eventNotary":this.eventNotary,"moreInformation":this.moreInformation}];
+    switch (this.subCategory) {
+      case "Notary": {
+        this.dataInformacion = [{ "foto": this.foto, "maxOffer": this.maxOffer, "documentNotary": this.documentNotary, "eventNotary": this.eventNotary, "moreInformation": this.moreInformation }];
         break;
       }
-     
+
     }
     // console.log(this.dataInformacion);
     // alert(JSON.stringify(this.dataInformacion));
     this.guardarServicio(this.dataInformacion);
   }
-  
-  guardarServicio(datos){
+
+  guardarServicio(datos) {
     // console.log(datos);
     // console.log(this.dataService);
-    this.dataService['Clasificacion']['informacion']=datos['0'];
+    this.dataService['Clasificacion']['informacion'] = datos['0'];
     // console.log(this.dataService);
-    
+
     // let subCategory=this.dataService['Clasificacion']['categoria'];
     //this.careProfessionS.newOffer(this.dataService,subCategory,keyOffer);
     //this.saleService.newSale();
-    
-    this.offerService.newOffer(this.dataService,this.keyOffer);
-     // console.log(localStorage);
-     let maxOffer=datos['0']['maxOffer'];
-     this.saleService.newSale(this.userActual,this.keyOffer,maxOffer);
-     // console.log(userLocal);
-     // console.log(keyOffer);
-     // console.log(maxOffer);
-     let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer}};
+
+    this.offerService.newOffer(this.dataService, this.keyOffer);
+    // console.log(localStorage);
+    let maxOffer = datos['0']['maxOffer'];
+    this.saleService.newSale(this.userActual, this.keyOffer, maxOffer);
+    // console.log(userLocal);
+    // console.log(keyOffer);
+    // console.log(maxOffer);
+    let DataService = { 'datos': { "dataService": this.dataService, "offer": this.keyOffer } };
     //  console.log(DataService);
-     this.navCtrl.setRoot(CleaningSalePage,DataService);
+    this.navCtrl.setRoot(CleaningSalePage, DataService);
   }
 
-getForm(){
+  getForm() {
 
-    switch(this.subCategory){
-      case "Notary":{
-        this.booleanNotary=true;
+    switch (this.subCategory) {
+      case "Notary": {
+        this.booleanNotary = true;
         this.ServiceLegal = this.formBuilder.group({
           foto: [''],
           maxOffer: ['', Validators.required],
@@ -120,10 +120,10 @@ getForm(){
     }
   }
 
-  async  camaraFoto(){
-    let file = this.userActual+'/'+this.keyOffer+'/foto';
+  async  camaraFoto() {
+    let file = this.userActual + '/' + this.keyOffer + '/foto';
     console.log('clickCamara');
-    try{
+    try {
       const options: CameraOptions = {
         quality: 60,
         targetHeight: 300,
@@ -135,17 +135,17 @@ getForm(){
       const result = await this.camera.getPicture(options);
       const image = 'data:image/jpeg;base64,' + result;
       const picture = storage().ref(file);
-      picture.putString(image,'data_url').then(
-        ( snapshot:storage.UploadTaskSnapshot) => {
+      picture.putString(image, 'data_url').then(
+        (snapshot: storage.UploadTaskSnapshot) => {
           this.foto = snapshot.downloadURL;
           // alert(this.foto);
         },
-        (error) => { console.log(error)  },
-      ).catch( (errorUploadTask)=>{ 
+        (error) => { console.log(error) },
+      ).catch((errorUploadTask) => {
         // alert('errorUploadTask');
         // alert(JSON.stringify(errorUploadTask));
       });
-        
-    } catch(e){ console.error(e);}
+
+    } catch (e) { console.error(e); }
   }
 }

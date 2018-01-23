@@ -27,43 +27,43 @@ export class ServicesCarePage {
   dataService = [];
 
   //form show
-  booleamChildCare:boolean= false;
-  booleamSeniorCare:boolean= false;
-  booleamFamilyAsistance:boolean= false;
-  booleamDogWalker:boolean= false;
-  booleamPersonalShopper:boolean= false;
+  booleamChildCare: boolean = false;
+  booleamSeniorCare: boolean = false;
+  booleamFamilyAsistance: boolean = false;
+  booleamDogWalker: boolean = false;
+  booleamPersonalShopper: boolean = false;
   //varibles
-  subCategory:string;
+  subCategory: string;
   //pagetes de datos
-  dataInformacion:any;
+  dataInformacion: any;
   //variables para formularios
-  FamiliaAsistence:any;
+  FamiliaAsistence: any;
 
   //datos del formulario
-  maxOffer:any;
-  numChildren:any;
-  ageChildren:any;
-  timeChildren:any;
-  ageSenior:any;
-  asistenceFamilia:any;
-  raceDog:any;
-  numDog:any;
-  foto:any='';
-  purchaseShopper:any;
-  placeShopper:any;
-  moreInformation:any;
+  maxOffer: any;
+  numChildren: any;
+  ageChildren: any;
+  timeChildren: any;
+  ageSenior: any;
+  asistenceFamilia: any;
+  raceDog: any;
+  numDog: any;
+  foto: any = '';
+  purchaseShopper: any;
+  placeShopper: any;
+  moreInformation: any;
 
   //label comments
-  labelComments:string="More information";
-  
-  private ServiceCare : FormGroup;
-  userActual:any;
-  keyOffer:any;
+  labelComments: string = "More information";
+
+  private ServiceCare: FormGroup;
+  userActual: any;
+  keyOffer: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private formBuilder: FormBuilder,
     private offerService: OfferService,
-    private saleService:SaleService,
-    private camera : Camera,
+    private saleService: SaleService,
+    private camera: Camera,
   ) {
     this.dataService = this.navParams.get('datos');
     this.subCategory = this.dataService['Clasificacion']['categoria'];
@@ -71,7 +71,7 @@ export class ServicesCarePage {
     this.userActual = localStorage.getItem('verificacion');
     var d = new Date();
     let key = d.getTime();
-    this.keyOffer = "offer_"+(key);
+    this.keyOffer = "offer_" + (key);
     this.getForm();
   }
 
@@ -79,61 +79,61 @@ export class ServicesCarePage {
     console.log('ionViewDidLoad ServicesCarePage');
     // console.log(localStorage);
   }
-  goCleaningSale(){
-    switch(this.subCategory){
-      case "Child care/Nany":{
-        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"numChildren":this.numChildren,"ageChildren":this.ageChildren,"timeChildren":this.timeChildren,"moreInformation":this.moreInformation}];
-				break;
-			}
-			case "Senior care":{
-        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"ageSenior":this.ageSenior,"moreInformation":this.moreInformation}];
-				break;
-			}
-			case "Family asistance":{
-        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"asistenceFamilia":this.asistenceFamilia,"moreInformation":this.moreInformation}];
-				break;
-			}
-			case "Dog walker":{
-        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"raceDog":this.raceDog,"numDog":this.numDog,"moreInformation":this.moreInformation}];
-				break;
-			}
-			case "Personal shopper":{
-        this.dataInformacion=[{"foto":this.foto,"maxOffer":this.maxOffer,"purchaseShopper":this.purchaseShopper,"placeShopper":this.placeShopper,"moreInformation":this.moreInformation}];
-				break;
+  goCleaningSale() {
+    switch (this.subCategory) {
+      case "Child care/Nany": {
+        this.dataInformacion = [{ "foto": this.foto, "maxOffer": this.maxOffer, "numChildren": this.numChildren, "ageChildren": this.ageChildren, "timeChildren": this.timeChildren, "moreInformation": this.moreInformation }];
+        break;
+      }
+      case "Senior care": {
+        this.dataInformacion = [{ "foto": this.foto, "maxOffer": this.maxOffer, "ageSenior": this.ageSenior, "moreInformation": this.moreInformation }];
+        break;
+      }
+      case "Family assistance": {
+        this.dataInformacion = [{ "foto": this.foto, "maxOffer": this.maxOffer, "asistenceFamilia": this.asistenceFamilia, "moreInformation": this.moreInformation }];
+        break;
+      }
+      case "Dog walker": {
+        this.dataInformacion = [{ "foto": this.foto, "maxOffer": this.maxOffer, "raceDog": this.raceDog, "numDog": this.numDog, "moreInformation": this.moreInformation }];
+        break;
+      }
+      case "Personal shopper": {
+        this.dataInformacion = [{ "foto": this.foto, "maxOffer": this.maxOffer, "purchaseShopper": this.purchaseShopper, "placeShopper": this.placeShopper, "moreInformation": this.moreInformation }];
+        break;
       }
     }
     this.guardarServicio(this.dataInformacion);
   }
-  
-  guardarServicio(datos){
+
+  guardarServicio(datos) {
     console.log(datos);
-    this.dataService['Clasificacion']['informacion']=datos['0'];
-    
+    this.dataService['Clasificacion']['informacion'] = datos['0'];
+
     console.log(this.dataService);
     //let subCategory=this.dataService['Clasificacion']['categoria'];
     //this.careProfessionS.newOffer(this.dataService,subCategory,keyOffer);
     // this.careProfessionS.newOffer(this.dataService,keyOffer);
-    this.offerService.newOffer(this.dataService,this.keyOffer);
+    this.offerService.newOffer(this.dataService, this.keyOffer);
 
     // console.log(localStorage);
-    let maxOffer=datos['0']['maxOffer'];
+    let maxOffer = datos['0']['maxOffer'];
     // let userLocal = localStorage.getItem('verificacion');
-    this.saleService.newSale(this.userActual,this.keyOffer,maxOffer);
+    this.saleService.newSale(this.userActual, this.keyOffer, maxOffer);
     // console.log(userLocal);
     // console.log(keyOffer);
     // console.log(maxOffer);
-    let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer}};
+    let DataService = { 'datos': { "dataService": this.dataService, "offer": this.keyOffer } };
     console.log(DataService);
-    this.navCtrl.setRoot(CleaningSalePage,DataService);
+    this.navCtrl.setRoot(CleaningSalePage, DataService);
   }
-  
-  getForm(){
-    switch(this.subCategory){
-			case "Child care/Nany":{
+
+  getForm() {
+    switch (this.subCategory) {
+      case "Child care/Nany": {
         this.booleamChildCare = true;
-        this.labelComments="Special cares";
+        this.labelComments = "Special cares";
         this.ServiceCare = this.formBuilder.group({
-          maxOffer : ['', Validators.required],
+          maxOffer: ['', Validators.required],
           foto: [''],
           numChildren: ['', Validators.required],
           ageChildren: ['', Validators.required],
@@ -142,48 +142,48 @@ export class ServicesCarePage {
           timeSenior: [''],
           asistenceFamilia: [''],
           raceDog: [''],
-          numDog : [''],
-          purchaseShopper : [''],
-          placeShopper : [''],
-          moreInformation : ['', Validators.required],
+          numDog: [''],
+          purchaseShopper: [''],
+          placeShopper: [''],
+          moreInformation: ['', Validators.required],
         });
-				break;
-			}
-			case "Senior care":{
+        break;
+      }
+      case "Senior care": {
         this.booleamSeniorCare = true;
-        this.labelComments="Details of your service";
+        this.labelComments = "Details of your service";
         this.ServiceCare = this.formBuilder.group({
-          maxOffer : ['', Validators.required],
+          maxOffer: ['', Validators.required],
           foto: [''],
           numChildren: [''],
           ageChildren: [''],
           timeChildren: [''],
-          ageSenior: ['', Validators.required],   
-          timeSenior: ['', Validators.required],   
+          ageSenior: ['', Validators.required],
+          timeSenior: ['', Validators.required],
           asistenceFamilia: [''],
           raceDog: [''],
-          numDog : [''],
-          purchaseShopper : [''],
-          placeShopper : [''],
-          moreInformation : ['', Validators.required],
+          numDog: [''],
+          purchaseShopper: [''],
+          placeShopper: [''],
+          moreInformation: ['', Validators.required],
         });
-				break;
-			}
-			case "Family asistance":{
+        break;
+      }
+      case "Family assistance": {
         this.booleamFamilyAsistance = true;
-        this.FamiliaAsistence=[
+        this.FamiliaAsistence = [
           // {"value":"Issues","label":"Issues"},
-          {"value":"ClimateChange","label":"Climate change"},
-          {"value":"ImmigrationReform","label":"Immigration reform"},
-          {"value":"EconomicOpportunity","label":"Economic opportunity"},
-          {"value":"ExpandingEquality","label":"Expanding equality"},
-          {"value":"GunViolencePrevention","label":"Gun violence prevention"},
-          {"value":"HealthCare","label":"Health care"},
-          {"value":"StandWithWomen","label":"Stand with women"}
-        ]; 
+          { "value": "ClimateChange", "label": "Climate change" },
+          { "value": "ImmigrationReform", "label": "Immigration reform" },
+          { "value": "EconomicOpportunity", "label": "Economic opportunity" },
+          { "value": "ExpandingEquality", "label": "Expanding equality" },
+          { "value": "GunViolencePrevention", "label": "Gun violence prevention" },
+          { "value": "HealthCare", "label": "Health care" },
+          { "value": "StandWithWomen", "label": "Stand with women" }
+        ];
         console.log(this.FamiliaAsistence);
         this.ServiceCare = this.formBuilder.group({
-          maxOffer : ['', Validators.required],
+          maxOffer: ['', Validators.required],
           foto: [''],
           numChildren: [''],
           ageChildren: [''],
@@ -192,14 +192,14 @@ export class ServicesCarePage {
           timeSenior: [''],
           asistenceFamilia: ['', Validators.required],
           raceDog: [''],
-          numDog : [''],
-          purchaseShopper : [''],
-          placeShopper : [''],
-          moreInformation : ['', Validators.required],
+          numDog: [''],
+          purchaseShopper: [''],
+          placeShopper: [''],
+          moreInformation: ['', Validators.required],
         });
-				break;
-			}
-			case "Dog walker":{
+        break;
+      }
+      case "Dog walker": {
         this.booleamDogWalker = true;
         this.ServiceCare = this.formBuilder.group({
           maxOffer: ['', Validators.required],
@@ -211,17 +211,17 @@ export class ServicesCarePage {
           timeSenior: [''],
           asistenceFamilia: [''],
           raceDog: ['', Validators.required],
-          numDog : ['', Validators.required],
-          purchaseShopper : [''],
-          placeShopper : [''],
-          moreInformation : ['', Validators.required],
+          numDog: ['', Validators.required],
+          purchaseShopper: [''],
+          placeShopper: [''],
+          moreInformation: ['', Validators.required],
         });
-				break;
-			}
-			case "Personal shopper":{
+        break;
+      }
+      case "Personal shopper": {
         this.booleamPersonalShopper = true;
         this.ServiceCare = this.formBuilder.group({
-          maxOffer : ['', Validators.required],
+          maxOffer: ['', Validators.required],
           foto: [''],
           numChildren: [''],
           ageChildren: [''],
@@ -230,20 +230,20 @@ export class ServicesCarePage {
           timeSenior: [''],
           asistenceFamilia: [''],
           raceDog: [''],
-          numDog : [''],
-          purchaseShopper : ['', Validators.required],
-          placeShopper : ['', Validators.required],
-          moreInformation : ['', Validators.required],
+          numDog: [''],
+          purchaseShopper: ['', Validators.required],
+          placeShopper: ['', Validators.required],
+          moreInformation: ['', Validators.required],
         });
-				break;
-			}
-	  }
+        break;
+      }
+    }
   }
 
-  async  camaraFoto(){
-    let file = this.userActual+'/'+this.keyOffer+'/foto';
+  async  camaraFoto() {
+    let file = this.userActual + '/' + this.keyOffer + '/foto';
     console.log('clickCamara');
-    try{
+    try {
       const options: CameraOptions = {
         quality: 60,
         targetHeight: 300,
@@ -255,17 +255,17 @@ export class ServicesCarePage {
       const result = await this.camera.getPicture(options);
       const image = 'data:image/jpeg;base64,' + result;
       const picture = storage().ref(file);
-      picture.putString(image,'data_url').then(
-        ( snapshot:storage.UploadTaskSnapshot) => {
+      picture.putString(image, 'data_url').then(
+        (snapshot: storage.UploadTaskSnapshot) => {
           this.foto = snapshot.downloadURL;
           // alert(this.foto);
         },
-        (error) => { console.log(error)  },
-      ).catch( (errorUploadTask)=>{ 
+        (error) => { console.log(error) },
+      ).catch((errorUploadTask) => {
         // alert('errorUploadTask');
         // alert(JSON.stringify(errorUploadTask));
       });
-    } catch(e){ console.error(e);}
+    } catch (e) { console.error(e); }
   }
 
 }

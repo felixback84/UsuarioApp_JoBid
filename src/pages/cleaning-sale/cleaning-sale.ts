@@ -54,12 +54,12 @@ export class CleaningSalePage {
   professionals = [];
   professsional = [];
   contenido: any;
-  listCommentsJobr:any;
+  listCommentsJobr: any;
   //--timer
   segundos: number = 0;
   minutos: number = 2;
   //--timer
-  objNodeTimerB:any;
+  objNodeTimerB: any;
   // minutos: number = 3;
   contador: string;
   showContador: boolean = true;
@@ -96,7 +96,7 @@ export class CleaningSalePage {
     this.dataOffer = this.navParams.get('datos');
     console.log(this.dataOffer);
     this.dataService = this.dataOffer['dataService'];
-    this.keyOffer = this.dataOffer['offer']; 
+    this.keyOffer = this.dataOffer['offer'];
     this.userActual = localStorage.getItem('verificacion');
     this.maxOffer = this.dataService['Clasificacion']['informacion']['maxOffer'];
     this.SubServiceActual = localStorage.getItem('SubService');
@@ -111,7 +111,7 @@ export class CleaningSalePage {
     // // localStorage.setItem('verificacion',this.userActual);
     // this.keyOffer = "offer_1516131465266";
     // this.SubServiceActual = "Electrician";
-    // this.dataService = { "name": "Janotorial", "class": "orange", "img": "assets/img/services/Janitorial.png", "Clasificacion": { "categoria": "Electrician", "certificacion": "true", "seguro": "true", "distancia": "3M", "experiencia": "2Y", "informacion": { "maxOffer": "123", "foto": "", "moreInformation": "info" } }, "status": "Published", "User": "user_1515974097749", "Address": { "label": "My Address", "name": "Ak. 14 #47-27, Bogotá, Colombia", "keyAddress": "addr_1516039337619" }, "Star": "3" };
+    // this.dataService = { "name": "Janitorial", "class": "orange", "img": "assets/img/services/Janitorial.png", "Clasificacion": { "categoria": "Electrician", "certificacion": "true", "seguro": "true", "distancia": "3M", "experiencia": "2Y", "informacion": { "maxOffer": "123", "foto": "", "moreInformation": "info" } }, "status": "Published", "User": "user_1515974097749", "Address": { "label": "My Address", "name": "Ak. 14 #47-27, Bogotá, Colombia", "keyAddress": "addr_1516039337619" }, "Star": "3" };
     // this.maxOffer = 123;
     // --Fin-comentado para tener flujo normal
 
@@ -351,14 +351,14 @@ export class CleaningSalePage {
         // this.startTimeBr();
         this.objNodeTimerB = setInterval(() => {
           console.log(contResolve);
-          if(contResolve == 1){
+          if (contResolve == 1) {
             clearInterval(this.objNodeTimerB);
             contResolve = 2
 
             resolve(this.listCommentsJobr);
           }
         }, 1000);
-      }else{
+      } else {
         resolve('');
       }
 
@@ -367,7 +367,7 @@ export class CleaningSalePage {
       // if(this.listCommentsJobr != ''){
       //   this.showInfoCleaning(id);
       // }else{
-        
+
       // }
 
     });
@@ -453,8 +453,8 @@ export class CleaningSalePage {
       // console.log('contador: ',this.contador);
     }
   }
-  
- 
+
+
   //--- Functions
   ProviderInSale() {
     console.info('provider in sale');

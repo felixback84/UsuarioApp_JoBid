@@ -11,9 +11,9 @@ export class BraintreeServiceProvider {
     console.log('Hello BraintreeServiceProvider Provider');
   }
 
-  CrearCustomer(keyCustomer){
+  CrearCustomer(keyCustomer) {
     return new Promise((resolve, reject) => {
-      let getCrearCustom =this.http.get(apiUrlBase+'/customer/create/'+keyCustomer).subscribe(
+      let getCrearCustom = this.http.get(apiUrlBase + '/customer/create/' + keyCustomer).subscribe(
         (result) => {
           console.log(result);
           console.log(JSON.stringify(result));

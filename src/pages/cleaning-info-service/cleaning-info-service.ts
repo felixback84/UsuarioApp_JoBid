@@ -21,49 +21,49 @@ import { NotificacionService } from '../../services/notificacion.service';
 export class CleaningInfoServicePage {
 
   //-- default
-  imgJobDefault ="assets/img/professions/cleaning.png";
+  imgJobDefault = "assets/img/professions/cleaning.png";
   //-load data
-  datasService:any;
-  dataService:any;
-  keyOffer:any;
-  worker:any;
-  userActual:any;
-  sale:any;
-  information:any;
-  serviceCode:any;
+  datasService: any;
+  dataService: any;
+  keyOffer: any;
+  worker: any;
+  userActual: any;
+  sale: any;
+  information: any;
+  serviceCode: any;
   //-map
-  Userlat:any;
-  Userlng:any;
+  Userlat: any;
+  Userlng: any;
   zom: number = 14;
-  providerLatitud:any;
-  providerLongitud:any;
+  providerLatitud: any;
+  providerLongitud: any;
   //-datos BD
-  status="Waiting for the professional";
+  status = "Waiting for the professional";
 
   //--load vista
-  workerInfo:any;
-  ImgJobr:any;
-  nameJobr:any;
-  certificateJobr:any;
-  insuranceJobr:any;
-  presentationJobr:any;
-  starJobr:any;
+  workerInfo: any;
+  ImgJobr: any;
+  nameJobr: any;
+  certificateJobr: any;
+  insuranceJobr: any;
+  presentationJobr: any;
+  starJobr: any;
 
   //-tempoaral animaicion
-  objNodeTimer:any;
-  segundos:any=2;
+  objNodeTimer: any;
+  segundos: any = 2;
 
   //-subs
-  saleStatusSubs:any;
-  OfferUserLocationSubs:any;
-  getOfferProviderLocationSubs:any;
-  SubServiceActual:any;
+  saleStatusSubs: any;
+  OfferUserLocationSubs: any;
+  getOfferProviderLocationSubs: any;
+  SubServiceActual: any;
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
-    public professionalsService : ProfessionalsService,
-    private saleService: SaleService , 
-    private offerService : OfferService,
+    public professionalsService: ProfessionalsService,
+    private saleService: SaleService,
+    private offerService: OfferService,
     private notificacionService: NotificacionService,
   ) {
     this.loadData();
@@ -73,15 +73,15 @@ export class CleaningInfoServicePage {
     console.log('ionViewDidLoad CleaningInfoServicePage');
   }
 
-  loadData(){
+  loadData() {
     this.datasService = this.navParams.get('datos');
     this.dataService = this.datasService['dataService'];
-    this.keyOffer = this.datasService['offer']; 
-    this.worker = this.datasService['win']; 
+    this.keyOffer = this.datasService['offer'];
+    this.worker = this.datasService['win'];
     this.userActual = localStorage.getItem('verificacion');
     this.SubServiceActual = localStorage.getItem('SubService');
-    this.sale=this.worker['offer'];
-    this.information= this.dataService['Clasificacion']['informacion']['moreInformation'];
+    this.sale = this.worker['offer'];
+    this.information = this.dataService['Clasificacion']['informacion']['moreInformation'];
     this.serviceCode = this.keyOffer.substring(6);
     console.log(this.datasService);
     // console.log(this.dataService);
@@ -91,118 +91,118 @@ export class CleaningInfoServicePage {
     // console.log(localStorage);
     this.getProfessionals(this.worker['id']);
     this.getUsersLocation();
-    this.saleStatusSubs= this.saleService.getStatus(this.userActual,this.keyOffer).subscribe((resul)=>{
+    this.saleStatusSubs = this.saleService.getStatus(this.userActual, this.keyOffer).subscribe((resul) => {
       // console.log(resul);
       // console.log(resul['$value']);
       this.status = resul['$value'];
-      if(resul['$value'] == 'In progress'){
+      if (resul['$value'] == 'In progress') {
         this.status = 'Service in progress';
         this.notificacionServiceStart();
       }
-      if(resul['$value'] == 'Finalized'){
+      if (resul['$value'] == 'Finalized') {
         this.status = 'Service completed';
         this.notificacionServiceFinish();
         this.startTimer();
       }
     });
   }
-  
-  goCleaningVote(){
-    let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer,"win":this.worker}};
+
+  goCleaningVote() {
+    let DataService = { 'datos': { "dataService": this.dataService, "offer": this.keyOffer, "win": this.worker } };
     console.log(DataService);
     this.saleStatusSubs.unsubscribe();
-  	this.navCtrl.setRoot(CleaningVotePage,DataService);
+    this.navCtrl.setRoot(CleaningVotePage, DataService);
   }
 
-  private getProfessionals(keyWork){
+  private getProfessionals(keyWork) {
     let getProfessionalSubs = this.professionalsService.getProfessional(keyWork).subscribe(
-    professional =>{
-      if(getProfessionalSubs != undefined){
-        this.workerInfo= professional;
-        this.mostrarWorkInfo();
-        getProfessionalSubs.unsubscribe();
-      }
-    });
+      professional => {
+        if (getProfessionalSubs != undefined) {
+          this.workerInfo = professional;
+          this.mostrarWorkInfo();
+          getProfessionalSubs.unsubscribe();
+        }
+      });
   }
-  
-  mostrarWorkInfo(){
+
+  mostrarWorkInfo() {
     console.log(this.workerInfo);
-    this.ImgJobr= this.imgJobDefault;
+    this.ImgJobr = this.imgJobDefault;
     // let galleryJobr= this.galleryJobDefault;
-    this.nameJobr= this.workerInfo['prof_name'];
-    let starJobrBD= Math.round(this.workerInfo['prof_star']); 
-    let contenido='';
-    if(Math.round(starJobrBD) == 5){
-      contenido +='cinco';
+    this.nameJobr = this.workerInfo['prof_name'];
+    let starJobrBD = Math.round(this.workerInfo['prof_star']);
+    let contenido = '';
+    if (Math.round(starJobrBD) == 5) {
+      contenido += 'cinco';
     }
-    if(Math.round(starJobrBD) == 4){
-      contenido +='cuatro';
+    if (Math.round(starJobrBD) == 4) {
+      contenido += 'cuatro';
     }
-    if(Math.round(starJobrBD) == 3){
-      contenido +='tres';
+    if (Math.round(starJobrBD) == 3) {
+      contenido += 'tres';
     }
-    if(Math.round(starJobrBD) == 2){
-      contenido +='dos';
+    if (Math.round(starJobrBD) == 2) {
+      contenido += 'dos';
     }
-    if(Math.round(starJobrBD) == 1){
-      contenido +='one';
+    if (Math.round(starJobrBD) == 1) {
+      contenido += 'one';
     }
-    this.starJobr= contenido;
+    this.starJobr = contenido;
     // this.certificateJobr= this.workerInfo['prof_certificate']; 
     // this.insuranceJobr= this.workerInfo['prof_insurance'];     
-    if(this.workerInfo['prof_picture'] && this.workerInfo['prof_picture'] != ''){
+    if (this.workerInfo['prof_picture'] && this.workerInfo['prof_picture'] != '') {
       this.ImgJobr = this.workerInfo['prof_picture'];
     }
     //info servicion
-    for(let service in this.workerInfo.Service){
-      if(this.workerInfo.Service[service].serv_subService == this.SubServiceActual || this.workerInfo.Service[service].serv_subService == 'Full'  ){
+    for (let service in this.workerInfo.Service) {
+      if (this.workerInfo.Service[service].serv_subService == this.SubServiceActual || this.workerInfo.Service[service].serv_subService == 'Full') {
 
         let infoService = this.workerInfo.Service[service];
         // console.log(infoService);
         // console.log(infoService.serv_subService);
-        this.certificateJobr= infoService.serv_detail['serv_certificate']; 
-        this.insuranceJobr= infoService.serv_detail['serv_insurance']; 
-        this.presentationJobr= infoService.serv_detail['serv_moreInformation']; 
-        }
+        this.certificateJobr = infoService.serv_detail['serv_certificate'];
+        this.insuranceJobr = infoService.serv_detail['serv_insurance'];
+        this.presentationJobr = infoService.serv_detail['serv_moreInformation'];
       }
     }
- 
-  //--- timer
-  startTimer(){
-    this.objNodeTimer=setInterval( () => this.timer(),1000);
   }
 
-  private timer(){
+  //--- timer
+  startTimer() {
+    this.objNodeTimer = setInterval(() => this.timer(), 1000);
+  }
+
+  private timer() {
     console.log(this.segundos);
     // console.log(this.status);
-    if(this.status == 'Service completed' && this.segundos == 1){ 
-        clearInterval(this.objNodeTimer);
-        console.log('servicion fin');
-        this.goCleaningVote();
-    }else{
-      if(--this.segundos< 0){
+    if (this.status == 'Service completed' && this.segundos == 1) {
+      clearInterval(this.objNodeTimer);
+      console.log('servicion fin');
+      this.goCleaningVote();
+    } else {
+      if (--this.segundos < 0) {
         // this.modificarStatus();
-        this.segundos=2;
+        this.segundos = 2;
       }
     }
   }
 
-  getUsersLocation(){
+  getUsersLocation() {
     this.OfferUserLocationSubs = this.offerService.getOfferUserLocation(this.keyOffer).subscribe(
-      (LocationUser)=>{
-        console.info(LocationUser);        
-        this.Userlat =LocationUser.latitud;
-        this.Userlng =LocationUser.longitud;
+      (LocationUser) => {
+        console.info(LocationUser);
+        this.Userlat = LocationUser.latitud;
+        this.Userlng = LocationUser.longitud;
         console.log(this.Userlat);
         console.log(this.Userlng);
         this.OfferUserLocationSubs.unsubscribe();
       }
     );
     this.getOfferProviderLocationSubs = this.offerService.getOfferProviderLocation(this.keyOffer).subscribe(
-      (LocationProvider)=>{
-        console.info(LocationProvider);        
-        this.providerLatitud =LocationProvider.latitud;
-        this.providerLongitud =LocationProvider.longitud;
+      (LocationProvider) => {
+        console.info(LocationProvider);
+        this.providerLatitud = LocationProvider.latitud;
+        this.providerLongitud = LocationProvider.longitud;
         console.log(this.providerLatitud);
         console.log(this.providerLongitud);
         this.getOfferProviderLocationSubs.unsubscribe();
@@ -211,12 +211,12 @@ export class CleaningInfoServicePage {
   }
 
   //-notification
-  notificacionServiceStart(){
+  notificacionServiceStart() {
     console.info('Nota: The service has started');
-    this.notificacionService.mostrar('The service has started',4);
-  } 
-  notificacionServiceFinish(){
+    this.notificacionService.mostrar('The service has started', 4);
+  }
+  notificacionServiceFinish() {
     console.info('Nota: The service has finished');
-    this.notificacionService.mostrar('The service has finished',5);
-  } 
+    this.notificacionService.mostrar('The service has finished', 5);
+  }
 }

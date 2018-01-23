@@ -15,7 +15,7 @@ import { PreHomePage } from '../pre-home/pre-home';
   templateUrl: 'payinfo.html',
 })
 export class PayinfoPage {
-  userData:any;
+  userData: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -25,8 +25,8 @@ export class PayinfoPage {
     console.log(this.userData);
     console.log(this.navParams.get('datos'));
   }
-  goIndex(){
-    let Data = {'datos':this.userData};
-  	this.navCtrl.setRoot(PreHomePage,Data);
+  goIndex() {
+    let Data = { 'datos': this.userData };
+    this.navCtrl.setRoot(PreHomePage, Data);
   }
 }

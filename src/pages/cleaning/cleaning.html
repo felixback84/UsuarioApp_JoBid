@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-  <button ion-button menuToggle>
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>JoBid</ion-title>
@@ -18,46 +18,50 @@
 
 <ion-content>
   <div class="imgCenter">
-	 <ion-icon name="contact" [ngClass]="dataService.class"></ion-icon> 
+    <ion-icon name="contact" [ngClass]="dataService.class"></ion-icon>
   </div>
-	<div class="TituloRojo"><h4>{{dataService.name}}</h4></div>
-	<h4>Filter search</h4>
-	<p padding>Choose the options for the search of the professional you want to hire</p>
-	<form  class="list" [formGroup]="service">
-		<ion-grid>
-        <ion-row>
-          <ion-col>
-		        <ion-list>
-					  	<ion-item>
-				      	<ion-select [(ngModel)]="dataClasificaion.categoria" formControlName="categoria" name="categoria" placeholder="Category"> <!--[(ngModel)]="gaming"-->
-                 <ion-option *ngFor="let category of dataCategoria" value="{{category}}">{{category}}</ion-option>
-				      	</ion-select>
-				    	</ion-item>
-						</ion-list>
-          </ion-col>
-			</ion-row>
+  <div class="TituloRojo">
+    <h4>{{dataService.name}}</h4>
+  </div>
+  <h4>Filter search</h4>
+  <p padding>Choose the options for the search of the professional you want to hire</p>
+  <form class="list" [formGroup]="service">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-select [(ngModel)]="dataClasificaion.categoria" formControlName="categoria" name="categoria" placeholder="Category">
+                <!--[(ngModel)]="gaming"-->
+                <ion-option *ngFor="let category of dataCategoria" value="{{category}}">{{category}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
       <ion-row>
         <ion-col col-6>
-          <ion-list radio-group [(ngModel)]="certificacion" formControlName="certificacio" name="certificacio" >
-			    	<ion-item>
-			      	<ion-label>Certificate</ion-label>
-    					<ion-radio value="true" ></ion-radio>
-				  	</ion-item>
+          <ion-list radio-group [(ngModel)]="certificacion" formControlName="certificacio" name="certificacio">
+            <ion-item>
+              <ion-label>Certificate</ion-label>
+              <ion-radio value="true"></ion-radio>
+            </ion-item>
           </ion-list>
         </ion-col>
         <ion-col col-6>
-          <ion-list radio-group [(ngModel)]="seguro" formControlName="seguro"  name="seguro">
-			   		<ion-item>
-			      	<ion-label>Insurance</ion-label>
-    					<ion-radio value="true"   ></ion-radio>
-				  	</ion-item>
-					</ion-list>
+          <ion-list radio-group [(ngModel)]="seguro" formControlName="seguro" name="seguro">
+            <ion-item>
+              <ion-label>Insurance</ion-label>
+              <ion-radio value="true"></ion-radio>
+            </ion-item>
+          </ion-list>
         </ion-col>
-			</ion-row>
+      </ion-row>
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-select class="mitad"  [(ngModel)]="dataClasificaion.distancia" formControlName="distancia" name="distancia" placeholder="Distance"> <!--[(ngModel)]="gaming"-->
+            <ion-select class="mitad" [(ngModel)]="dataClasificaion.distancia" formControlName="distancia" name="distancia" placeholder="Distance">
+              <!--[(ngModel)]="gaming"-->
               <ion-option value="1M">1 Miles</ion-option>
               <ion-option value="2M">2 Miles</ion-option>
               <ion-option value="3M">3 Miles</ion-option>
@@ -65,18 +69,19 @@
               <ion-option value="5M">5 Miles</ion-option>
               <ion-option value="5MM">&gt; 5 Milla</ion-option>
             </ion-select>
-            <ion-select  class="mitad"  [(ngModel)]="dataClasificaion.experiencia" formControlName="experiencia" name="experiencia" placeholder="Experience"> <!--[(ngModel)]="gaming"-->
-              <ion-option value="1Y" >1 Year</ion-option>
-              <ion-option value="2Y" >2 Year</ion-option>
-              <ion-option value="3Y" >3 Year</ion-option>
-              <ion-option value="3YM" >&gt; 3 Year</ion-option>
+            <ion-select class="mitad" [(ngModel)]="dataClasificaion.experiencia" formControlName="experiencia" name="experiencia" placeholder="Experience">
+              <!--[(ngModel)]="gaming"-->
+              <ion-option value="1Y">1 Year</ion-option>
+              <ion-option value="2Y">2 Year</ion-option>
+              <ion-option value="3Y">3 Year</ion-option>
+              <ion-option value="3YM">&gt; 3 Year</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-            <p>If you do not select a filter, will show up all professionals available within 3 miles.</p>
+          <p>If you do not select a filter, will show up all professionals available within 3 miles.</p>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -86,13 +91,13 @@
 
           <input id="radio2" type="radio" name="estrellas" [(ngModel)]="estrellas" formControlName="estrellas" value="4">
           <label for="radio2">&#9733;</label>
-          
+
           <input id="radio3" type="radio" name="estrellas" [(ngModel)]="estrellas" formControlName="estrellas" value="3">
           <label for="radio3">&#9733;</label>
-          
+
           <input id="radio4" type="radio" name="estrellas" [(ngModel)]="estrellas" formControlName="estrellas" value="2">
           <label for="radio4">&#9733;</label>
-          
+
           <input id="radio5" type="radio" name="estrellas" [(ngModel)]="estrellas" formControlName="estrellas" value="1">
           <label for="radio5">&#9733;</label>
         </p>
@@ -101,11 +106,12 @@
         <ion-col>
           <div class="btnBottom">
             <button id="verifyYourPhone-button6" ion-button block color="danger" (click)="cleaningInfo()" [disabled]="!service.valid">
-              Continue <ion-icon name="arrow-dropright"></ion-icon>
+              Continue
+              <ion-icon name="arrow-dropright"></ion-icon>
             </button>
           </div>
         </ion-col>
-			</ion-row>
-		</ion-grid>
-	</form>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>

@@ -5,43 +5,47 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
-  	<button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>JoBid</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>JoBid</ion-title>
+	</ion-navbar>
 </ion-header>
 <ion-content class="card-background-page">
-  <ion-card>
-    <img src="assets/img/JoBidUsuario.jpg"/>
-    <div class="card-title"><h3>{{userName}}</h3></div>
-    <div class="card-subtitle"><p>¿Where you want your service?</p></div>
+	<ion-card>
+		<img src="assets/img/JoBidUsuario.jpg" />
+		<div class="card-title">
+			<h3>{{userName}}</h3>
+		</div>
+		<div class="card-subtitle">
+			<p>¿Where you want your service?</p>
+		</div>
 	</ion-card>
-  <ion-grid class="btnAddress">
-  	<ion-row>
-  		<!-- <ion-col col-6> -->
-  		<ion-col>
-			<ion-list>
-				<button ion-item (click)="goLocation()" >
-					<ion-icon name="pin" item-start></ion-icon>
-					<ion-label>Current location</ion-label>
-				</button>
-			</ion-list>
+	<ion-grid class="btnAddress">
+		<ion-row>
+			<!-- <ion-col col-6> -->
+			<ion-col>
+				<ion-list>
+					<button ion-item (click)="goLocation()">
+						<ion-icon name="pin" item-start></ion-icon>
+						<ion-label>Current location</ion-label>
+					</button>
+				</ion-list>
 			</ion-col>
 		</ion-row>
 		<ion-row>
-  		<!-- <ion-col col-6> -->
-  		<ion-col>
-  			<ion-list>
-	  			<button ion-item (click)="goNewAddress()">
-  					<ion-icon name="add-circle" item-start></ion-icon>
-  					<ion-label>New Address</ion-label>
-	  			</button>
-  			</ion-list>
-  		</ion-col>
-  	</ion-row>
-  </ion-grid>
+			<!-- <ion-col col-6> -->
+			<ion-col>
+				<ion-list>
+					<button ion-item (click)="goNewAddress()">
+						<ion-icon name="add-circle" item-start></ion-icon>
+						<ion-label>New Address</ion-label>
+					</button>
+				</ion-list>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 	<ion-list>
 		<ion-grid>
 			<ion-row *ngFor="let item of address">
@@ -49,12 +53,12 @@
 					<button ion-item (click)="goShow(item)">
 						<h3>{{ item.label }}</h3>
 						<p>{{ item.name }}</p>
-					</button>  
+					</button>
 				</ion-col>
 				<ion-col col-2>
-						<button  ion-button block (click)="DropAddress(item)" icon-only round color="danger">
-								<ion-icon name='close'></ion-icon>
-						</button>
+					<button ion-button block (click)="DropAddress(item)" icon-only round color="danger">
+						<ion-icon name='close'></ion-icon>
+					</button>
 				</ion-col>
 			</ion-row>
 		</ion-grid>

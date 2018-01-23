@@ -278,32 +278,32 @@ export class SingupPage {
 
   enviarCorreo() {
     // console.log(this.afAuth.auth.currentUser);
-    
-    this.afAuth.auth.currentUser.sendEmailVerification()
-    // console.log(value);
 
-    // console.log(firebase.auth());
-    // console.log(firebase.auth().currentUser);
-    // value.sendEmailVerification()
-    .then(
+    this.afAuth.auth.currentUser.sendEmailVerification()
+      // console.log(value);
+
+      // console.log(firebase.auth());
+      // console.log(firebase.auth().currentUser);
+      // value.sendEmailVerification()
+      .then(
       (success) => {
         // console.log(firebase.auth());
         console.log(success);
         // if (success != undefined) {
-          console.info("please verify your email - account correo");
-          this.crearUserBD();
-          // alert("please verify your email - account correo");
-          console.log(success);
-          // alert(JSON.stringify(success));
-          this.correoEnviado = true;
+        console.info("please verify your email - account correo");
+        this.crearUserBD();
+        // alert("please verify your email - account correo");
+        console.log(success);
+        // alert(JSON.stringify(success));
+        this.correoEnviado = true;
         // }
-      },(err) => {
+      }, (err) => {
         console.error('error envio correo - account correo');
         // alert('error envio correo - account correo');
         console.error(err);
         // alert(JSON.stringify(err));
       }
-    ).catch((err) => {
+      ).catch((err) => {
         console.error('error envio correo - account correo');
         // alert('error envio correo - account correo');
         console.error(err);

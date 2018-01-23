@@ -1,36 +1,53 @@
 page-singup {
-	img{display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;}
-	#signup-heading2{color:#000000;text-align:center;}
-	.force-back-button .back-button {
-	  display: inline-block;
-	}
-	ion-list ion-grid.grid{ padding:0; 
-		.col{padding:0;
-			&:first-child{ padding-right:5px; }
-		}
-	}
-	.button-outline-md-danger{
-		margin: 0;
-		height: 48px;
-		width: 100%;
-	}
-	.row{
-		.list-md, .list-ios{
-			margin:0;
-		}
-	}
-	ion-label.label{background: transparent !important; padding: 0;}
-	ion-item.item-md ion-label.label, ion-item.item-ios ion-label.label{
-			img{
-				width: 100px;
-				height: 100px;
-				margin:0;
-			}
-	}
-	// ion-col#btn-camera{padding-top: 0px;
-	// 	button{
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #signup-heading2 {
+        color: #000000;
+        text-align: center;
+    }
+    .force-back-button .back-button {
+        display: inline-block;
+    }
+    ion-list ion-grid.grid {
+        padding: 0;
+        .col {
+            padding: 0;
+            &:first-child {
+                padding-right: 5px;
+            }
+        }
+    }
+    .button-outline-md-danger {
+        margin: 0;
+        height: 48px;
+        width: 100%;
+    }
+    .row {
+        .list-md,
+        .list-ios {
+            margin: 0;
+        }
+    }
+    ion-label.label {
+        background: transparent !important;
+        padding: 0;
+    }
+    ion-item.item-md ion-label.label,
+    ion-item.item-ios ion-label.label {
+        img {
+            width: 100px;
+            height: 100px;
+            margin: 0;
+        }
+    } // ion-col#btn-camera{padding-top: 0px;
+    // 	button{
     //         height: 48px; width: 100%;
     //         margin-top: 5px;
     //     }
-	// }
+    // }
 }

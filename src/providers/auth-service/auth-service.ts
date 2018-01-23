@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http , Headers} from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 //let apiUrl = "http://localhost/PHP-Slim-Restful-master/api/";
@@ -20,11 +20,11 @@ export class AuthServiceProvider {
   postData(credentials, type) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
-      this.http.post(apiUrl + type, JSON.stringify(credentials), {headers: headers})
+      this.http.post(apiUrl + type, JSON.stringify(credentials), { headers: headers })
         .subscribe(res => {
-          if(type == 'code'){
+          if (type == 'code') {
             resolve('correo enviando');
-          }else{
+          } else {
             //console.log(res);
             resolve(res.json());
           }

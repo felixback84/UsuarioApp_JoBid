@@ -197,11 +197,11 @@ export class CleaningContractorPage {
       this.ImgJobr = workerInfo['prof_picture'];
     }
     this.mostrarInfoService(workerInfo.Service);
-    
+
     this.mostrarComentarios(workerInfo['prof_comments']);
   }
 
-  mostrarComentarios(commentsJobr){
+  mostrarComentarios(commentsJobr) {
     //-info comentarios
     console.log(commentsJobr);
     for (let key in commentsJobr) {
@@ -252,7 +252,7 @@ export class CleaningContractorPage {
     console.log(this.commentsJobr);
   }
 
-  mostrarInfoService(Services){
+  mostrarInfoService(Services) {
     //info servicion
     console.log(Services);
     for (let service in Services) {

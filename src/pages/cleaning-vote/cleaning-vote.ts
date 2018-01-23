@@ -19,22 +19,22 @@ import { NotificacionService } from '../../services/notificacion.service';
 })
 export class CleaningVotePage {
   //-data
-  datasService:any;
-  dataService:any;
-  keyOffer:any;
-  worker:any;
-  userActual:any;
+  datasService: any;
+  dataService: any;
+  keyOffer: any;
+  worker: any;
+  userActual: any;
 
   //-view
-  vote:any=[];
+  vote: any = [];
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private professionalsService : ProfessionalsService,
+    private professionalsService: ProfessionalsService,
     private notificacionService: NotificacionService,
   ) {
     this.datasService = this.navParams.get('datos');
     this.dataService = this.datasService['dataService'];
-    this.keyOffer = this.datasService['offer']; 
-    this.worker = this.datasService['win']; 
+    this.keyOffer = this.datasService['offer'];
+    this.worker = this.datasService['win'];
     this.userActual = localStorage.getItem('verificacion');
     this.notificacionVoteProvider();
     // console.log(this.datasService);
@@ -48,24 +48,24 @@ export class CleaningVotePage {
     console.log('ionViewDidLoad CleaningVotePage');
   }
 
-  goCleaningOk(){
+  goCleaningOk() {
     console.log(this.vote);
-    this.vote['userId']=this.userActual;
-    let DataService = {'datos':{"dataService":this.dataService,"offer":this.keyOffer,"win":this.worker}};
+    this.vote['userId'] = this.userActual;
+    let DataService = { 'datos': { "dataService": this.dataService, "offer": this.keyOffer, "win": this.worker } };
     console.log(DataService);
 
-    this.professionalsService.setComment(this.worker['id'],this.vote);
+    this.professionalsService.setComment(this.worker['id'], this.vote);
 
     //-cambiar calificacion proveedor
-    let calificacion = (Number(this.vote.estrellas) + Number(this.worker['star']) )/2;
+    let calificacion = (Number(this.vote.estrellas) + Number(this.worker['star'])) / 2;
     console.log(calificacion);
-    this.professionalsService.setStar(this.worker['id'],calificacion);
+    this.professionalsService.setStar(this.worker['id'], calificacion);
 
-  	this.navCtrl.setRoot(CleaningOkPage,DataService);
+    this.navCtrl.setRoot(CleaningOkPage, DataService);
   }
   //-notification
-  notificacionVoteProvider(){
+  notificacionVoteProvider() {
     console.info('Nota: Do not forget to rate your provider');
-    this.notificacionService.mostrar('Do not forget to rate your provider',4);
-  } 
+    this.notificacionService.mostrar('Do not forget to rate your provider', 4);
+  }
 }

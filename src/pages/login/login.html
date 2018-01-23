@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-  <button ion-button menuToggle>
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>login</ion-title>
@@ -18,8 +18,8 @@
   <img src="assets/img/JoBidUsuario.jpg">
   <h5 id="login-heading1">Log in</h5>
   <div padding>
-      <button ion-button block (click)="facebookir()">Log in with Facebook</button>
-    </div>
+    <button ion-button block (click)="facebookir()">Log in with Facebook</button>
+  </div>
   <ion-list padding>
     <form [formGroup]="todo">
       <ion-item>
@@ -31,10 +31,11 @@
         <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password" name="password" formControlName="password"></ion-input>
       </ion-item>
       <div class="btnBottom">
-      <button  ion-button block color="danger" (click)="login()" [disabled]="!todo.valid">
-        Enter<ion-icon name="arrow-dropright"  ></ion-icon>
-      </button> 
+        <button ion-button block color="danger" (click)="login()" [disabled]="!todo.valid">
+          Enter
+          <ion-icon name="arrow-dropright"></ion-icon>
+        </button>
       </div>
     </form>
-	</ion-list>
+  </ion-list>
 </ion-content>

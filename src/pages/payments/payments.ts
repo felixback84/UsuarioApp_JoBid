@@ -22,7 +22,7 @@ export class PaymentsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PaymentsPage');
   }
-  goAddPaymentMethod(){
+  goAddPaymentMethod() {
     this.navCtrl.push(AddPaymentMethodPage);
   }
 

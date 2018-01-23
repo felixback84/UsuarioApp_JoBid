@@ -21,59 +21,68 @@
   <p class="textoCentrado">State</p>
   <h6 id="estadoServicio">{{status}}</h6>
   <div padding>
-    <p><span class="textRed">*Amount to be paid: </span>${{sale}}</p>
-    <p><span class="textRed">Description:</span></p>
+    <p>
+      <span class="textRed">*Amount to be paid: </span>${{sale}}</p>
+    <p>
+      <span class="textRed">Description:</span>
+    </p>
     <p>{{information}}</p>
-    <p><span class="textRed">Address service:</span></p>
+    <p>
+      <span class="textRed">Address service:</span>
+    </p>
     <p>{{address}}</p>
     <div class="space"></div>
     <div *ngIf="booleanJob">
-      <p><span class="textRed">Professional data</span></p>
+      <p>
+        <span class="textRed">Professional data</span>
+      </p>
     </div>
     <ion-grid>
       <ion-row *ngIf="booleanJob">
-      <ion-col col-5>
-        <ion-list>
-          <ion-item>
-            <ion-avatar>
-              <img src="{{ImgJobr}}">
-            </ion-avatar>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-      <ion-col col-7>
-        <ion-row>
-          <ion-col>
-            <h4>{{nameJobr}}</h4>
-            <p>{{idJobr}}</p>
-            <!-- <img src="assets/img/Estrellas.png" alt=""> -->
-            <p class="Calificacion Usuario {{starJobr}}">
-							<label for="radio1">&#9733;</label>
-							<label for="radio2">&#9733;</label>
-							<label for="radio3">&#9733;</label>
-							<label for="radio4">&#9733;</label>
-							<label for="radio5">&#9733;</label>
-						</p>
-          </ion-col>
-        </ion-row>	
-        <ion-row>	
+        <ion-col col-5>
+          <ion-list>
+            <ion-item>
+              <ion-avatar>
+                <img src="{{ImgJobr}}">
+              </ion-avatar>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col col-7>
+          <ion-row>
+            <ion-col>
+              <h4>{{nameJobr}}</h4>
+              <p>{{idJobr}}</p>
+              <!-- <img src="assets/img/Estrellas.png" alt=""> -->
+              <p class="Calificacion Usuario {{starJobr}}">
+                <label for="radio1">&#9733;</label>
+                <label for="radio2">&#9733;</label>
+                <label for="radio3">&#9733;</label>
+                <label for="radio4">&#9733;</label>
+                <label for="radio5">&#9733;</label>
+              </p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
             <ion-col col-6 *ngIf="certificateJobr">
-              <ion-list><ion-item>
-                <ion-label>Certificate</ion-label>
-                <ion-radio checked="true" value="Certificate"></ion-radio>
-              </ion-item></ion-list>
+              <ion-list>
+                <ion-item>
+                  <ion-label>Certificate</ion-label>
+                  <ion-radio checked="true" value="Certificate"></ion-radio>
+                </ion-item>
+              </ion-list>
             </ion-col>
             <ion-col col-6 *ngIf="insuranceJobr">
               <ion-list>
-                 <ion-item>
+                <ion-item>
                   <ion-label>Insurance</ion-label>
                   <ion-radio checked="true" value="Insurance"></ion-radio>
                 </ion-item>
               </ion-list>
             </ion-col>
-          </ion-row>	
+          </ion-row>
         </ion-col>
       </ion-row>
-  </ion-grid>
+    </ion-grid>
   </div>
 </ion-content>

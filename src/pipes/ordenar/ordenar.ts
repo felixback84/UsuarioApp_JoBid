@@ -12,10 +12,10 @@ export class OrdenarPipe implements PipeTransform {
   /**
    * Takes a value and makes it lowercase.
    */
-  transform(value: any[],ordenar ?) {
+  transform(value: any[], ordenar?) {
     // console.log(value);
-    if(ordenar == 'estados' ){
-      return value.sort(function(a, b){
+    if (ordenar == 'estados') {
+      return value.sort(function (a, b) {
         // console.log(a);
         // console.log(a.name);
         // console.log(b);
@@ -25,8 +25,8 @@ export class OrdenarPipe implements PipeTransform {
         return a.name.localeCompare(b.name);
       });
     }
-    if(ordenar == 'codeEstados' ){
-      return value.sort(function(a, b){
+    if (ordenar == 'codeEstados') {
+      return value.sort(function (a, b) {
         // console.log(a);
         // console.log(a.code);
         // console.log(b);
@@ -35,12 +35,12 @@ export class OrdenarPipe implements PipeTransform {
         return a.code - b.code;
       });
     }
-    if(ordenar == 'ciudades' ){
-      return value.sort(function(a, b){
-          return a.name.localeCompare(b.name);
+    if (ordenar == 'ciudades') {
+      return value.sort(function (a, b) {
+        return a.name.localeCompare(b.name);
       });
     }
-    
+
     // {
     //   return value.sort();
     // }
