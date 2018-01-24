@@ -41,6 +41,9 @@
     },
     "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "com.Jobid.user"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.Jobid.user"
     }
   },
   "dependent_plugins": {

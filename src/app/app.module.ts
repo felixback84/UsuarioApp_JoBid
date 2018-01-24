@@ -17,6 +17,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { Facebook } from '@ionic-native/facebook';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 //import firebase from 'firebase';
 //import { EmailComposer } from '@ionic-native/email-composer';
 
@@ -198,6 +199,7 @@ export const googleMapsKey = 'AIzaSyB8zF6lhZegDjsV_mrqxd9Fb3YFTw2__AA';
     Camera,
     LocalNotifications,
     NotificacionService,
+    InAppBrowser,
     // EmailComposer
   ]
 })

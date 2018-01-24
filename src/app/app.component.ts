@@ -2,8 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-//import { Facebook } from '@ionic-native/facebook';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
+//import { Facebook } from '@ionic-native/facebook';
 
 //--page
 import { HomePage } from '../pages/home/home';
@@ -32,6 +33,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   userName: string = 'hola logeado';
   srcUser: string = 'assets/img/user.png';
+  imgApp: string = 'assets/icon.png';
   star: any = '3';
   starUser: any;
 
@@ -44,9 +46,12 @@ export class MyApp {
   pages: Array<{ title: string, component: any }>;
   menu_is_enabled: boolean = true;
   userDataUpdate: any;
+  mostrarUsuarioLogeado: boolean = false;
+
   constructor(public platform: Platform, public statusBar: StatusBar,
     public splashScreen: SplashScreen, private afAuth: AngularFireAuth,
     private userService: UserService,
+    private inAppBrowser: InAppBrowser,
   ) {
     this.initializeApp();
 
@@ -89,6 +94,7 @@ export class MyApp {
             console.log(User);
             if (User['0']) {
               this.loadViewUser(User['0']);
+              this.mostrarUsuarioLogeado = true;
               if (Userexists != undefined) {
                 Userexists.unsubscribe();
               }
@@ -102,6 +108,7 @@ export class MyApp {
             console.log(User);
             if (User['0']) {
               this.loadViewUser(User['0']);
+              this.mostrarUsuarioLogeado = true;
               if (Userexists != undefined) {
                 Userexists.unsubscribe();
               }
@@ -137,6 +144,7 @@ export class MyApp {
         // });
       } else {
         console.info('find user menu - no');
+        this.mostrarUsuarioLogeado = false;
       }
     });
   }
@@ -225,6 +233,13 @@ export class MyApp {
   }
   goPolicies() {
     this.nav.push(PoliciesPage);
+  }
+
+  pagina() {
+    const options: InAppBrowserOptions = {
+      zoom: 'no'
+    }
+    const browser = this.inAppBrowser.create('http://www.lamaletadefelix.com', '_self', options);
   }
 
 

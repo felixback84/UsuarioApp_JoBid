@@ -66,3 +66,22 @@ ion-item.imgUser.item-md, ion-item.imgUser.item-ios{
         font-size: 20px;
     }
 }
+.noLogueado{
+    float: right;
+    margin-right: 20px;
+}
+.imgLogo{
+    width: 100%;
+    text-align: center;
+    margin-top: 25px;
+    &>img{
+        width: 80px;
+        margin: 0 auto;
+    }
+}
+.linkPagina{
+    .label {
+        text-align: center;
+    }
+}
+

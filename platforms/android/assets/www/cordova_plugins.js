@@ -128,6 +128,15 @@ module.exports = [
       "cordova.plugins.notification.local.core",
       "plugin.notification.local.core"
     ]
+  },
+  {
+    "id": "cordova-plugin-inappbrowser.inappbrowser",
+    "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+    "pluginId": "cordova-plugin-inappbrowser",
+    "clobbers": [
+      "cordova.InAppBrowser.open",
+      "window.open"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -144,7 +153,8 @@ module.exports.metadata =
   "cordova-plugin-ionic-webview": "1.1.16",
   "cordova-plugin-facebook4": "1.9.1",
   "cordova-plugin-badge": "0.8.6",
-  "cordova-plugin-local-notification": "0.9.0-beta.2"
+  "cordova-plugin-local-notification": "0.9.0-beta.2",
+  "cordova-plugin-inappbrowser": "2.0.1"
 };
 // BOTTOM OF METADATA
 });

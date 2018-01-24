@@ -4,9 +4,19 @@
       <ion-title class="tittleMenu">JoBid</ion-title>
     </ion-toolbar>
   </ion-header>
-
   <ion-content>
-    <ion-list>
+    <div [hidden]="mostrarUsuarioLogeado">
+      <div class="imgLogo">
+        <img src="{{imgApp}}" alt="userLogo" width="80" height="80">
+      </div>
+      <ion-list>
+        <ion-item class="linkPagina">
+          <button menuClose ion-item (click)="pagina()">LA MALETA DE FELIX</button>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div [hidden]="!mostrarUsuarioLogeado">
+      <ion-list>
         <ion-item class="imgUser">
           <ion-thumbnail item-start>
             <img src="{{srcUser}}" alt="userLogo">
@@ -14,38 +24,44 @@
           <p>{{userName}}</p>
           <!-- <p><ion-icon name="star" class="nota" item-start></ion-icon> {{star}}</p> -->
           <p class="Calificacion Usuario {{starUser}}">
-							<label for="radio1">&#9733;</label>
-							<label for="radio2">&#9733;</label>
-							<label for="radio3">&#9733;</label>
-							<label for="radio4">&#9733;</label>
-							<label for="radio5">&#9733;</label>
-						</p>
+            <label for="radio1">&#9733;</label>
+            <label for="radio2">&#9733;</label>
+            <label for="radio3">&#9733;</label>
+            <label for="radio4">&#9733;</label>
+            <label for="radio5">&#9733;</label>
+          </p>
         </ion-item>
-    </ion-list>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-      <button ion-item class="loginOut" menuToggle (click)="cerrarSeccion()">
-        Login out
-      </button> 
-    </ion-list>
+      </ion-list>
+      <ion-list>
+        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+          {{p.title}}
+        </button>
+        <button ion-item class="loginOut" menuToggle (click)="cerrarSeccion()">
+          Login out
+        </button>
+      </ion-list>
+    </div>
   </ion-content>
   <ion-footer>
+    <div [hidden]="mostrarUsuarioLogeado">
+      <p class="version noLogueado">V.1</p>
+    </div>
+    <div [hidden]="!mostrarUsuarioLogeado">
       <ion-toolbar>
-          <ion-list>
-              <button ion-item (click)="goJobWithUs()" menuToggle>
-                Job with us
-              </button>
-              <button ion-item (click)="goPolicies()" menuToggle>
-                Policies <p class="version">V.1</p>
-              </button> 
-               
-            </ion-list>
+        <ion-list>
+          <button ion-item (click)="goJobWithUs()" menuToggle>
+            Job with us
+          </button>
+          <button ion-item (click)="goPolicies()" menuToggle>
+            Policies
+            <p class="version">V.1</p>
+          </button>
+        </ion-list>
       </ion-toolbar>
-    </ion-footer>
+    </div>
+  </ion-footer>
 
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false" ></ion-nav>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

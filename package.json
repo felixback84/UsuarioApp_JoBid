@@ -25,6 +25,7 @@
     "@ionic-native/core": "4.3.2",
     "@ionic-native/facebook": "4.5.2",
     "@ionic-native/geolocation": "4.3.3",
+    "@ionic-native/in-app-browser": "^4.5.2",
     "@ionic-native/local-notifications": "4.4.2",
     "@ionic-native/native-audio": "4.3.3",
     "@ionic-native/native-geocoder": "4.3.3",
@@ -43,6 +44,7 @@
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-facebook4": "^1.9.1",
     "cordova-plugin-geolocation": "^2.4.3",
+    "cordova-plugin-inappbrowser": "^2.0.1",
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-local-notification": "^0.9.0-beta.2",
     "cordova-plugin-nativeaudio": "^3.0.9",
@@ -82,7 +84,8 @@
         "APP_ID": "539258269738575",
         "APP_NAME": "JoBid Usuario"
       },
-      "cordova-plugin-local-notification": {}
+      "cordova-plugin-local-notification": {},
+      "cordova-plugin-inappbrowser": {}
     },
     "platforms": [
       "android"
