@@ -82,7 +82,7 @@ export class MyApp {
     //let goPagePrehomeLoad = false;
     this.afAuth.authState.subscribe(userAuth => {
       //console.log('find user menu');
-      //console.log(userAuth);
+      console.log(userAuth);
       if (userAuth) {
         // let email=  userAuth.providerData["0"].email;
         if (userAuth.providerData["0"].providerId == 'password') {
@@ -93,8 +93,16 @@ export class MyApp {
             console.log('User Logueado');
             console.log(User);
             if (User['0']) {
-              this.loadViewUser(User['0']);
-              this.mostrarUsuarioLogeado = true;
+              if (User['0']['login'] == undefined || User['0']['login'] == false) {
+                if (this.afAuth.auth.currentUser.emailVerified != false) {
+                  console.info('cambio estado login base de datos');
+                  this.mostrarUsuarioLogeado = true;
+                  this.loadViewUser(User['0']);
+                }
+              } else {
+                this.loadViewUser(User['0']);
+                this.mostrarUsuarioLogeado = true;
+              }
               if (Userexists != undefined) {
                 Userexists.unsubscribe();
               }

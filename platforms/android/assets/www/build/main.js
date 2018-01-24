@@ -7765,7 +7765,7 @@ var MyApp = (function () {
         //let goPagePrehomeLoad = false;
         this.afAuth.authState.subscribe(function (userAuth) {
             //console.log('find user menu');
-            //console.log(userAuth);
+            console.log(userAuth);
             if (userAuth) {
                 // let email=  userAuth.providerData["0"].email;
                 if (userAuth.providerData["0"].providerId == 'password') {
@@ -7775,8 +7775,17 @@ var MyApp = (function () {
                         console.log('User Logueado');
                         console.log(User);
                         if (User['0']) {
-                            _this.loadViewUser(User['0']);
-                            _this.mostrarUsuarioLogeado = true;
+                            if (User['0']['login'] == undefined || User['0']['login'] == false) {
+                                if (_this.afAuth.auth.currentUser.emailVerified != false) {
+                                    console.info('cambio estado login base de datos');
+                                    _this.mostrarUsuarioLogeado = true;
+                                    _this.loadViewUser(User['0']);
+                                }
+                            }
+                            else {
+                                _this.loadViewUser(User['0']);
+                                _this.mostrarUsuarioLogeado = true;
+                            }
                             if (Userexists_1 != undefined) {
                                 Userexists_1.unsubscribe();
                             }
@@ -7928,7 +7937,7 @@ __decorate([
     __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"E:\z-Trabajo\proyectoIonic\gitHub\UsuarioApp_JoBid\src\app\app.html"*/'<ion-menu [content]="content">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title class="tittleMenu">JoBid</ion-title>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <div [hidden]="mostrarUsuarioLogeado">\n\n      <div class="imgLogo">\n\n        <img src="{{imgApp}}" alt="userLogo" width="80" height="80">\n\n      </div>\n\n      <ion-list>\n\n        <ion-item class="linkPagina">\n\n          <button menuClose ion-item (click)="pagina()">LA MALETA DE FELIX</button>\n\n        </ion-item>\n\n      </ion-list>\n\n    </div>\n\n    <div [hidden]="!mostrarUsuarioLogeado">\n\n      <ion-list>\n\n        <ion-item class="imgUser">\n\n          <ion-thumbnail item-start>\n\n            <img src="{{srcUser}}" alt="userLogo">\n\n          </ion-thumbnail>\n\n          <p>{{userName}}</p>\n\n          <!-- <p><ion-icon name="star" class="nota" item-start></ion-icon> {{star}}</p> -->\n\n          <p class="Calificacion Usuario {{starUser}}">\n\n            <label for="radio1">&#9733;</label>\n\n            <label for="radio2">&#9733;</label>\n\n            <label for="radio3">&#9733;</label>\n\n            <label for="radio4">&#9733;</label>\n\n            <label for="radio5">&#9733;</label>\n\n          </p>\n\n        </ion-item>\n\n      </ion-list>\n\n      <ion-list>\n\n        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n          {{p.title}}\n\n        </button>\n\n        <button ion-item class="loginOut" menuToggle (click)="cerrarSeccion()">\n\n          Login out\n\n        </button>\n\n      </ion-list>\n\n    </div>\n\n  </ion-content>\n\n  <ion-footer>\n\n    <div [hidden]="mostrarUsuarioLogeado">\n\n      <p class="version noLogueado">V.1</p>\n\n    </div>\n\n    <div [hidden]="!mostrarUsuarioLogeado">\n\n      <ion-toolbar>\n\n        <ion-list>\n\n          <button ion-item (click)="goJobWithUs()" menuToggle>\n\n            Job with us\n\n          </button>\n\n          <button ion-item (click)="goPolicies()" menuToggle>\n\n            Policies\n\n            <p class="version">V.1</p>\n\n          </button>\n\n        </ion-list>\n\n      </ion-toolbar>\n\n    </div>\n\n  </ion-footer>\n\n\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"E:\z-Trabajo\proyectoIonic\gitHub\UsuarioApp_JoBid\src\app\app.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"E:\z-Trabajo\proyectoIonic\gitHub\UsuarioApp_JoBid\src\app\app.html"*/'<ion-menu [content]="content">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title class="tittleMenu">JoBid</ion-title>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <div [hidden]="mostrarUsuarioLogeado">\n\n      <div class="imgLogo">\n\n        <img src="{{imgApp}}" alt="userLogo" width="80" height="80">\n\n      </div>\n\n      <ion-list>\n\n        <ion-item class="linkPagina">\n\n          <button menuClose ion-item (click)="pagina()"><span>Powered by:</span> La Maleta de Félix </button>\n\n        </ion-item>\n\n      </ion-list>\n\n    </div>\n\n    <div [hidden]="!mostrarUsuarioLogeado">\n\n      <ion-list>\n\n        <ion-item class="imgUser">\n\n          <ion-thumbnail item-start>\n\n            <img src="{{srcUser}}" alt="userLogo">\n\n          </ion-thumbnail>\n\n          <p>{{userName}}</p>\n\n          <!-- <p><ion-icon name="star" class="nota" item-start></ion-icon> {{star}}</p> -->\n\n          <p class="Calificacion Usuario {{starUser}}">\n\n            <label for="radio1">&#9733;</label>\n\n            <label for="radio2">&#9733;</label>\n\n            <label for="radio3">&#9733;</label>\n\n            <label for="radio4">&#9733;</label>\n\n            <label for="radio5">&#9733;</label>\n\n          </p>\n\n        </ion-item>\n\n      </ion-list>\n\n      <ion-list>\n\n        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n          {{p.title}}\n\n        </button>\n\n        <button ion-item class="loginOut" menuToggle (click)="cerrarSeccion()">\n\n          Login out\n\n        </button>\n\n      </ion-list>\n\n    </div>\n\n  </ion-content>\n\n  <ion-footer>\n\n    <div [hidden]="mostrarUsuarioLogeado">\n\n      <p class="version noLogueado">V.1</p>\n\n    </div>\n\n    <div [hidden]="!mostrarUsuarioLogeado">\n\n      <ion-toolbar>\n\n        <ion-list>\n\n          <button ion-item (click)="goJobWithUs()" menuToggle>\n\n            Job with us\n\n          </button>\n\n          <button ion-item (click)="goPolicies()" menuToggle>\n\n            Policies\n\n            <p class="version">V.1</p>\n\n          </button>\n\n        </ion-list>\n\n      </ion-toolbar>\n\n    </div>\n\n  </ion-footer>\n\n\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"E:\z-Trabajo\proyectoIonic\gitHub\UsuarioApp_JoBid\src\app\app.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
         __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__["a" /* AngularFireAuth */],
