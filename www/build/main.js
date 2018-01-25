@@ -2083,8 +2083,6 @@ var CleaningContractorPage = (function () {
         this.offerService.setUser(this.keyOffer, this.userActual);
         var DataService = { 'datos': { "dataService": this.dataService, "offer": this.keyOffer, "win": this.worker } };
         console.log(DataService);
-        this.profeSuns.unsubscribe();
-        this.userNameSubs.unsubscribe();
         this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__cleaning_info_service_cleaning_info_service__["a" /* CleaningInfoServicePage */], DataService);
     };
     // goIndex(){
@@ -2098,8 +2096,6 @@ var CleaningContractorPage = (function () {
             if (status['$value']) {
                 if (status['$value'] == 'CancelledProvider') {
                     _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__show_show__["a" /* ShowPage */]);
-                    _this.statusSub.unsubscribe();
-                    _this.userNameSubs.unsubscribe();
                 }
             }
         });
@@ -2125,8 +2121,6 @@ var CleaningContractorPage = (function () {
                         _this.offerService.setStatus(_this.keyOffer, 'Cancelled');
                         var descuento = (_this.sale * 5) / 100;
                         _this.braintreeService.CancelSaleCustomer(_this.userActual, descuento);
-                        _this.profeSuns.unsubscribe();
-                        _this.statusSub.unsubscribe();
                         _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__show_show__["a" /* ShowPage */]);
                     }
                 }
@@ -2267,6 +2261,18 @@ var CleaningContractorPage = (function () {
                     }
                 }
             }
+        }
+    };
+    //desucribe de firebase
+    CleaningContractorPage.prototype.ionViewWillLeave = function () {
+        if (this.statusSub != undefined) {
+            this.statusSub.unsubscribe();
+        }
+        if (this.userNameSubs != undefined) {
+            this.userNameSubs.unsubscribe();
+        }
+        if (this.profeSuns != undefined) {
+            this.profeSuns.unsubscribe();
         }
     };
     return CleaningContractorPage;
@@ -7767,72 +7773,52 @@ var MyApp = (function () {
             //console.log('find user menu');
             console.log(userAuth);
             if (userAuth) {
-                // let email=  userAuth.providerData["0"].email;
-                if (userAuth.providerData["0"].providerId == 'password') {
-                    var email = userAuth.providerData["0"].email;
-                    console.log(email);
-                    var Userexists_1 = _this.userService.getUserEmailPerfil(email).subscribe(function (User) {
-                        console.log('User Logueado');
-                        console.log(User);
-                        if (User['0']) {
-                            if (User['0']['login'] == undefined || User['0']['login'] == false) {
-                                if (_this.afAuth.auth.currentUser.emailVerified != false) {
-                                    console.info('cambio estado login base de datos');
-                                    _this.mostrarUsuarioLogeado = true;
-                                    _this.loadViewUser(User['0']);
+                if (userAuth != null || userAuth != undefined) {
+                    // let email=  userAuth.providerData["0"].email;
+                    if (userAuth.providerData["0"].providerId == 'password') {
+                        var email = userAuth.providerData["0"].email;
+                        console.log(email);
+                        var Userexists = _this.userService.getUserEmailPerfil(email).subscribe(function (User) {
+                            console.log('User Logueado');
+                            console.log(User);
+                            if (User['0']) {
+                                if (User['0']['login'] == undefined || User['0']['login'] == false) {
+                                    if (_this.afAuth.auth.currentUser.emailVerified != false) {
+                                        console.info('cambio estado login base de datos');
+                                        _this.mostrarUsuarioLogeado = true;
+                                        _this.loadViewUser(User['0']);
+                                    }
                                 }
+                                else {
+                                    _this.loadViewUser(User['0']);
+                                    _this.mostrarUsuarioLogeado = true;
+                                }
+                                // if (Userexists != undefined) {
+                                //   Userexists.unsubscribe();
+                                // }
                             }
-                            else {
+                        });
+                    }
+                    else {
+                        var faceUid = userAuth.uid;
+                        console.log(faceUid);
+                        var Userexists = _this.userService.getUserUidFace(faceUid).subscribe(function (User) {
+                            console.log('User Logueado');
+                            console.log(User);
+                            if (User['0']) {
                                 _this.loadViewUser(User['0']);
                                 _this.mostrarUsuarioLogeado = true;
+                                // if (Userexists != undefined) {
+                                //   Userexists.unsubscribe();
+                                // }
                             }
-                            if (Userexists_1 != undefined) {
-                                Userexists_1.unsubscribe();
-                            }
-                        }
-                    });
+                        });
+                    }
                 }
                 else {
-                    var faceUid = userAuth.uid;
-                    console.log(faceUid);
-                    var Userexists_2 = _this.userService.getUserUidFace(faceUid).subscribe(function (User) {
-                        console.log('User Logueado');
-                        console.log(User);
-                        if (User['0']) {
-                            _this.loadViewUser(User['0']);
-                            _this.mostrarUsuarioLogeado = true;
-                            if (Userexists_2 != undefined) {
-                                Userexists_2.unsubscribe();
-                            }
-                        }
-                    });
+                    console.info('find user menu - no');
+                    _this.mostrarUsuarioLogeado = false;
                 }
-                //console.log(email);
-                // let Userexists= this.userService.getUserEmailPerfil(email);
-                // Userexists.forEach((users) => {
-                //   //console.log('user1');
-                //   //console.log(users);
-                //   users.forEach((user) =>{
-                //     if(user != undefined && user != null){
-                //         //console.log('usuario load data');
-                //         //console.log(user);
-                //         // userDBLoad = user;
-                //         this.userMenu = { "email":user['user_email'],"name":user['user_name'],"pais":user['user_pais'],"password":user['user_password'],"picture":user['user_picture'],"state":user['user_state'],"tel":user['user_tel'],"username":user['user_username'],"verificacion":user['$key'],"zipcode":user['user_zipcode']};
-                //         this.userName= user['user_username'];
-                //         if(user['user_picture'] && user['user_picture'] != '' && user['user_picture'] != null && user['user_picture'] != undefined){
-                //           this.srcUser= user['user_picture'];
-                //         }
-                //         if(user['user_star'] && user['user_star'] != '' && user['user_star'] != null && user['user_star'] != undefined){
-                //           this.star= Math.round(user['user_star']);
-                //         }
-                //         // goPagePrehomeLoad= true;
-                //         // console.log(goPagePrehomeLoad);
-                //         // if(goPagePrehomeLoad){
-                //         //   ---this.goNextPagePrehomeFace(userDBLoad);
-                //         // }
-                //     }
-                //   });
-                // });
             }
             else {
                 console.info('find user menu - no');

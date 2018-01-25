@@ -84,72 +84,49 @@ export class MyApp {
       //console.log('find user menu');
       console.log(userAuth);
       if (userAuth) {
-        // let email=  userAuth.providerData["0"].email;
-        if (userAuth.providerData["0"].providerId == 'password') {
-          let email = userAuth.providerData["0"].email;
-          console.log(email);
-
-          let Userexists = this.userService.getUserEmailPerfil(email).subscribe((User) => {
-            console.log('User Logueado');
-            console.log(User);
-            if (User['0']) {
-              if (User['0']['login'] == undefined || User['0']['login'] == false) {
-                if (this.afAuth.auth.currentUser.emailVerified != false) {
-                  console.info('cambio estado login base de datos');
-                  this.mostrarUsuarioLogeado = true;
+        if (userAuth != null || userAuth != undefined) {
+          // let email=  userAuth.providerData["0"].email;
+          if (userAuth.providerData["0"].providerId == 'password') {
+            let email = userAuth.providerData["0"].email;
+            console.log(email);
+            let Userexists = this.userService.getUserEmailPerfil(email).subscribe((User) => {
+              console.log('User Logueado');
+              console.log(User);
+              if (User['0']) {
+                if (User['0']['login'] == undefined || User['0']['login'] == false) {
+                  if (this.afAuth.auth.currentUser.emailVerified != false) {
+                    console.info('cambio estado login base de datos');
+                    this.mostrarUsuarioLogeado = true;
+                    this.loadViewUser(User['0']);
+                  }
+                } else {
                   this.loadViewUser(User['0']);
+                  this.mostrarUsuarioLogeado = true;
                 }
-              } else {
+                // if (Userexists != undefined) {
+                //   Userexists.unsubscribe();
+                // }
+              }
+            });
+          } else {
+            let faceUid = userAuth.uid;
+            console.log(faceUid);
+            let Userexists = this.userService.getUserUidFace(faceUid).subscribe((User) => {
+              console.log('User Logueado');
+              console.log(User);
+              if (User['0']) {
                 this.loadViewUser(User['0']);
                 this.mostrarUsuarioLogeado = true;
+                // if (Userexists != undefined) {
+                //   Userexists.unsubscribe();
+                // }
               }
-              if (Userexists != undefined) {
-                Userexists.unsubscribe();
-              }
-            }
-          });
+            });
+          }
         } else {
-          let faceUid = userAuth.uid;
-          console.log(faceUid);
-          let Userexists = this.userService.getUserUidFace(faceUid).subscribe((User) => {
-            console.log('User Logueado');
-            console.log(User);
-            if (User['0']) {
-              this.loadViewUser(User['0']);
-              this.mostrarUsuarioLogeado = true;
-              if (Userexists != undefined) {
-                Userexists.unsubscribe();
-              }
-            }
-          });
+          console.info('find user menu - no');
+          this.mostrarUsuarioLogeado = false;
         }
-        //console.log(email);
-        // let Userexists= this.userService.getUserEmailPerfil(email);
-        // Userexists.forEach((users) => {
-        //   //console.log('user1');
-        //   //console.log(users);
-        //   users.forEach((user) =>{
-        //     if(user != undefined && user != null){
-        //         //console.log('usuario load data');
-        //         //console.log(user);
-        //         // userDBLoad = user;
-        //         this.userMenu = { "email":user['user_email'],"name":user['user_name'],"pais":user['user_pais'],"password":user['user_password'],"picture":user['user_picture'],"state":user['user_state'],"tel":user['user_tel'],"username":user['user_username'],"verificacion":user['$key'],"zipcode":user['user_zipcode']};
-        //         this.userName= user['user_username'];
-        //         if(user['user_picture'] && user['user_picture'] != '' && user['user_picture'] != null && user['user_picture'] != undefined){
-        //           this.srcUser= user['user_picture'];
-        //         }
-        //         if(user['user_star'] && user['user_star'] != '' && user['user_star'] != null && user['user_star'] != undefined){
-        //           this.star= Math.round(user['user_star']);
-        //         }
-
-        //         // goPagePrehomeLoad= true;
-        //         // console.log(goPagePrehomeLoad);
-        //         // if(goPagePrehomeLoad){
-        //         //   ---this.goNextPagePrehomeFace(userDBLoad);
-        //         // }
-        //     }
-        //   });
-        // });
       } else {
         console.info('find user menu - no');
         this.mostrarUsuarioLogeado = false;

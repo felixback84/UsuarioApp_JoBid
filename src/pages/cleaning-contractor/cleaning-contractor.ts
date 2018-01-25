@@ -102,8 +102,6 @@ export class CleaningContractorPage {
     this.offerService.setUser(this.keyOffer, this.userActual);
     let DataService = { 'datos': { "dataService": this.dataService, "offer": this.keyOffer, "win": this.worker } };
     console.log(DataService);
-    this.profeSuns.unsubscribe();
-    this.userNameSubs.unsubscribe();
     this.navCtrl.setRoot(CleaningInfoServicePage, DataService);
   }
   // goIndex(){
@@ -117,8 +115,6 @@ export class CleaningContractorPage {
         if (status['$value']) {
           if (status['$value'] == 'CancelledProvider') {
             this.navCtrl.setRoot(ShowPage);
-            this.statusSub.unsubscribe();
-            this.userNameSubs.unsubscribe();
           }
         }
       });
@@ -143,8 +139,6 @@ export class CleaningContractorPage {
             this.offerService.setStatus(this.keyOffer, 'Cancelled');
             let descuento = (this.sale * 5) / 100;
             this.braintreeService.CancelSaleCustomer(this.userActual, descuento);
-            this.profeSuns.unsubscribe();
-            this.statusSub.unsubscribe();
             this.navCtrl.setRoot(ShowPage);
           }
         }
@@ -291,6 +285,13 @@ export class CleaningContractorPage {
 
       }
     }
+  }
+
+  //desucribe de firebase
+  ionViewWillLeave() {
+    if(this.statusSub != undefined){this.statusSub.unsubscribe();}
+    if(this.userNameSubs != undefined){this.userNameSubs.unsubscribe();}
+    if(this.profeSuns != undefined){this.profeSuns.unsubscribe();}
   }
 
 }
